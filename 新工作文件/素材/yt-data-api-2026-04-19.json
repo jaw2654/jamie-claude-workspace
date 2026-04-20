@@ -1,0 +1,389 @@
+{
+  "channel": {
+    "kind": "youtube#channel",
+    "etag": "bEwz9-F6nL66JSrmWKF0gyrzWgs",
+    "id": "UCsE6LVoptiCe8cErB4mTitg",
+    "snippet": {
+      "title": "巫采縈Jamie 健身教練",
+      "description": "一個紀錄專業知識與生活日常的頻道\n12年教學經驗|幫助初學者從0也能開始運動🏋️‍♀️\n🔗 實體專屬一對一客製化課程or加入線上減脂社群\nhttps://www.skool.com/home-gym-3231/plans\n\nig:https://www.instagram.com/jamie_wu_1012?igsh=cTl6Z3NmeDZ2NHVn&utm_source=qr\n",
+      "customUrl": "@jamie_wu_1012",
+      "publishedAt": "2011-11-17T10:15:01Z",
+      "thumbnails": {
+        "default": {
+          "url": "https://yt3.ggpht.com/OwvPNExjhF7BycaRp4hg3kdLXhtaMrADmzprVFPrSJa5t-QJL1yrmnx0OOIQJZcduRjKQFI2pNw=s88-c-k-c0x00ffffff-no-rj",
+          "width": 88,
+          "height": 88
+        },
+        "medium": {
+          "url": "https://yt3.ggpht.com/OwvPNExjhF7BycaRp4hg3kdLXhtaMrADmzprVFPrSJa5t-QJL1yrmnx0OOIQJZcduRjKQFI2pNw=s240-c-k-c0x00ffffff-no-rj",
+          "width": 240,
+          "height": 240
+        },
+        "high": {
+          "url": "https://yt3.ggpht.com/OwvPNExjhF7BycaRp4hg3kdLXhtaMrADmzprVFPrSJa5t-QJL1yrmnx0OOIQJZcduRjKQFI2pNw=s800-c-k-c0x00ffffff-no-rj",
+          "width": 800,
+          "height": 800
+        }
+      },
+      "localized": {
+        "title": "巫采縈Jamie 健身教練",
+        "description": "一個紀錄專業知識與生活日常的頻道\n12年教學經驗|幫助初學者從0也能開始運動🏋️‍♀️\n🔗 實體專屬一對一客製化課程or加入線上減脂社群\nhttps://www.skool.com/home-gym-3231/plans\n\nig:https://www.instagram.com/jamie_wu_1012?igsh=cTl6Z3NmeDZ2NHVn&utm_source=qr\n"
+      },
+      "country": "TW"
+    },
+    "contentDetails": {
+      "relatedPlaylists": {
+        "likes": "LL",
+        "uploads": "UUsE6LVoptiCe8cErB4mTitg"
+      }
+    },
+    "statistics": {
+      "viewCount": "14643",
+      "subscriberCount": "57",
+      "hiddenSubscriberCount": false,
+      "videoCount": "26"
+    }
+  },
+  "videos": [
+    {
+      "id": "NU3t9-9yHRc",
+      "title": "首爾 Vlog Day 7｜漢南洞咖啡、梨泰院美術館、跟朋友吃辣炒年糕",
+      "published": "2026-04-18T13:00:06Z",
+      "privacy": "public",
+      "views": 37,
+      "likes": 1,
+      "comments": 0,
+      "duration": "PT5M42S",
+      "tags": [
+        "Day 7",
+        "Jamie Wu",
+        "Seoul Vlog",
+        "brunch",
+        "repurre",
+        "梨泰院",
+        "漢南洞",
+        "辣炒年糕",
+        "韓國 Vlog",
+        "首爾 Vlog"
+      ]
+    },
+    {
+      "id": "db_3_EkhqXY",
+      "title": "首爾 Vlog Day 9｜雨大到哪都去不了聖水 必逛店家、必去咖啡廳，還有必吃的餐廳。",
+      "published": "2026-04-18T06:32:09Z",
+      "privacy": "public",
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "",
+      "tags": [
+        "Day 9",
+        "Jamie Wu",
+        "Seoul Vlog",
+        "repurre",
+        "聖水洞",
+        "韓國 Vlog",
+        "首爾 Vlog"
+      ]
+    },
+    {
+      "id": "Y9e9bgo3GYQ",
+      "title": "為什麼 30 歲以上的你老是腰痠背痛?",
+      "published": "2026-04-17T16:29:32Z",
+      "privacy": "public",
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "",
+      "tags": [
+        "30 歲健身",
+        "Jamie Wu",
+        "repurre",
+        "代償",
+        "代償歸零",
+        "台北健身",
+        "女生重訓",
+        "矯正訓練",
+        "肩頸痠痛",
+        "重建式訓練"
+      ]
+    },
+    {
+      "id": "SQa8CScc_h0",
+      "title": "首爾 Vlog Day 8｜解放村咖啡一日、Olive Young 戰利品、帶朋友吃馬鈴薯湯",
+      "published": "2026-04-17T09:50:51Z",
+      "privacy": "public",
+      "views": 0,
+      "likes": 1,
+      "comments": 0,
+      "duration": "",
+      "tags": [
+        "Arnois",
+        "Jamie Wu",
+        "OOTD",
+        "Olive Young",
+        "PDRN",
+        "Seasonal Table",
+        "Seoul Vlog",
+        "repurre",
+        "安山塔",
+        "解放村",
+        "韓國 Vlog",
+        "首爾 Vlog"
+      ]
+    },
+    {
+      "id": "-Rxb5dkMWq0",
+      "title": "首爾Vlog Day6 蠶室石村湖散步賞櫻花，London Bagle超好吃，韓國吃豬腳初體驗，Oliveyoung必買！韓國日本台灣人語言大雜燴",
+      "published": "2026-04-13T14:00:21Z",
+      "privacy": "public",
+      "views": 188,
+      "likes": 4,
+      "comments": 0,
+      "duration": "PT7M8S",
+      "tags": []
+    },
+    {
+      "id": "gME0gjG2JX8",
+      "title": "首爾Vlog Day5 聖水洞都逛了什麼吃了什麼呢～～？",
+      "published": "2026-04-09T15:13:18Z",
+      "privacy": "public",
+      "views": 253,
+      "likes": 3,
+      "comments": 3,
+      "duration": "PT9M33S",
+      "tags": []
+    },
+    {
+      "id": "8Vbe503EXEw",
+      "title": "首爾 Vlog Day4 今天帶你們賞櫻花",
+      "published": "2026-04-04T14:49:19Z",
+      "privacy": "public",
+      "views": 68,
+      "likes": 1,
+      "comments": 0,
+      "duration": "PT7M40S",
+      "tags": []
+    },
+    {
+      "id": "uN9PpNGVT7U",
+      "title": "首爾Vlog Day3跟韓國朋友一起玩了一天！",
+      "published": "2026-04-03T17:20:55Z",
+      "privacy": "public",
+      "views": 98,
+      "likes": 4,
+      "comments": 2,
+      "duration": "PT11M25S",
+      "tags": []
+    },
+    {
+      "id": "KZA1OJ-LEIo",
+      "title": "首爾Vlog Day2 弘大逛街跟首爾樂天超市！",
+      "published": "2026-04-01T16:00:26Z",
+      "privacy": "public",
+      "views": 220,
+      "likes": 3,
+      "comments": 4,
+      "duration": "PT8M52S",
+      "tags": []
+    },
+    {
+      "id": "bprdeyrtLLs",
+      "title": "首爾Vlog Day1 一人獨旅怎麼做？",
+      "published": "2026-03-31T15:54:31Z",
+      "privacy": "public",
+      "views": 155,
+      "likes": 4,
+      "comments": 2,
+      "duration": "PT4M2S",
+      "tags": []
+    },
+    {
+      "id": "B7aDgU-ufFQ",
+      "title": "無論你的目標是減脂還是身體健康，都應該要做的事！",
+      "published": "2026-03-26T13:00:06Z",
+      "privacy": "public",
+      "views": 50,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT41M14S",
+      "tags": []
+    },
+    {
+      "id": "lhdiPZT1_wM",
+      "title": "多花一點時間照顧自己 身體體態就會好！",
+      "published": "2026-03-26T06:36:19Z",
+      "privacy": "public",
+      "views": 1492,
+      "likes": 15,
+      "comments": 1,
+      "duration": "PT59S",
+      "tags": []
+    },
+    {
+      "id": "mDO54DmGNWA",
+      "title": "為什麼努力減脂的人，通常會失敗？",
+      "published": "2026-03-23T00:50:34Z",
+      "privacy": "public",
+      "views": 164,
+      "likes": 4,
+      "comments": 0,
+      "duration": "PT43M3S",
+      "tags": []
+    },
+    {
+      "id": "LTHgd1QJur4",
+      "title": "My Morning Routine🤍 #vlog",
+      "published": "2026-03-22T09:44:26Z",
+      "privacy": "public",
+      "views": 790,
+      "likes": 5,
+      "comments": 0,
+      "duration": "PT1M2S",
+      "tags": []
+    },
+    {
+      "id": "Qnvj7XnpLz4",
+      "title": "「巫采縈Jamie 健身教練」直播",
+      "published": "2026-03-20T17:05:27Z",
+      "privacy": "public",
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "P0D",
+      "tags": []
+    },
+    {
+      "id": "4zxXAedUfeU",
+      "title": "健康=減脂？ 點進來頁面可以看到更多完整影片！記得追蹤我！",
+      "published": "2026-03-20T05:33:51Z",
+      "privacy": "public",
+      "views": 986,
+      "likes": 11,
+      "comments": 0,
+      "duration": "PT50S",
+      "tags": []
+    },
+    {
+      "id": "hVhehY8GiIc",
+      "title": "從減脂到健康：我的12年健身之路分享",
+      "published": "2026-03-19T13:00:06Z",
+      "privacy": "public",
+      "views": 122,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT26M17S",
+      "tags": []
+    },
+    {
+      "id": "AHMdR__pmgU",
+      "title": "吃對營養素才是減脂重要的關鍵！想看更多減脂內容記得訂閱我",
+      "published": "2026-03-18T14:26:31Z",
+      "privacy": "public",
+      "views": 1164,
+      "likes": 12,
+      "comments": 0,
+      "duration": "PT46S",
+      "tags": []
+    },
+    {
+      "id": "xbK-aj8RbEk",
+      "title": "三件可以讓你更有線條的Tips",
+      "published": "2026-03-17T07:19:10Z",
+      "privacy": "public",
+      "views": 1289,
+      "likes": 14,
+      "comments": 0,
+      "duration": "PT37S",
+      "tags": []
+    },
+    {
+      "id": "5gQvdwmC7Gg",
+      "title": "因為旅遊而認識的好朋友 跟陌生人一起在紐約玩了四天的快樂旅程😍",
+      "published": "2026-03-15T14:44:51Z",
+      "privacy": "public",
+      "views": 1042,
+      "likes": 19,
+      "comments": 0,
+      "duration": "PT1M23S",
+      "tags": []
+    },
+    {
+      "id": "WJ_94YM5Ev0",
+      "title": "8/2法則做好你才能減脂！我最近的休假行程😆",
+      "published": "2026-03-14T14:19:01Z",
+      "privacy": "public",
+      "views": 2011,
+      "likes": 14,
+      "comments": 0,
+      "duration": "PT31S",
+      "tags": []
+    },
+    {
+      "id": "ekCCPPvZdFk",
+      "title": "為什麼努力減脂的人，通常會失敗？",
+      "published": "2026-03-12T13:00:06Z",
+      "privacy": "public",
+      "views": 31,
+      "likes": 2,
+      "comments": 0,
+      "duration": "PT6M34S",
+      "tags": []
+    },
+    {
+      "id": "i2ec7KXaDpg",
+      "title": "其實我原本是一名跆拳道選手，但被迫放棄了我最愛的跆拳道…",
+      "published": "2026-03-12T06:17:19Z",
+      "privacy": "public",
+      "views": 949,
+      "likes": 18,
+      "comments": 0,
+      "duration": "PT1M25S",
+      "tags": []
+    },
+    {
+      "id": "gYReHILSgIA",
+      "title": "用五天重訓換體脂降2%",
+      "published": "2026-03-09T11:53:23Z",
+      "privacy": "public",
+      "views": 1207,
+      "likes": 4,
+      "comments": 0,
+      "duration": "PT48S",
+      "tags": []
+    },
+    {
+      "id": "tFJIzNZi6Hc",
+      "title": "↓留言「skool」我把更多減脂小知識的社群傳給你！裡面有更多服務可以幫助你完成你的目標！每週週末還會有一篇週末信箱✉️讓你可以知道有關於減脂的小知識！專注三大標準動作可以健康又減脂內容在社群裡！",
+      "published": "2026-03-04T04:01:18Z",
+      "privacy": "public",
+      "views": 1160,
+      "likes": 14,
+      "comments": 0,
+      "duration": "PT47S",
+      "tags": []
+    },
+    {
+      "id": "87RoQd9jZCY",
+      "title": "你心裡想的有線條真的做得到嗎？",
+      "published": "2026-03-03T13:51:43Z",
+      "privacy": "public",
+      "views": 28,
+      "likes": 1,
+      "comments": 0,
+      "duration": "PT45S",
+      "tags": []
+    },
+    {
+      "id": "dW2ueN6huiU",
+      "title": "運動、飲食控制了？體態不是你想要的？那該怎麼辦？",
+      "published": "2026-03-01T01:19:47Z",
+      "privacy": "public",
+      "views": 1167,
+      "likes": 15,
+      "comments": 3,
+      "duration": "PT33S",
+      "tags": []
+    }
+  ]
+}
