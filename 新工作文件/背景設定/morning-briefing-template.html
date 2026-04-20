@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨報 - 2026-04-12 - Jamie Wu 教練</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0a0a0a; color: #d8d8d8; font-family: 'Segoe UI', 'PingFang TC', Tahoma, sans-serif; padding: 20px; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 0 auto; background-color: #141414; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(255,255,255,0.04); }
+        .header { background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%); border-bottom: 2px solid #d8d8d8; padding: 20px; text-align: center; }
+        .header h1 { font-size: 2.5em; color: #d8d8d8; margin-bottom: 5px; }
+        .date-info { color: #888; font-size: 0.95em; }
+
+        .tab-input { display: none; }
+        .tabs-wrapper { display: flex; flex-wrap: wrap; background-color: #0a0a0a; border-bottom: 1px solid #d8d8d8; overflow-x: auto; }
+        .tab-label { padding: 14px 16px; cursor: pointer; background-color: #0a0a0a; color: #555; border-bottom: 3px solid transparent; font-weight: 600; font-size: 0.88em; transition: all 0.3s ease; white-space: nowrap; }
+        .tab-label:hover { color: #d8d8d8; background-color: #141414; }
+        .tab-input:checked + .tab-label { color: #d8d8d8; border-bottom-color: #d8d8d8; background-color: #141414; }
+        .tab-content { display: none; padding: 28px; background-color: #141414; animation: fadeIn 0.3s ease; width: 100%; }
+        #tab1:checked ~ #c1, #tab2:checked ~ #c2, #tab3:checked ~ #c3,
+        #tab4:checked ~ #c4, #tab5:checked ~ #c5, #tab6:checked ~ #c6 { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .section-title { color: #d8d8d8; font-size: 1.2em; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #d8d8d8; }
+        .sub-title { font-size: 0.75em; letter-spacing: 2px; text-transform: uppercase; color: #666; font-weight: 700; padding: 4px 10px; background: #1a1a1a; border-radius: 3px; display: inline-block; margin: 18px 0 12px; }
+        hr.divider { border: none; border-top: 1px solid #2a2a2a; margin: 22px 0; }
+
+        .event-box { background-color: #0a0a0a; padding: 13px 16px; border-radius: 4px; margin-bottom: 10px; border-left: 3px solid #d8d8d8; }
+        .event-date { color: #d8d8d8; font-weight: 600; font-size: 0.95em; }
+        .event-desc { color: #aaa; margin-top: 4px; font-size: 0.9em; }
+
+        .checklist-item { display: flex; align-items: center; padding: 11px 0; border-bottom: 1px solid #1e1e1e; font-size: 1em; cursor: pointer; transition: color 0.2s; }
+        .checklist-item:hover { color: #fff; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checkbox { width: 20px; height: 20px; margin-right: 14px; cursor: pointer; accent-color: #d8d8d8; flex-shrink: 0; }
+
+        .news-item { margin-bottom: 16px; padding: 14px 16px; background-color: #0a0a0a; border-left: 3px solid #d8d8d8; border-radius: 4px; transition: background 0.2s; }
+        .news-item:hover { background-color: #1a1a1a; }
+        .news-title { color: #f0f0f0; font-weight: 700; margin-bottom: 7px; font-size: 1em; }
+        .news-text { color: #aaa; line-height: 1.65; margin-bottom: 8px; font-size: 0.92em; }
+        .news-source { color: #888; font-size: 0.8em; text-decoration: none; word-break: break-all; }
+        .news-source:hover { color: #d8d8d8; text-decoration: underline; }
+
+        .warning { background-color: #1a1a1a; border-left: 4px solid #777; padding: 12px 15px; margin-bottom: 16px; border-radius: 4px; }
+        .warning-title { color: #bbb; font-weight: 700; margin-bottom: 5px; font-size: 0.95em; }
+        .warning-desc { color: #888; font-size: 0.88em; line-height: 1.5; }
+
+        /* ── K-pop Tab ── */
+        .kpop-card { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+        .kpop-card-title { color: #f0f0f0; font-weight: 700; font-size: 1em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .kpop-tag { font-size: 0.68em; background: #2a2a2a; color: #888; padding: 2px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .kpop-card p { color: #aaa; font-size: 0.9em; line-height: 1.6; margin-bottom: 6px; }
+        .kpop-card .source { color: #777; font-size: 0.78em; text-decoration: none; }
+        .kpop-card .source:hover { color: #d8d8d8; }
+
+        /* ── Video Content Tab ── */
+        .video-card { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+        .video-type { font-size: 0.7em; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; display: inline-block; margin-bottom: 10px; }
+        .type-long { background: #222; color: #ccc; border: 1px solid #3a3a3a; }
+        .type-short { background: #1e1e1e; color: #bbb; border: 1px solid #333; }
+        .video-title { color: #f0f0f0; font-size: 1.05em; font-weight: 700; margin-bottom: 6px; }
+        .video-hook { background: #1a1a1a; border-left: 2px solid #d8d8d8; padding: 8px 12px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+        .video-hook-label { font-size: 0.72em; color: #666; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .video-hook-text { color: #d8d8d8; font-size: 0.92em; font-weight: 600; line-height: 1.5; }
+        .video-structure { margin-top: 12px; }
+        .video-structure-label { font-size: 0.72em; color: #666; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+        .structure-step { display: flex; gap: 12px; margin-bottom: 8px; }
+        .step-badge { font-size: 0.7em; font-weight: 700; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+        .badge-qi { background: #222; color: #bbb; border: 1px solid #3a3a3a; }
+        .badge-cheng { background: #1e1e1e; color: #bbb; border: 1px solid #333; }
+        .badge-zhuan { background: #1a1a1a; color: #bbb; border: 1px solid #2e2e2e; }
+        .badge-he { background: #161616; color: #bbb; border: 1px solid #2a2a2a; }
+        .step-text { color: #aaa; font-size: 0.88em; line-height: 1.6; }
+
+        @media (max-width: 600px) {
+          .tab-label { padding: 11px 10px; font-size: 0.8em; }
+          .container { margin: 0; border-radius: 0; }
+          .header { padding: 16px; }
+          .header h1 { font-size: 1.3em; }
+          .header .date-info { font-size: 0.78em; }
+          .tab-content { padding: 14px 12px; }
+          .stock-grid { grid-template-columns: 1fr; gap: 8px; }
+          .news-item { padding: 12px; }
+          .schedule-block { padding: 8px 10px; }
+          body { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>☀️ 晨報</h1>
+        <div class="date-info">2026 年 4 月 12 日（週日）| Jamie Wu 教練 | 返台第一天</div>
+    </div>
+
+    <input type="radio" id="tab1" name="tabs" class="tab-input" checked>
+    <label for="tab1" class="tab-label">☑️ 每日流程</label>
+    <input type="radio" id="tab2" name="tabs" class="tab-input">
+    <label for="tab2" class="tab-label">📧 Gmail</label>
+    <input type="radio" id="tab3" name="tabs" class="tab-input">
+    <label for="tab3" class="tab-label">🌍 世界大事</label>
+    <input type="radio" id="tab4" name="tabs" class="tab-input">
+    <label for="tab4" class="tab-label">💪 全球健身話題</label>
+    <input type="radio" id="tab5" name="tabs" class="tab-input">
+    <label for="tab5" class="tab-label">🇰🇷 K-pop 運動飲食保養</label>
+    <input type="radio" id="tab6" name="tabs" class="tab-input">
+    <label for="tab6" class="tab-label">🎬 影片內容建議</label>
+
+    <!-- ── TAB 1: 每日流程 ── -->
+    <div id="c1" class="tab-content">
+        <h2 class="section-title">📅 今日行程</h2>
+        <div class="event-box">
+            <div class="event-date">09:00 – 10:00 ｜ 張瑜珊</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">10:00 – 12:00 ｜ 蔡奇芝</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">12:00 – 14:00 ｜ 王芯葳</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+        <div class="event-box" style="border-left-color:#444;">
+            <div class="event-date" style="color:#888;">19:30 – 20:30 ｜ Bryan 場租</div>
+            <div class="event-desc">場地租借</div>
+        </div>
+        <hr class="divider">
+        <h2 class="section-title">☑️ Daily Checklist</h2>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🏃 跑步</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>💃 跳舞</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>💪 健身</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🥗 健康飲食</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>💧 2800CC 的水</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>📖 睡前閱讀</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>📔 寫日記</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🏋️ 教課</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🎬 剪影片</span></label>
+    </div>
+
+    <!-- ── TAB 2: Gmail ── -->
+    <div id="c2" class="tab-content">
+        <h2 class="section-title">📧 Gmail（jaw2654@gmail.com）</h2>
+        <div class="event-box" style="border-left-color:#444;">
+            <div class="event-date" style="color:#aaa;">✅ 目前收件匣無未讀重要信件</div>
+            <div class="event-desc">近 7 天內 inbox 沒有新的未讀信件。</div>
+        </div>
+    </div>
+
+    <!-- ── TAB 3: 世界大事 ── -->
+    <div id="c3" class="tab-content">
+        <h2 class="section-title">🌍 世界大事（2026-04-12）</h2>
+        <div class="warning">
+            <div class="warning-title">⚠️ 美伊談判持續膠著，霍爾木茲海峽緊張升溫</div>
+            <div class="warning-desc">第二輪美伊高層會談無進展，JD Vance 表示「尚未達成協議」。美軍同步啟動清除霍爾木茲海峽水雷行動。</div>
+        </div>
+        <div class="news-item">
+            <div class="news-title">美伊第二輪談判無協議，美軍清除霍爾木茲海峽水雷</div>
+            <div class="news-text">美國副總統 JD Vance 表示高層會談進入第二天仍無進展：「壞消息是我們還沒有達成協議。」美方同步啟動清除霍爾木茲海峽水雷行動。伊朗指 140 處歷史遺址遭破壞，損失估達 490 億美元。</div>
+            <a class="news-source" href="https://www.golocalprov.com/news/5-big-news-stories-overnight-sunday-april-12-2026" target="_blank">🔗 GoLocalProv — 2026-04-12</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">以色列空襲加薩難民營警察局，至少 6 死</div>
+            <div class="news-text">以色列空軍對加薩中部布雷傑難民營警察局發動空襲，造成至少 6 人死亡、多人受傷。加薩人道情況持續惡化，國際社會關注升溫。</div>
+            <a class="news-source" href="https://aa.com.tr/en/world/morning-briefing-april-12-2026/3902536" target="_blank">🔗 Anadolu Agency — 2026-04-12</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">匈牙利大選民調：反對黨 Tisza 首度超越執政黨 Fidesz</div>
+            <div class="news-text">AtlasIntel 最新民調顯示，匈牙利反對黨 Tisza 黨支持度首次超越奧班執政聯盟，2026 年議會大選懸念升高，歐洲政治版圖恐生變。</div>
+            <a class="news-source" href="https://eu.news-pravda.com/world/2026/04/12/185321.html" target="_blank">🔗 Pravda EU — 2026-04-12</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">沙烏地 + 卡達向巴基斯坦提供 50 億美元援助</div>
+            <div class="news-text">沙烏地阿拉伯與卡達宣布聯手提供巴基斯坦 50 億美元金融援助，協助其應對外匯儲備壓力，避免財政危機蔓延。</div>
+            <a class="news-source" href="https://www.golocalprov.com/news/5-big-news-stories-overnight-sunday-april-12-2026" target="_blank">🔗 GoLocalProv — 2026-04-12</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">愛爾蘭燃料危機：全國 600 座加油站缺油</div>
+            <div class="news-text">因燃料倉庫封鎖抗議，愛爾蘭全國 1,600 座加油站中約 600 座已告缺油，民眾生活大受影響，政府緊急啟動應對機制。</div>
+            <a class="news-source" href="https://www.golocalprov.com/news/5-big-news-stories-overnight-sunday-april-12-2026" target="_blank">🔗 GoLocalProv — 2026-04-12</a>
+        </div>
+    </div>
+
+    <!-- ── TAB 4: 全球健身話題 ── -->
+    <div id="c4" class="tab-content">
+        <h2 class="section-title">💪 全球健身話題</h2>
+        <div class="sub-title">🌍 全球趨勢</div>
+        <div class="news-item">
+            <div class="news-title">2026 最強趨勢：功能性訓練 × 心理健康雙軌並行</div>
+            <div class="news-text">ACE Fitness 研究指出，2026 年最大健身趨勢是身心整合——功能性力量訓練搭配壓力管理課程同步需求爆升。地緣政治動盪期間，健身成為「在不確定世界中唯一能掌控的事」，Les Mills 數據顯示到課率逆勢上升。</div>
+            <a class="news-source" href="https://www.acefitness.org/resources/pros/expert-articles/9043/10-fitness-trends-in-2026-and-beyond/" target="_blank">🔗 ACE Fitness — 10 Fitness Trends 2026</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">Pre-summer 高峰：健身內容 3–5 月瀏覽量飆升 3–5 倍</div>
+            <div class="news-text">每年 3–5 月是健身內容全年最高流量時段（pre-summer body goals 效應）。現在是發佈身材管理、體態改造、飲食計畫類內容的最佳時機，觀看量可達平時 3–5 倍。</div>
+            <a class="news-source" href="https://fluxnote.io/guides/youtube-shorts-ideas-health-fitness-2026" target="_blank">🔗 FluxNote — YouTube Shorts Health &amp; Fitness 2026</a>
+        </div>
+        <div class="sub-title">🇰🇷 韓國健身話題</div>
+        <div class="news-item">
+            <div class="news-title">柳勝玉 × 姜賢京：2026 最具影響力韓國健身 KOL</div>
+            <div class="news-text">柳勝玉（Balletion 芭蕾輕運動教練，Muscle Mania 前 5 名）和姜賢京（「健身界朴敏英」，瑜伽出身）是 2026 年韓國最強健身 KOL。主打「日常可執行、非極端節食」，與 repurre 理念高度吻合，可分析其內容策略作為參考。</div>
+            <a class="news-source" href="https://hk.news.yahoo.com/6%E4%BD%8D-%E5%AE%9A%E8%A6%81%E7%9F%A5%E7%9A%84%E9%9F%93%E5%9C%8B%E5%81%A5%E8%BA%AB%E5%A5%B3%E7%A5%9E" target="_blank">🔗 Yahoo 新聞 HK — 韓國健身女神</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">《體能之巔 Physical 100》效應：韓國挑戰型健身內容爆紅</div>
+            <div class="news-text">Netflix 韓綜《體能之巔》第 2 季帶動「挑戰型健身」搜尋量大增，「我能挑戰 Physical 100 嗎？」類 UGC 內容互動率極高。台灣觀眾高度關注，是拍攝挑戰系列影片的好時機。</div>
+            <a class="news-source" href="https://www.kedblog.com/physical-100-season2/" target="_blank">🔗 KED Blog — Physical 100 Season 2</a>
+        </div>
+    </div>
+
+    <!-- ── TAB 5: K-pop 運動飲食保養 ── -->
+    <div id="c5" class="tab-content">
+        <h2 class="section-title">🇰🇷 K-pop 運動飲食保養</h2>
+
+        <div class="sub-title">🏋️ 運動訓練</div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">K-pop 偶像訓練公式 <span class="kpop-tag">運動</span></div>
+            <p>週訓 5–6 次，每次 1–2 小時。結構：重訓（雕塑線條）+ 有氧（跑步/單車/跳繩）+ 舞蹈排練（高強度有氧）。女偶像特別強調重訓，因為重訓比單純有氧更有效率地塑造體態曲線，而非單純減重。</p>
+            <p>2026 年新趨勢：Pilates + 重訓混合訓練法（皮拉提斯強核心，重訓塑形），在韓國健身中心極為流行。</p>
+            <a class="source" href="https://kcontenthub.com/en/k-pop-idol-diet-workout-routines-what-really-works-and-why/" target="_blank">🔗 KcontentHub — K-pop Idol Diet &amp; Workout</a>
+        </div>
+
+        <div class="sub-title">🥗 飲食習慣</div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">K-pop 偶像三餐原則 <span class="kpop-tag">飲食</span></div>
+            <p>核心食材：雞胸肉、蛋白、地瓜、蔬菜沙拉——低熱量高蛋白為主。三餐輕食原則：早餐以果汁或蛋白質為主，午餐主食搭配蔬菜，晚餐以蛋白質為核心，盡量避免精緻碳水。</p>
+            <p>點心策略：堅果（杏仁、腰果）補充飽足感，避免正餐外的高糖高油零食。益生菌是許多女偶像的每日補給品，幫助代謝與腸道健康。</p>
+            <a class="source" href="https://www.bella.tw/articles/body&soul/16648" target="_blank">🔗 Bella.tw — 跟著韓團女星這樣吃</a>
+        </div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">韓星三個月甩 16 公斤的飲食邏輯 <span class="kpop-tag">飲食</span></div>
+            <p>韓星減脂期飲食以「熱量赤字 + 蛋白質保留肌肉量」為核心。每日蛋白質目標：體重（kg）× 1.5–2g。碳水化合物集中在訓練前後（地瓜、糙米），其餘時間以蔬菜和蛋白質為主。</p>
+            <p>⚠️ 注意：極端節食（月甩 16kg）常伴隨肌肉流失、荷爾蒙失調。科學觀點：健康減脂速度為每週 0.5–1kg，Jamie 的教學可針對這點做「真相揭露」內容。</p>
+            <a class="source" href="https://www.bella.tw/articles/body&soul/16648" target="_blank">🔗 Bella.tw — 韓團女星飲食法</a>
+        </div>
+
+        <div class="sub-title">✨ 保養習慣</div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">2026 K-pop 偶像保養核心 <span class="kpop-tag">保養</span></div>
+            <p><strong>雙重潔顏：</strong>卸妝油（去除彩妝與防曬）→ 泡沫洗面乳（去除殘留污垢）。每日防曬 SPF50+ 是韓國藝人零死角的護膚步驟。</p>
+            <p><strong>2026 明星成分：PDRN（鮭魚 DNA 萃取）</strong>——淡斑、彈力、修復三效合一。外泌體（幹細胞萃取）和 EGF 成長因子持續爆紅，Olive Young 相關銷量同比 +45%。Sheet Mask 每週使用 3–4 次是標配。</p>
+            <p><strong>Bloom Skin（盛開肌）</strong>是 2026 年韓國最熱美肌關鍵字，從玻璃肌進化為「均勻、強韌、健康感」——運動帶來的好循環正是最自然的 Bloom Skin 實踐。</p>
+            <a class="source" href="https://www.refinery29.com/en-au/korean-beauty-trends-shaping-2026-glass-bloom-skin" target="_blank">🔗 Refinery29 — K-beauty Trends 2026</a>
+        </div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">Olive Young 2026 必買榜 <span class="kpop-tag">保養</span></div>
+            <p>2026 年台灣旅客在 Olive Young 最熱購入：PDRN 安瓶精華、外泌體面膜、防曬 Cushion、益生菌補充品、膠原蛋白飲。韓國保養品熱銷的關鍵：偶像帶貨效應 + 性價比高於歐美品牌。</p>
+            <a class="source" href="https://www.klook.com/zh-TW/blog/must-buy-products-from-olive-young/" target="_blank">🔗 Klook — Olive Young 必買 2026</a>
+        </div>
+    </div>
+
+    <!-- ── TAB 6: 影片內容建議 ── -->
+    <div id="c6" class="tab-content">
+        <h2 class="section-title">🎬 影片內容建議（2026-04-12）</h2>
+
+        <!-- 影片 1 -->
+        <div class="video-card">
+            <span class="video-type type-long">📹 長影片 YouTube</span>
+            <div class="video-title">首爾健身文化 vs 台灣健身文化：12 天觀察完整比較</div>
+            <div class="video-hook">
+                <div class="video-hook-label">🎯 Hook（開頭 5 秒）</div>
+                <div class="video-hook-text">「我在首爾待了 12 天，發現台灣人和韓國人的健身方式根本是兩個世界——今天我要把這些差異全部告訴你。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">📐 起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">開場：剛從首爾返台，你觀察到的第一個衝擊——韓國健身房在早上 6 點就爆滿，而且幾乎人人都有明確的訓練目標。用真實 vlog 畫面引入。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">深入對比：韓國人的訓練文化（重訓比例更高、飲食控制更嚴格、保養意識極強）vs 台灣的健身習慣（有氧為主、飲食較放鬆）。舉具體例子：韓國健身房的器材安排、訓練氛圍、餐廳菜單設計。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">科學角度：哪些韓國做法是真的有效？哪些是過度嚴苛反而有害？以教練身份點出「韓式訓練」的優缺點，破解迷思（例如：韓星的極端節食法為什麼你不應該學）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">帶走訊息：提煉出 3 個你可以直接採用的「韓式健身精華」，不用去首爾也能實踐。CTA：留言告訴我你最想學哪一個，下集針對最多人的問題做深度教學。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 影片 2 -->
+        <div class="video-card">
+            <span class="video-type type-short">⚡ 短影片 Reels / Shorts</span>
+            <div class="video-title">韓星飲食 3 原則，我照做 12 天的真實結果</div>
+            <div class="video-hook">
+                <div class="video-hook-label">🎯 Hook（開頭 3 秒）</div>
+                <div class="video-hook-text">「韓星都這樣吃！我在首爾親自試了 12 天——結果出乎我意料。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">📐 起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">快速說明：在首爾期間嘗試韓星三大飲食原則（高蛋白、低精緻碳水、每日益生菌）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">快節奏展示三個原則的執行方式（各 5–8 秒）：① 雞胸肉 + 地瓜組合 ② 用堅果代替零食 ③ 每日益生菌補給。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">真實感受：哪個原則有效？哪個沒想像中容易？（反轉：「益生菌這個我做到了，但雞胸肉在首爾根本買不到便宜的！」）</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">結論 + CTA：「最推薦台灣人先從這一個開始——留言告訴我你有沒有在做？」</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 影片 3 -->
+        <div class="video-card">
+            <span class="video-type type-long">📹 長影片 YouTube</span>
+            <div class="video-title">為什麼運動後皮膚會變好？Bloom Skin 科學解析 × 韓系保養</div>
+            <div class="video-hook">
+                <div class="video-hook-label">🎯 Hook（開頭 5 秒）</div>
+                <div class="video-hook-text">「你有沒有發現，認真健身的人皮膚都特別好？這不是巧合——背後有科學原因，而韓國人早就把這個原理用到極致了。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">📐 起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">帶入 2026 K-beauty 最熱趨勢「Bloom Skin（盛開肌）」——什麼是盛開肌？為什麼比玻璃肌更進階？用對比圖引起觀眾共鳴。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">科學核心：運動改善皮膚的 4 個機制——① 促進血液循環（帶氧到皮膚）② 排汗排毒 ③ 降低皮質醇（壓力荷爾蒙）④ 促進膠原蛋白合成。每個機制配上簡單視覺說明。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">韓國做法：如何在運動後「鎖住」好膚質效果？韓星的運動後保養程序（雙重潔顏 → Sheet Mask → PDRN 安瓶 → 防曬）。加入 Olive Young 2026 爆款成分解析（PDRN、外泌體）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">Jamie 的實踐版本：適合台灣人的「運動 + 保養」簡化方案（3 步驟就好，不用 12 步）。CTA：「你運動後有在保養嗎？留言你的保養步驟，我幫你看看哪個步驟最重要。」</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 影片 4 -->
+        <div class="video-card">
+            <span class="video-type type-short">⚡ 短影片 Reels / Shorts</span>
+            <div class="video-title">破解！韓星真的只吃雞胸肉嗎？飲食迷思大揭密</div>
+            <div class="video-hook">
+                <div class="video-hook-label">🎯 Hook（開頭 3 秒）</div>
+                <div class="video-hook-text">「你以為韓星只吃雞胸肉？我告訴你她們真正在吃什麼——這個答案可能讓你放心了。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">📐 起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">打破刻板印象：「雞胸肉 + 地瓜」只是媒體誇大版本，真實的韓星飲食更多元也更可執行。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">展示 3 個「沒人說但韓星真的這樣吃」的飲食習慣：① 不拒絕碳水，只選對時機（訓練前後吃地瓜/糙米）② 用堅果當點心不是因為「減肥」而是「能量補給」③ 益生菌比任何保健品更優先。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">關鍵反轉：「但有一件事我必須警告你——韓星的極端節食法是有代價的」（帶出肌肉流失、荷爾蒙失調議題，建立專業感）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">你能帶走的：「想要韓星體態，這 3 個飲食原則比極端節食更有效，而且長期可以持續。」</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 影片 5 -->
+        <div class="video-card">
+            <span class="video-type type-long">📹 長影片 YouTube</span>
+            <div class="video-title">旅行 12 天後的第一個訓練日（完整記錄）：如何科學地重回節奏</div>
+            <div class="video-hook">
+                <div class="video-hook-label">🎯 Hook（開頭 5 秒）</div>
+                <div class="video-hook-text">「我剛從首爾回來，12 天幾乎沒有正式訓練——今天是我重回健身房的第一天，我要讓你看到教練本人的身體實際發生了什麼。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">📐 起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">真實情境：旅行期間沒有正式訓練的心理和生理狀態。你有多久沒運動？身體的感覺是什麼（僵硬？體力下降？）—— 用真實感引起觀眾共鳴（很多人旅行後都有這個問題）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">科學解析：12 天不訓練對身體的影響——① 肌肉流失比你想像的少（1–2 週基本不會流失，但神經適應性會下降）② 體能恢復比肌肉快 ③ 心肺功能受影響最大。用數據和研究支撐，建立專業形象。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">正確的重返訓練方式：不要第一天就用全力（受傷風險高）。Jamie 的第一週重返計劃：① 第 1–2 天：輕重量，重建神經連接感 ② 第 3–4 天：恢復到原來 70% 的重量 ③ 第 5–7 天：測試恢復狀況，再決定是否增重。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">帶走訊息：「旅行不等於放棄——你的身體比你想像的更有記憶力，但重返的方式決定了你能不能不受傷地快速恢復。」CTA：「你有旅行後不知道怎麼重回訓練的困擾嗎？留言你的情況，我幫你規劃。」</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 影片 6 -->
+        <div class="video-card">
+            <span class="video-type type-short">⚡ 短影片 Reels / Shorts</span>
+            <div class="video-title">Physical 100 挑戰：我能過幾關？（教練版）</div>
+            <div class="video-hook">
+                <div class="video-hook-label">🎯 Hook（開頭 3 秒）</div>
+                <div class="video-hook-text">「如果我去參加 Physical 100，我能撐幾輪？現在來測試——」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">📐 起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">快速說明 Physical 100 的挑戰概念，以及為什麼這個測試對一般人有意義（測的不是競技水準，而是基礎體能指標）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">挑戰 2–3 個 Physical 100 核心動作：握力測試、核心支撐、功能性移動。每個動作快剪展示，保持節奏感。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">反轉：「但這件事給了我一個很重要的提醒——大多數人缺乏的不是力量，而是⋯⋯」（帶入 Jamie 教練的核心理念：功能性體能的重要性）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">CTA：「你覺得你能過第一關嗎？留言你的答案，我出一個教你怎麼練到通關的影片。」</span>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end tab-content -->
+
+</div><!-- end container -->
+</body>
+</html>
+
