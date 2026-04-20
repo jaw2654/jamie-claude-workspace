@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨報 - 2026-04-14 - Jamie Wu 教練</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0a0a0a; color: #d8d8d8; font-family: 'Segoe UI', 'PingFang TC', Tahoma, sans-serif; padding: 20px; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 0 auto; background-color: #141414; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(255,255,255,0.04); }
+        .header { background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%); border-bottom: 2px solid #d8d8d8; padding: 20px; text-align: center; }
+        .header h1 { font-size: 2.5em; color: #d8d8d8; margin-bottom: 5px; }
+        .date-info { color: #888; font-size: 0.95em; }
+
+        .tab-input { display: none; }
+        .tabs-wrapper { display: flex; flex-wrap: wrap; background-color: #0a0a0a; border-bottom: 1px solid #d8d8d8; overflow-x: auto; }
+        .tab-label { padding: 14px 16px; cursor: pointer; background-color: #0a0a0a; color: #555; border-bottom: 3px solid transparent; font-weight: 600; font-size: 0.88em; transition: all 0.3s ease; white-space: nowrap; }
+        .tab-label:hover { color: #d8d8d8; background-color: #141414; }
+        .tab-input:checked + .tab-label { color: #d8d8d8; border-bottom-color: #d8d8d8; background-color: #141414; }
+        .tab-content { display: none; padding: 28px; background-color: #141414; animation: fadeIn 0.3s ease; width: 100%; }
+        #tab1:checked ~ #c1, #tab2:checked ~ #c2, #tab3:checked ~ #c3,
+        #tab4:checked ~ #c4, #tab5:checked ~ #c5, #tab6:checked ~ #c6 { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .section-title { color: #d8d8d8; font-size: 1.2em; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #d8d8d8; }
+        .sub-title { font-size: 0.75em; letter-spacing: 2px; text-transform: uppercase; color: #666; font-weight: 700; padding: 4px 10px; background: #1a1a1a; border-radius: 3px; display: inline-block; margin: 18px 0 12px; }
+        hr.divider { border: none; border-top: 1px solid #2a2a2a; margin: 22px 0; }
+
+        .event-box { background-color: #0a0a0a; padding: 13px 16px; border-radius: 4px; margin-bottom: 10px; border-left: 3px solid #d8d8d8; }
+        .event-date { color: #d8d8d8; font-weight: 600; font-size: 0.95em; }
+        .event-desc { color: #aaa; margin-top: 4px; font-size: 0.9em; }
+
+        .checklist-item { display: flex; align-items: center; padding: 11px 0; border-bottom: 1px solid #1e1e1e; font-size: 1em; cursor: pointer; transition: color 0.2s; }
+        .checklist-item:hover { color: #fff; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checkbox { width: 20px; height: 20px; margin-right: 14px; cursor: pointer; accent-color: #d8d8d8; flex-shrink: 0; }
+
+        .news-item { margin-bottom: 16px; padding: 14px 16px; background-color: #0a0a0a; border-left: 3px solid #d8d8d8; border-radius: 4px; transition: background 0.2s; }
+        .news-item:hover { background-color: #1a1a1a; }
+        .news-title { color: #f0f0f0; font-weight: 700; margin-bottom: 7px; font-size: 1em; }
+        .news-text { color: #aaa; line-height: 1.65; margin-bottom: 8px; font-size: 0.92em; }
+        .news-source { color: #888; font-size: 0.8em; text-decoration: none; word-break: break-all; }
+        .news-source:hover { color: #d8d8d8; text-decoration: underline; }
+
+        .stock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+        .stock-card { background: #0a0a0a; padding: 14px; border-radius: 6px; border: 1px solid #2a2a2a; text-align: center; }
+        .stock-name { font-size: 0.75em; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+        .stock-value { font-size: 1.3em; font-weight: 700; color: #d8d8d8; margin-bottom: 4px; }
+        .stock-change { font-size: 0.85em; color: #bbb; }
+
+        .warning { background-color: #1a1a1a; border-left: 4px solid #777; padding: 12px 15px; margin-bottom: 16px; border-radius: 4px; }
+        .warning-title { color: #bbb; font-weight: 700; margin-bottom: 5px; font-size: 0.95em; }
+        .warning-desc { color: #888; font-size: 0.88em; line-height: 1.5; }
+
+        .kpop-card { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+        .kpop-card-title { color: #f0f0f0; font-weight: 700; font-size: 1em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .kpop-tag { font-size: 0.68em; background: #2a2a2a; color: #888; padding: 2px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .kpop-card p { color: #aaa; font-size: 0.9em; line-height: 1.6; margin-bottom: 6px; }
+        .kpop-card .source { color: #777; font-size: 0.78em; text-decoration: none; }
+        .kpop-card .source:hover { color: #d8d8d8; }
+
+        .video-card { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+        .video-type { font-size: 0.7em; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; display: inline-block; margin-bottom: 10px; }
+        .type-long { background: #222; color: #ccc; border: 1px solid #3a3a3a; }
+        .type-short { background: #1e1e1e; color: #bbb; border: 1px solid #333; }
+        .video-title { color: #f0f0f0; font-size: 1.05em; font-weight: 700; margin-bottom: 6px; }
+        .video-hook { background: #1a1a1a; border-left: 2px solid #d8d8d8; padding: 8px 12px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+        .video-hook-label { font-size: 0.72em; color: #666; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .video-hook-text { color: #d8d8d8; font-size: 0.92em; font-weight: 600; line-height: 1.5; }
+        .video-structure { margin-top: 12px; }
+        .video-structure-label { font-size: 0.72em; color: #666; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+        .structure-step { display: flex; gap: 12px; margin-bottom: 8px; }
+        .step-badge { font-size: 0.7em; font-weight: 700; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+        .badge-qi { background: #222; color: #bbb; border: 1px solid #3a3a3a; }
+        .badge-cheng { background: #1e1e1e; color: #bbb; border: 1px solid #333; }
+        .badge-zhuan { background: #1a1a1a; color: #bbb; border: 1px solid #2e2e2e; }
+        .badge-he { background: #161616; color: #bbb; border: 1px solid #2a2a2a; }
+        .step-text { color: #aaa; font-size: 0.88em; line-height: 1.6; }
+
+        @media (max-width: 600px) {
+          .tab-label { padding: 11px 10px; font-size: 0.8em; }
+          .container { margin: 0; border-radius: 0; }
+          .header { padding: 16px; }
+          .header h1 { font-size: 1.3em; }
+          .header .date-info { font-size: 0.78em; }
+          .tab-content { padding: 14px 12px; }
+          .stock-grid { grid-template-columns: 1fr; gap: 8px; }
+          .news-item { padding: 12px; }
+          body { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>☀️ 晨報</h1>
+        <div class="date-info">2026 年 4 月 14 日（週二）| Jamie Wu 教練</div>
+    </div>
+
+    <div class="tabs-wrapper">
+        <input type="radio" id="tab1" name="tabs" class="tab-input" checked>
+        <label for="tab1" class="tab-label">☑️ 每日流程</label>
+        <input type="radio" id="tab2" name="tabs" class="tab-input">
+        <label for="tab2" class="tab-label">📧 Gmail</label>
+        <input type="radio" id="tab3" name="tabs" class="tab-input">
+        <label for="tab3" class="tab-label">🌍 世界大事</label>
+        <input type="radio" id="tab4" name="tabs" class="tab-input">
+        <label for="tab4" class="tab-label">💪 全球健身話題</label>
+        <input type="radio" id="tab5" name="tabs" class="tab-input">
+        <label for="tab5" class="tab-label">🇰🇷 K-pop 運動飲食保養</label>
+        <input type="radio" id="tab6" name="tabs" class="tab-input">
+        <label for="tab6" class="tab-label">🎬 影片內容建議</label>
+
+    <!-- TAB 1: 每日流程 -->
+    <div id="c1" class="tab-content">
+        <h2 class="section-title">📅 今日行程</h2>
+        <div class="event-box">
+            <div class="event-date">09:00 – 10:00 ｜ Dana 場租</div>
+            <div class="event-desc">場地租借</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">11:00 – 12:00 ｜ Dana 場租</div>
+            <div class="event-desc">場地租借</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">13:00 – 14:00 ｜ 黃韻庭 Jamie</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">14:00 – 15:00 ｜ Dana 場租</div>
+            <div class="event-desc">場地租借</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">15:00 – 16:00 ｜ 怡禎-Dana</div>
+            <div class="event-desc">一對一課程</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">16:15 – 17:15 ｜ Dana 場租</div>
+            <div class="event-desc">場地租借</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">19:00 – 20:00 ｜ 曾馨儀 Jamie</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+        <hr class="divider">
+        <h2 class="section-title">☑️ Daily Checklist</h2>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🏃 跑步</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>💃 跳舞</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>💪 健身</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🥗 健康飲食</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>💧 2800CC 的水</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>📖 睡前閱讀</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>📔 寫日記</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🏋️ 教課</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>🎬 剪影片</span></label>
+    </div>
+
+    <!-- TAB 2: Gmail -->
+    <div id="c2" class="tab-content">
+        <h2 class="section-title">📧 Gmail（jaw2654@gmail.com）</h2>
+        <div class="event-box" style="border-left-color:#444;">
+            <div class="event-date" style="color:#aaa;">✅ 目前收件匣無未讀重要信件</div>
+            <div class="event-desc">近 3 天內 inbox 沒有新的未讀信件。</div>
+        </div>
+    </div>
+
+    <!-- TAB 3: 世界大事 -->
+    <div id="c3" class="tab-content">
+        <h2 class="section-title">🌍 世界大事（2026-04-14）</h2>
+
+        <div class="sub-title">📈 美股收盤（4/13 台灣時間週二清晨）</div>
+        <div class="stock-grid">
+            <div class="stock-card">
+                <div class="stock-name">道瓊</div>
+                <div class="stock-value">48,218.25</div>
+                <div class="stock-change">+301.68 (+0.63%)</div>
+            </div>
+            <div class="stock-card">
+                <div class="stock-name">S&amp;P 500</div>
+                <div class="stock-value">6,886.24</div>
+                <div class="stock-change">+1.02%</div>
+            </div>
+            <div class="stock-card">
+                <div class="stock-name">NASDAQ</div>
+                <div class="stock-value">23,183.74</div>
+                <div class="stock-change">+1.23%</div>
+            </div>
+        </div>
+
+        <div class="warning">
+            <div class="warning-title">⚠️ 美伊談判傳進展，市場大漲</div>
+            <div class="warning-desc">川普表示「美方已被對方主動聯繫」，市場對美伊停火協議達成燃起希望。S&amp;P 500 創戰爭開打以來新高，軟體股領軍 Oracle +13%、Palantir +3%。</div>
+        </div>
+
+        <div class="news-item">
+            <div class="news-title">美股三大指數全面上漲，S&amp;P 500 寫戰爭以來新高</div>
+            <div class="news-text">川普週一發言「另一方已打電話過來」，市場解讀為美伊和解在即。軟體股 Oracle 飆漲近 13%、Palantir 漲超過 3%，帶動科技股走強，Nasdaq 收漲 1.23%。</div>
+            <a class="news-source" href="https://www.cnbc.com/2026/04/12/stock-market-today-live-updates.html" target="_blank">🔗 CNBC — Stock Market News for April 13, 2026</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">高盛對 AI 軟體股轉為正向，帶動 Russell 2000、Nasdaq 回升</div>
+            <div class="news-text">高盛在 AI 相關拋售後發表正面報告，小型股指數 Russell 2000 與 Nasdaq 同步反彈，市場情緒改善。</div>
+            <a class="news-source" href="https://www.thestreet.com/investing/stocks/stock-market-today-apr-13-2026-updates" target="_blank">🔗 TheStreet — Stock Market Today (Apr. 13, 2026)</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">美伊談判仍膠著，霍爾木茲海峽緊張尚未解除</div>
+            <div class="news-text">美國副總統 JD Vance 先前透露高層會談進入第二天仍無協議。美軍已啟動清除霍爾木茲海峽水雷行動，油價維持高檔。</div>
+            <a class="news-source" href="https://www.bloomberg.com/news/articles/2026-04-12/oil-surges-us-futures-drop-on-hormuz-blockade-markets-wrap" target="_blank">🔗 Bloomberg — Oil Surges on Hormuz Blockade</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">美伊停火謠言帶動美股連日回升，道瓊今年轉正</div>
+            <div class="news-text">市場對美伊停火協議抱持樂觀，連漲帶動道瓊指數年內報酬轉為正值，投資人情緒明顯改善。</div>
+            <a class="news-source" href="https://www.cnbc.com/2026/04/08/stock-market-today-live-updates.html" target="_blank">🔗 CNBC — 美伊停火謠言帶動相對反彈</a>
+        </div>
+    </div>
+
+    <!-- TAB 4: 全球健身話題 -->
+    <div id="c4" class="tab-content">
+        <h2 class="section-title">💪 全球健身話題</h2>
+        <div class="sub-title">🌍 2026 全球趨勢</div>
+
+        <div class="news-item">
+            <div class="news-title">Snack-sized Workouts（零食大小運動）成 2026 最大趨勢</div>
+            <div class="news-text">「全有全無」思維被淘汰，全球健身專家改推短時間、可持續的運動習慣。每天 10–15 分鐘的短訓練，比週末 90 分鐘暴衝有效且不易放棄。給上班族的啟示：你不用「有空才運動」，而是「把運動塞進縫隙」。</div>
+            <a class="news-source" href="https://www.whowhatwear.com/wellness-trends-2026" target="_blank">🔗 Who What Wear — 2026 Wellness Trends</a>
+        </div>
+
+        <div class="news-item">
+            <div class="news-title">女性健康成主流：更年期與 Cycle Syncing 受關注</div>
+            <div class="news-text">2026 年「更年期肌骨症候群」被正式認定，女性雌激素下降導致的肌肉流失、關節疼痛被納入健康管理焦點。同時 Cycle Syncing（生理週期飲食與訓練調配）開始成為主流健身觀念。</div>
+            <a class="news-source" href="https://www.whowhatwear.com/wellness-trends-2026" target="_blank">🔗 Who What Wear — Cycle Syncing</a>
+        </div>
+
+        <div class="news-item">
+            <div class="news-title">走路墊（Walking Pad）席捲辦公室</div>
+            <div class="news-text">隨著混合辦公成為常態，走路墊放在升降桌下讓人邊工作邊走數千步，成為 2026 最快速成長的居家健身產品之一。上班族不用擠時間去健身房，運動已融入日常。</div>
+            <a class="news-source" href="https://www.whowhatwear.com/wellness-trends-2026" target="_blank">🔗 Who What Wear — Walking Pads</a>
+        </div>
+
+        <div class="news-item">
+            <div class="news-title">Recharge &gt; Recovery：整體恢復成新主流</div>
+            <div class="news-text">2026 工作場域健康重點從「修復受傷」轉向「主動恢復」——包含助力伸展、呼吸練習、安靜空間甚至午睡艙。Mental fitness（心理韌性訓練）也被視為與體能訓練同等重要。</div>
+            <a class="news-source" href="https://www.webmdhealthservices.com/blog/2026-workplace-wellness-trends-you-need-to-know/" target="_blank">🔗 WebMD — 2026 Workplace Wellness Trends</a>
+        </div>
+
+        <div class="sub-title">🇹🇼 台灣健身市場觀察</div>
+
+        <div class="news-item">
+            <div class="news-title">單次健身房 + 精品工作室雙軌崛起</div>
+            <div class="news-text">台灣消費者越來越不想被綁約，單次健身房需求大增。同時精品工作室（包廂式、高級裝潢、一對一客製化）針對減脂、產後瘦身、體態雕塑成為女性新選擇。repurre 這類小坪數一對一工作室正符合此趨勢。</div>
+            <a class="news-source" href="https://chichihso.com/single-session-gym/" target="_blank">🔗 肌製所 — 2026 全台單次健身房統整</a>
+        </div>
+
+        <div class="news-item">
+            <div class="news-title">2026 體態改造大賽遍地開花，定位語轉向「信心」</div>
+            <div class="news-text">多家工作室 2026 舉辦體態改造大賽，標語從「變瘦變強」轉向「找回對自己的信心」、「成為你想要的樣子」。這與 Jamie「不是為了減肥而健身」的核心觀念高度一致。</div>
+            <a class="news-source" href="https://www.gkfitness.com.tw/post/%E3%80%902026%E9%AB%94%E6%85%8B%E6%94%B9%E9%80%A0%E5%A4%A7%E8%B3%BD%E3%80%91" target="_blank">🔗 GK Fitness — 2026 體態改造大賽</a>
+        </div>
+
+        <div class="news-item">
+            <div class="news-title">全球健身產業 2030 上看 1,697 億元</div>
+            <div class="news-text">2023–2030 年全球健身俱樂部產業年成長率 7.67%。台灣 World Gym 營運數據顯示台灣健身市場仍在擴張，女性教練、女性友善空間是成長最快的細分市場。</div>
+            <a class="news-source" href="https://www.sinotrade.com.tw/richclub/industry/2030%E5%B9%B4%E5%85%A8%E7%90%83%E5%81%A5%E8%BA%AB%E7%94%A2%E6%A5%AD%E8%A6%8F%E6%A8%A1%E5%8F%AF%E6%9C%9B%E9%81%941-697%E5%84%84%E5%85%83-%E5%BE%9Eworld-gym%E7%87%9F%E9%81%8B%E7%9C%8B%E8%87%BA%E7%81%A3%E5%81%A5%E8%BA%AB%E5%B8%82%E5%A0%B4%E5%8F%AF%E8%83%BD%E7%99%BC%E5%B1%95%E6%96%B9%E5%90%91-6571aa071f8d2b506824e67f" target="_blank">🔗 永豐金證券 — 2030 全球健身產業規模</a>
+        </div>
+    </div>
+
+    <!-- TAB 5: K-pop 運動飲食保養 -->
+    <div id="c5" class="tab-content">
+        <h2 class="section-title">🇰🇷 K-pop 運動 × 飲食 × 保養</h2>
+
+        <div class="sub-title">💪 idol 訓練法</div>
+
+        <div class="kpop-card">
+            <div class="kpop-card-title">LE SSERAFIM 爆紅訓練菜單 <span class="kpop-tag">TRENDING</span></div>
+            <p>LE SSERAFIM 在 TikTok 公開訓練菜單後爆紅：波比跳、Plank Crawl（平板爬行）、Jump Squat（跳躍深蹲）、仰臥起坐交替循環。重點在「耐力 + 核心」，不走暴力重量路線。</p>
+            <p>這套適合 Jamie 學員做為居家補充訓練：30 秒做、15 秒休，4 組下來 15 分鐘解決。</p>
+            <a class="source" href="https://www.today.com/health/diet-fitness/le-sserafim-workout-rcna141014" target="_blank">🔗 TODAY — LE SSERAFIM Workout Routine</a>
+        </div>
+
+        <div class="kpop-card">
+            <div class="kpop-card-title">aespa Winter 高強度訓練曝光 <span class="kpop-tag">WORKOUT</span></div>
+            <p>aespa Winter 公開自己的訓練：每週 5–6 次、每次 1–2 小時，重訓搭配有氧。她強調「吃多少就動多少」，而不是節食。</p>
+            <p>這個觀念很適合套用在你 TA — 上班族女性常見的減肥迷思是「少吃」，但 idol 都是「多吃 + 多動」。</p>
+            <a class="source" href="https://www.koreaboo.com/news/aespas-winter-reveals-intense-workout-routine/" target="_blank">🔗 Koreaboo — aespa Winter Workout</a>
+        </div>
+
+        <div class="kpop-card">
+            <div class="kpop-card-title">NewJeans Hanni 入門級訓練 <span class="kpop-tag">BEGINNER</span></div>
+            <p>NewJeans Hanni 的訓練偏簡單：基礎腹肌動作 + 跑步機 / 腳踏車有氧。粉絲說「這才是初學者能跟著做的」。適合推薦給運動新手的學員。</p>
+            <a class="source" href="https://www.tiktok.com/@meimonte1/video/7402720067445771566" target="_blank">🔗 TikTok — Hanni Workout Routine</a>
+        </div>
+
+        <div class="sub-title">🥗 idol 飲食</div>
+
+        <div class="kpop-card">
+            <div class="kpop-card-title">官方 Vlog 公開餐盤：雞胸 + 蛋 + 地瓜 + 蔬菜 <span class="kpop-tag">DIET</span></div>
+            <p>多數 K-pop idol 的日常餐盤都圍繞雞胸、雞蛋、地瓜、蔬菜——低熱量、高蛋白。V Live 上的餐單強調「一天三餐清淡，新鮮食材優先」。</p>
+            <p>這跟你給學員的飲食計算準則（蛋白質 × 1.2、碳水 × 1.5、油脂固定 3 份、400g 蔬菜）高度吻合，可以當素材舉例。</p>
+            <a class="source" href="https://thebackstage-deezer.com/mood/k-pop-idols-diets-fitness/" target="_blank">🔗 Deezer Backstage — K-pop Idols' Diets</a>
+        </div>
+
+        <div class="sub-title">✨ idol 保養</div>
+
+        <div class="kpop-card">
+            <div class="kpop-card-title">BLACKPINK Rosé：精華液是關鍵 <span class="kpop-tag">SKINCARE</span></div>
+            <p>Rosé 在訪談中強調保養最重要的一步是「essence（精華液）」，能讓皮膚保持水潤飽滿感。簡單但持續。</p>
+            <a class="source" href="https://brynn-beauty.com/blogs/care/this-is-the-skincare-routine-of-blackpink-and-other-korean-celebs" target="_blank">🔗 Brynn Beauty — BLACKPINK Skincare</a>
+        </div>
+
+        <div class="kpop-card">
+            <div class="kpop-card-title">NewJeans「自然美膚底妝」三步驟 <span class="kpop-tag">MAKEUP</span></div>
+            <p>NewJeans 彩妝師 Lee Nakyeum 公開成員底妝公式：洗淨後上玻尿酸 → 面霜打保濕底 → 再上底妝。重點是「不塗厚，靠保濕撐出透感」。</p>
+            <a class="source" href="https://www.koreaboo.com/lists/newjeans-makeup-artist-spills-secrets-natural-skin-foundation-routine/" target="_blank">🔗 Koreaboo — NewJeans Makeup Secrets</a>
+        </div>
+    </div>
+
+    <!-- TAB 6: 影片內容建議 -->
+    <div id="c6" class="tab-content">
+        <h2 class="section-title">🎬 今日影片內容建議</h2>
+
+        <div class="video-card">
+            <span class="video-type type-long">📹 長影片 — YouTube</span>
+            <div class="video-title">「一天坐 8 小時的屁股，到底該怎麼救？」</div>
+            <div class="video-hook">
+                <div class="video-hook-label">開場 HOOK（8 秒內）</div>
+                <div class="video-hook-text">「你知道嗎？你的屁股 90% 的時間都在睡覺。這是為什麼你練不起來。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">4 段承接（起承轉合）</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">痛點放大：久坐 → 臀肌失憶 → 腰膝代償 → 越練越痛。拿一個學員真實案例開場。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">原理說明：什麼是「臀肌失憶」？為什麼單純深蹲救不回來？拿 ACE Fitness 的功能性訓練觀念切入。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">正確解法：3 個喚醒動作 + 3 個啟動動作示範（Clamshell、Glute Bridge、Bird Dog、Single Leg Deadlift）。示範 3 個錯誤動作。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">收尾：一週兩次、每次 15 分鐘，8 週看見差別。強調「不是去練更重，是練對位置」。CTA：報名 repurre 體驗課。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <span class="video-type type-short">📱 短影片 — IG Reels / YouTube Shorts</span>
+            <div class="video-title">「如果你深蹲只有大腿前側痠，就是這個原因」</div>
+            <div class="video-hook">
+                <div class="video-hook-label">前 3 秒 HOOK</div>
+                <div class="video-hook-text">「深蹲怎麼蹲，屁股都沒感覺？」（畫面：自己示範錯誤 vs 正確版本切換）</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">3 段承接（短影片節奏）</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">痛點</span>
+                    <span class="step-text">「你以為是你不會練，其實是你臀肌根本沒啟動。」文字 + 紅圈指著大腿前側。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">解法</span>
+                    <span class="step-text">示範「蹲前 30 秒暖身」：10 下臀橋 + 10 下側抬腿 + 10 秒單腳平衡。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">CTA</span>
+                    <span class="step-text">「試完再深蹲一次，屁股會自己講話。」+ 追蹤引導。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <span class="video-type type-short">📱 短影片 — 韓系體態切角</span>
+            <div class="video-title">「LE SSERAFIM 這組 15 分鐘菜單，在家就能做」</div>
+            <div class="video-hook">
+                <div class="video-hook-label">前 3 秒 HOOK</div>
+                <div class="video-hook-text">「LE SSERAFIM 靠這 4 個動作練出腹肌，你在家也能做。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">3 段承接</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">開場</span>
+                    <span class="step-text">貼 LE SSERAFIM 原始 TikTok 畫面 → 切到 Jamie 在工作室示範同一套。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">動作</span>
+                    <span class="step-text">波比跳 30 秒 / Plank Crawl 30 秒 / Jump Squat 30 秒 / 交替捲腹 30 秒，每個示範兼講重點。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">收尾</span>
+                    <span class="step-text">「不是因為她們是 idol，是因為她們有在動。你也可以。」</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

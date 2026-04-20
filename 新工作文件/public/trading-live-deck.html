@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Jamie · 賠掉數百萬到成功出金 · TFT 直播簡報 v4.2</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+TC:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:1920px 1080px;margin:0}
+html,body{font-family:'Pretendard Variable','Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased;background:#050505;text-rendering:optimizeLegibility}
+
+:root{
+  --gold:#f0ebe0; --gold-soft:rgba(240,235,224,0.72); --off:#f0ebe0;
+  --dim:rgba(240,235,224,0.68); --cert-gold:#d4a85e;
+}
+
+.slide{width:1920px;height:1080px;position:relative;background:#0a0a0a;color:var(--off);padding:96px 128px;page-break-after:always;overflow:hidden;display:flex;flex-direction:column}
+.slide:last-child{page-break-after:auto}
+.slide::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(240,235,224,0.05) 0%,transparent 50%);pointer-events:none}
+
+.top{display:flex;justify-content:space-between;align-items:center;font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:15px;letter-spacing:0.3em;color:var(--dim);text-transform:uppercase;position:relative;z-index:2}
+.top .bar{color:rgba(240,235,224,0.3);margin:0 14px;font-weight:300}
+
+.foot{position:absolute;left:128px;right:128px;bottom:64px;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.26em;color:var(--dim);text-transform:uppercase}
+.foot .slash{color:rgba(240,235,224,0.4);margin:0 6px}
+
+.eye{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:34px;color:var(--gold-soft);letter-spacing:0.02em;margin:40px 0 28px;display:flex;align-items:center;gap:14px;position:relative;z-index:2}
+.eye::before{content:'';width:8px;height:8px;background:var(--gold);border-radius:50%}
+
+.title{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:66px;line-height:1.28;letter-spacing:-0.005em;color:var(--off);max-width:1500px;position:relative;z-index:2}
+.title em{font-style:normal;font-weight:700;color:var(--off)}
+
+.cap{background:rgba(255,255,255,0.04);backdrop-filter:blur(10px);color:var(--off);border-left:3px solid rgba(240,235,224,0.7);padding:24px 32px;margin-top:24px;max-width:1300px;font-family:'Noto Sans TC',sans-serif;font-weight:400;font-size:24px;line-height:1.7;letter-spacing:0.02em;position:relative;z-index:2}
+.cap .lbl{display:inline-block;background:#f0ebe0;color:#0a0a0a;font-weight:700;font-size:13px;letter-spacing:0.18em;padding:3px 12px;margin-right:12px;vertical-align:middle;text-transform:uppercase}
+.cap p+p{margin-top:14px}
+.cap strong{color:#fff;font-weight:700}
+
+.list{margin-top:24px;max-width:1600px;position:relative;z-index:2}
+.list li{font-family:'Noto Sans TC',sans-serif;font-weight:400;font-size:28px;line-height:1.65;color:var(--off);list-style:none;padding-left:44px;position:relative;margin-bottom:12px}
+.list li::before{content:'';position:absolute;left:0;top:20px;width:28px;height:1.5px;background:rgba(240,235,224,0.65)}
+.list li strong{color:#fff;font-weight:700}
+
+.cover{justify-content:space-between}
+.cover .main{display:flex;align-items:center;justify-content:center;gap:80px;flex:1;position:relative;z-index:2}
+.cover .left{flex:0 0 720px}
+.cover .htitle{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:62px;line-height:1.28;letter-spacing:-0.008em;color:var(--off)}
+.cover .htitle em{font-style:normal;color:var(--cert-gold);display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:140px;line-height:0.95;margin-top:18px;letter-spacing:-0.03em}
+.cover .htitle em .usd{font-family:'Noto Sans TC',sans-serif;font-style:normal;font-weight:400;font-size:0.15em;letter-spacing:0.3em;color:var(--gold-soft);display:block;margin-top:14px;text-transform:uppercase}
+.cover .cert{flex:0 0 720px;background:#ebe2cf;border:2px solid var(--cert-gold);box-shadow:0 20px 60px rgba(212,168,94,0.22);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:4px}
+.cover .cert img{width:100%;height:100%;object-fit:cover}
+.cover .sig{font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:18px;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;text-align:center;position:relative;z-index:2}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:40px;position:relative;z-index:2}
+.compare .col{background:rgba(255,255,255,0.03);border:1px solid rgba(240,235,224,0.15);padding:40px 36px}
+.compare .col.before{border-top:3px solid rgba(240,235,224,0.3)}
+.compare .col.after{border-top:3px solid var(--off)}
+.compare .col h4{font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--gold-soft);margin-bottom:16px;letter-spacing:0.06em}
+.compare .col .big{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:36px;line-height:1.38;color:var(--off);margin-bottom:22px}
+.compare .col .big em{font-style:italic;color:var(--off);font-family:'Playfair Display',serif;font-weight:400;font-size:60px;line-height:1;display:inline-block}
+.compare .col ul{list-style:none}
+.compare .col ul li{font-family:'Noto Sans TC',sans-serif;font-weight:400;font-size:22px;line-height:1.6;color:var(--dim);padding-left:22px;position:relative;margin-bottom:7px}
+.compare .col ul li::before{content:'•';position:absolute;left:0;color:var(--off)}
+
+.quote{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:58px;line-height:1.42;color:var(--off);text-align:center;max-width:1400px;margin:0 auto;position:relative;z-index:2}
+.quote::before{content:'"';color:var(--off);font-family:'Playfair Display',serif;font-style:italic;font-size:220px;line-height:0.5;display:block;margin-bottom:-40px;opacity:0.7}
+.cta-box{margin-top:64px;padding:36px 48px;background:#f0ebe0;color:#0a0a0a;display:inline-block;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:38px;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;box-shadow:0 16px 40px rgba(240,235,224,0.18);position:relative;z-index:2}
+.center-all{justify-content:center;align-items:center;text-align:center}
+
+.qa-list{margin-top:40px;max-width:1400px;position:relative;z-index:2}
+.qa-list li{font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:34px;line-height:1.7;color:var(--off);list-style:none;padding:18px 0 18px 60px;position:relative;border-bottom:1px solid rgba(240,235,224,0.12)}
+.qa-list li::before{content:'Q';position:absolute;left:0;top:22px;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:42px;color:var(--cert-gold)}
+.qa-hint{margin-top:48px;font-family:'Instrument Serif',serif;font-style:italic;font-size:28px;color:var(--gold-soft);text-align:center;position:relative;z-index:2}
+</style>
+</head>
+<body>
+
+<!-- S1 Cover -->
+<div class="slide cover">
+  <div class="top"><div>Jamie Wu<span class="bar">｜</span>Topstep Live Funded Trader<span class="bar">｜</span>march 2026</div><div>TFT · 2026</div></div>
+  <div class="main">
+    <div class="left">
+      <p class="htitle">賠掉數百萬<br>到成功出金<em>$45,953<span class="usd">USD · Topstep Live Funded</span></em></p>
+    </div>
+    <div class="cert"><img src="assessment-imgs/topstep-cert.jpg" alt="Topstep Certified Live Funded Trader"></div>
+  </div>
+  <div class="sig">Jamie Wu · 跆拳道選手 · 十二年私教 · 跨界交易</div>
+</div>
+
+<!-- S2 About Me -->
+<div class="slide">
+  <div class="top"><div>about me<span class="bar">｜</span>跆拳道 · 12 年私教 · 工作室</div><div>TFT · 2026</div></div>
+  <div style="display:grid;grid-template-columns:1fr 560px;gap:80px;align-items:center;flex:1;position:relative;z-index:2;margin-top:12px;">
+    <div>
+      <p class="eye" style="margin:0 0 22px"><em>Hi, I'm Jamie</em></p>
+      <p class="title">從<em>跆拳道選手</em>，<br>到重訓教練，<br>到<em>交易員</em>。</p>
+      <ul class="list" style="margin-top:32px">
+        <li><strong>前跆拳道</strong>競技選手</li>
+        <li><strong>12 年</strong>私人教練</li>
+        <li>台北私人工作室 · <strong>大安</strong></li>
+      </ul>
+      <div class="cap" style="margin-top:32px"><p><span class="lbl">底色</span>我習慣把<strong>紀律</strong>當必修課 —— 無論是賽場、教室、還是交易室。</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch;">
+      <div style="aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(240,235,224,0.2);box-shadow:0 14px 36px rgba(0,0,0,0.55)"><img src="assessment-imgs/jamie-taekwondo-athlete.jpg" style="width:100%;height:100%;object-fit:cover;filter:grayscale(0.05) contrast(1.02)"></div>
+      <div style="aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(240,235,224,0.2);box-shadow:0 14px 36px rgba(0,0,0,0.5)"><img src="assessment-imgs/jamie-taekwondo-belt.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%"></div>
+    </div>
+  </div>
+  <div class="foot"><div>Jamie Wu</div><div>02<span class="slash">/</span>08</div></div>
+</div>
+
+<!-- S3 Why Trading -->
+<div class="slide">
+  <div class="top"><div>why trading<span class="bar">｜</span>我為什麼開始看盤</div><div>TFT · 2026</div></div>
+  <p class="eye"><em>三十歲之後我在想⋯</em></p>
+  <p class="title">為什麼我會<br><em>接觸交易</em>？</p>
+  <ul class="list" style="margin-top:40px">
+    <li>想給自己<strong>第二條收入曲線</strong></li>
+    <li>不想一輩子只有<strong>一個職業身份</strong></li>
+    <li>期貨看起來是數字遊戲 —— 後來發現是<strong>心理遊戲</strong></li>
+    <li>一開始以為靠<strong>直覺</strong>就行</li>
+  </ul>
+  <div class="cap" style="margin-top:36px"><p><span class="lbl">初衷</span>把紀律放到<strong>另一個戰場</strong>試試看。</p></div>
+  <div class="foot"><div>Jamie Wu</div><div>03<span class="slash">/</span>08</div></div>
+</div>
+
+<!-- S4 The Loss + 出金紀錄 banner -->
+<div class="slide">
+  <div class="top"><div>the loss<span class="bar">｜</span>為什麼我賠掉數百萬 → 成功出金</div><div>TFT · 2026</div></div>
+  <p class="eye"><em>進場之後我才知道⋯</em></p>
+  <p class="title">為什麼我<em>賠掉數百萬</em>，<br>後來又<em>一次次重考</em>—— 直到<em>出金</em>。</p>
+  <ul class="list" style="margin-top:20px">
+    <li><strong>沒紀律</strong> · 靠感覺進場</li>
+    <li><strong>重倉</strong> · 一把想翻本 · <strong>不覆盤</strong> · 同樣錯重複犯 · <strong>失眠</strong> · 情緒跟著 K 棒走</li>
+  </ul>
+  <div style="margin-top:18px;position:relative;z-index:2;max-width:1680px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--gold-soft);letter-spacing:0.06em;margin-bottom:8px;">— 一次次重考 · 多次通過 —</div>
+      <div style="border:1px solid rgba(240,235,224,0.15);background:rgba(255,255,255,0.02);padding:8px;box-shadow:0 12px 28px rgba(0,0,0,0.45);overflow:hidden;">
+        <img src="assessment-imgs/topstep-evaluations.jpg" alt="Topstep evaluations" style="width:100%;height:auto;display:block;filter:brightness(1.02)">
+      </div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:15px;color:var(--dim);margin-top:6px;letter-spacing:0.05em;">Evaluation 通關紀錄 · 50K / 100K Buying Power</div>
+    </div>
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--gold-soft);letter-spacing:0.06em;margin-bottom:8px;">— 然後真實出金 —</div>
+      <div style="border:1px solid rgba(240,235,224,0.15);background:rgba(255,255,255,0.02);padding:8px;box-shadow:0 12px 28px rgba(0,0,0,0.45);overflow:hidden;">
+        <img src="assessment-imgs/topstep-payouts.jpg" alt="Topstep payouts" style="width:100%;height:auto;display:block;filter:brightness(1.02)">
+      </div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:15px;color:var(--dim);margin-top:6px;letter-spacing:0.05em;">Payout 出金紀錄 · 全部 Finalized</div>
+    </div>
+  </div>
+  <div class="foot"><div>Jamie Wu</div><div>04<span class="slash">/</span>08</div></div>
+</div>
+
+<!-- S5 Finding TFT -->
+<div class="slide">
+  <div class="top"><div>finding tft<span class="bar">｜</span>我怎麼遇到 TFT</div><div>TFT · 2026</div></div>
+  <p class="eye"><em>我到底在找什麼⋯</em></p>
+  <p class="title"><em>紀律</em> + <em>方法</em> + <em>陪伴</em><br>這三個我都缺。</p>
+  <div class="compare" style="margin-top:40px">
+    <div class="col before">
+      <h4>— 我在找 —</h4>
+      <div class="big">三個<br>關鍵的東西。</div>
+      <ul>
+        <li>不用自己的錢練的機制</li>
+        <li>有系統的覆盤文化</li>
+        <li>有陪伴的社團</li>
+      </ul>
+    </div>
+    <div class="col after">
+      <h4>— TFT 給我 —</h4>
+      <div class="big"><em>剛剛好</em><br>對上了。</div>
+      <ul>
+        <li>Topstep funded trader 考核</li>
+        <li>重訓式覆盤方法</li>
+        <li>良好陪伴社團 · 不是一個人</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><div>Jamie Wu</div><div>05<span class="slash">/</span>08</div></div>
+</div>
+
+<!-- S6 Journey -->
+<div class="slide">
+  <div class="top"><div>the journey<span class="bar">｜</span>60 天過關</div><div>TFT · 2026</div></div>
+  <p class="eye"><em>我怎麼從爆帳到出金</em></p>
+  <p class="title">關鍵是<em>紀律</em>——<br>不是天分。</p>
+  <ul class="list" style="margin-top:40px">
+    <li><strong>M1</strong> 建立重訓式覆盤習慣 · 每天 30 分鐘</li>
+    <li><strong>M2–M3</strong> 爆帳 · 重新建立停損紀律</li>
+    <li><strong>M4–M6</strong> 學會「不盯盤」· 放下焦慮</li>
+    <li><strong>60 天</strong> 過關 · 領出 <strong>$45,953 USD</strong></li>
+  </ul>
+  <div class="cap" style="margin-top:36px"><p><span class="lbl">類比</span>交易的紀律跟<strong>重訓</strong>一模一樣 —— 不是單次爆發，是持續覆盤、持續調整、日復一日。</p></div>
+  <div class="foot"><div>Jamie Wu</div><div>06<span class="slash">/</span>08</div></div>
+</div>
+
+<!-- S7 Q&A -->
+<div class="slide">
+  <div class="top"><div>q &amp; a<span class="bar">｜</span>開放提問</div><div>TFT · 2026</div></div>
+  <p class="eye"><em>接下來交給你們 ——</em></p>
+  <p class="title">你想問<em>什麼</em><br>都可以。</p>
+  <ul class="qa-list">
+    <li>紀律怎麼練起來？</li>
+    <li>爆帳怎麼調節情緒？</li>
+    <li>私教跟交易，這兩個的共同點是什麼？</li>
+  </ul>
+  <p class="qa-hint">或者 · 你想到什麼問什麼。</p>
+  <div class="foot"><div>Jamie Wu</div><div>07<span class="slash">/</span>08</div></div>
+</div>
+
+<!-- S8 Closing -->
+<div class="slide center-all">
+  <div class="top" style="position:absolute;top:96px;left:128px;right:128px"><div>closing<span class="bar">｜</span>one final thought</div><div>TFT · 2026</div></div>
+  <p class="quote">這裡有一個良好陪伴的社團<br>在陪你——<br><em style="font-style:normal;color:var(--gold);font-weight:900">所以你不是一個人</em>。</p>
+  <div class="cta-box">JOIN TFT →</div>
+  <div class="foot"><div>Jamie Wu · TFT · 2026</div><div>08<span class="slash">/</span>08</div></div>
+</div>
+
+</body>
+</html>

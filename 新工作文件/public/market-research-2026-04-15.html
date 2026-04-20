@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>市場研究報告 — 競品對標深度拆解 — 2026-04-15 — Jamie Wu</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #080808; color: #d8d8d8; font-family: 'Segoe UI', 'PingFang TC', Tahoma, sans-serif; padding: 20px; min-height: 100vh; line-height: 1.65; }
+.container { max-width: 1180px; margin: 0 auto; background-color: #111; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(255,255,255,0.04); }
+.header { background: linear-gradient(135deg, #080808 0%, #141414 100%); border-bottom: 2px solid #c8a96a; padding: 32px 28px; text-align: center; }
+.header h1 { font-size: 2em; color: #f0f0f0; margin-bottom: 8px; letter-spacing: 2px; }
+.header .sub { color: #888; font-size: 0.9em; letter-spacing: 1px; }
+.header .date-info { color: #c8a96a; font-size: 0.85em; margin-top: 8px; letter-spacing: 2px; }
+.intro { padding: 22px 28px; background: #0c0c0c; color: #aaa; font-size: 0.93em; border-bottom: 1px solid #222; }
+.intro strong { color: #f0f0f0; }
+
+.tab-input { display: none; }
+.tabs-wrapper { display: flex; flex-wrap: wrap; background-color: #080808; border-bottom: 1px solid #222; overflow-x: auto; }
+.tab-label { padding: 14px 18px; cursor: pointer; background-color: #080808; color: #666; border-bottom: 3px solid transparent; font-weight: 600; font-size: 0.87em; transition: all 0.3s ease; white-space: nowrap; letter-spacing: 1px; }
+.tab-label:hover { color: #d8d8d8; background-color: #141414; }
+.tab-input:checked + .tab-label { color: #f0f0f0; border-bottom-color: #c8a96a; background-color: #141414; }
+.tab-content { display: none; padding: 28px; background-color: #111; animation: fadeIn 0.3s ease; width: 100%; }
+#tab1:checked ~ #c1, #tab2:checked ~ #c2, #tab3:checked ~ #c3,
+#tab4:checked ~ #c4, #tab5:checked ~ #c5, #tab6:checked ~ #c6, #tab7:checked ~ #c7,
+#tab8:checked ~ #c8 { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+h2.section-title { color: #f0f0f0; font-size: 1.3em; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px solid #c8a96a; letter-spacing: 1px; }
+h3.sub-title { color: #d8d8d8; font-size: 1.08em; margin: 26px 0 14px; padding-left: 12px; border-left: 3px solid #c8a96a; }
+h4.mini-title { color: #c8a96a; font-size: 0.92em; margin: 18px 0 8px; letter-spacing: 1px; text-transform: uppercase; }
+p { color: #aaa; margin-bottom: 12px; font-size: 0.94em; }
+strong { color: #f0f0f0; }
+em { color: #c8a96a; font-style: normal; }
+ul, ol { margin: 10px 0 16px 22px; }
+li { color: #aaa; margin-bottom: 6px; font-size: 0.93em; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.kpi-card { background: #0a0a0a; border: 1px solid #222; padding: 18px; border-radius: 8px; text-align: center; }
+.kpi-label { font-size: 0.7em; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.kpi-value { font-size: 1.8em; font-weight: 700; color: #f0f0f0; line-height: 1.1; }
+.kpi-note { font-size: 0.78em; color: #777; margin-top: 4px; }
+
+.data-table { width: 100%; margin: 16px 0; background: #0a0a0a; border: 1px solid #222; border-radius: 6px; overflow: hidden; font-size: 0.9em; }
+.data-table th, .data-table td { padding: 11px 14px; text-align: left; border-bottom: 1px solid #1a1a1a; }
+.data-table th { background: #161616; color: #c8a96a; font-weight: 600; font-size: 0.8em; letter-spacing: 1.5px; text-transform: uppercase; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover { background: #141414; }
+.data-table .num { text-align: right; color: #f0f0f0; font-weight: 600; }
+
+.competitor-card { background: #0a0a0a; border: 1px solid #222; border-radius: 8px; padding: 22px; margin-bottom: 22px; }
+.competitor-card.accent { border-left: 4px solid #c8a96a; }
+.competitor-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1e1e1e; flex-wrap: wrap; gap: 10px; }
+.competitor-name { color: #f0f0f0; font-size: 1.2em; font-weight: 700; letter-spacing: 1px; }
+.competitor-handle { color: #888; font-size: 0.85em; font-family: 'Courier New', monospace; margin-top: 4px; }
+.competitor-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+.stat-block { text-align: right; }
+.stat-num { color: #c8a96a; font-size: 1.15em; font-weight: 700; display: block; }
+.stat-label { color: #777; font-size: 0.72em; letter-spacing: 1px; text-transform: uppercase; }
+
+.section-label { display: inline-block; padding: 3px 10px; background: #1a1a1a; color: #c8a96a; font-size: 0.72em; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 3px; margin-bottom: 8px; }
+
+.steal-box { background: rgba(200, 169, 106, 0.06); border-left: 3px solid #c8a96a; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+.steal-box .label { color: #c8a96a; font-weight: 700; font-size: 0.82em; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.steal-box .content { color: #ddd; font-size: 0.93em; line-height: 1.7; }
+
+.avoid-box { background: rgba(255, 100, 100, 0.04); border-left: 3px solid #7a4a4a; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+.avoid-box .label { color: #b88; font-weight: 700; font-size: 0.82em; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.avoid-box .content { color: #ccc; font-size: 0.93em; line-height: 1.7; }
+
+.insight-box { background: #0a0a0a; border-left: 4px solid #c8a96a; padding: 16px 20px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+.insight-title { color: #f0f0f0; font-weight: 700; margin-bottom: 8px; font-size: 0.98em; }
+.insight-text { color: #bbb; font-size: 0.93em; line-height: 1.75; }
+
+.matrix-table { width: 100%; margin: 16px 0; background: #0a0a0a; border: 1px solid #222; border-radius: 6px; overflow: hidden; font-size: 0.88em; }
+.matrix-table th, .matrix-table td { padding: 11px 13px; text-align: left; border-bottom: 1px solid #1a1a1a; border-right: 1px solid #1a1a1a; vertical-align: top; }
+.matrix-table th { background: #161616; color: #c8a96a; font-weight: 700; font-size: 0.78em; letter-spacing: 1.3px; text-transform: uppercase; }
+.matrix-table th:first-child { min-width: 120px; }
+.matrix-table td:first-child { color: #ddd; font-weight: 600; background: #0c0c0c; }
+.matrix-table tr:last-child td { border-bottom: none; }
+.matrix-table td:last-child, .matrix-table th:last-child { border-right: none; }
+
+.tag { display: inline-block; padding: 3px 9px; background: #1a1a1a; color: #c8a96a; font-size: 0.72em; border-radius: 3px; margin-right: 4px; letter-spacing: 0.5px; }
+.tag.red { color: #b88; }
+
+.footer { padding: 20px 28px; background: #080808; color: #666; font-size: 0.78em; text-align: center; border-top: 1px solid #222; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>市場研究報告</h1>
+<div class="sub">repurre Health Studio — 競品對標深度拆解</div>
+<div class="date-info">2026-04-15 | Jamie Wu</div>
+</div>
+
+<div class="intro">
+<strong>讀法：</strong>每個帳號只抽「1 個可偷的招」＋「1 個必避的陷阱」。不看熱鬧，看結構。Jamie 的 moat 不是內容量，是「<em>12 年 × 黑帶三段 × 紐約外派 × 9 年學員留存</em>」這組疊加信任，別被大帳號的爆紅節奏帶歪。
+</div>
+
+<input type="radio" name="tabs" id="tab1" class="tab-input" checked>
+<input type="radio" name="tabs" id="tab2" class="tab-input">
+<input type="radio" name="tabs" id="tab3" class="tab-input">
+<input type="radio" name="tabs" id="tab4" class="tab-input">
+<input type="radio" name="tabs" id="tab5" class="tab-input">
+<input type="radio" name="tabs" id="tab6" class="tab-input">
+<input type="radio" name="tabs" id="tab7" class="tab-input">
+<input type="radio" name="tabs" id="tab8" class="tab-input">
+
+<div class="tabs-wrapper">
+<label class="tab-label" for="tab1">1. 競品總覽矩陣</label>
+<label class="tab-label" for="tab2">2. 破迷思派 Billy Lin</label>
+<label class="tab-label" for="tab3">3. 商業模式 Fyn / Matt</label>
+<label class="tab-label" for="tab4">4. 深度教學 sat.cool</label>
+<label class="tab-label" for="tab5">5. 視覺系 jin.class / WO5</label>
+<label class="tab-label" for="tab6">6. 白話科普 lkk_wellness</label>
+<label class="tab-label" for="tab7">7. 韓系 / 藝人 沈音登 / Cindy</label>
+<label class="tab-label" for="tab8">8. Jamie 差異化定位</label>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 1: 競品總覽矩陣 -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c1">
+<h2 class="section-title">1. 競品總覽矩陣</h2>
+
+<p>9 個對標帳號、5 個維度速覽。灰色欄是「Jamie 不碰」的區塊；金色欄是「可以借一招」的區塊。</p>
+
+<table class="matrix-table">
+<thead>
+<tr>
+<th>帳號</th>
+<th>追蹤</th>
+<th>主打客群</th>
+<th>產品結構</th>
+<th>核心 moat</th>
+<th>對 Jamie 定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Billy Lin @billy_lin66</td>
+<td class="num">89K</td>
+<td>30-40 上班族</td>
+<td>Threads + IG + 線上減脂計畫 + Newsletter</td>
+<td>破迷思 hook + 反直覺數據</td>
+<td><span class="tag">內容漏斗對標</span></td>
+</tr>
+<tr>
+<td>Fyn @growithfyn</td>
+<td class="num">140K</td>
+<td>中文創業者</td>
+<td>免費 Skool → $1,980 AI → $3,999 主力 → $7,800 CEO</td>
+<td>Skool Game 全球第 4 + Alex Hormozi 背書</td>
+<td><span class="tag">商業模式反例</span></td>
+</tr>
+<tr>
+<td>Matt Cab @mattcabfitness</td>
+<td class="num">144K</td>
+<td>亞洲女性減脂</td>
+<td>挑戰賽 + 1-on-1 教練社群</td>
+<td>身份定位極窄（Asian women lose fat）</td>
+<td><span class="tag red">品牌反軸</span></td>
+</tr>
+<tr>
+<td>sat.cool 知識衛星</td>
+<td class="num">平台</td>
+<td>高階學習者</td>
+<td>$5,000-20,000 單次購買精品課</td>
+<td>大師級講者 + 電影級製作</td>
+<td><span class="tag">製作規格對標</span></td>
+</tr>
+<tr>
+<td>jin.class</td>
+<td class="num">待查</td>
+<td>女性皮拉提斯愛好者</td>
+<td>實體課 + 線上視覺內容</td>
+<td>極簡視覺 + 氛圍感</td>
+<td><span class="tag">美學借鑑</span></td>
+</tr>
+<tr>
+<td>lkk_wellness 練健康</td>
+<td class="num">156K</td>
+<td>中高齡銀髮族</td>
+<td>3 家實體 + Podcast 初一十五 + 1-on-1</td>
+<td>專業團隊 + 中高齡 TA 唯一指標</td>
+<td><span class="tag">白話翻譯對標</span></td>
+</tr>
+<tr>
+<td>沈音登 @euddeume_</td>
+<td class="num">834K</td>
+<td>韓國 20-30 女性</td>
+<td>YT 頻道 + 韓綜 + 皮拉提斯課 + 聯名運動服</td>
+<td>個人 IP + Physical 100 背書</td>
+<td><span class="tag">視覺光環對標</span></td>
+</tr>
+<tr>
+<td>WO5 Pilates</td>
+<td class="num">20.4K</td>
+<td>30-45 精品女性</td>
+<td>訂閱制 $1,500-1,900/月 + 自家 App</td>
+<td>STOTT 官方培訓 + quiet luxury 美學</td>
+<td><span class="tag">主對標</span></td>
+</tr>
+<tr>
+<td>bbcindyhsiao</td>
+<td class="num">待查</td>
+<td>藝人/演藝圈</td>
+<td>1-on-1 藝人私教（推測）</td>
+<td>蔡依林合作光環（未證實）</td>
+<td><span class="tag red">資訊不足</span></td>
+</tr>
+</tbody>
+</table>
+
+<div class="insight-box">
+<div class="insight-title">關鍵辨識：這 9 個帳號分成 4 個戰場</div>
+<div class="insight-text">
+<strong>戰場 A · 內容農場派</strong>：Billy Lin / Matt Cab — 破迷思 hook + 大量產出 + 低 LTV 轉換。Jamie 不進這條，她的 LTV 是 5 年留存，不是 30 天挑戰。<br>
+<strong>戰場 B · 數位商品派</strong>：Fyn / sat.cool — 槓桿放在內容產品化。Jamie 可在 3 年後進，現在不碰。<br>
+<strong>戰場 C · 精品實體派</strong>：WO5 / jin.class / lkk_wellness — 這是 Jamie 的主戰場，重點在美學、TA 精準、留存。<br>
+<strong>戰場 D · 個人 IP 光環派</strong>：沈音登 / bbcindyhsiao — 靠藝人 / 節目背書。Jamie 的版本是「12 年黑帶 + 紐約外派」，不走合照路線。
+</div>
+</div>
+
+<h3 class="sub-title">Jamie 位置（定錨）</h3>
+<p>在這個矩陣裡，Jamie 最接近 <strong>WO5 Pilates</strong>（精品實體 + 高留存）+ <strong>lkk_wellness</strong>（白話翻譯 + 專業權威）的混血。追蹤數目標 <strong>3-5K 真粉 → 12 個月體驗 → 3 位長期學員</strong>，不追 100K。</p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 2: Billy Lin -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c2">
+<h2 class="section-title">2. 破迷思派 — Billy Lin @billy_lin66</h2>
+
+<div class="competitor-card accent">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">Billy｜台南健身教練｜線上減脂計畫</div>
+<div class="competitor-handle">@billy_lin66 · Threads + IG + FB</div>
+</div>
+<div class="competitor-stats">
+<div class="stat-block"><span class="stat-num">89K</span><span class="stat-label">IG 粉絲</span></div>
+<div class="stat-block"><span class="stat-num">120K+</span><span class="stat-label">Threads 粉絲</span></div>
+</div>
+</div>
+
+<h4 class="mini-title">內容主軸</h4>
+<ul>
+<li><strong>Hook 套路</strong>：「其實你一直被騙」「根本沒有 OO 這種事」「XX 只是行銷話術」— 幾乎每則貼文第一句就否定一個常識</li>
+<li><strong>節奏</strong>：一週 5-6 篇 Threads + 2-3 篇 IG 輪播，Threads 做流量、IG 做轉換</li>
+<li><strong>變現</strong>：線上減脂計畫（估單價 NT$3,000-6,000）+ 健身補給品業配（Urmart 黑卡等）</li>
+<li><strong>新聞信</strong>：Weekly newsletter（kit.com 平台）週日寄出，CTA 在每則貼文底</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>反直覺 hook 結構，不靠減脂詞庫也能套</strong>。Billy 的開頭公式：「OO 這件事情你一直搞錯了」— 把 OO 換成 Jamie 領域的「拉伸 / 睡眠 / 呼吸 / 核心 / 蛋白質 / 長肌肉」。範例：「30 歲後先長肌肉這件事，90% 的女生都搞錯了」。這個結構 Jamie 的輪播 Cover 頁已經在用（v14 代謝迷思），可再把 Threads 開頭 15 字也套上。<br>
+<strong>tactical 執行</strong>：固定每週三 20:00 發一篇「反常識系列」到 Threads，結尾不放 CTA 不放連結，只問反問句，等 IG 自然漲粉。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>補給品業配 + 折扣碼賣貨模式</strong>。Billy 靠 Urmart / MyProtein 等業配疊收入，這條路對 Jamie 品牌是毒藥：一旦開始賣任何「吃了就瘦 / 代謝加速 / 燃脂」的商品，10 年精品人設 3 天歸零。即使價金很誘人（一波可拿 NT$5-10 萬），Jamie 的 TA 是把運動當人生重要事的女性，看到業配會立刻 unfollow。<br>
+<strong>底線</strong>：Jamie 若要賣貨，只賣自家服務（體驗、課程、評估、未來的線上私訊 coaching），不當他人代言。
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 3: Fyn / Matt Cab 商業模式派 -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c3">
+<h2 class="section-title">3. 商業模式派 — Fyn Chang + Matt Cab</h2>
+
+<div class="competitor-card accent">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">Fyn Chang（奇蹟研究所 · Miracle Academy）</div>
+<div class="competitor-handle">@growithfyn + @fyn-chang-4067 · Skool + IG + YT</div>
+</div>
+<div class="competitor-stats">
+<div class="stat-block"><span class="stat-num">140K</span><span class="stat-label">IG 粉絲</span></div>
+<div class="stat-block"><span class="stat-num">4,900+</span><span class="stat-label">Skool 免費層</span></div>
+<div class="stat-block"><span class="stat-num">$553M</span><span class="stat-label">估年營收 USD (≈NT$1.72 億)</span></div>
+</div>
+</div>
+
+<h4 class="mini-title">產品四層（精確數字）</h4>
+<ul>
+<li><strong>Tier 0</strong> · 免費 Skool（4,900 人）→ 漏斗進入點</li>
+<li><strong>Tier 1</strong> · NT$1,980 AI 課 → 低價破冰</li>
+<li><strong>Tier 2</strong> · <em>$3,000-3,999 USD/年</em>（奇蹟研究所主力，約 1,000 人）</li>
+<li><strong>Tier 3</strong> · $7,800 USD/年 CEO Mastermind（約 200 人）</li>
+<li><strong>沒有 1-on-1</strong>：純社群槓桿，LTV 靠年費續費</li>
+</ul>
+
+<h4 class="mini-title">核心背書 moat</h4>
+<ul>
+<li>Skool Game 2024 Q3 全球第 4（全亞洲首組進榜）</li>
+<li>受邀 Alex Hormozi Mastermind（美國知識創業圈最高等級背書）</li>
+<li>美國登記公司 WealthWave Creators LLC（USD 定價合法化）</li>
+<li>漏斗轉換率 20.4%（業界平均 1-3%）</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>三格式內容節奏</strong>（Fyn 方法論，已在 Jamie 工作流）：<br>
+· 週一 = 教學型（建立權威）<br>
+· 週三 = 共鳴故事型（情感連結）<br>
+· 週五 = 轉換型（招募 / 銷售）<br>
+這個節奏 Fyn 跑了 3 年漲到 140K，結構很乾淨。Jamie 版直接套：週一「12 年教學心得」、週三「9 年學員故事 / 甲亢 / 黑帶轉型」、週五「4 月剩 3 位體驗名額」。<br>
+<strong>tactical</strong>：節奏日鎖死寫進 launchd，週五那篇不主動推播，只在有體驗名額時才發，製造稀缺。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>「留言關鍵字→DM→漏斗」的 CTA 模式</strong>。Fyn 在 2023-2024 用這招漲粉，但 Leo Aido 已證實 Meta 2026/04 演算法降權這類 CTA（機械性 funnel 被識別）。更關鍵的是對 Jamie 的 TA 太廉價感：「留言『蛻變』我私訊你三步驟」這種話放在 Jamie 的帳號，等於把精品女性客當 Facebook 廣告點擊率來操弄，<em>一次就把品牌信任打到 0</em>。<br>
+<strong>底線</strong>：Jamie 改用開放式問句（「你最近一次覺得自己體能變好是什麼時候」）讓對方主動私訊，不是設陷阱讓對方被迫私訊。
+</div>
+</div>
+</div>
+
+<div class="competitor-card">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">Matt Cab (CAB Fitness Fat-loss Expert)</div>
+<div class="competitor-handle">@mattcabfitness · IG + TikTok</div>
+</div>
+<div class="competitor-stats">
+<div class="stat-block"><span class="stat-num">144K</span><span class="stat-label">IG 粉絲</span></div>
+</div>
+</div>
+
+<h4 class="mini-title">Bio 定位（原話）</h4>
+<p style="padding-left: 12px; border-left: 3px solid #c8a96a; color: #ddd; font-style: italic;">"I help Asian women lose fat, get hotter &amp; feel more confident without restrictive diets, cardio or added stress."</p>
+
+<h4 class="mini-title">產品結構</h4>
+<ul>
+<li>挑戰賽模式（4 週 / 8 週快速變身派）</li>
+<li>1-on-1 線上教練社群（月費制）</li>
+<li>免費社群漏斗 → 付費升級</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>Bio 一句話身份宣告</strong>。Matt 的 bio 句型是「<em>I help + 極窄 TA + 核心承諾 + without 避開的痛點</em>」。Jamie 版直接套：<br>
+「我陪 30-45 歲把運動當人生重要事的女性，走 5 年以上的力量與代謝路，不靠倒數計時、不靠挨餓、不靠激進訓練」<br>
+TA 極窄是 moat，不是弱點。144K 粉絲裡真正付費的只有幾千人，那些人都是衝著「Asian women」四個字進來的。<br>
+<strong>tactical</strong>：Jamie 的 IG bio / LINE OA 歡迎訊 / Threads 定位宣告全部統一成這個句型，不要每個平台寫不同 tagline。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>「挑戰賽 + 倒數計時 + before/after 對照」的整套敘事</strong>。Matt 用 14 天 / 30 天挑戰帶人進來，所有內容都繞著「多少週變什麼樣」。這套在品牌 DNA 上跟 Jamie 完全對撞：<br>
+· Jamie 信念：「把運動當人生重要事」= 沒有終點<br>
+· Matt 信念：「fat loss 是短期目標」= 倒數計時<br>
+兩邊看起來都在教女生運動，本質是兩種對身體的世界觀。Jamie 連「借用挑戰賽結構」都不該做（會有學員把 14 天當期待，變成 repurre 產品的隱性需求，汙染品牌）。<br>
+<strong>底線</strong>：挑戰賽這三個字在 Jamie 所有內容裡永久禁用。
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 4: sat.cool -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c4">
+<h2 class="section-title">4. 深度教學派 — sat.cool 知識衛星</h2>
+
+<div class="competitor-card accent">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">知識衛星 SAT. KNOWLEDGE（精品線上課平台）</div>
+<div class="competitor-handle">sat.cool · 非個人 IP，是平台</div>
+</div>
+<div class="competitor-stats">
+<div class="stat-block"><span class="stat-num">NT$5K-20K</span><span class="stat-label">單課單價</span></div>
+</div>
+</div>
+
+<h4 class="mini-title">平台定位</h4>
+<p>台灣頂尖<strong>精品大師線上課</strong>平台，各領域 top tier 講者開課首選。覆蓋語言、藝術、職場、設計、身心健康。健身領域代表：<strong>動思學院 MoveThink</strong>《自主健身百科》— 10 年教學、運動科學 + 訓練計畫 + 健身安全三面向。</p>
+
+<h4 class="mini-title">製作規格</h4>
+<ul>
+<li>電影級攝影棚拍攝（不是自拍手機直錄）</li>
+<li>課程長度 10-20 小時（單集 15-25 分鐘切段）</li>
+<li>獨家「知識萃取」流程 — 編導介入，幫講者重新梳理結構</li>
+<li>買斷制（不是訂閱），$5,000-20,000 單次付清</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>「萃取」比「生產」重要</strong>。sat.cool 的核心競爭力不是拍片，是幫講者把 10 年教學萃取成 15 小時「非看不可」的結構。<br>
+Jamie 的 12 年教學 + 9 年學員案例，如果只做 Reels 碎片化輸出，3 年後只是 1 萬篇 30 秒影片。該做的是：<strong>每 3 個月鎖定一個大主題（例：30+ 先肌力 / 呼吸帶核心 / 女性週期訓練），把同主題的 10-15 篇輪播 + Threads + Reels 萃取成 1 份「深度指南 PDF」</strong>當 Lead Magnet，送給訂閱 LINE OA 的人。<br>
+<strong>tactical</strong>：第一份深度指南主題定「30+ 為什麼先練肌力」（已有 v14 輪播素材），2026/05 內完成，用 Google Doc → PDF 輸出，設計用米白+金 #c8a96a 一致。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>上 sat.cool 開課（現階段）</strong>。sat.cool 的商模是「講者授權內容 → 平台抽成 50-70%」。Jamie 若現在上線上課：<br>
+· 分潤後單位時間報酬遠低於 1-on-1（1 小時 1-on-1 = NT$3,500，線上課 10 小時 = NT$10,000 扣分潤剩 NT$3,000-5,000，時薪跌）<br>
+· 線上錄製課會<strong>稀釋實體 1-on-1 的專屬感</strong>（學員會想「我付 NT$40,000 一季跟網路買 NT$5,000 的內容是一樣的嗎」）<br>
+· Jamie 品牌核心 = <em>陪伴 × 長期 × 客製</em>，線上大課本質違背這三個字<br>
+<strong>底線</strong>：3-5 年後 Jamie 若要做線上產品，做 $999 USD/月的私訊 coaching（Billy Lin 模式），不做 $5,000 買斷制線上課。
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 5: 視覺系 jin.class + WO5 -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c5">
+<h2 class="section-title">5. 視覺美學派 — jin.class + WO5 Pilates</h2>
+
+<div class="competitor-card accent">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">WO5 Pilates WELLNESS ON 5</div>
+<div class="competitor-handle">@wo5_pilates · 台北南西 + 台中大隆</div>
+</div>
+<div class="competitor-stats">
+<div class="stat-block"><span class="stat-num">20.4K</span><span class="stat-label">IG 粉絲</span></div>
+<div class="stat-block"><span class="stat-num">56</span><span class="stat-label">貼文數</span></div>
+</div>
+</div>
+
+<h4 class="mini-title">定位與商模</h4>
+<ul>
+<li>STOTT PILATES® 官方培訓中心（唯一硬背書）</li>
+<li>訂閱制 NT$1,900/月（台北）/ NT$1,500（台中）</li>
+<li>可搭 4 堂課程包組合，無長約</li>
+<li>自家 App 管預約（iOS + Android）</li>
+<li>空間設計：極簡米白、大片留白、單色視覺語言</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>「56 貼文 = 20K」的克制紀律</strong>。WO5 兩年只發 56 篇，平均一個月不到 3 篇，但<em>每一篇都像雜誌封面</em>。這證明台灣精品 TA 吃的是「品味 > 頻率」。<br>
+Jamie 已在做（v14 輪播有這味道），要加碼的是：<strong>限動玩「分類拼字創意」</strong>。WO5 做過「我 / 們 / 不 / 推 / 銷」五連限動，每張一個字，後來精選高亮。Jamie 可做「陪 / 走 / 長 / 練」四連限動 — 這是她的品牌鐵律四字，剛好做 slogan 視覺化。<br>
+<strong>tactical</strong>：每月固定做 1 組「四字 / 五字拼字限動」精選，放到 IG 個人頁高亮，跟 WO5 搶同一批 TA 的眼球。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>訂閱制 NT$1,500-1,900/月的定價邏輯</strong>。WO5 的訂閱制靠「器材 + 大空間 + STOTT 授權」當護城河，單月低於 NT$2,000 因為他們走 volume（多店多時段）。Jamie 的商模是 1-on-1 精品 13 坪空間，絕不能跟 WO5 比月費。<br>
+· WO5 月費 NT$1,900 = 8 堂團課時段 = 每堂 NT$237<br>
+· Jamie 1-on-1 時薪 NT$3,500+ = 不能被月費綁死<br>
+Jamie 若看 WO5 眼紅訂閱制而推「repurre 月費 NT$12,000 吃到飽」，會把自己的時間拆光、品牌拉低。<br>
+<strong>底線</strong>：Jamie 的訂閱制只能設在「高價專屬社群」（Fyn Tier 3 邏輯，$300-500 USD/月 私訊 coaching），不是 1-on-1 月吃到飽。
+</div>
+</div>
+</div>
+
+<div class="competitor-card">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">jin.class（視覺美學參考）</div>
+<div class="competitor-handle">@jin.class · 資訊待補（IG 封鎖爬蟲）</div>
+</div>
+</div>
+
+<h4 class="mini-title">可觀察資訊</h4>
+<ul>
+<li>帳號定位為視覺美學派，排版強調留白、單色、中文標準字拉大</li>
+<li>輪播每張當雜誌版面設計，不做字海 + emoji 堆砌</li>
+<li>（公開追蹤數需 Jamie 帳號登入抓或手動告知）</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>大字排版 + 留白 + 照片滿版</strong>這套視覺語言 Jamie 的 v14 輪播已經確立（1:1 + 暖米灰字 #f0ebe0 + 照片 brightness 0.9 + 滿版 overlay）。jin.class 再強化一層：<strong>「單頁單一主視覺」紀律</strong> — 每張 slide 只做一件事，字體層級只有 1-2 級，絕不多。<br>
+<strong>tactical</strong>：v14 模板下一次迭代，限制自己「每張最多 2 個字體大小、最多 3 個段落」，砍掉任何過度解釋。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>視覺 > 內容</strong>。jin.class 類型的帳號容易陷入「為美而美」— 每張 slide 漂亮但沒有讀者帶走的東西。Jamie 的內容鐵律已寫死：<em>每篇必過 3 篩（讀者拿什麼 / 啊哈 moment / 對 TA 正在做的事有幫助）</em>。視覺是載體不是目的。<br>
+<strong>底線</strong>：如果一篇輪播美到不行但 TA 讀完沒收穫，就砍掉重做。不讓美學綁架內容決策。
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 6: lkk_wellness -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c6">
+<h2 class="section-title">6. 白話科普派 — lkk_wellness 練健康</h2>
+
+<div class="competitor-card accent">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">練健康 Lkk-wellness</div>
+<div class="competitor-handle">@lkk_wellness · 台北西門 / 南京 / 七張三店</div>
+</div>
+<div class="competitor-stats">
+<div class="stat-block"><span class="stat-num">156K</span><span class="stat-label">IG 粉絲</span></div>
+<div class="stat-block"><span class="stat-num">3</span><span class="stat-label">實體店</span></div>
+</div>
+</div>
+
+<h4 class="mini-title">產品結構</h4>
+<ul>
+<li>1-on-1 客製 + 小班團課（雙軌）</li>
+<li>TA 唯一聚焦：中高齡 / 銀髮族 / 術後復健 / 特殊族群</li>
+<li>Podcast「初一十五練健康」（每月 1、15 號更新）</li>
+<li>團隊包括物理治療 / 職能治療 / 運動科學 / 營養 / 資料科學 / 生物力學 / 文學 / 設計</li>
+</ul>
+
+<h4 class="mini-title">moat 三層</h4>
+<ol>
+<li><strong>TA 極窄</strong>：台灣中高齡運動市場唯一指標帳號</li>
+<li><strong>團隊深度</strong>：不是單教練 IP，是多專業背景整合</li>
+<li><strong>Podcast + IG 雙軌</strong>：IG 吃年輕家屬、Podcast 吃實際用戶</li>
+</ol>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>專業術語白話化的翻譯範式</strong>。lkk 最厲害的是把「肌少症 / 骨質疏鬆 / 平衡能力」翻成銀髮族聽得懂的話（「跌倒前的 3 秒」「蹲下去站不起來的那一天」）。Jamie 的 TA 是 30-45 職業女性，同樣需要翻譯：<br>
+· 學術：「RIR 1-2 / 8-12 RM / 肌肥大訓練」→ 白話：「感覺還能再做 1-2 下的重量 / 每組做 8-12 次」<br>
+· 學術：「代謝適應」→ 白話：「身體學會省電模式」<br>
+· 學術：「Progressive overload」→ 白話：「一週比一週多一點點」<br>
+<strong>tactical</strong>：建一個「翻譯對照表」文件放 `/工作文件/內容策略/術語白話表.md`，每次寫文案查，確保 0 術語。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>做 Podcast（現階段）</strong>。lkk 的 Podcast 有團隊（8 個專業背景）支撐，能每集找不同專家對談。Jamie 獨自做 Podcast 會陷入：<br>
+· 單人獨白 Podcast 在台灣健身圈留存極低（聽完率 &lt;30%）<br>
+· 每集 30-45 分鐘準備時間 6-8 小時，ROI 遠低於 Threads + IG<br>
+· 目前 Jamie 的 energy 應全部投在 Threads 日更 + IG 週 2 篇輪播的節奏上，Podcast 會把注意力分散<br>
+<strong>底線</strong>：Podcast 這條路放進 2027-2028 roadmap，前提是找到固定共同主持（例：物理治療師 / 婦產科醫師 / 營養師），不做單人獨白。
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 7: 沈音登 + bbcindyhsiao -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c7">
+<h2 class="section-title">7. 韓系 / 藝人 光環派</h2>
+
+<div class="competitor-card accent">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">沈音登 Shim Eu-ddeum（심으뜸）</div>
+<div class="competitor-handle">@euddeume_ · 韓國皮拉提斯 / YT / Netflix Physical 100</div>
+</div>
+<div class="competitor-stats">
+<div class="stat-block"><span class="stat-num">834K</span><span class="stat-label">IG 粉絲</span></div>
+</div>
+</div>
+
+<h4 class="mini-title">背景</h4>
+<ul>
+<li>90 後韓國藝人 + 皮拉提斯導師 + YouTuber</li>
+<li>YT 頻道「심으뜸의 마이너스 라이프」健康生活 + 皮拉提斯</li>
+<li>Netflix《Physical 100》參賽選手（粉紅頭髮辨識度高）</li>
+<li>前職棒樂天巨人啦啦隊（6 年）</li>
+<li>產品：YT 廣告分潤 + 聯名運動服 + 韓綜通告</li>
+</ul>
+
+<h4 class="mini-title">內容風格</h4>
+<ul>
+<li>居家訓練為主（不是大健身房背景）</li>
+<li>運動服搭配 + 日常 vlog 比例高（生活 : 教學 = 6 : 4）</li>
+<li>個人故事軸：曾是病弱少女 → 1,000 squats/day 自我塑造</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招</div>
+<div class="content">
+<strong>個人轉型故事當永久主軸</strong>。沈音登的「病弱少女 → 韓國身體女神」這條線她講了 8 年不換，粉絲每遇到新一波 Physical 100 話題就重溫。<br>
+Jamie 有兩條同等強的轉型線：<br>
+· <strong>甲亢 → 黑帶三段 → 12 年教練</strong>（身體極限的反轉）<br>
+· <strong>跆拳道選手 → 紐約外派 → repurre</strong>（職涯路徑的累積）<br>
+這兩條故事應該在 Jamie 的 IG 精選限動首位（叫「我的故事 / about me」），LINE OA 歡迎訊第二句、IG bio 第三行、每個體驗課的自我介紹，全部用同一版敘事，不要每次即興編。<br>
+<strong>tactical</strong>：寫一版 300 字「官方版 Jamie 故事」放 `/工作文件/背景設定/02-產品與連結.md`，任何場合取同一版，不自己改寫。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>身材展示當主流量</strong>。沈音登大量內容是穿緊身運動服展示體態，這在韓國市場是標配、在台灣精品 TA 是減分項。<br>
+Jamie 的 TA（30-45 把運動當人生重要事的女性）看到「女教練秀腹肌 / 蜜桃臀」會直接歸類成「速成派 / 展示派」，跟 WO5 / lkk 那群客群互斥。Jamie 的身體呈現應該走「專業動作姿態 × 穿搭氣質」路線（參考 WO5 模特照片），不走「腹肌線條特寫」。<br>
+<strong>底線</strong>：Jamie IG 內容比例鎖死 <em>工作室空間 + 穿搭氣質 + 學員動作教學 &gt; 自己身材展示</em>。自拍式訓練影片只做「示範動作」不做「展示體態」。
+</div>
+</div>
+</div>
+
+<div class="competitor-card">
+<div class="competitor-header">
+<div>
+<div class="competitor-name">bbcindyhsiao（蔡依林相關教練 · 資訊待證）</div>
+<div class="competitor-handle">@bbcindyhsiao · 公開資料不足</div>
+</div>
+</div>
+
+<h4 class="mini-title">公開可查資訊</h4>
+<ul>
+<li>IG handle 存在但公開描述有限（可能私人帳號或低公開度）</li>
+<li>Jamie 標記為「蔡依林教練」— 此說法需 Jamie 提供原始資訊來源</li>
+<li>若屬實，moat = 頂級藝人 × 台上體能背書</li>
+</ul>
+
+<div class="steal-box">
+<div class="label">Jamie 可偷的 1 招（若資訊屬實）</div>
+<div class="content">
+<strong>「代表作學員」的敘事結構</strong>。藝人教練的 moat 就是一兩位 top tier 代表作。Jamie 沒有藝人學員，但有 <strong>9 年留存學員</strong> — 這是另一種代表作（長度 &gt; 名氣）。<br>
+<strong>tactical</strong>：把 9 年學員的故事做成「學員誌」系列，每季一位學員完整訪談 + 照片 + 身體變化軌跡。不比藝人名氣，比「能陪一個人走 9 年」的稀有度。找 3-5 位長期學員拍「第 X 年的我」敘事，放 IG 精選限動。
+</div>
+</div>
+
+<div class="avoid-box">
+<div class="label">Jamie 絕對不學的陷阱</div>
+<div class="content">
+<strong>沾名人光環當行銷主軸</strong>。如果 bbcindyhsiao 真的是蔡依林教練但極少公開，那她的取捨是「低調保護客戶隱私 &gt; 蹭流量」，這是正解。<br>
+Jamie 若偶爾遇到知名學員（例如健身 KOL 的太太、設計師、編輯），<em>絕對不公開學員身份換流量</em>。精品 TA 對「被利用」極敏感，一次公開等於把未來所有隱私客群門關死。<br>
+<strong>底線</strong>：學員同意公開是前提，同意後也用暱稱 / 側拍 / 文字敘事，不直接寫學員真名 + 職稱。
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 8: Jamie 差異化定位 -->
+<!-- ============================================================ -->
+<div class="tab-content" id="c8">
+<h2 class="section-title">8. Jamie 差異化定位總結</h2>
+
+<p>以上 9 個對標帳號各有一部分可偷、一部分必避。Jamie 的 moat 不是「某一個帳號的升級版」，而是這幾塊的<strong>獨特組合</strong>。</p>
+
+<h3 class="sub-title">Jamie 獨家組合（其他 9 家都沒有）</h3>
+<table class="matrix-table">
+<thead>
+<tr>
+<th>資產</th>
+<th>Jamie 有</th>
+<th>其他 9 家</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黑帶三段 12 年</td>
+<td>跆拳道 × 力量 × 教學三合一</td>
+<td>沒有一家有武術底</td>
+</tr>
+<tr>
+<td>紐約外派 2025</td>
+<td>國際視野 + 華人女性客群經驗</td>
+<td>Matt Cab 懂 Asian women 但不懂精品市場</td>
+</tr>
+<tr>
+<td>9 年學員留存</td>
+<td>真實長期陪伴案例</td>
+<td>Fyn / Matt 是 LTV &lt; 1 年</td>
+</tr>
+<tr>
+<td>甲亢反轉故事</td>
+<td>身體極限反轉 + 對發炎敏感</td>
+<td>沒有一家講慢性病反轉</td>
+</tr>
+<tr>
+<td>13 坪像家的空間</td>
+<td>精品實體 × 家的氛圍</td>
+<td>WO5 是精品但不像家</td>
+</tr>
+<tr>
+<td>教練 + 創作者 + 交易員</td>
+<td>三軸人生 × 紀律感</td>
+<td>沒有一家有交易員背景</td>
+</tr>
+</tbody>
+</table>
+
+<h3 class="sub-title">12 個月操作清單</h3>
+
+<h4 class="mini-title">Q1 (2026/04-06) — 語氣 × 視覺定型</h4>
+<ul>
+<li>Bio 一句話身份宣告統一（偷 Matt Cab 結構）</li>
+<li>v14 輪播模板持續 8-12 篇驗證（偷 WO5 克制紀律）</li>
+<li>官方版 300 字 Jamie 故事定稿（偷沈音登個人軸）</li>
+<li>術語白話表建立（偷 lkk 翻譯範式）</li>
+</ul>
+
+<h4 class="mini-title">Q2 (2026/07-09) — 內容系統化</h4>
+<ul>
+<li>三格式節奏鎖死：週一教學 / 週三故事 / 週五轉換（偷 Fyn 節奏）</li>
+<li>Threads 反常識系列每週三 20:00 發（偷 Billy hook）</li>
+<li>首份深度指南 PDF 上線（偷 sat.cool 萃取邏輯）</li>
+<li>學員誌系列第一集上線（偷藝人教練代表作結構，用長度換名氣）</li>
+</ul>
+
+<h4 class="mini-title">Q3-Q4 (2026/10-2027/03) — 漏斗固化</h4>
+<ul>
+<li>LINE OA 歡迎訊 + 自動回覆跑 3-6 個月優化</li>
+<li>體驗課 → 長期學員轉換率目標 30%+（業界平均 10-15%）</li>
+<li>「陪 / 走 / 長 / 練」四連限動精選鎖高亮（偷 WO5 拼字）</li>
+<li>Threads 月均漲粉 8-10%（對應 Leo Aido 數據）</li>
+</ul>
+
+<div class="insight-box">
+<div class="insight-title">一句話結論</div>
+<div class="insight-text">
+Jamie 不在跟這 9 家競爭，她在<em>開一條他們都沒走過的路</em>：精品實體 × 白話翻譯 × 武術 × 長期陪伴 × 女性 35-45 × 台北大安。這組合 Jamie 是台灣唯一。接下來 12 個月做的不是「追上誰」，是<strong>把這個組合做到市場認得出是她</strong>。每偷一招都要問：「這招是否強化這個組合？如果是就用，如果只是追流量就砍。」
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+市場研究報告 · 競品對標深度拆解 · 2026-04-15 · repurre Health Studio · Jamie Wu
+</div>
+
+</div>
+</body>
+</html>

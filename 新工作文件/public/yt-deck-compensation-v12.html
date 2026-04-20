@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>為什麼 30+ 越練越卡 · 代償歸零 · Jamie Wu</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&family=Noto+Serif+TC:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:1920px 1080px;margin:0}
+html,body{background:#141110}
+
+:root{
+  /* v14 pattern · photo full bleed + dark overlay + 米色字 */
+  --paper:#141110;
+  --cream:#f0ebe0;
+  --cream-mid:rgba(240,235,224,0.72);
+  --cream-soft:rgba(240,235,224,0.48);
+  --cream-ghost:rgba(240,235,224,0.26);
+  --ink:#f0ebe0;  /* text is cream on dark */
+  --ink-mid:rgba(240,235,224,0.68);
+  --ink-soft:rgba(240,235,224,0.46);
+  --ink-ghost:rgba(240,235,224,0.22);
+  --hair:rgba(240,235,224,0.24);
+  --hair-soft:rgba(240,235,224,0.14);
+  --taupe:rgba(234,215,180,0.88);
+  --taupe-dim:rgba(234,215,180,0.58);
+  --highlight:rgba(245,245,245,0.55); /* v14 高光框 */
+}
+
+.slide{
+  width:1920px;height:1080px;
+  position:relative;
+  background:var(--paper);
+  color:var(--ink);
+  page-break-after:always;
+  overflow:hidden;
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;
+  font-feature-settings:"kern" 1,"liga" 1,"ss05" 1;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+.slide:last-child{page-break-after:auto}
+
+/* ─── studio backdrop · FULL BLEED, photo comes through ─── */
+.bg-photo{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('assessment-imgs/studio-landscape.jpg');
+  background-size:cover;background-position:center 50%;
+  filter:brightness(0.78) saturate(0.82) contrast(1.05);
+}
+/* v14-pattern gradient overlay, NOT cream wash */
+.bg-wash{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(14,13,11,0.62) 0%,
+    rgba(14,13,11,0.35) 35%,
+    rgba(14,13,11,0.58) 70%,
+    rgba(14,13,11,0.88) 100%);
+}
+
+/* ─── subtle grain for paper feel ─── */
+.grain{
+  position:absolute;inset:0;pointer-events:none;z-index:12;
+  mix-blend-mode:multiply;opacity:0.28;
+}
+
+/* ─── MASTHEAD · airy, thin ─── */
+.mast{
+  position:absolute;top:80px;left:110px;right:110px;z-index:10;
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:10.5px;letter-spacing:0.42em;
+  color:var(--ink-mid);text-transform:uppercase;
+}
+.mast .left{display:flex;gap:36px}
+.mast .dot{color:var(--ink-ghost);font-weight:300}
+
+/* ─── FOLIO ─── */
+.folio{
+  position:absolute;bottom:72px;left:110px;right:110px;z-index:10;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:10px;letter-spacing:0.36em;
+  color:var(--ink-soft);text-transform:uppercase;
+}
+.folio .num{font-size:10.5px;color:var(--ink-mid);font-weight:500}
+.folio .slash{opacity:0.4;margin:0 4px}
+
+/* ─── body shell · 垂直置中讓錄影畫面平衡 ─── */
+.body{
+  position:absolute;
+  top:160px;bottom:140px;left:110px;right:110px;
+  z-index:5;
+  display:flex;flex-direction:column;
+  justify-content:center;
+}
+
+/* ─── labels ─── */
+.label{
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:10.5px;letter-spacing:0.44em;color:var(--taupe);
+  text-transform:uppercase;display:inline-block;
+}
+
+/* ═══════════════════════════════════════════
+   COVER
+   ═══════════════════════════════════════════ */
+.cover .body{justify-content:center;align-items:center;text-align:center}
+.cover .zh-title,.cover .zh-sub{max-width:1400px;margin-left:auto;margin-right:auto}
+
+.cover .vol{
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:11px;letter-spacing:0.48em;color:var(--ink);
+  text-transform:uppercase;margin-bottom:34px;
+}
+.cover .en-title{
+  font-family:'JetBrains Mono',monospace;font-style:normal;font-weight:500;
+  font-size:148px;line-height:0.95;letter-spacing:0.01em;
+  color:var(--ink);margin-bottom:44px;text-transform:uppercase;
+}
+.cover .zh-title{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:54px;line-height:1.4;letter-spacing:0.012em;
+  color:var(--ink);max-width:1200px;
+}
+.cover .zh-title em{
+  font-style:normal;font-weight:500;
+  display:inline-block;
+  background:var(--highlight);color:#141414;
+  padding:1px 8px;border-radius:2px;line-height:1.15;
+}
+.cover .zh-sub{
+  margin-top:30px;max-width:960px;
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;
+  font-size:26px;line-height:1.6;letter-spacing:0.01em;
+  color:var(--taupe);
+}
+
+.cover .issue-stamp{
+  position:absolute;top:160px;right:110px;z-index:8;
+  text-align:right;
+}
+.cover .issue-stamp .yr{
+  font-family:'Pretendard Variable',sans-serif;font-weight:200;
+  font-size:72px;line-height:1;color:var(--ink);
+  letter-spacing:-0.02em;
+}
+.cover .issue-stamp .yr em{font-style:normal;font-weight:300}
+.cover .issue-stamp .loc{
+  margin-top:16px;
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:10px;letter-spacing:0.38em;
+  color:var(--ink-mid);text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   AGENDA
+   ═══════════════════════════════════════════ */
+.agenda-lay{
+  flex:1;display:grid;
+  grid-template-columns:540px 1fr;
+  gap:100px;padding-top:24px;
+}
+.agenda-lay .hd .title{
+  font-family:'JetBrains Mono',monospace;font-style:normal;font-weight:500;
+  font-size:108px;line-height:0.95;letter-spacing:0.005em;
+  color:var(--ink);margin-top:36px;text-transform:uppercase;
+}
+.agenda-lay .hd .sub{
+  margin-top:44px;max-width:420px;
+  font-family:'Pretendard Variable',sans-serif;font-weight:300;
+  font-size:28px;line-height:1.5;color:var(--ink-mid);letter-spacing:0.01em;
+}
+
+.agenda-list{display:flex;flex-direction:column;gap:0}
+.agenda-item{
+  display:grid;grid-template-columns:130px 1fr 130px;gap:50px;
+  align-items:baseline;padding:36px 0;
+  border-bottom:0.5px solid var(--hair);
+}
+.agenda-item:first-child{border-top:0.5px solid var(--hair)}
+.agenda-item .roman{
+  font-family:'Pretendard Variable',sans-serif;font-weight:200;
+  font-size:84px;line-height:1;letter-spacing:-0.04em;
+  color:var(--ink);
+}
+.agenda-item .cont .ch-en{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:400;
+  font-size:24px;letter-spacing:0.015em;color:var(--taupe);margin-bottom:10px;
+}
+.agenda-item .cont .ch-zh{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:400;
+  font-size:36px;line-height:1.3;color:var(--ink);margin-bottom:12px;letter-spacing:0.002em;
+}
+.agenda-item .cont .ch-desc{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:18px;line-height:1.78;color:var(--ink-mid);
+  max-width:760px;letter-spacing:0.01em;
+}
+.agenda-item .ref{
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:10.5px;letter-spacing:0.36em;color:var(--ink-soft);
+  text-align:right;text-transform:uppercase;line-height:1.9;
+}
+
+/* ═══════════════════════════════════════════
+   CONTENT STANDARD 2-COL
+   ═══════════════════════════════════════════ */
+.two-col{
+  flex:1;display:grid;
+  grid-template-columns:1fr 1fr;gap:120px;padding-top:40px;
+}
+.ch-mark{
+  display:flex;align-items:baseline;gap:28px;margin-bottom:56px;
+}
+.ch-mark .ch-num{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;
+  font-size:128px;line-height:0.9;color:var(--ink);letter-spacing:-0.02em;
+}
+.ch-mark .ch-label{flex:1;padding-bottom:16px;border-bottom:0.5px solid var(--hair)}
+.ch-mark .ch-en{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:400;
+  font-size:22px;color:var(--taupe);letter-spacing:0.025em;margin-bottom:6px;
+}
+.ch-mark .ch-tag{
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:10.5px;letter-spacing:0.4em;color:var(--ink-mid);
+  text-transform:uppercase;
+}
+
+.content-title-zh{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:58px;line-height:1.32;letter-spacing:0.002em;
+  color:var(--ink);margin-bottom:28px;
+}
+.content-title-zh em{
+  font-style:normal;font-weight:500;
+  display:inline-block;
+  background:var(--highlight);color:#141414;
+  padding:1px 8px;border-radius:2px;line-height:1.15;
+}
+.content-sub-en{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:400;
+  font-size:28px;line-height:1.5;letter-spacing:0.01em;
+  color:var(--taupe-dim);max-width:640px;
+}
+
+.pullbox{
+  margin-top:32px;padding:22px 28px;
+  background:rgba(0,0,0,0.42);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-left:2px solid #f5f5f5;
+}
+.pullbox .label{margin-bottom:16px;display:block;color:var(--cream-mid)}
+.pullbox p{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:22px;line-height:1.8;color:var(--cream);
+  letter-spacing:0.012em;
+}
+.pullbox p strong{font-weight:500;background:var(--highlight);color:#141414;padding:1px 6px;border-radius:2px}
+.pullbox p+p{margin-top:14px}
+
+/* ═══════════════════════════════════════════
+   PULL NUMBER (scale page) · Pretendard ExtraLight big
+   ═══════════════════════════════════════════ */
+.pull-lay{
+  flex:1;display:grid;grid-template-columns:660px 1fr;
+  gap:100px;padding-top:56px;align-items:center;
+}
+.pull-lay .big-num{
+  font-family:'Pretendard Variable',sans-serif;font-weight:200;
+  font-size:640px;line-height:0.84;letter-spacing:-0.07em;
+  color:var(--ink);display:flex;align-items:flex-start;
+}
+.pull-lay .big-num sup{
+  font-family:'Pretendard Variable',sans-serif;font-weight:200;
+  font-size:0.22em;letter-spacing:-0.01em;
+  color:var(--ink-mid);align-self:flex-start;margin-top:0.15em;
+}
+.pull-lay .big-meta{
+  margin-top:-12px;padding-top:22px;
+  border-top:0.5px solid var(--hair);
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:20px;line-height:1.7;color:var(--ink-mid);letter-spacing:0.015em;
+}
+
+.pull-list-title{margin-bottom:24px}
+.pull-list-title .en{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:400;
+  font-size:22px;color:var(--taupe);letter-spacing:0.025em;margin-bottom:6px;
+}
+.pull-list-title .zh{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:400;
+  font-size:30px;color:var(--ink);letter-spacing:0.005em;
+}
+.pull-item{
+  display:grid;grid-template-columns:42px 1fr;gap:28px;align-items:baseline;
+  padding:19px 0;border-bottom:0.5px solid var(--hair);
+}
+.pull-item:first-of-type{border-top:0.5px solid var(--hair)}
+.pull-item .n{
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:11.5px;letter-spacing:0.1em;color:var(--taupe);
+}
+.pull-item .txt{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:22px;line-height:1.55;color:var(--ink);letter-spacing:0.012em;
+}
+.pull-item .txt strong{font-weight:500;background:var(--highlight);color:#141414;padding:1px 6px;border-radius:2px}
+
+/* ═══════════════════════════════════════════
+   STEPS GRID
+   ═══════════════════════════════════════════ */
+.steps-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:64px;
+  margin-top:60px;
+}
+.step-col{display:flex;flex-direction:column;gap:14px}
+.step-col .st-num{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;
+  font-size:108px;line-height:0.9;color:var(--ink);letter-spacing:-0.03em;
+}
+.step-col .st-en{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:400;
+  font-size:22px;color:var(--taupe);letter-spacing:0.03em;
+}
+.step-col .st-zh{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:400;
+  font-size:30px;line-height:1.3;color:var(--ink);margin-top:6px;letter-spacing:0.005em;
+}
+.step-col .st-body{
+  margin-top:16px;padding-top:16px;border-top:0.5px solid var(--hair);
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:18px;line-height:1.78;color:var(--ink-mid);letter-spacing:0.01em;
+}
+
+/* ═══════════════════════════════════════════
+   CTA SLIDE
+   ═══════════════════════════════════════════ */
+.cta-lay{
+  flex:1;display:grid;grid-template-columns:560px 1fr;gap:100px;
+  padding-top:32px;
+}
+.cta-lay .lhs .en-big{
+  font-family:'JetBrains Mono',monospace;font-style:normal;font-weight:500;
+  font-size:134px;line-height:0.95;letter-spacing:0.005em;
+  color:var(--ink);text-transform:uppercase;
+}
+.cta-lay .lhs .divider{
+  width:96px;height:1px;background:var(--ink);margin:32px 0;
+}
+.cta-lay .lhs .zh{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:28px;line-height:1.58;color:var(--ink);
+  max-width:480px;letter-spacing:0.012em;
+}
+.cta-lay .lhs .zh em{
+  font-style:normal;font-weight:500;
+  display:inline-block;background:var(--highlight);color:#141414;
+  padding:1px 8px;border-radius:2px;line-height:1.15;
+}
+
+.cta-col{display:flex;flex-direction:column;gap:0}
+.cta-row{
+  display:grid;grid-template-columns:110px 1fr;gap:36px;
+  padding:30px 0;border-top:0.5px solid var(--hair);
+  align-items:start;
+}
+.cta-row:last-child{border-bottom:0.5px solid var(--hair)}
+.cta-row .n{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;
+  font-size:84px;line-height:0.9;color:var(--ink);letter-spacing:-0.02em;
+}
+.cta-row .bd .en{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:400;
+  font-size:19px;color:var(--taupe);letter-spacing:0.025em;margin-bottom:10px;
+}
+.cta-row .bd h4{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:400;
+  font-size:28px;line-height:1.35;color:var(--ink);margin-bottom:10px;letter-spacing:0.004em;
+}
+.cta-row .bd p{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;
+  font-size:19px;line-height:1.72;color:var(--ink-mid);letter-spacing:0.012em;
+}
+.cta-row .bd .url{
+  display:inline-block;margin-top:10px;
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:13px;letter-spacing:0.1em;color:var(--ink);
+  border-bottom:0.5px solid var(--ink-mid);padding-bottom:2px;
+}
+
+/* END plate */
+.end-plate{
+  position:absolute;bottom:148px;left:110px;right:110px;z-index:11;
+  padding-top:20px;border-top:0.5px solid var(--hair);
+  display:flex;justify-content:space-between;align-items:flex-end;
+}
+.end-plate .sig{
+  font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;
+  font-size:40px;color:var(--ink);letter-spacing:-0.01em;
+}
+.end-plate .meta{
+  font-family:'JetBrains Mono',monospace;font-weight:400;
+  font-size:10.5px;letter-spacing:0.36em;color:var(--ink-soft);
+  text-transform:uppercase;text-align:right;line-height:2;
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="noise-filter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix values="0 0 0 0 0.14  0 0 0 0 0.12  0 0 0 0 0.10  0 0 0 0.10 0"/>
+  </filter>
+</svg>
+
+<!-- ═══════════════════ S1 · COVER ═══════════════════ -->
+<div class="slide cover">
+  <div class="bg-photo"></div>
+  <div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>Vol. 03</span><span class="dot">/</span><span>代償</span></div>
+    <div></div>
+  </div>
+
+  <div class="body">
+    <div class="vol">A Note from Jamie</div>
+    <p class="zh-title">為什麼 30+ 的妳<br>已經<em>越練越卡</em>？</p>
+    <p class="zh-sub">— 腰痠背痛、肩頸僵硬，不是坐太久、不是滑手機。<br>是妳的身體用錯的方式在動。</p>
+  </div>
+
+  <div class="folio">
+    <div>Jamie Wu · 十二年私教</div>
+    <div class="num">01<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S2 · AGENDA ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>Vol. 03</span><span class="dot">/</span><span>章節</span></div>
+    <div></div>
+  </div>
+
+  <div class="body">
+    <div class="agenda-lay">
+      <div class="hd">
+        <div class="label">今天我們談</div>
+        <p class="title" style="font-family:'Noto Sans TC',sans-serif;font-style:normal;"><em style="font-style:normal;">三</em><br><em style="font-style:normal;">件事。</em></p>
+        <p class="sub">今天這 10 分鐘<br>我們談三件事。</p>
+      </div>
+
+      <div class="agenda-list">
+        <div class="agenda-item">
+          <div class="roman">01</div>
+          <div class="cont">
+            <div class="ch-zh">代償是什麼</div>
+            <div class="ch-desc">肩頸僵硬、腰痠、肩膀前移、骨盆前傾——妳以為是坐太久，其實是身體在代償。</div>
+          </div>
+          <div class="ref">段落一<br>00:30</div>
+        </div>
+        <div class="agenda-item">
+          <div class="roman">02</div>
+          <div class="cont">
+            <div class="ch-zh">代償怎麼讓妳越動越痠</div>
+            <div class="ch-desc">逛街提 shopping 袋、收行李、久坐站起來——每個日常動作都在加深代償。</div>
+          </div>
+          <div class="ref">段落二<br>03:30</div>
+        </div>
+        <div class="agenda-item">
+          <div class="roman">03</div>
+          <div class="cont">
+            <div class="ch-zh">怎麼讓身體重新啟動</div>
+            <div class="ch-desc">代償歸零的三個步驟 · 妳在家就能開始做的順序。</div>
+          </div>
+          <div class="ref">段落三<br>06:30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>Jamie Wu · 台北</div>
+    <div class="num">02<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S3 · CH I DEFINITION ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>第一章</span><span class="dot">/</span><span>代償是什麼</span></div>
+    <div><span>03:30</span></div>
+  </div>
+
+  <div class="body">
+    <div class="ch-mark">
+      <div class="ch-num"><em>I.</em></div>
+      <div class="ch-label">
+        <div class="ch-tag">什麼叫「代償」</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p class="content-title-zh">想用<em>這塊肌肉</em>出力，<br>它用了——那就<em>對了</em>。<br>不想用，它卻<em>用了</em>——<br>那就叫<em>代償</em>。</p>
+      </div>
+      <div style="padding-top:12px">
+        <div class="pullbox">
+          <span class="label">白話例子</span>
+          <p>提逛街的袋子覺得 <strong>肩頸痠</strong>——本來該出力的是妳的<strong>核心</strong>。核心沒力，肩膀跳出來扛，整條肩頸就慢慢僵硬。</p>
+          <p>這就是代償。</p>
+          <p style="color:var(--taupe);font-size:20px;font-style:italic;font-family:'JetBrains Mono',monospace;font-weight:300;margin-top:22px">動作做完了 · 但妳用錯的肌肉在做事。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>Jamie Wu · 台北</div>
+    <div class="num">03<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S4 · SCALE ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>第一章</span><span class="dot">/</span><span>規模</span></div>
+    <div></div>
+  </div>
+
+  <div class="body">
+    <div class="ch-mark" style="margin-bottom:24px">
+      <div class="ch-num"><em>I.</em></div>
+      <div class="ch-label">
+        <div class="ch-tag">30+ 女性的日常代償現場</div>
+      </div>
+    </div>
+
+    <div class="pull-lay">
+      <div>
+        <div class="big-num">8<sup>/10</sup></div>
+        <div class="big-meta">10 個 30+ 女性裡 · 有 8 個正在代償<br>而她們自己不知道。</div>
+      </div>
+
+      <div>
+        <div class="pull-list-title">
+          
+          <div class="zh">妳每天都在做的 4 件事</div>
+        </div>
+        <div class="pull-item">
+          <div class="n">01</div>
+          <div class="txt">逛街提 shopping 袋 → 肩頸痠（<strong>核心沒力</strong>，肩膀扛）</div>
+        </div>
+        <div class="pull-item">
+          <div class="n">02</div>
+          <div class="txt">彎腰撿小孩／東西 → 腰痠（<strong>下背硬撐</strong>，核心沒用）</div>
+        </div>
+        <div class="pull-item">
+          <div class="n">03</div>
+          <div class="txt">滑手機看電腦 → 肩頸前移（<strong>上背緊</strong>，胸椎不動）</div>
+        </div>
+        <div class="pull-item">
+          <div class="n">04</div>
+          <div class="txt">久坐站起來腳痠 → 骨盆前傾（<strong>屁股沒力</strong>，腿後頂）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>Jamie · 12 年私教觀察</div>
+    <div class="num">04<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S5 · COST ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>第二章</span><span class="dot">/</span><span>代價</span></div>
+    <div></div>
+  </div>
+
+  <div class="body">
+    <div class="ch-mark">
+      <div class="ch-num"><em>II.</em></div>
+      <div class="ch-label">
+        <div class="ch-tag">為什麼妳會越動越痠</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p class="content-title-zh">每一次代償——<br>妳都在讓身體<em>練錯方向</em>。</p>
+      </div>
+
+      <div style="padding-top:12px">
+        <div class="pullbox">
+          <p><span class="label" style="margin-right:16px">錯 01</span><strong>緊的肌肉</strong>（肩頸／腰／腿後）→ 越動越緊</p>
+          <p><span class="label" style="margin-right:16px">錯 02</span><strong>該用的肌肉</strong>（核心／屁股／肩胛）→ 越來越弱</p>
+          <p style="color:var(--taupe);font-size:20px;margin-top:22px;padding-top:18px;border-top:0.5px solid var(--hair);font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300">
+            肩頸痠、腰痠、骨盆前傾——而且妳越運動越明顯。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>Jamie Wu · 台北</div>
+    <div class="num">05<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S6 · PATTERN quote ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>第二章</span><span class="dot">/</span><span>慣性</span></div>
+    <div></div>
+  </div>
+
+  <div class="body">
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:60px;align-items:start;padding-top:60px">
+      <div style="font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;font-size:260px;line-height:0.78;color:var(--ink);letter-spacing:-0.06em">&ldquo;</div>
+      <div>
+        <p style="font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;font-size:60px;line-height:1.36;letter-spacing:0.002em;color:var(--ink);max-width:1280px">
+          不是練過頭，也不是運氣差——<br>
+          是身體<em style="font-style:normal;font-weight:500;display:inline-block;background:rgba(245,245,245,0.55);color:#141414;padding:1px 8px;border-radius:2px;line-height:1.15">用錯方式</em>在適應妳的訓練。
+        </p>
+        <p style="margin-top:48px;padding-top:28px;border-top:0.5px solid var(--hair);font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;font-size:32px;line-height:1.56;color:var(--taupe);max-width:1200px">
+          妳越練越累、越痠、看不到進步——<br>
+          最後放棄：「我不適合運動。」
+        </p>
+        <p style="margin-top:30px;font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:400;font-size:34px;line-height:1.4;color:var(--ink);letter-spacing:0.005em">
+          不是妳不適合。是身體在等妳<em style="font-style:normal;font-weight:500;display:inline-block;background:rgba(245,245,245,0.55);color:#141414;padding:1px 8px;border-radius:2px;line-height:1.15">重新開始</em>。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>— chapter iii follows</div>
+    <div class="num">06<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S7 · DIAGNOSIS ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>第三章</span><span class="dot">/</span><span>先診斷</span></div>
+    <div><span>step one of three</span></div>
+  </div>
+
+  <div class="body">
+    <div class="ch-mark">
+      <div class="ch-num"><em>III.</em></div>
+      <div class="ch-label">
+        <div class="ch-tag">先知道在代償什麼</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p class="content-title-zh">在家就能測——<br>看妳中<em>幾個</em>。</p>
+        <div style="margin-top:36px;padding-top:20px;border-top:0.5px solid var(--hair)">
+          <span class="label">計分</span>
+          <p style="margin-top:14px;font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;font-size:19px;line-height:1.85;color:var(--ink-mid);max-width:500px;letter-spacing:0.012em">
+            4 都中 → 嚴重代償｜中 2-3 → 中度<br>
+            中 0-1 → 底子好，可以往進階推
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="pull-item">
+          <div class="n">01</div>
+          <div class="txt"><strong>彎腰撿東西</strong>起身腰會痠 → 下背代償核心</div>
+        </div>
+        <div class="pull-item">
+          <div class="n">02</div>
+          <div class="txt"><strong>蹲下穿鞋</strong>膝蓋先往內夾 → 屁股太弱</div>
+        </div>
+        <div class="pull-item">
+          <div class="n">03</div>
+          <div class="txt"><strong>手舉高</strong>收行李肩膀卡 → 肩頸前移</div>
+        </div>
+        <div class="pull-item">
+          <div class="n">04</div>
+          <div class="txt"><strong>單腳站</strong>穿襪子會晃 → 骨盆／屁股沒力</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>Jamie Wu · 台北</div>
+    <div class="num">07<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S8 · SEQUENCE ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>第三章</span><span class="dot">/</span><span>三步驟</span></div>
+    <div></div>
+  </div>
+
+  <div class="body">
+    <div style="margin-bottom:20px">
+      <span class="label">順序顛倒了，怎麼練都白費</span>
+      <p style="margin-top:22px;font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;font-size:68px;line-height:1.26;letter-spacing:0.002em;color:var(--ink);max-width:1500px">
+        <em style="font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300;color:var(--ink)">代償歸零</em>的三個步驟
+      </p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-col">
+        <div class="st-num"><em>I.</em></div>
+        <div class="st-en">— Diagnose</div>
+        <div class="st-zh">診斷</div>
+        <div class="st-body">先知道自己在代償什麼。<br>10 題自測，15 分鐘在家做完。</div>
+      </div>
+      <div class="step-col">
+        <div class="st-num"><em>II.</em></div>
+        <div class="st-en">— Release</div>
+        <div class="st-zh">先處理緊的</div>
+        <div class="st-body">加強弱肌之前，先把緊的放鬆。<br>緊的沒處理，弱的永遠啟動不了。</div>
+      </div>
+      <div class="step-col">
+        <div class="st-num"><em>III.</em></div>
+        <div class="st-en">— Rebuild</div>
+        <div class="st-zh">重練基本動作</div>
+        <div class="st-body">輕重量／徒手／壺鈴。<br>練的是神經啟動，不是重量。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>the repurre sequence</div>
+    <div class="num">08<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S9 · ACTION ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>Action</span><span class="dot">/</span><span>This Week</span></div>
+    <div><span>take it home</span></div>
+  </div>
+
+  <div class="body">
+    <div style="margin-bottom:40px">
+      <span class="label">今天開始可以做的三件事</span>
+      <p style="margin-top:24px;font-family:'Pretendard Variable','Noto Sans TC',sans-serif;font-weight:300;font-size:72px;line-height:1.22;letter-spacing:0.002em;color:var(--ink);max-width:1600px">
+        想擺脫肩頸痠、腰痠——<br>
+        <em style="font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300">順序</em>比<em style="font-family:'JetBrains Mono',monospace;font-style:italic;font-weight:300">努力</em>更重要。
+      </p>
+    </div>
+
+    <div style="border-top:0.5px solid var(--hair)">
+      <div class="pull-item" style="border-top:none">
+        <div class="n">01</div>
+        <div class="txt">去做 10 題自測——先知道妳在<strong>代償什麼</strong></div>
+      </div>
+      <div class="pull-item">
+        <div class="n">02</div>
+        <div class="txt">逛街時<strong>換手提 shopping 袋</strong>，不要總是單邊</div>
+      </div>
+      <div class="pull-item">
+        <div class="n">03</div>
+        <div class="txt">每天 10 分鐘——先<strong>放鬆肩頸／胸／髖</strong>，再開始運動</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <div>Jamie Wu · 台北</div>
+    <div class="num">09<span class="slash">/</span>10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ S10 · CTA ═══════════════════ -->
+<div class="slide">
+  <div class="bg-photo"></div><div class="bg-wash"></div>
+  <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#noise-filter)"/></svg>
+
+  <div class="mast">
+    <div class="left"><span>Your Turn</span><span class="dot">/</span><span>Pick One</span></div>
+    <div><span>closing · 10 of 10</span></div>
+  </div>
+
+  <div class="body">
+    <div class="cta-lay">
+      <div class="lhs">
+        <span class="label">結語</span>
+        <div class="divider"></div>
+        <p class="zh">代償歸零不是靠一支影片——<br><em>是妳願不願意把身體重新啟動。</em></p>
+      </div>
+
+      <div class="cta-col">
+        <div class="cta-row">
+          <div class="n"><em>I.</em></div>
+          <div class="bd">
+            
+            <h4>追蹤 @jamie_wu_1012</h4>
+            <p>每週一支 30+ 訓練的深度題目 · IG 動作 demo + YT 完整講解。</p>
+          </div>
+        </div>
+        <div class="cta-row">
+          <div class="n"><em>II.</em></div>
+          <div class="bd">
+            
+            <h4>留言打「LIFE」→ 我私訊妳自測連結</h4>
+            <p>10 題 · 15 分鐘在家做完，看到自己在下背／核心／髖／肩胛／腳踝 各有沒有代償。</p>
+            <span class="url">repurre-reports.pages.dev/assessment</span>
+          </div>
+        </div>
+        <div class="cta-row">
+          <div class="n"><em>III.</em></div>
+          <div class="bd">
+            
+            <h4>預約 60 分鐘深度體態評估</h4>
+            <p>想找人陪妳重建順序——我親自看動作、規劃接下來 3 個月該怎麼練。工作室：台北大安。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="end-plate">
+    <div class="sig"><em>Jamie Wu.</em></div>
+    <div class="meta">Jamie Wu · 大安<br>十二年私教 · 大安</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晨報 - 2026-04-15 - Jamie Wu 教練</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0a0a0a; color: #d8d8d8; font-family: 'Segoe UI', 'PingFang TC', Tahoma, sans-serif; padding: 20px; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 0 auto; background-color: #141414; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(255,255,255,0.04); }
+        .header { background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%); border-bottom: 2px solid #d8d8d8; padding: 20px; text-align: center; }
+        .header h1 { font-size: 2.5em; color: #d8d8d8; margin-bottom: 5px; }
+        .date-info { color: #888; font-size: 0.95em; }
+
+        .tab-input { display: none; }
+        .tabs-wrapper { display: flex; flex-wrap: wrap; background-color: #0a0a0a; border-bottom: 1px solid #d8d8d8; overflow-x: auto; }
+        .tab-label { padding: 14px 16px; cursor: pointer; background-color: #0a0a0a; color: #555; border-bottom: 3px solid transparent; font-weight: 600; font-size: 0.88em; transition: all 0.3s ease; white-space: nowrap; }
+        .tab-label:hover { color: #d8d8d8; background-color: #141414; }
+        .tab-input:checked + .tab-label { color: #d8d8d8; border-bottom-color: #d8d8d8; background-color: #141414; }
+        .tab-content { display: none; padding: 28px; background-color: #141414; animation: fadeIn 0.3s ease; width: 100%; }
+        #tab1:checked ~ #c1, #tab2:checked ~ #c2, #tab3:checked ~ #c3,
+        #tab4:checked ~ #c4, #tab5:checked ~ #c5, #tab6:checked ~ #c6 { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .section-title { color: #d8d8d8; font-size: 1.2em; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #d8d8d8; }
+        .sub-title { font-size: 0.75em; letter-spacing: 2px; text-transform: uppercase; color: #666; font-weight: 700; padding: 4px 10px; background: #1a1a1a; border-radius: 3px; display: inline-block; margin: 18px 0 12px; }
+        hr.divider { border: none; border-top: 1px solid #2a2a2a; margin: 22px 0; }
+
+        .event-box { background-color: #0a0a0a; padding: 13px 16px; border-radius: 4px; margin-bottom: 10px; border-left: 3px solid #d8d8d8; }
+        .event-date { color: #d8d8d8; font-weight: 600; font-size: 0.95em; }
+        .event-desc { color: #aaa; margin-top: 4px; font-size: 0.9em; }
+
+        .checklist-item { display: flex; align-items: center; padding: 11px 0; border-bottom: 1px solid #1e1e1e; font-size: 1em; cursor: pointer; transition: color 0.2s; }
+        .checklist-item:hover { color: #fff; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checkbox { width: 20px; height: 20px; margin-right: 14px; cursor: pointer; accent-color: #d8d8d8; flex-shrink: 0; }
+
+        .news-item { margin-bottom: 16px; padding: 14px 16px; background-color: #0a0a0a; border-left: 3px solid #d8d8d8; border-radius: 4px; transition: background 0.2s; }
+        .news-item:hover { background-color: #1a1a1a; }
+        .news-title { color: #f0f0f0; font-weight: 700; margin-bottom: 7px; font-size: 1em; }
+        .news-text { color: #aaa; line-height: 1.65; margin-bottom: 8px; font-size: 0.92em; }
+        .news-source { color: #888; font-size: 0.8em; text-decoration: none; word-break: break-all; }
+        .news-source:hover { color: #d8d8d8; text-decoration: underline; }
+
+        .warning { background-color: #1a1a1a; border-left: 4px solid #777; padding: 12px 15px; margin-bottom: 16px; border-radius: 4px; }
+        .warning-title { color: #bbb; font-weight: 700; margin-bottom: 5px; font-size: 0.95em; }
+        .warning-desc { color: #888; font-size: 0.88em; line-height: 1.5; }
+
+        .stock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stock-card { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 14px; text-align: center; }
+        .stock-name { color: #888; font-size: 0.78em; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+        .stock-value { color: #f0f0f0; font-size: 1.2em; font-weight: 700; }
+        .stock-change { font-size: 0.85em; margin-top: 4px; color: #aaa; }
+        .stock-up { color: #aaa; }
+
+        .kpop-card { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+        .kpop-card-title { color: #f0f0f0; font-weight: 700; font-size: 1em; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .kpop-tag { font-size: 0.68em; background: #2a2a2a; color: #888; padding: 2px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .kpop-card p { color: #aaa; font-size: 0.9em; line-height: 1.6; margin-bottom: 6px; }
+        .kpop-card .source { color: #777; font-size: 0.78em; text-decoration: none; }
+        .kpop-card .source:hover { color: #d8d8d8; }
+
+        .video-card { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+        .video-type { font-size: 0.7em; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; display: inline-block; margin-bottom: 10px; }
+        .type-long { background: #222; color: #ccc; border: 1px solid #3a3a3a; }
+        .type-short { background: #1e1e1e; color: #bbb; border: 1px solid #333; }
+        .video-title { color: #f0f0f0; font-size: 1.05em; font-weight: 700; margin-bottom: 6px; }
+        .video-hook { background: #1a1a1a; border-left: 2px solid #d8d8d8; padding: 8px 12px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+        .video-hook-label { font-size: 0.72em; color: #666; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .video-hook-text { color: #d8d8d8; font-size: 0.92em; font-weight: 600; line-height: 1.5; }
+        .video-structure { margin-top: 12px; }
+        .video-structure-label { font-size: 0.72em; color: #666; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+        .structure-step { display: flex; gap: 12px; margin-bottom: 8px; }
+        .step-badge { font-size: 0.7em; font-weight: 700; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+        .badge-qi { background: #222; color: #bbb; border: 1px solid #3a3a3a; }
+        .badge-cheng { background: #1e1e1e; color: #bbb; border: 1px solid #333; }
+        .badge-zhuan { background: #1a1a1a; color: #bbb; border: 1px solid #2e2e2e; }
+        .badge-he { background: #161616; color: #bbb; border: 1px solid #2a2a2a; }
+        .step-text { color: #aaa; font-size: 0.88em; line-height: 1.6; }
+
+        @media (max-width: 600px) {
+          .tab-label { padding: 11px 10px; font-size: 0.8em; }
+          .container { margin: 0; border-radius: 0; }
+          .header { padding: 16px; }
+          .header h1 { font-size: 1.3em; }
+          .header .date-info { font-size: 0.78em; }
+          .tab-content { padding: 14px 12px; }
+          .stock-grid { grid-template-columns: 1fr; gap: 8px; }
+          .news-item { padding: 12px; }
+          body { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>晨報</h1>
+        <div class="date-info">2026 年 4 月 15 日（週三）| Jamie Wu 教練</div>
+    </div>
+
+    <input type="radio" id="tab1" name="tabs" class="tab-input" checked>
+    <label for="tab1" class="tab-label">每日流程</label>
+    <input type="radio" id="tab2" name="tabs" class="tab-input">
+    <label for="tab2" class="tab-label">Gmail</label>
+    <input type="radio" id="tab3" name="tabs" class="tab-input">
+    <label for="tab3" class="tab-label">世界大事</label>
+    <input type="radio" id="tab4" name="tabs" class="tab-input">
+    <label for="tab4" class="tab-label">全球健身話題</label>
+    <input type="radio" id="tab5" name="tabs" class="tab-input">
+    <label for="tab5" class="tab-label">K-pop 運動飲食保養</label>
+    <input type="radio" id="tab6" name="tabs" class="tab-input">
+    <label for="tab6" class="tab-label">影片內容建議</label>
+
+    <!-- TAB 1: 每日流程 -->
+    <div id="c1" class="tab-content">
+        <h2 class="section-title">今日行程</h2>
+        <div class="event-box">
+            <div class="event-date">10:00 – 11:00 | 周珮瑜 Jamie（online）</div>
+            <div class="event-desc">線上一對一課程</div>
+        </div>
+        <div class="event-box" style="border-left-color:#444;">
+            <div class="event-date" style="color:#888;">11:00 – 12:00 | Bryan 場租</div>
+            <div class="event-desc">場地租借</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">15:00 – 16:00 | 吳奕潔 Jamie</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">18:00 – 19:00 | 曾珮瑄 Jamie</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">19:00 – 20:00 | 宜瑄 + 采瑄 — Dana</div>
+            <div class="event-desc">一對二私人課程</div>
+        </div>
+        <div class="event-box">
+            <div class="event-date">19:00 – 20:00 | 曾馨儀 Jamie</div>
+            <div class="event-desc">一對一私人課程</div>
+        </div>
+
+        <hr class="divider">
+
+        <h2 class="section-title">Daily Checklist</h2>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>跑步</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>跳舞</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>健身</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>健康飲食</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>2800CC 的水</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>睡前閱讀</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>寫日記</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>教課（今日 5 堂）</span></label>
+        <label class="checklist-item"><input type="checkbox" class="checkbox"><span>剪影片</span></label>
+    </div>
+
+    <!-- TAB 2: Gmail -->
+    <div id="c2" class="tab-content">
+        <h2 class="section-title">Gmail（jaw2654@gmail.com）</h2>
+        <div class="news-item">
+            <div class="news-title">優分析電子報 — 研華 3 月營收年增 21%</div>
+            <div class="news-text">工業電腦（IPC）產業分析：庫存回歸健康與製造業復甦，研華 3 月營收年增 21%。解析接單動能是短期放量還是長線趨勢。IPC 反映企業資本支出（Capex），景氣好時需求上升。</div>
+            <div style="color:#666; font-size:0.8em; margin-top:6px;">寄件者：pr@uanalyze.com.tw | 2026-04-14</div>
+        </div>
+        <div class="event-box" style="border-left-color:#444; margin-top:16px;">
+            <div class="event-date" style="color:#aaa;">除此之外，近 3 天 inbox 無其他未讀重要信件</div>
+        </div>
+    </div>
+
+    <!-- TAB 3: 世界大事 -->
+    <div id="c3" class="tab-content">
+        <h2 class="section-title">世界大事（2026-04-15）</h2>
+
+        <div class="stock-grid">
+            <div class="stock-card">
+                <div class="stock-name">道瓊 DJIA</div>
+                <div class="stock-value stock-up">+317.74</div>
+                <div class="stock-change stock-up">+0.66%</div>
+            </div>
+            <div class="stock-card">
+                <div class="stock-name">S&P 500</div>
+                <div class="stock-value stock-up">6,967.38</div>
+                <div class="stock-change stock-up">+1.18%</div>
+            </div>
+            <div class="stock-card">
+                <div class="stock-name">NASDAQ</div>
+                <div class="stock-value stock-up">+1.8%</div>
+                <div class="stock-change stock-up">連漲 10 日</div>
+            </div>
+        </div>
+
+        <div class="warning">
+            <div class="warning-title">美伊停火 4/21 到期，第二輪談判仍未排定</div>
+            <div class="warning-desc">伊斯蘭堡 21 小時馬拉松談判破裂後，美方宣布封鎖霍爾木茲海峽部分航運。伊朗拒絕停止鈾濃縮 20 年的方案。油價波動加劇，關注 4/21 停火到期後局勢。</div>
+        </div>
+
+        <div class="news-item">
+            <div class="news-title">美伊談判破裂，霍爾木茲海峽封鎖啟動</div>
+            <div class="news-text">副總統 Vance 率團在伊斯蘭堡談判超過 21 小時未達成協議。伊朗拒絕美方要求停止鈾濃縮 20 年、拆除主要設施。美方隨即宣布封鎖霍爾木茲海峽部分航運，全球 20% 石油通道受威脅。停火 4/21 到期，土耳其居中斡旋中。</div>
+            <a class="news-source" href="https://www.cnbc.com/2026/04/14/trump-iran-war-strait-of-hormuz-negotiations.html" target="_blank">CNBC — 2026-04-14</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">伊朗飛彈攻擊卡達、無人機擊中科威特機場油庫</div>
+            <div class="news-text">伊朗向卡達發射 3 枚彈道飛彈，2 枚被攔截，第 3 枚擊中 QatarEnergy 油輪。科威特國際機場油庫遭伊朗無人機擊中起火。中東局勢持續升溫。</div>
+            <a class="news-source" href="https://www.democracynow.org/2026/4/14/headlines" target="_blank">Democracy Now — 2026-04-14</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">匈牙利大選：奧班執政黨 Fidesz 歷史性敗選</div>
+            <div class="news-text">匈牙利選民以 1990 年代以來最高投票率，讓反對黨 Tisza 擊敗奧班執政 14 年的 Fidesz 黨。歐洲右翼民粹浪潮出現轉折訊號。</div>
+            <a class="news-source" href="https://www.npr.org/sections/world/" target="_blank">NPR World — 2026-04-14</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">海地北部山頂要塞踩踏事件，至少 25 死</div>
+            <div class="news-text">海地北部一處觀光山頂要塞發生踩踏事件，造成至少 25 人死亡、數十人受傷。</div>
+            <a class="news-source" href="https://abcnews.com/International" target="_blank">ABC News — 2026-04-14</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">馬來西亞因能源成本推行政府遠距辦公</div>
+            <div class="news-text">受美伊戰爭推升能源成本影響，馬來西亞宣布 4/15 起政府官員實施遠距辦公政策，減少燃料消耗。</div>
+            <a class="news-source" href="https://www.democracynow.org/2026/4/14/headlines" target="_blank">Democracy Now — 2026-04-14</a>
+        </div>
+    </div>
+
+    <!-- TAB 4: 全球健身話題 -->
+    <div id="c4" class="tab-content">
+        <h2 class="section-title">全球健身話題</h2>
+
+        <div class="sub-title">全球趨勢</div>
+        <div class="news-item">
+            <div class="news-title">2026 最強趨勢：Hybrid Coaching 成為主流</div>
+            <div class="news-text">近半數私人教練已採用混合式（線上 + 線下）作為主要服務模式。客戶目標從「外觀驅動」轉向「活得好」——長壽與健康老化是成長最快的訓練目標。這和 repurre「不是為了減肥，是為了設計下半生系統」完全吻合。</div>
+            <a class="news-source" href="https://www.trainerize.com/blog/2026-personal-training-trends/" target="_blank">Trainerize — 2026 Personal Training Trends</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">GLP-1 藥物改變產業：教練角色從「減重」轉向「肌肉保存」</div>
+            <div class="news-text">GLP-1 減重藥物（Ozempic 等）的普及，讓「瘦」不再需要教練。但用藥後的肌肉流失、代謝支持和力量訓練成為新剛需，教練的價值從「讓你瘦」升級為「讓你的身體真正能用」。</div>
+            <a class="news-source" href="https://www.nasm.org/resource-center/blog/top-fitness-trends" target="_blank">NASM — Top Fitness Trends 2026</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">精品工作室成為「第三空間」：歸屬感 > 設備</div>
+            <div class="news-text">成功的精品健身工作室正轉型為會員的「第三空間」（家、辦公室之外），透過 hospitality-driven 的細節打造歸屬感和社群感。Pilates 佔精品工作室 43%，其次是瑜伽和 Barre。</div>
+            <a class="news-source" href="https://www.marianatek.com/resources/2025-boutique-fitness-trends-report/" target="_blank">Mariana Tek — 2026 Boutique Fitness Trends</a>
+        </div>
+
+        <div class="sub-title">台灣競品觀察</div>
+        <div class="news-item">
+            <div class="news-title">台灣私教費用行情：500-2,000 元 / 堂</div>
+            <div class="news-text">台灣一對一私教行情約 500-2,000 元，健身工廠、World Gym 連鎖品牌教練課約 1,200-1,800 元。repurre 定價 2,200-2,400 元屬精品頂端，但對應的是 12 年經驗 + 情緒心態關懷 + 長期陪伴制，護城河明確。市場上缺乏「非減脂導向」的精品工作室定位。</div>
+            <a class="news-source" href="https://www.gymnomadtw.com/article/personal-trainer-costs-and-tips" target="_blank">健身遊牧 — 2026 健身教練費用</a>
+        </div>
+        <div class="news-item">
+            <div class="news-title">Pre-summer 內容高峰期：3-5 月流量最高</div>
+            <div class="news-text">每年 3-5 月是健身內容全年最高流量時段（pre-summer 效應）。現在正是發佈體態管理、訓練日常類內容的黃金窗口，瀏覽量可達平時 3-5 倍。把握本月剩餘時間密集產出。</div>
+            <a class="news-source" href="https://fluxnote.io/guides/youtube-shorts-ideas-health-fitness-2026" target="_blank">FluxNote — YouTube Shorts Health &amp; Fitness 2026</a>
+        </div>
+    </div>
+
+    <!-- TAB 5: K-pop 運動飲食保養 -->
+    <div id="c5" class="tab-content">
+        <h2 class="section-title">K-pop 運動飲食保養</h2>
+
+        <div class="sub-title">運動訓練</div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">K-pop 偶像訓練公式 <span class="kpop-tag">運動</span></div>
+            <p>週訓 5-6 次，每次 1-2 小時。結構：重訓（雕塑線條）+ 有氧（跑步/單車/跳繩）+ 舞蹈排練（高強度有氧）。LE SSERAFIM 訓練菜單包含 burpees、plank crawls、jump squats、crunches，強調耐力和力量並重。</p>
+            <p>首爾 Asan 醫院運動醫學中心提醒：快速減重會造成肌肉流失、貧血、免疫下降、荷爾蒙失調。客製化訓練計畫遠比盲目模仿有效。</p>
+            <a class="source" href="https://kcontenthub.com/en/k-pop-idol-diet-workout-routines-what-really-works-and-why/" target="_blank">KcontentHub — K-pop Idol Diet &amp; Workout</a>
+        </div>
+
+        <div class="sub-title">飲食策略</div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">偶像飲食三大原則 <span class="kpop-tag">飲食</span></div>
+            <p>核心食材：雞胸肉、蛋白、地瓜、蔬菜沙拉。三餐原則：早餐以蛋白質為主，午餐主食搭配蔬菜，晚餐蛋白質為核心，避免精緻碳水。</p>
+            <p>點心策略：堅果補充飽足感，避免高糖高油零食。益生菌是女偶像每日補給品，幫助代謝與腸道健康。每日蛋白質目標：體重（kg）x 1.5-2g，碳水集中在訓練前後。</p>
+            <a class="source" href="https://thebackstage-deezer.com/mood/k-pop-idols-diets-fitness/" target="_blank">Deezer The Backstage — K-pop Idols' Diets &amp; Fitness</a>
+        </div>
+
+        <div class="sub-title">保養趨勢</div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">2026 K-beauty：從 Glass Skin 到 Bloom Skin <span class="kpop-tag">保養</span></div>
+            <p><strong>Bloom Skin（盛開肌）</strong>是 2026 韓國最熱美肌關鍵字——不再追求光澤玻璃感，而是均勻、強韌、健康的自然好膚質。運動帶來的好循環正是最自然的 Bloom Skin 實踐。</p>
+            <p><strong>明星成分：PDRN（鮭魚 DNA 萃取）</strong>——淡斑、彈力、修復三效合一。外泌體（exosomes）和 EGF 持續爆紅。韓國品牌同步升級傳統漢方配方，人蔘、艾草搭配胜肽和包覆技術。</p>
+            <a class="source" href="https://www.refinery29.com/en-au/korean-beauty-trends-shaping-2026-glass-bloom-skin" target="_blank">Refinery29 — K-beauty Trends 2026</a>
+        </div>
+        <div class="kpop-card">
+            <div class="kpop-card-title">Intentional Minimalism：少產品、高效能 <span class="kpop-tag">保養</span></div>
+            <p>2026 K-beauty 從 10 步驟簡化為「刻意極簡」——更少產品，但每個都搭載生技成分做更多事。居家美容儀器日常化，不再只是特殊護理。消費者要求成分溯源和可持續包裝。</p>
+            <a class="source" href="https://beautymatter.com/articles/2026-k-beauty-forecast-top-7-data-backed-trends" target="_blank">BeautyMatter — 2026 K-Beauty Forecast</a>
+        </div>
+    </div>
+
+    <!-- TAB 6: 影片內容建議 -->
+    <div id="c6" class="tab-content">
+        <h2 class="section-title">影片內容建議（2026-04-15）</h2>
+
+        <div class="video-card">
+            <span class="video-type type-long">長影片 YouTube</span>
+            <div class="video-title">「教練跟你說實話：GLP-1 減重藥之後，你的身體還需要什麼？」</div>
+            <div class="video-hook">
+                <div class="video-hook-label">HOOK（開頭 5 秒）</div>
+                <div class="video-hook-text">「現在很多人靠藥瘦下來了——但瘦了之後，你知道身體少了什麼嗎？」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">開場：GLP-1 藥物（Ozempic / Wegovy）在全球爆紅，台灣也越來越多人用。但教練角度看到的問題是——體重掉了，肌肉也跟著掉了。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">三個藥物減重後最常見的身體問題：肌少症風險、基礎代謝下降、體態鬆弛（skinny fat）。用簡單圖解說明肌肉 vs 脂肪的比例差異。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">教練的解法：為什麼力量訓練是藥物減重後的必要配套。不是反對用藥，而是「瘦不是終點，能用的身體才是」。分享工作室實際案例（匿名）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">帶走訊息：如果你正在考慮或已經在用減重藥，這 3 件事一定要同步做。CTA：「你身邊有人在用嗎？轉給他看，這些資訊可能會幫到他。」</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <span class="video-type type-short">短影片 Reels / Shorts</span>
+            <div class="video-title">「精品健身房 vs 連鎖健身房——你付的錢差在哪？」</div>
+            <div class="video-hook">
+                <div class="video-hook-label">HOOK（開頭 3 秒）</div>
+                <div class="video-hook-text">「一堂課 500 到 2400，差在哪？30 秒讓你搞懂。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">快速對比：連鎖健身房教練課 vs 精品工作室一對一，價格差異背後的真正原因。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">三個核心差異：專注度（1v1 vs 1v多）、課程客製化程度、教練對你的了解深度（心態 + 身體）。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">反轉：「不是貴就好，也不是便宜不行——重點是你要的是什麼。」破除價格迷思。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <span class="video-type type-long">長影片 YouTube</span>
+            <div class="video-title">「為什麼運動的人皮膚特別好？Bloom Skin 的科學 + 韓系保養」</div>
+            <div class="video-hook">
+                <div class="video-hook-label">HOOK（開頭 5 秒）</div>
+                <div class="video-hook-text">「你有沒有發現，認真健身的人皮膚都特別好？這不是巧合。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">帶入 2026 韓國最熱美肌趨勢「Bloom Skin」——從追求光澤進化為追求健康、強韌的膚質。運動是最自然的實踐方式。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">運動改善皮膚的 4 個機制：促進血液循環、排汗代謝、降低皮質醇、促進膠原蛋白合成。每個機制配簡單視覺說明。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">運動後保養怎麼做？韓星的簡化版程序：雙重潔顏 → PDRN 安瓶 → 防曬。2026 爆款成分（PDRN、外泌體）解析。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-he">合</span>
+                    <span class="step-text">Jamie 的 3 步驟「運動 + 保養」方案。CTA：「留言你運動後的保養步驟，我幫你看看哪個最重要。」</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <span class="video-type type-short">短影片 Reels / Shorts</span>
+            <div class="video-title">「韓國偶像的訓練菜單，教練來評分」</div>
+            <div class="video-hook">
+                <div class="video-hook-label">HOOK（開頭 3 秒）</div>
+                <div class="video-hook-text">「LE SSERAFIM 的訓練菜單，12 年教練來打分數。」</div>
+            </div>
+            <div class="video-structure">
+                <div class="video-structure-label">起承轉合</div>
+                <div class="structure-step">
+                    <span class="step-badge badge-qi">起</span>
+                    <span class="step-text">列出 LE SSERAFIM 公開的訓練內容：burpees、plank crawls、jump squats、crunches。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-cheng">承</span>
+                    <span class="step-text">逐一評分 + 點評：哪些動作適合一般人？哪些需要有基礎才能做？常見錯誤姿勢提醒。</span>
+                </div>
+                <div class="structure-step">
+                    <span class="step-badge badge-zhuan">轉</span>
+                    <span class="step-text">反轉：「跟偶像一樣練不一定適合你——教練會怎麼幫你改？」給出 Jamie 版本的替代動作。</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

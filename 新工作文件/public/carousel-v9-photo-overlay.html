@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · v9 · Photo Overlay (jin.class style)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+TC:wght@400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,200..400;1,9..144,200..400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'Pretendard Variable',Pretendard,'Noto Sans TC',sans-serif;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+body{background:#0e0e0e;padding:60px 24px;min-height:100vh;color:#fff}
+
+.page-hd{max-width:1500px;margin:0 auto 72px;text-align:center;color:#aaa}
+.page-hd h1{
+  font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;
+  font-size:28px;color:#fff;margin-bottom:12px;letter-spacing:0.01em;
+}
+.page-hd p{font-size:10px;color:#888;letter-spacing:0.42em;text-transform:uppercase;font-weight:400}
+
+.row{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+
+/* ============================================================
+   v9 · 照片滿版 + 文字 overlay · jin.class 風格
+   ============================================================ */
+.card{
+  aspect-ratio:4/5;
+  position:relative;
+  overflow:hidden;
+  background:#1a1a1a;
+  border-radius:2px;
+  box-shadow:0 28px 80px -22px rgba(0,0,0,0.6);
+  color:#fff;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+}
+
+.photo{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  z-index:0;
+}
+
+/* gradient overlays — 確保文字可讀 */
+.grad-top{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0) 60%);
+  z-index:1;
+}
+.grad-bottom{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%);
+  z-index:1;
+}
+.grad-full{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.8) 100%);
+  z-index:1;
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:10% 8% 9% 8%;
+  display:flex;flex-direction:column;
+  z-index:2;
+}
+
+/* 頂端品牌帶 */
+.top-bar{
+  display:flex;align-items:center;
+  font-size:10.5px;font-weight:500;
+  letter-spacing:0.22em;color:rgba(255,255,255,0.85);
+  text-transform:uppercase;
+}
+.top-bar .bar{color:rgba(255,255,255,0.4);margin:0 10px;font-weight:300}
+.top-bar .r{margin-left:auto;font-weight:400;color:rgba(255,255,255,0.7)}
+
+/* Eyebrow 小標（serif italic） */
+.eye{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  font-size:17px;color:#eac89a;         /* warm highlight */
+  letter-spacing:0.02em;
+  margin-top:18px;
+  display:flex;align-items:center;gap:12px;
+}
+.eye::before{
+  content:'';width:6px;height:6px;
+  background:#eac89a;border-radius:50%;
+  display:inline-block;
+}
+
+/* 主標（白字 overlay） */
+.title{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(32px,4.4vw,48px);
+  line-height:1.45;
+  letter-spacing:-0.01em;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,0.45);
+  margin-top:auto;
+}
+.title em{
+  font-style:normal;
+  font-weight:900;
+  background:rgba(234,200,154,0.95);
+  color:#2a1e10;
+  padding:0 8px;
+  margin:0 -2px;
+  border-radius:2px;
+}
+
+/* 副標 */
+.title-sm{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:500;
+  font-size:clamp(17px,2vw,22px);
+  line-height:1.7;
+  letter-spacing:0.005em;
+  color:rgba(255,255,255,0.92);
+  margin-top:18px;
+  text-shadow:0 1px 12px rgba(0,0,0,0.4);
+}
+
+/* 下方說明條（jin.class 的「例如」色塊） */
+.caption-block{
+  background:rgba(0,0,0,0.82);
+  backdrop-filter:blur(8px);
+  padding:16px 18px;
+  margin-top:20px;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:400;
+  font-size:clamp(13px,1.4vw,15px);
+  line-height:1.75;
+  color:rgba(255,255,255,0.95);
+  letter-spacing:0.02em;
+}
+.caption-block .lbl{
+  display:inline-block;
+  background:#eac89a;
+  color:#2a1e10;
+  font-weight:700;
+  font-size:10.5px;
+  letter-spacing:0.14em;
+  padding:2px 8px;
+  margin-right:10px;
+  vertical-align:middle;
+  text-transform:uppercase;
+}
+
+/* Pull number — huge */
+.pull-num{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:300;
+  font-variation-settings:"opsz" 144,"SOFT" 30;
+  font-size:clamp(180px,22vw,280px);
+  line-height:0.85;
+  color:#fff;
+  text-shadow:0 4px 40px rgba(0,0,0,0.6);
+  letter-spacing:-0.04em;
+  margin:auto 0 14px;
+}
+.pull-num .unit{
+  display:block;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;font-weight:500;
+  font-size:0.08em;color:rgba(255,255,255,0.88);
+  letter-spacing:0.2em;
+  margin-top:14px;
+  text-transform:uppercase;
+}
+
+/* Footer 浮水印 */
+.foot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:auto;padding-top:18px;
+  font-size:10.5px;font-weight:500;
+  letter-spacing:0.26em;color:rgba(255,255,255,0.78);
+  text-transform:uppercase;
+}
+.foot .l{display:flex;align-items:center;gap:8px}
+.foot .bar{color:rgba(255,255,255,0.35);font-weight:300}
+.foot .r .slash{color:rgba(255,255,255,0.35);margin:0 4px}
+
+/* Center vertical layout variant */
+.center{justify-content:center;text-align:left}
+
+/* COVER 專用 */
+.cover .inner{justify-content:space-between}
+.cover .htitle{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(36px,4.8vw,54px);
+  line-height:1.35;
+  letter-spacing:-0.015em;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,0.5);
+}
+.cover .htitle em{
+  font-style:normal;font-weight:900;
+  background:rgba(234,200,154,0.95);
+  color:#2a1e10;
+  padding:0 8px;
+}
+.cover .hsub{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  font-size:clamp(17px,2vw,22px);
+  line-height:1.5;
+  color:rgba(255,255,255,0.92);
+  margin-top:22px;
+  text-shadow:0 1px 12px rgba(0,0,0,0.5);
+}
+
+/* End slide */
+.end-title{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:300;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(44px,5.4vw,64px);
+  line-height:1.25;
+  color:#fff;
+  letter-spacing:-0.005em;
+  text-shadow:0 2px 20px rgba(0,0,0,0.5);
+  margin-top:auto;
+}
+.end-title .ch{
+  display:block;
+  font-family:'Noto Sans TC',sans-serif;
+  font-style:normal;font-weight:700;
+  font-size:0.68em;
+  letter-spacing:0.02em;
+  margin-top:14px;
+  color:#fff;
+}
+.end-sig{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:400;
+  font-size:13px;
+  line-height:1.9;
+  letter-spacing:0.08em;
+  color:rgba(255,255,255,0.88);
+  margin-top:22px;
+  text-shadow:0 1px 8px rgba(0,0,0,0.5);
+}
+.end-sig .brand{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:400;
+  font-size:18px;color:#eac89a;
+  letter-spacing:0;
+}
+
+.vbar{color:rgba(255,255,255,0.4);margin:0 8px;font-weight:300}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1><em>Jamie · Photo Overlay Edition, v9</em></h1>
+  <p>7 slides &nbsp;·&nbsp; 1080 × 1350 &nbsp;·&nbsp; photos from your Favorites (Korea trip)</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER · 磚牆 sobb 步行 -->
+<div class="card cover">
+  <div class="photo" style="background-image:url('v9-imgs/IMG_6419.jpg');background-position:center 35%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>vol. 01
+      <span class="r">a note from jamie</span>
+    </div>
+    <div>
+      <p class="htitle">練好幾年，<br>身體<em>還是沒變</em>。<br>不是你不夠努力。</p>
+      <p class="hsub"><em>— 我帶了十二年，<br>大家誤會了「努力」這兩個字。</em></p>
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>repurre studio</div>
+      <div class="r">01<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 / 9 年學生 · 咖啡廳森林窗 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v9-imgs/IMG_6707.jpg');background-position:center 40%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 01<span class="bar">｜</span>the story
+    </div>
+    <p class="eye"><em>chapter one</em></p>
+    <p class="title">我帶過<em>最久的學生</em>，<br>到今年，九年了。</p>
+    <p class="title-sm">但前兩年，他的身體⋯⋯<br>其實沒什麼變。</p>
+    <div class="caption-block">
+      <span class="lbl">其實</span>卡的不是出席，也不是年紀。他「去了」，但那兩年沒真的在練。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">02<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 / Pull number 9 · blazer peace -->
+<div class="card">
+  <div class="photo" style="background-image:url('v9-imgs/IMG_6811.jpg');background-position:center 30%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 02<span class="bar">｜</span>12 years in
+    </div>
+    <div class="pull-num">9<span class="unit">年 · 一個學生 · 前兩年沒變</span></div>
+    <div class="caption-block">
+      這十二年我看下來 — 身體不回應時間，<strong>只回應品質</strong>。每一下你誠實做，它都記得。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">03<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 / 校準 · 咖啡廳坐姿笑 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v9-imgs/IMG_6712.jpg');background-position:center 40%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 03<span class="bar">｜</span>your signal
+    </div>
+    <p class="eye"><em>calibration</em></p>
+    <p class="title"><em>身體的訊號</em>，<br>其實一直在告訴你。</p>
+    <div class="caption-block">
+      <span class="lbl">例如</span>12 下還能聊天 → 身體還沒接到訊號。<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">例如</span>6 下臉紅脖子粗 → 才是開始。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">04<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 / 誠實 · 咖啡反射風 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v9-imgs/IMG_6727.jpg');background-position:center 40%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 04<span class="bar">｜</span>my only rule
+    </div>
+    <p class="eye"><em>the thing</em></p>
+    <p class="title">訓練的品質，<br>其實不是你<em>舉多重</em>。</p>
+    <p class="title-sm">是你願不願意，<br>誠實面對自己有沒有偷懶。</p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">05<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 / 複利 · 外部房屋 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v9-imgs/IMG_6818.jpg');background-position:center 40%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 05<span class="bar">｜</span>after year 3
+    </div>
+    <p class="eye"><em>compound</em></p>
+    <p class="title">時間<em>真的會複利</em>。</p>
+    <p class="title-sm">但前提是——<br>你把每一下，都真的放進去了。</p>
+    <div class="caption-block">
+      我那位九年的學生，第三年後身體一年比一年好。不是因為練更久，是他終於<strong>不再陪自己聊天</strong>。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">06<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 / END · 背影 + cat -->
+<div class="card">
+  <div class="photo" style="background-image:url('v9-imgs/IMG_6830.jpg');background-position:center 45%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>end<span class="bar">｜</span>closing
+    </div>
+    <p class="eye"><em>a note, closing</em></p>
+    <p class="end-title">
+      <em>every rep, a choice.</em>
+      <span class="ch">每一下，都是一次選擇。</span>
+    </p>
+    <p class="end-sig">
+      <span class="brand">Jamie Wu</span>&nbsp;&nbsp;repurre studio<br>
+      十二年私教<span class="vbar">｜</span>台北大安<span class="vbar">｜</span>est. 2014
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>end of no. 01</div>
+      <div class="r">07<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

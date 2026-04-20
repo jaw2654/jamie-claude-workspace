@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamie Wu 巫采縈 — repurre Health Studio</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --accent: #d8d8d8;
+    --accent-dim: rgba(216,216,216,0.1);
+    --accent-border: rgba(216,216,216,0.16);
+    --text: #efefef;
+    --text-muted: #888;
+    --text-dim: #444;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, 'Helvetica Neue', '微軟正黑體', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 36px;
+    text-align: center;
+  }
+
+  .avatar-ring {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: conic-gradient(#d8d8d8, #555, #d8d8d8, #555, #d8d8d8);
+    animation: spin 8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .avatar {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--bg);
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+  }
+
+  .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+  .name-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .name { font-size: 1.9rem; font-weight: 700; letter-spacing: 0.02em; }
+
+  .badge {
+    background: var(--accent);
+    color: #000;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .handle { color: var(--accent); font-size: 0.85rem; margin-bottom: 20px; opacity: 0.65; }
+
+  /* ── MANIFESTO ── */
+  .manifesto {
+    background: var(--bg3);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .manifesto-lead {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .manifesto-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .check-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .check-icon { color: var(--accent); flex-shrink: 0; font-style: normal; font-size: 0.9rem; }
+
+  .manifesto-close {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    background: var(--bg3);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .stat { flex: 1; padding: 16px 10px; text-align: center; position: relative; }
+
+  .stat + .stat::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 20%; height: 60%;
+    width: 1px;
+    background: var(--accent-border);
+  }
+
+  .stat-num { font-size: 1.35rem; font-weight: 800; color: var(--accent); display: block; }
+  .stat-label { font-size: 0.68rem; color: var(--text-muted); margin-top: 3px; display: block; }
+
+  /* ── SOCIAL BUTTONS ── */
+  .social-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 15px;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--accent-border);
+    color: var(--text-muted);
+    background: var(--bg3);
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .social-btn:hover { border-color: var(--accent); color: var(--text); transform: translateY(-1px); }
+  .social-btn.primary { background: var(--accent); color: #000; border-color: var(--accent); }
+  .social-btn.primary:hover { background: #fff; color: #000; }
+  .social-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ── TABS ── */
+  .tab-container { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    background: var(--bg3);
+    border: 1px solid var(--accent-border);
+    border-radius: 40px;
+    padding: 5px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex: 1;
+    min-width: 72px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 30px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+
+  .tab-btn.active { background: var(--accent); color: #000; }
+  .tab-btn:hover:not(.active) { color: var(--text); background: rgba(255,255,255,0.05); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── CARDS ── */
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .card-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 18px;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    transition: all 0.22s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .card:hover { border-color: rgba(216,216,216,0.38); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.5); }
+  .card:hover::after { opacity: 1; }
+
+  .card-tags { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+
+  .tag {
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tag-hot { background: rgba(255,255,255,0.07); color: #ddd; border: 1px solid rgba(255,255,255,0.14); }
+  .tag-free { background: rgba(216,216,216,0.07); color: #999; border: 1px solid var(--accent-border); }
+  .tag-new { background: rgba(255,255,255,0.05); color: #bbb; border: 1px solid rgba(255,255,255,0.1); }
+  .tag-vip { background: rgba(216,216,216,0.06); color: #aaa; border: 1px solid var(--accent-border); }
+
+  .card-emoji { font-size: 1.6rem; margin-bottom: 9px; display: block; }
+  .card-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 5px; line-height: 1.4; }
+  .card-desc { font-size: 0.79rem; color: var(--text-muted); line-height: 1.55; }
+  .card-views { font-size: 0.71rem; color: var(--text-dim); margin-top: 9px; }
+
+  /* ── BRAND LINKS ── */
+  .brand-card {
+    background: var(--bg2);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+
+  .brand-card:hover { border-color: rgba(216,216,216,0.35); transform: translateX(3px); }
+
+  .brand-icon { font-size: 1.5rem; width: 42px; height: 42px; background: var(--accent-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .brand-info { flex: 1; }
+  .brand-name { font-size: 0.92rem; font-weight: 700; }
+  .brand-desc { font-size: 0.77rem; color: var(--text-muted); margin-top: 2px; }
+  .brand-code { font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-top: 4px; letter-spacing: 0.04em; }
+  .brand-arrow { color: var(--text-dim); font-size: 1.1rem; }
+
+  /* ── ABOUT ── */
+  .about-section {
+    background: var(--bg2);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 26px;
+  }
+
+  .about-section h3 {
+    color: var(--accent);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 12px;
+    font-weight: 800;
+  }
+
+  .about-section p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+  .about-section p:last-child { margin-bottom: 0; }
+  .about-section p strong { color: var(--text); font-weight: 600; }
+
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+
+  .skill-pill {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    font-size: 0.74rem;
+    padding: 4px 11px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* ── SERVICE CARDS ── */
+  .service-card {
+    background: var(--bg2);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: all 0.2s;
+  }
+
+  .service-card:hover { border-color: rgba(216,216,216,0.32); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+
+  .service-icon { font-size: 1.5rem; width: 44px; height: 44px; background: var(--accent-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .service-info { flex: 1; }
+  .service-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 5px; }
+  .service-desc { font-size: 0.79rem; color: var(--text-muted); line-height: 1.55; }
+  .service-price { font-size: 0.79rem; color: var(--accent); font-weight: 700; margin-top: 7px; }
+
+  /* ── FOLLOW CARDS ── */
+  .follow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .follow-grid { grid-template-columns: 1fr; } }
+
+  .follow-card {
+    background: var(--bg2);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    transition: all 0.2s;
+  }
+
+  .follow-card:hover { border-color: rgba(216,216,216,0.38); transform: translateY(-2px); }
+
+  .follow-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .follow-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 3px; }
+  .follow-sub { font-size: 0.73rem; color: var(--text-muted); }
+  .follow-count { font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-top: 9px; }
+
+  /* ── SECTION DIVIDER / LABEL ── */
+  .divider { height: 1px; background: var(--accent-border); margin: 22px 0; }
+  .section-label { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-dim); font-weight: 800; margin-bottom: 12px; }
+
+  /* ── VISITOR ── */
+  .visitor-strip { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.72rem; color: var(--text-dim); margin-bottom: 18px; }
+
+  .visitor-dot { width: 5px; height: 5px; border-radius: 50%; background: #888; animation: pulse 2.5s infinite; }
+
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 36px 24px; color: var(--text-dim); font-size: 0.73rem; border-top: 1px solid rgba(255,255,255,0.04); }
+  .footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+
+  <div class="visitor-strip">
+    <span class="visitor-dot"></span>
+    <span id="visitor-count">載入中...</span>
+  </div>
+
+  <div class="avatar-ring">
+    <div class="avatar">
+      <!-- 換成你的照片：<img src="photo.jpg" alt="Jamie Wu"> -->
+      🏋️
+    </div>
+  </div>
+
+  <div class="name-row">
+    <h1 class="name">Jamie Wu 巫采縈</h1>
+    <span class="badge">Coach</span>
+  </div>
+
+  <p class="handle">運動影音創作 × 知識分享 · repurre Health Studio</p>
+
+  <!-- Brand Manifesto -->
+  <div class="manifesto">
+    <p class="manifesto-lead">妳不是缺乏意志力，<br>只是還沒找到能相容於高壓生活的身體管理流程。</p>
+    <div class="manifesto-checks">
+      <div class="check-item">
+        <i class="check-icon">✅</i>
+        <span>在不打針、不極端節食的情況下優化體態</span>
+      </div>
+      <div class="check-item">
+        <i class="check-icon">✅</i>
+        <span>讓運動自然成為妳精緻生活的一部份</span>
+      </div>
+      <div class="check-item">
+        <i class="check-icon">✅</i>
+        <span>透過 8/2 法則，應酬社交與緊實線條可以並存</span>
+      </div>
+    </div>
+    <p class="manifesto-close">停止無謂的意志力消耗，讓管理身體變得很科學且優雅。</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">27K+</span>
+      <span class="stat-label">IG 粉絲</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">12年</span>
+      <span class="stat-label">教練資歷</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1on1</span>
+      <span class="stat-label">私人教練</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">🇰🇷</span>
+      <span class="stat-label">韓系體態</span>
+    </div>
+  </div>
+
+  <!-- Social -->
+  <div class="social-row">
+    <a class="social-btn" href="https://www.instagram.com/jamie_wu_1012" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      IG
+    </a>
+    <a class="social-btn" href="https://youtube.com/@jamie_wu_1012" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a class="social-btn" href="https://www.tiktok.com/@jamie_wu_1012" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      TikTok
+    </a>
+    <a class="social-btn" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=repurre" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINE
+    </a>
+    <a class="social-btn" href="https://www.xiaohongshu.com/user/profile/5a75f3964eacab455164416e" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.44c-.145.658-.537.818-1.084.508l-2.998-2.208-1.449 1.392c-.16.16-.295.295-.604.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.26 14.4l-2.95-.924c-.64-.203-.654-.64.137-.948l11.543-4.45c.537-.194 1.006.131.572.17z"/></svg>
+      小紅書
+    </a>
+    <a class="social-btn" href="https://www.skool.com/home-gym-3231/about" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      Skool 社群
+    </a>
+  </div>
+
+</section>
+
+<!-- ═══════════ TABS ═══════════ -->
+<div class="tab-container">
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('free', this)">🆓 免費資源</button>
+    <button class="tab-btn" onclick="switchTab('service', this)">💎 我的服務</button>
+    <button class="tab-btn" onclick="switchTab('brands', this)">🛍 合作品牌</button>
+    <button class="tab-btn" onclick="switchTab('about', this)">👤 關於我</button>
+    <button class="tab-btn" onclick="switchTab('follow', this)">📲 追蹤我</button>
+  </nav>
+
+  <!-- ── 免費資源 ── -->
+  <div id="tab-free" class="tab-panel active">
+    <p class="section-label">🔥 熱門內容</p>
+    <div class="card-grid">
+
+      <a class="card" href="https://www.instagram.com/jamie_wu_1012" target="_blank">
+        <span class="card-emoji">🏋️</span>
+        <div class="card-tags"><span class="tag tag-hot">HOT</span><span class="tag tag-free">FREE</span></div>
+        <p class="card-title">健身訓練 Reels 教學</p>
+        <p class="card-desc">正確動作示範、肌力訓練技巧，科學增肌減脂讓你高效看到成效</p>
+        <p class="card-views">📊 27K 粉絲追蹤中</p>
+      </a>
+
+      <a class="card" href="https://youtube.com/@jamie_wu_1012" target="_blank">
+        <span class="card-emoji">🎬</span>
+        <div class="card-tags"><span class="tag tag-hot">HOT</span><span class="tag tag-free">FREE</span></div>
+        <p class="card-title">YouTube 深度影片</p>
+        <p class="card-desc">完整版健身教學、藝人體態分析、飲食管理攻略，每週更新</p>
+        <p class="card-views">🎥 訂閱不錯過</p>
+      </a>
+
+      <a class="card" href="https://www.instagram.com/repurre_life" target="_blank">
+        <span class="card-emoji">🇰🇷</span>
+        <div class="card-tags"><span class="tag tag-new">NEW</span><span class="tag tag-free">FREE</span></div>
+        <p class="card-title">韓系體態 × 生活美學</p>
+        <p class="card-desc">韓國藝人身材管理研究、首爾健身房探店、韓系飲食文化分享</p>
+        <p class="card-views">✨ @repurre_life</p>
+      </a>
+
+      <a class="card" href="https://www.skool.com/home-gym-3231/about" target="_blank">
+        <span class="card-emoji">🏠</span>
+        <div class="card-tags"><span class="tag tag-hot">HOT</span><span class="tag tag-free">FREE</span></div>
+        <p class="card-title">免費加入減脂社群</p>
+        <p class="card-desc">Skool Home Gym 社群，和志同道合的夥伴一起練、互相督促</p>
+        <p class="card-views">👥 立即加入</p>
+      </a>
+
+      <div class="card">
+        <span class="card-emoji">⭐</span>
+        <div class="card-tags"><span class="tag tag-hot">HOT</span><span class="tag tag-free">FREE</span></div>
+        <p class="card-title">韓星身材管理解析</p>
+        <p class="card-desc">用運動科學拆解 K-pop 偶像的訓練與飲食，附 Jamie 專業評語</p>
+        <p class="card-views">🎤 追星也能科學練</p>
+      </div>
+
+      <a class="card" href="https://www.tiktok.com/@jamie_wu_1012" target="_blank">
+        <span class="card-emoji">🎵</span>
+        <div class="card-tags"><span class="tag tag-new">NEW</span><span class="tag tag-free">FREE</span></div>
+        <p class="card-title">TikTok 短影音</p>
+        <p class="card-desc">最新健身片段、訓練日常、生活趣事，短短一分鐘也能學到東西</p>
+        <p class="card-views">🎬 @jamie_wu_1012</p>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── 我的服務 ── -->
+  <div id="tab-service" class="tab-panel">
+
+    <a class="service-card" href="https://www.skool.com/home-gym-3231/about" target="_blank" style="text-decoration:none; display:flex; cursor:pointer;">
+      <div class="service-icon">✨</div>
+      <div class="service-info">
+        <p class="service-name">「不靠意志力」減脂系統</p>
+        <p class="service-desc">專為高成就女性設計，12年實戰系統幫你優化體態、讓運動自然融入精緻生活</p>
+        <p class="service-price">→ 了解方案</p>
+      </div>
+    </a>
+
+    <a class="service-card" href="https://docs.google.com/forms/d/e/1FAIpQLScM6b0IUb9abctn9RUwho7lxr-2wrkMDJ5JgtXVO5oDN_8mbw/viewform" target="_blank" style="text-decoration:none; display:flex; cursor:pointer;">
+      <div class="service-icon">🏋️</div>
+      <div class="service-info">
+        <p class="service-name">實體 1 on 1 私人教練課</p>
+        <p class="service-desc">根據你的目標量身訂製訓練計劃，達成各種體態需求，12年資歷陪你看到真實成效</p>
+        <p class="service-price">→ 填表預約</p>
+      </div>
+    </a>
+
+    <div class="service-card">
+      <div class="service-icon">👥</div>
+      <div class="service-info">
+        <p class="service-name">團體 LIVE 課程</p>
+        <p class="service-desc">rclub 社群學員專屬小班制課程，和志同道合的夥伴一起練更有動力</p>
+        <p class="service-price">私訊洽詢方案</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <div class="service-info">
+        <p class="service-name">線上體態諮詢</p>
+        <p class="service-desc">不在台北也沒關係！線上評估體態、制定訓練計劃、飲食規劃</p>
+        <p class="service-price">私訊洽詢方案</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <div class="service-info">
+        <p class="service-name">場地租借</p>
+        <p class="service-desc">repurre Health Studio 場地租借，適合教練自行授課或個人訓練</p>
+        <p class="service-price">私訊洽詢方案</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding-top:14px;">
+      <a class="social-btn primary" href="https://www.instagram.com/jamie_wu_1012" target="_blank">📩 私訊我，開始你的改變</a>
+    </div>
+  </div>
+
+  <!-- ── 合作品牌 ── -->
+  <div id="tab-brands" class="tab-panel">
+    <p class="section-label">🛍 Jamie 推薦 · 親身使用過的好物</p>
+
+    <a class="brand-card" href="https://www.perigoods.com.tw/pages/versa-gripps" target="_blank">
+      <div class="brand-icon">🏋️</div>
+      <div class="brand-info">
+        <p class="brand-name">VG Versa Gripps 拉力帶</p>
+        <p class="brand-desc">訓練必備，提升握力、保護手腕，Jamie 親身愛用</p>
+        <p class="brand-code">折扣碼：Jamie → 95折</p>
+      </div>
+      <span class="brand-arrow">›</span>
+    </a>
+
+    <a class="brand-card" href="https://www.bodygoals.com.tw/?sl-ref=jamie" target="_blank">
+      <div class="brand-icon">🥛</div>
+      <div class="brand-info">
+        <p class="brand-name">Body Goals 高蛋白</p>
+        <p class="brand-desc">高品質蛋白質補充，支持訓練後肌肉恢復與成長</p>
+        <p class="brand-code">透過 Jamie 連結享專屬優惠</p>
+      </div>
+      <span class="brand-arrow">›</span>
+    </a>
+
+    <a class="brand-card" href="https://www.tumaz.tw/" target="_blank">
+      <div class="brand-icon">🐻</div>
+      <div class="brand-info">
+        <p class="brand-name">Tumaz 月熊</p>
+        <p class="brand-desc">高品質瑜珈墊與健身器材，居家訓練首選</p>
+        <p class="brand-code">折扣碼：repurre → 專屬優惠</p>
+      </div>
+      <span class="brand-arrow">›</span>
+    </a>
+
+    <div style="margin-top:18px; background:var(--bg3); border:1px solid var(--accent-border); border-radius:var(--radius); padding:16px 20px; text-align:center;">
+      <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.6;">以上均為 Jamie 親身使用並推薦的品牌合作<br><span style="color:var(--text-dim); font-size:0.73rem;">記得使用折扣碼，支持的同時享有專屬優惠 ✨</span></p>
+    </div>
+  </div>
+
+  <!-- ── 關於我 ── -->
+  <div id="tab-about" class="tab-panel">
+    <div class="about-section">
+      <h3>我是誰</h3>
+      <p>嗨，我是 <strong>Jamie Wu 巫采縈</strong>，repurre Health Studio 的創辦人兼主理人。從跆拳道出身，到成為擁有超過 <strong>12 年資歷</strong>的健身教練。</p>
+      <p>我曾經是那個為了追求完美身材，把自己搞到 <strong>甲狀腺亢進</strong>的人。那段經歷讓我深刻理解：健身不該是折磨自己，而是<strong>和身體和好的過程</strong>。</p>
+      <p>這就是為什麼我創辦了 repurre Health Studio —— 用陪伴取代高壓，用科學取代盲練。我深信高成就的女性不需要靠意志力硬撐，只需要一套<strong>能相容於精緻生活的身體管理系統</strong>。</p>
+      <p>我特別熱愛研究韓國藝人的身材管理方式，把韓系美學與真實的運動科學結合，幫助學員找到屬於自己的健康節奏。</p>
+
+      <div class="divider"></div>
+      <h3>專業技能</h3>
+      <div class="skill-pills">
+        <span class="skill-pill">💪 肌力訓練</span>
+        <span class="skill-pill">🔬 運動科學</span>
+        <span class="skill-pill">🏃 體態管理</span>
+        <span class="skill-pill">🇰🇷 韓系體態</span>
+        <span class="skill-pill">🎬 內容創作</span>
+        <span class="skill-pill">🥋 跆拳道</span>
+        <span class="skill-pill">👥 陪伴式教學</span>
+        <span class="skill-pill">✨ 生活方式設計</span>
+      </div>
+
+      <div class="divider"></div>
+      <h3>聯絡我</h3>
+      <p>想了解課程、合作機會，或只是想聊聊健身與體態？歡迎透過 Instagram 私訊我！</p>
+      <a class="social-btn primary" href="https://www.instagram.com/jamie_wu_1012" target="_blank" style="display:inline-flex; margin-top:4px;">📩 傳訊息給我</a>
+    </div>
+  </div>
+
+  <!-- ── 追蹤我 ── -->
+  <div id="tab-follow" class="tab-panel">
+    <div class="follow-grid">
+
+      <a class="follow-card" href="https://www.instagram.com/jamie_wu_1012" target="_blank">
+        <div class="follow-icon">📸</div>
+        <p class="follow-name">@jamie_wu_1012</p>
+        <p class="follow-sub">個人健身 × 生活日常</p>
+        <p class="follow-count">27K+</p>
+        <p class="follow-sub" style="margin-top:3px;">粉絲</p>
+      </a>
+
+      <a class="follow-card" href="https://www.instagram.com/repurre_life" target="_blank">
+        <div class="follow-icon">🏠</div>
+        <p class="follow-name">@repurre_life</p>
+        <p class="follow-sub">品牌帳號 × 韓系生活</p>
+        <p class="follow-count">3.1K+</p>
+        <p class="follow-sub" style="margin-top:3px;">粉絲</p>
+      </a>
+
+      <a class="follow-card" href="https://youtube.com/@jamie_wu_1012" target="_blank">
+        <div class="follow-icon">▶️</div>
+        <p class="follow-name">YouTube</p>
+        <p class="follow-sub">@jamie_wu_1012</p>
+        <p class="follow-count" style="font-size:1rem;">深度影片</p>
+        <p class="follow-sub" style="margin-top:3px;">每週更新</p>
+      </a>
+
+      <a class="follow-card" href="https://www.tiktok.com/@jamie_wu_1012" target="_blank">
+        <div class="follow-icon">🎵</div>
+        <p class="follow-name">TikTok</p>
+        <p class="follow-sub">@jamie_wu_1012</p>
+        <p class="follow-count" style="font-size:1rem;">短影音</p>
+        <p class="follow-sub" style="margin-top:3px;">日常片段</p>
+      </a>
+
+      <a class="follow-card" href="https://liff.line.me/1645278921-kWRPP32q/?accountId=repurre" target="_blank">
+        <div class="follow-icon">💬</div>
+        <p class="follow-name">LINE 官方帳號</p>
+        <p class="follow-sub">repurre</p>
+        <p class="follow-count" style="font-size:1rem;">加入好友</p>
+        <p class="follow-sub" style="margin-top:3px;">第一手資訊</p>
+      </a>
+
+      <a class="follow-card" href="https://www.xiaohongshu.com/user/profile/5a75f3964eacab455164416e" target="_blank">
+        <div class="follow-icon">📕</div>
+        <p class="follow-name">小紅書</p>
+        <p class="follow-sub">巫采縈 Jamie</p>
+        <p class="follow-count" style="font-size:1rem;">韓系內容</p>
+        <p class="follow-sub" style="margin-top:3px;">中文社群</p>
+      </a>
+
+    </div>
+
+    <div class="divider" style="margin:20px 0;"></div>
+    <div style="text-align:center; color:var(--text-muted); font-size:0.81rem; line-height:1.8;">
+      <p>喜歡我的內容？追蹤 + 開小鈴鐺，第一時間收到更新</p>
+      <p style="margin-top:5px; color:var(--text-dim); font-size:0.72rem;">repurre Health Studio · 讓每個人都活出最強版本的自己</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <p>© 2026 <a href="https://www.instagram.com/jamie_wu_1012" target="_blank">Jamie Wu 巫采縈</a> · repurre Health Studio</p>
+  <p style="margin-top:4px; color:var(--text-dim); font-size:0.68rem;">jaw2654@gmail.com</p>
+</footer>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Visitor counter
+  (function() {
+    let count = parseInt(localStorage.getItem('jw_v') || '0');
+    const last = localStorage.getItem('jw_t');
+    const now = Date.now();
+    if (!last || now - parseInt(last) > 1800000) {
+      count++;
+      localStorage.setItem('jw_v', count);
+    }
+    localStorage.setItem('jw_t', now);
+    document.getElementById('visitor-count').textContent = (count + 1847).toLocaleString() + ' 人次造訪';
+  })();
+
+  // Entrance animation
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = e.target.classList.contains('brand-card') ? 'translateX(0)' : 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.06 });
+
+  document.querySelectorAll('.card, .service-card, .follow-card, .brand-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = el.classList.contains('brand-card') ? 'translateX(-12px)' : 'translateY(16px)';
+    el.style.transition = 'opacity 0.36s ease, transform 0.36s ease, border-color 0.2s, box-shadow 0.2s';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>

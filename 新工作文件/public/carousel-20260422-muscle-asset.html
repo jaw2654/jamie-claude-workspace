@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · v14 · Metabolism Myth (1:1) (Billy Lin 架構 + 白話 + 30+ 女性)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+TC:wght@400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,200..400;1,9..144,200..400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'Pretendard Variable',Pretendard,'Noto Sans TC',sans-serif;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+body{background:#0e0e0e;padding:60px 24px;min-height:100vh;color:#fff}
+
+.page-hd{max-width:1500px;margin:0 auto 72px;text-align:center;color:#aaa}
+.page-hd h1{
+  font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;
+  font-size:28px;color:#fff;margin-bottom:12px;letter-spacing:0.01em;
+}
+.page-hd p{font-size:10px;color:#888;letter-spacing:0.42em;text-transform:uppercase;font-weight:400}
+
+.row{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+
+/* ============================================================
+   v9 · 照片滿版 + 文字 overlay · jin.class 風格
+   ============================================================ */
+.card{
+  aspect-ratio:1/1;
+  position:relative;
+  overflow:hidden;
+  background:#1a1a1a;
+  border-radius:2px;
+  box-shadow:0 28px 80px -22px rgba(0,0,0,0.6);
+  color:#fff;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+}
+
+.photo{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  z-index:0;
+  filter:brightness(0.9) contrast(1.03) saturate(0.95);
+}
+
+/* gradient overlays — 確保文字可讀 */
+.grad-top{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0) 60%);
+  z-index:1;
+}
+.grad-bottom{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%);
+  z-index:1;
+}
+.grad-full{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.28) 38%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.88) 100%);
+  z-index:1;
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:12% 10% 12% 10%;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  text-align:center;
+  z-index:2;
+}
+.inner > *{width:100%}
+.top-bar{justify-content:center}
+.top-bar .r{margin-left:16px}
+.eye{justify-content:center}
+
+/* 頂端品牌帶 */
+.top-bar{
+  display:flex;align-items:center;
+  font-size:10.5px;font-weight:500;
+  letter-spacing:0.22em;color:rgba(255,255,255,0.85);
+  text-transform:uppercase;
+}
+.top-bar .bar{color:rgba(255,255,255,0.4);margin:0 10px;font-weight:300}
+.top-bar .r{margin-left:auto;font-weight:400;color:rgba(255,255,255,0.7)}
+
+/* Eyebrow 小標（serif italic，白灰色） */
+.eye{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  font-size:19px;color:#e8e8e8;
+  letter-spacing:0.02em;
+  margin-top:18px;
+  display:flex;align-items:center;gap:12px;
+}
+.eye::before{
+  content:'';width:6px;height:6px;
+  background:#e8e8e8;border-radius:50%;
+  display:inline-block;
+}
+
+/* 主標（白字 overlay，縱橫置中） */
+.title{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(42px,5.4vw,62px);
+  line-height:1.4;
+  letter-spacing:-0.01em;
+  color:#fff;
+  text-shadow:none;
+  max-width:100%;
+}
+.title em{
+  font-style:normal;
+  font-weight:900;
+  line-height:1.1;
+  display:inline-block;
+  background:rgba(245,245,245,0.55);
+  color:#141414;
+  padding:1px 3px;
+  margin:0;
+  border-radius:2px;
+}
+
+/* 副標 */
+.title-sm{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:500;
+  font-size:clamp(26px,2.9vw,33px);
+  line-height:1.7;
+  letter-spacing:0.005em;
+  color:rgba(255,255,255,0.95);
+  margin-top:20px;
+  text-shadow:none;
+  max-width:100%;
+}
+
+/* 下方說明條 — 盒子居中，內文左對齊保持可讀 */
+.caption-block{text-align:left;
+  background:rgba(0,0,0,0.42);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:14px 18px;
+  margin-top:16px;
+  border-left:2px solid #f5f5f5;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:400;
+  font-size:clamp(24px,2.7vw,31px);
+  line-height:1.75;
+  color:rgba(224,217,202,0.94);
+  letter-spacing:0.02em;
+}
+.caption-block .lbl{
+  display:inline-block;
+  background:#f5f5f5;
+  color:#0a0a0a;
+  font-weight:700;
+  font-size:10.5px;
+  letter-spacing:0.14em;
+  padding:2px 8px;
+  margin-right:10px;
+  vertical-align:middle;
+  text-transform:uppercase;
+}
+
+/* Pull number */
+.pull-num{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:300;
+  font-variation-settings:"opsz" 144,"SOFT" 30;
+  font-size:clamp(150px,18vw,230px);
+  line-height:0.9;
+  color:#f0ebe0;
+  text-shadow:none;
+  letter-spacing:-0.04em;
+  margin:0 0 16px;
+}
+.pull-num .unit{
+  display:block;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;font-weight:500;
+  font-size:0.08em;color:rgba(210,202,184,0.9);
+  letter-spacing:0.2em;
+  margin-top:14px;
+  text-transform:uppercase;
+}
+
+/* Footer 浮水印 */
+.foot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:auto;padding-top:18px;
+  font-size:10.5px;font-weight:500;
+  letter-spacing:0.26em;color:rgba(255,255,255,0.78);
+  text-transform:uppercase;
+}
+.foot .l{display:flex;align-items:center;gap:8px}
+.foot .bar{color:rgba(255,255,255,0.35);font-weight:300}
+.foot .r .slash{color:rgba(255,255,255,0.35);margin:0 4px}
+
+/* Center vertical layout variant */
+.center{justify-content:center;text-align:left}
+
+/* COVER 專用 */
+.cover .inner{justify-content:center;gap:40px}
+.cover .top-bar{position:absolute;top:10%;left:10%;right:10%;width:auto}
+.cover .foot{position:absolute;bottom:10%;left:10%;right:10%;width:auto}
+.cover > div:not(.photo):not(.grad-full):not(.inner){}
+.cover .htitle{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;color-hint:warm;
+  font-size:clamp(44px,5.8vw,66px);
+  line-height:1.35;
+  letter-spacing:-0.015em;
+  color:#fff;
+  text-shadow:none;
+  max-width:100%;
+}
+.cover .htitle em{
+  font-style:normal;font-weight:900;
+  line-height:1.1;
+  display:inline-block;
+  background:rgba(245,245,245,0.55);
+  color:#141414;
+  padding:1px 3px;
+}
+.cover .hsub{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  font-size:clamp(20px,2.3vw,26px);
+  line-height:1.55;
+  color:rgba(218,210,194,0.94);
+  margin-top:22px;
+  text-shadow:none;
+}
+
+/* End slide */
+.end-title{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:300;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(44px,5.4vw,64px);
+  line-height:1.25;
+  color:#fff;
+  letter-spacing:-0.005em;
+  text-shadow:none;
+  margin-top:auto;
+}
+.end-title .ch{
+  display:block;
+  font-family:'Noto Sans TC',sans-serif;
+  font-style:normal;font-weight:700;
+  font-size:0.68em;
+  letter-spacing:0.02em;
+  margin-top:14px;
+  color:#fff;
+}
+.end-sig{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:400;
+  font-size:13px;
+  line-height:1.9;
+  letter-spacing:0.08em;
+  color:rgba(255,255,255,0.88);
+  margin-top:22px;
+  text-shadow:none;
+}
+.end-sig .brand{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:400;
+  font-size:18px;color:#fff;
+  letter-spacing:0;
+}
+
+.vbar{color:rgba(255,255,255,0.4);margin:0 8px;font-weight:300}
+
+
+/* === print mode for Chrome headless PDF export 1080x1080 === */
+@page{size:1080px 1080px;margin:0}
+@media print{
+  body{padding:0!important;background:#0e0e0e}
+  .page-hd{display:none!important}
+  .row{grid-template-columns:1fr!important;gap:0!important;max-width:none!important;margin:0!important}
+  .card{width:1080px!important;height:1080px!important;page-break-after:always!important;box-shadow:none!important;border-radius:0!important}
+  .card:last-child{page-break-after:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1><em>Jamie · Metabolism Myth, v14 · 1:1 Square</em></h1>
+  <p>7 slides · 30+ 女性先練肌力 · 專業知識 + 白話 · Billy Lin 破除迷思架構</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER · 磚牆 sobb 步行 -->
+<div class="card cover">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3662.jpg');background-position:center 65%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>strength<span class="bar">｜</span>vol. 02
+      <span class="r">a note from jamie</span>
+    </div>
+    <div>
+      <p class="htitle">肌肉，是妳<br>30+ 最該存的<em>資產</em>。</p>
+      <p class="hsub"><em>— 而且利息<br>只會越來越高。</em></p>
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>repurre studio</div>
+      <div class="r">01<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 / 9 年學生 · 咖啡廳森林窗 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3659.jpg');background-position:center 68%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 01<span class="bar">｜</span>the data
+    </div>
+    <p class="eye"><em>2024 年 28 國世代研究</em></p>
+    <p class="title">肌力最低那群人——<br>死亡風險比中位數<em>高 33%</em>。</p>
+    <p class="title-sm">2024 年刊在 Journal of Cachexia,<br>Sarcopenia and Muscle 的 28 國世代研究。</p>
+    <div class="caption-block">
+      <span class="lbl">意思</span>肌肉弱，不只是「痠」的問題。是真的影響<strong>壽命長度</strong>的事。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">02<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 / Pull number 9 · blazer peace -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3700.jpg');background-position:center 75%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 02<span class="bar">｜</span>the loss
+    </div>
+    <div class="pull-num">1%<span class="unit">每年流失 · 30 歲起 · 沒練就掉</span></div>
+    <div class="caption-block">
+      30 歲之後——沒做阻力訓練的人，每年流失 <strong>1%</strong> 肌肉。<br>10 年 10%。20 年 20%。<br>這些流失的肌肉，本來是妳代償的<strong>最後防線</strong>。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">03<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 / 校準 · 咖啡廳坐姿笑 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3672.jpg');background-position:center 68%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 03<span class="bar">｜</span>the myth
+    </div>
+    <p class="eye"><em>最常聽到的誤解</em></p>
+    <p class="title">「我年紀大了<br>不適合重訓。」<br>→ <em>相反</em>。</p>
+    <div class="caption-block">
+      <span class="lbl">真相</span>年紀越大，越<strong>需要</strong>重訓<br><span class="lbl" style="margin-top:8px;display:inline-block">邏輯</span>肌肉是肌少症、代償、跌倒、骨鬆的共同防線
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">04<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 / 誠實 · 咖啡反射風 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3694.jpg');background-position:center 68%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 04<span class="bar">｜</span>the mechanism
+    </div>
+    <p class="eye"><em>肌肉在身體裡做什麼</em></p>
+    <p class="title">肌肉是妳體內<br>最大的<em>葡萄糖倉庫</em>。</p>
+    <p class="title-sm">肌肉量↑ → 代謝穩 → 身體不易累<br>肌肉量↓ → 代償更嚴重、痠痛更深</p>
+    <div class="caption-block">
+      <span class="lbl">關鍵</span>沒肌肉可用 → 旁邊的肌肉只好來代償 → 痠、僵、卡的循環開始。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">05<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 / 複利 · 外部房屋 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3703.jpg');background-position:center 68%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 05<span class="bar">｜</span>the practice
+    </div>
+    <p class="eye"><em>妳可以做的三件事</em></p>
+    <p class="title">把肌肉<br><em>存起來</em>。</p>
+    <div class="caption-block">
+      <span class="lbl">訓練</span>一週 2 次阻力訓練 · 剛開始就夠<br><span class="lbl" style="margin-top:8px;display:inline-block">蛋白</span>體重 × 1.2g/日（60kg 約 72g · 2024 Frontiers 研究）<br><span class="lbl" style="margin-top:8px;display:inline-block">睡眠</span>7 小時以上 · 肌肉在睡眠時長大
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">06<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 / END · 背影 + cat -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3709.jpg');background-position:center 70%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>end<span class="bar">｜</span>the long view
+    </div>
+    <p class="eye"><em>一句話收尾</em></p>
+    <p class="end-title">
+      <em>muscle is the asset.</em>
+      <span class="ch">肌肉不是年輕人的事。<br>是每個 30+ 都該開始存的資產——<br>也是代償歸零的地基。</span>
+    </p>
+    <p class="end-sig">
+      <span class="brand">Jamie Wu</span>&nbsp;&nbsp;repurre studio<br>
+      十二年私教<span class="vbar">｜</span>台北大安<span class="vbar">｜</span>est. 2014
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>07<span class="slash">/</span>08</div>
+      <div class="r">07<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 / CTA · 波米 + assessment 網址 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs/IMG_3672.jpg');background-position:center 68%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>take action<span class="bar">｜</span>your turn
+    </div>
+    <p class="eye"><em>想知道自己身體在哪？</em></p>
+    <p class="title" style="line-height:1.5">
+      <em>10 個動作</em><br>
+      <em>15 分鐘</em>
+    </p>
+    <p class="title-sm" style="margin-top:12px">在家就能測</p>
+    <div class="caption-block">
+      <p class="caption-body">
+        做完妳會看到自己的肌力、活動度、核心<br>
+        落在哪個等級（A / B / C / D）<br>
+        以及接下來該從哪裡開始。
+      </p>
+      <p class="caption-body" style="margin-top:10px;">
+        <em>留言打「LIFE」</em><br>
+        我把連結傳給妳 🤍
+      </p>
+    </div>
+    <p class="end-sig" style="margin-top:16px;">
+      <span class="brand">repurre-reports.pages.dev/assessment</span>
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>08<span class="slash">/</span>08</div>
+      <div class="r">08<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

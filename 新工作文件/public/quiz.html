@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>30+ 身體自我檢測指南 · Jamie Wu · repurre Studio</title>
+<meta name="description" content="12 年私教 Jamie Wu 設計的 10 動作自我檢測，做完知道自己的肌力、活動度、核心在哪個等級。">
+<meta property="og:title" content="30+ 身體自我檢測指南 · Jamie Wu">
+<meta property="og:description" content="10 個動作，在家就能測。做完妳會知道自己現在在哪。">
+<meta property="og:image" content="https://repurre-reports.pages.dev/assessment-imgs/studio-portrait.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ebe2cf;
+  --bg-warm: #e4d9c0;
+  --bg-card: #e0d5be;
+  --bg-deep: #2a2521;
+  --text: #2a2521;
+  --text-dim: rgba(42,37,33,0.72);
+  --text-faint: rgba(42,37,33,0.5);
+  --accent-strong: #2a2521;
+  --accent-ink: #ebe2cf;
+  --accent-highlight: rgba(42,37,33,0.08);
+  --border: rgba(42,37,33,0.14);
+  --border-strong: rgba(42,37,33,0.32);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans TC', 'Pretendard JP', -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  max-width: 620px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+/* Hero section with studio image */
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('assessment-imgs/studio-portrait.jpg');
+  background-size: cover;
+  background-position: center center;
+  filter: brightness(1.0) contrast(1.02) saturate(0.98);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(42,37,33,0.05) 0%, rgba(42,37,33,0) 40%, rgba(235,226,207,0.6) 85%, rgba(235,226,207,1) 100%);
+}
+.hero-brand {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(42,37,33,0.75);
+}
+.hero-brand .brand {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 14px;
+}
+.hero-title-wrap {
+  position: absolute;
+  bottom: 10%;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+  text-align: center;
+}
+.hero-eye {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  letter-spacing: 0.06em;
+}
+.hero-title {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 500;
+  font-size: clamp(30px, 7.5vw, 42px);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+.hero-title .accent {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+  font-size: 0.9em;
+  color: var(--text-dim);
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+/* Content container */
+.container {
+  padding: 0 24px;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.topbar .brand {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 14px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+}
+
+/* Intro body text */
+.intro-body {
+  text-align: center;
+}
+.intro-body p {
+  color: var(--text-dim);
+  font-size: 15.5px;
+  margin-bottom: 14px;
+  line-height: 1.85;
+}
+.intro-body p:first-child {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.02em;
+}
+
+.meta-row {
+  display: flex;
+  gap: 20px;
+  margin: 28px 0;
+  padding: 18px 20px;
+  background: var(--bg-warm);
+  border-left: 2px solid var(--accent-strong);
+  border-radius: 2px;
+}
+.meta-row .item {
+  flex: 1;
+}
+.meta-row .num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--accent-strong);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.meta-row .lbl {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+/* Button */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--accent-strong);
+  color: var(--accent-ink);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  margin-top: 28px;
+  letter-spacing: 0.02em;
+}
+.btn:active { opacity: 0.75; }
+.btn.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: none;
+  padding: 14px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* Question page header */
+.q-header-wrap {
+  padding: 28px 24px 0;
+}
+.progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+}
+.progress .num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 30px;
+  color: var(--accent-strong);
+  font-weight: 500;
+  line-height: 1;
+}
+.progress .of {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+.progress-bar {
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.progress-bar .fill {
+  height: 100%;
+  background: var(--accent-strong);
+  transition: width 0.3s ease;
+}
+.q-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.q-tag {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  color: var(--text-faint);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+.q-desc {
+  color: var(--text-dim);
+  font-size: 15px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.75;
+}
+
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.opt:hover { border-color: var(--border-strong); }
+.opt.selected {
+  border-color: var(--accent-strong);
+  background: rgba(42,37,33,0.04);
+}
+.opt .score {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--accent-strong);
+  flex-shrink: 0;
+  line-height: 1.1;
+  min-width: 28px;
+  font-weight: 500;
+}
+.opt .text {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.opt.selected .text { color: var(--text); }
+
+.nav { display: flex; gap: 10px; margin-top: 28px; }
+.nav .btn { margin: 0; flex: 1; }
+.nav .btn.secondary { flex: 0 0 auto; width: auto; padding: 18px 22px; }
+
+/* Result page */
+.result-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.result-hero-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('assessment-imgs/studio-landscape.jpg');
+  background-size: cover;
+  background-position: center center;
+  filter: brightness(1.0) contrast(1.02) saturate(0.98);
+}
+.result-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(42,37,33,0.0) 0%, rgba(42,37,33,0) 50%, rgba(235,226,207,0.9) 92%, rgba(235,226,207,1) 100%);
+}
+.result-hero-top {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(42,37,33,0.75);
+  z-index: 2;
+}
+.result-hero-top .brand {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 14px;
+}
+
+.result-body-wrap {
+  padding: 0 24px;
+}
+.result-label {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-faint);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.result-level {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 96px;
+  font-weight: 500;
+  line-height: 0.95;
+  color: var(--accent-strong);
+  text-align: center;
+  margin: 10px 0 8px;
+  letter-spacing: -0.02em;
+}
+.result-score {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+.result-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.result-body {
+  color: var(--text-dim);
+  font-size: 15.5px;
+  line-height: 1.85;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.result-cta-box {
+  background: var(--bg-deep);
+  padding: 22px 24px;
+  margin: 32px 0;
+  border-radius: 3px;
+}
+.result-cta-box p {
+  color: var(--accent-ink);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.result-cta-box p strong {
+  color: var(--accent-ink);
+  font-weight: 700;
+  display: inline-block;
+  background: rgba(235,226,207,0.15);
+  padding: 0 6px;
+  border-radius: 2px;
+}
+.footer-note {
+  text-align: center;
+  color: var(--text-faint);
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* Step transition */
+.step { display: none; }
+.step.active { display: block; animation: fade 0.35s ease; }
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (min-width: 640px) {
+  .hero { aspect-ratio: 3/2; }
+  .hero-title { font-size: 42px; }
+  .q-title { font-size: 26px; }
+  .result-level { font-size: 120px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Intro -->
+<section class="step active" id="step-intro">
+  <div class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-brand">
+      <span>repurre studio</span>
+      <span class="brand">a note from jamie</span>
+    </div>
+    <div class="hero-title-wrap">
+      <p class="hero-eye">1 分鐘快測 · 3 題知道妳在哪</p>
+      <h1 class="hero-title">身體快測 · 30+ 女生版<span class="accent">a note from jamie</span></h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="intro-body">
+      <p>30 歲後越動越卡？肩頸腰不舒服不知哪裡出錯？</p>
+      <p>花 1 分鐘回 3 題，我告訴妳現在在哪個 level + 第一步該做什麼。</p>
+      <p>不需要做動作，不需要找空間。</p>
+      <p>做完想看完整 10 動作測試？結尾會給妳連結。</p>
+    </div>
+
+    <div class="meta-row">
+      <div class="item"><span class="num">3</span><span class="lbl">題</span></div>
+      <div class="item"><span class="num">1</span><span class="lbl">分鐘</span></div>
+      <div class="item"><span class="num">4</span><span class="lbl">等級</span></div>
+    </div>
+
+    <button class="btn" onclick="startQuiz()">開始測驗</button>
+  </div>
+</section>
+
+<!-- Question container (dynamic) -->
+<section class="step" id="step-question">
+  <div class="q-header-wrap">
+    <div class="topbar">
+      <span>repurre studio</span>
+      <span class="brand">self assessment</span>
+    </div>
+    <div class="progress">
+      <span class="num" id="q-num">01</span>
+      <span class="of" id="q-of">OF 3</span>
+    </div>
+    <div class="progress-bar"><div class="fill" id="q-fill" style="width:33%"></div></div>
+
+    <h2 class="q-title" id="q-title"></h2>
+    <p class="q-tag" id="q-tag"></p>
+    <p class="q-desc" id="q-desc"></p>
+
+    <div class="options" id="q-options"></div>
+
+    <div class="nav">
+      <button class="btn secondary" onclick="prevQ()" id="btn-prev">上一題</button>
+      <button class="btn" onclick="nextQ()" id="btn-next" disabled>下一題</button>
+    </div>
+  </div>
+</section>
+
+<!-- Result -->
+<section class="step" id="step-result">
+  <div class="result-hero">
+    <div class="result-hero-img"></div>
+    <div class="result-hero-overlay"></div>
+    <div class="result-hero-top">
+      <span>result</span>
+      <span class="brand">your level</span>
+    </div>
+  </div>
+
+  <div class="result-body-wrap">
+    <p class="result-label">妳的等級</p>
+    <div class="result-level" id="r-level">—</div>
+    <p class="result-score" id="r-score">總分 — / 15</p>
+
+    <h3 class="result-title" id="r-title"></h3>
+    <p class="result-body" id="r-body"></p>
+
+    <div class="result-cta-box">
+      <p id="r-cta"></p>
+    </div>
+
+    <div id="email-wrap" style="margin-top:28px;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+      <p style="font-family:'Noto Serif TC',serif;font-size:17px;text-align:center;margin-bottom:6px;">想收到妳的完整結果？</p>
+      <p style="text-align:center;color:var(--text-dim);font-size:14px;margin-bottom:16px;">留 email，我們會寄一份包含等級分析 + 訓練方向的完整報告給妳</p>
+      <input id="email-input" type="email" placeholder="妳的 email" style="width:100%;padding:14px 16px;border:1px solid var(--border-strong);border-radius:3px;background:var(--bg-warm);font-family:inherit;font-size:15px;color:var(--text);margin-bottom:10px;" />
+      <button class="btn" onclick="submitEmail()" id="email-submit" style="margin-top:0;">寄完整報告給我</button>
+      <p id="email-status" style="text-align:center;font-size:13px;color:var(--text-faint);margin-top:12px;min-height:16px;"></p>
+    </div>
+
+    <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdtEPcyinNocJmFpAzgzu2WTyd9o-IN71xyKLatlYEPQ5lH1g/viewform" target="_blank" rel="noopener">
+      預約 60 分鐘深度評估
+    </a>
+    <button class="btn ghost" onclick="restart()">重新測一次</button>
+
+    <p class="footer-note">jamie wu · repurre studio · 台北大安<br>est. 2014 · 十二年私教</p>
+  </div>
+</section>
+
+<script>
+const questions = [
+  { title: "妳現在的身體狀態", tag: "最明顯的訊號",
+    desc: "30 歲後妳身上最明顯的訊號是哪個（選最貼近妳的一個）",
+    opts: [
+      "怎麼動都累 · 提不起勁 · 連走一下都想坐",
+      "膝蓋 / 髖關節卡卡 · 蹲下起來不順",
+      "肩頸 + 腰痠背痛同時在 · 整天緊",
+      "偶爾某個地方不對勁 · 大部分時間 OK",
+      "身體沒什麼毛病 · 想知道能不能更進階"
+    ]},
+  { title: "妳過去一週運動幾次", tag: "運動習慣",
+    desc: "最近一週實際有動到的次數（走路 / 瑜伽 / 跑步 / 重訓都算）",
+    opts: [
+      "完全沒動 · 沒時間也沒力氣",
+      "一個月只動 1-2 次 · 想動但沒養成",
+      "一週 1-2 次輕運動（散步 / 瑜伽）",
+      "一週 3-4 次有流汗的運動",
+      "一週 5 次以上規律訓練"
+    ]},
+  { title: "妳最想解決什麼", tag: "當下最在乎",
+    desc: "下面哪個最貼近妳現在想做的事",
+    opts: [
+      "我從零開始 · 完全不知道怎麼辦",
+      "我動過但需要專業人帶著",
+      "我有底但卡很久 · 想知道為什麼沒效",
+      "我有規律訓練 · 想優化動作品質",
+      "我練很久 · 想突破瓶頸做下一階"
+    ]}
+];
+
+const levels = {
+  A: { min: 13, title: "基礎很好，可以開始進階了",
+       body: "妳的底子扎實。這個階段應該做的是：增加訓練強度、嘗試更複合的動作（例如槓鈴硬舉、引體向上）、把訓練規劃得更系統。妳需要的是方向跟計畫，不是從零開始。",
+       cta: "妳目前的狀態已經很少人達到。<strong>60 分鐘深度評估</strong>會看得更仔細：動作模式的微小代償、左右失衡、最該優先解的限制因素。想讓訓練進一步的話，這個層級的調整只有教練看得出來。" },
+  B: { min: 10, title: "有底子，但某些面向明顯弱",
+       body: "妳有一定基礎，但 10 項裡通常有 3-5 項拖後腿。可能是活動度、可能是核心、可能是單邊不平衡。重點是找到弱項優先補，訓練效率會差很多。亂練反而會讓強的更強、弱的更弱，最後容易卡關或受傷。",
+       cta: "<strong>60 分鐘深度評估</strong>可以精準找出妳的弱項 + 給妳接下來 3 個月的優先順序。不需要砍掉重練——只需要把時間花在對的地方。" },
+  C: { min: 7, title: "身體在提醒妳：該系統性重建了",
+       body: "不是因為老了——是太久沒有好好練。這個階段最怕的是「自己亂練」：網路教學一堆，但每個人身體狀況不一樣，適合別人的動作不一定適合妳。用錯方式會讓代償更嚴重，甚至受傷。",
+       cta: "C 等級最該做的事就是找教練做一次完整評估。<strong>60 分鐘深度評估</strong>會幫妳畫出起跑線——哪些動作現在可以做、哪些要先避開、第一個月應該專注什麼。安全比快速更重要。" },
+  D: { min: 0, title: "行動力正在流失，但現在開始永遠不會太晚",
+       body: "每拖一年，要花的力氣就多一倍。但好消息是：只要開始練、有人帶，3 個月就會感覺到明顯差別。不用怕起點低——我帶過的學員很多人從這裡開始。重點不是現在在哪，是妳願不願意動。",
+       cta: "D 等級不是壞事，是數據。妳現在知道自己需要專業的協助，這比大部分還在假裝沒問題的人強。<strong>60 分鐘深度評估</strong>會幫妳從零規劃 — 找出最安全的起點，給妳可以持續 6 個月的計畫。" }
+};
+
+let currentQ = 0;
+const answers = new Array(questions.length).fill(null);
+
+function startQuiz() {
+  showStep('step-question');
+  renderQ();
+}
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+function renderQ() {
+  const q = questions[currentQ];
+  document.getElementById('q-num').textContent = String(currentQ + 1).padStart(2, '0');
+  document.getElementById('q-of').textContent = 'OF ' + questions.length;
+  document.getElementById('q-fill').style.width = ((currentQ + 1) / questions.length * 100) + '%';
+  document.getElementById('q-title').textContent = q.title;
+  document.getElementById('q-tag').textContent = q.tag;
+  document.getElementById('q-desc').textContent = q.desc;
+
+  const optsEl = document.getElementById('q-options');
+  optsEl.innerHTML = '';
+  q.opts.forEach((text, i) => {
+    const el = document.createElement('div');
+    el.className = 'opt' + (answers[currentQ] === i + 1 ? ' selected' : '');
+    el.onclick = () => selectOpt(i + 1);
+    el.innerHTML = `<span class="score">${i + 1}</span><span class="text">${text}</span>`;
+    optsEl.appendChild(el);
+  });
+
+  document.getElementById('btn-prev').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  document.getElementById('btn-next').textContent = currentQ === questions.length - 1 ? '看結果' : '下一題';
+  document.getElementById('btn-next').disabled = answers[currentQ] === null;
+}
+function selectOpt(score) {
+  answers[currentQ] = score;
+  renderQ();
+}
+function prevQ() {
+  if (currentQ > 0) { currentQ--; renderQ(); }
+}
+function nextQ() {
+  if (answers[currentQ] === null) return;
+  if (currentQ === questions.length - 1) {
+    showResult();
+  } else {
+    currentQ++;
+    renderQ();
+  }
+}
+function showResult() {
+  const total = answers.reduce((a, b) => a + b, 0);
+  let level;
+  if (total >= levels.A.min) level = 'A';
+  else if (total >= levels.B.min) level = 'B';
+  else if (total >= levels.C.min) level = 'C';
+  else level = 'D';
+
+  currentLevel = level;
+  currentScore = total;
+  document.getElementById('r-level').textContent = level;
+  document.getElementById('r-score').textContent = '總分 ' + total + ' / 15';
+  document.getElementById('r-title').textContent = levels[level].title;
+  document.getElementById('r-body').textContent = levels[level].body;
+  document.getElementById('r-cta').innerHTML = levels[level].cta;
+
+  showStep('step-result');
+}
+function restart() {
+  currentQ = 0;
+  for (let i = 0; i < answers.length; i++) answers[i] = null;
+  showStep('step-intro');
+}
+
+const ASSESSMENT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyN0O38v06Qz_M-oYpO5SL53HWivu-mLNS6CU5laPS5ImFS3WgZzSvoDGF2N0lOmC2W/exec';
+let currentLevel = null, currentScore = null;
+async function submitEmail() {
+  const input = document.getElementById('email-input');
+  const btn = document.getElementById('email-submit');
+  const status = document.getElementById('email-status');
+  const email = input.value.trim();
+  if (!email || !email.includes('@')) {
+    status.textContent = '請填有效的 email';
+    status.style.color = '#c84';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = '寄送中⋯';
+  status.textContent = '';
+  try {
+    // no-cors 盲發：GAS web app 回 302 跨域 redirect 到 googleusercontent，
+    // 瀏覽器 CORS 會擋讀 body。no-cors 模式下 fetch 仍會成功送出 POST，
+    // doPost 仍會跑 + 寄信，只是我們讀不到 response（也不需要讀）。
+    // 前端已預檢 email 格式，後端寄信失敗機率極低。
+    const body = new URLSearchParams({
+      email,
+      level: currentLevel || '',
+      score: String(currentScore || 0),
+    });
+    await fetch(ASSESSMENT_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      body,
+      redirect: 'follow',
+    });
+    document.getElementById('email-wrap').innerHTML =
+      '<p style="font-family:\'Noto Serif TC\',serif;font-size:18px;text-align:center;color:var(--text);margin-bottom:8px;">寄出去了 🤍</p>' +
+      '<p style="text-align:center;color:var(--text-dim);font-size:14px;">請打開信箱看看（如果沒看到記得檢查垃圾信）</p>';
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = '寄完整報告給我';
+    status.textContent = '送出失敗，稍後再試';
+    status.style.color = '#c84';
+  }
+}
+</script>
+</body>
+</html>

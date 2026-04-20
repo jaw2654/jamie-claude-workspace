@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>repurre｜課程價目</title>
+<meta name="description" content="repurre Studio 課程價目表｜1v1 / 1v2 私人訓練、體態深度評估。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans TC', system-ui, sans-serif;
+  background: #faf7f2;
+  color: #1a1a1a;
+  line-height: 1.85;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+.serif { font-family: 'Noto Serif TC', serif; letter-spacing: 0.02em; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 60px 28px 100px; }
+
+/* Hero */
+.hero { text-align: center; padding: 40px 0 50px; border-bottom: 1px solid #1a1a1a; margin-bottom: 60px; }
+.hero .small { font-size: 13px; letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 24px; color: #666; }
+.hero h1 { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 44px; letter-spacing: 0.05em; margin-bottom: 18px; }
+.logo-r { position: relative; display: inline-block; letter-spacing: 0; }
+.logo-r::before {
+  content: '○';
+  position: absolute;
+  top: -0.45em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.35em;
+  font-weight: 500;
+  line-height: 1;
+}
+.hero .subtitle { font-size: 15px; color: #555; letter-spacing: 0.1em; }
+
+/* Intro quote */
+.intro { margin: 40px 0 60px; padding: 30px 28px; background: #1a1a1a; color: #f0ede5; text-align: center; border-radius: 2px; }
+.intro p { font-family: 'Noto Serif TC', serif; font-size: 17px; line-height: 2; letter-spacing: 0.06em; }
+
+/* Section heading */
+.section-head { text-align: center; margin: 70px 0 30px; }
+.section-head .tag { font-size: 12px; letter-spacing: 0.4em; text-transform: uppercase; color: #8a7f68; margin-bottom: 12px; }
+.section-head h2 { font-family: 'Noto Serif TC', serif; font-size: 28px; font-weight: 700; letter-spacing: 0.08em; }
+.section-head .desc { margin-top: 12px; font-size: 14px; color: #555; }
+
+/* Card */
+.card { background: #fff; padding: 36px 30px; margin-bottom: 20px; position: relative; border-left: 3px solid #1a1a1a; }
+.card-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+.card h3 { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 700; letter-spacing: 0.05em; }
+.card .tagline { font-size: 13px; color: #666; letter-spacing: 0.08em; margin-top: 4px; }
+.price-big { font-family: 'Noto Serif TC', serif; font-size: 32px; font-weight: 700; color: #1a1a1a; }
+.price-unit { font-size: 14px; color: #777; font-weight: 400; letter-spacing: 0.05em; margin-left: 4px; }
+.price-total { font-size: 13px; color: #8a7f68; margin-top: 4px; letter-spacing: 0.05em; }
+.feature-line { margin-top: 20px; padding-top: 18px; border-top: 1px solid #e8e1d1; font-size: 14px; color: #555; line-height: 1.9; }
+
+/* Evaluation highlight */
+.evaluation { background: #1a1a1a; color: #f0ede5; border-left-color: #d4c9b0; }
+.evaluation h3, .evaluation .price-big { color: #f0ede5; }
+.evaluation .tagline, .evaluation .feature-line { color: #c4baa6; }
+.evaluation .price-total { color: #a19a88; }
+.evaluation .feature-line { border-top-color: #3a3a3a; }
+
+/* Grid for duo packages */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 30px; }
+
+/* Notes */
+.notes { background: #ede7d9; padding: 30px 28px; margin: 50px 0 30px; border-radius: 2px; }
+.notes h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; margin-bottom: 14px; letter-spacing: 0.05em; }
+.notes ul { list-style: none; padding: 0; }
+.notes ul li { padding: 6px 0 6px 22px; position: relative; font-size: 14px; color: #444; }
+.notes ul li::before { content: '·'; position: absolute; left: 8px; font-size: 20px; color: #8a7f68; top: -2px; }
+
+/* Payment */
+.payment { background: #fff; padding: 34px 28px; margin-top: 30px; border: 1px dashed #1a1a1a; }
+.payment h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; letter-spacing: 0.1em; margin-bottom: 18px; text-align: center; }
+.payment-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e8e1d1; font-size: 14.5px; }
+.payment-row:last-child { border-bottom: none; }
+.payment-row .label { color: #666; letter-spacing: 0.08em; }
+.payment-row .value { font-family: 'Noto Serif TC', serif; font-weight: 500; color: #1a1a1a; letter-spacing: 0.04em; }
+
+/* CTA */
+.cta { text-align: center; padding: 50px 30px; background: #1a1a1a; color: #f0ede5; margin-top: 50px; border-radius: 2px; }
+.cta .tagline { font-family: 'Noto Serif TC', serif; font-size: 20px; line-height: 1.9; letter-spacing: 0.08em; margin-bottom: 26px; }
+.cta-btn { display: inline-block; padding: 14px 36px; background: #f0ede5; color: #1a1a1a; text-decoration: none; font-weight: 500; letter-spacing: 0.15em; font-size: 14px; margin: 8px; transition: all 0.2s; }
+.cta-btn:hover { background: #d4c9b0; transform: translateY(-2px); }
+.cta-btn.secondary { background: transparent; color: #f0ede5; border: 1px solid #f0ede5; }
+
+.contact { margin-top: 50px; padding: 30px 20px; border-top: 1px solid #c4baa6; }
+.contact-grid { display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; max-width: 360px; margin: 0 auto; font-size: 14.5px; color: #2a2a2a; letter-spacing: 0.03em; }
+.contact-grid .label { font-weight: 600; color: #1a1a1a; white-space: nowrap; }
+.contact-grid .value { color: #3a3a3a; }
+
+.foot { text-align: center; margin-top: 50px; font-size: 11px; letter-spacing: 0.3em; color: #8a7f68; text-transform: uppercase; }
+
+@media (max-width: 600px) {
+  .wrap { padding: 40px 22px 70px; }
+  .hero h1 { font-size: 34px; }
+  .intro p { font-size: 15px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .card-header { flex-direction: column; align-items: flex-start; }
+  .price-big { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="small">Price List</div>
+  <h1>repurre</h1>
+  <div class="subtitle">Studio · 2026</div>
+</div>
+
+<div class="intro">
+  <p>健康是以年為單位的事。<br>不追求速成，只追求練對的動作。</p>
+</div>
+
+<!-- 體驗評估 -->
+<div class="section-head">
+  <div class="tag">第一步</div>
+  <h2>60 分鐘身體深度評估</h2>
+  <div class="desc">第一次預約建議先做評估，讓教練先看見你的身體</div>
+</div>
+
+<div class="card evaluation">
+  <div class="card-header">
+    <div>
+      <h3>Body Deep Scan</h3>
+      <div class="tagline">60 分鐘 · 一對一</div>
+    </div>
+    <div style="text-align:right">
+      <div class="price-big">$2,200<span class="price-unit">/ 60 min</span></div>
+      <div class="price-total">1v2 另一位加購 $2,800</div>
+    </div>
+  </div>
+  <div class="feature-line">
+    完整身體診斷：姿勢 × 肌力 × 柔軟度 × 對稱<br>
+    離開時你會帶著<strong>一份專屬於你的身體現況藍圖</strong>——<br>
+    包含客製化訓練方向、飲食建議與下一步課表規劃。
+  </div>
+</div>
+
+<!-- 1 對 1 -->
+<div class="section-head">
+  <div class="tag">Trainer 1 to 1</div>
+  <h2>一對一專屬私教</h2>
+  <div class="desc">最深度、最客製化，每一次都是為你一個人設計</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h3>10 堂課</h3>
+      <div class="tagline">練習讓運動成為生活</div>
+    </div>
+    <div style="text-align:right">
+      <div class="price-big">$2,400<span class="price-unit">/ 堂</span></div>
+      <div class="price-total">總計 NT$ 24,000</div>
+    </div>
+  </div>
+  <div class="feature-line">適合第一次開始長期訓練，想先試 3 個月看看節奏對不對的你。</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h3>20 堂課</h3>
+      <div class="tagline">規律運動 邁向健康</div>
+    </div>
+    <div style="text-align:right">
+      <div class="price-big">$2,200<span class="price-unit">/ 堂</span></div>
+      <div class="price-total">總計 NT$ 44,000　·　省 NT$ 4,000</div>
+    </div>
+  </div>
+  <div class="feature-line">適合想把運動變成長期習慣、6 個月內穩定出席的你。</div>
+</div>
+
+<!-- 1 對 2 -->
+<div class="section-head">
+  <div class="tag">Trainer 1 to 2</div>
+  <h2>一對二雙人訓練</h2>
+  <div class="desc">與伴侶、朋友一起，彼此是彼此的紀律夥伴</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h3>10 堂課</h3>
+      <div class="tagline">與朋友相約 不再只是吃喝玩樂</div>
+    </div>
+    <div style="text-align:right">
+      <div class="price-big">$3,000<span class="price-unit">/ 堂</span></div>
+      <div class="price-total">總計 NT$ 30,000</div>
+    </div>
+  </div>
+  <div class="feature-line">兩人共用一堂，先試 3 個月看節奏。</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h3>20 堂課</h3>
+      <div class="tagline">與夥伴一起規律運動生活</div>
+    </div>
+    <div style="text-align:right">
+      <div class="price-big">$2,800<span class="price-unit">/ 堂</span></div>
+      <div class="price-total">總計 NT$ 56,000　·　省 NT$ 4,000</div>
+    </div>
+  </div>
+  <div class="feature-line">情侶 / 閨蜜 / 家人最推薦，一起把運動變成生活。</div>
+</div>
+
+<!-- Notes -->
+<div class="notes">
+  <h3>方案說明</h3>
+  <ul>
+    <li>所有堂數為 60 分鐘／堂</li>
+    <li>新學員建議先做一次「60 分鐘身體深度評估」再決定方案</li>
+    <li>工作室位於台北市大安區，捷運忠孝敦化站</li>
+  </ul>
+</div>
+
+<!-- Payment -->
+<div class="payment">
+  <h3>匯款資訊 · Payment</h3>
+  <div class="payment-row"><span class="label">銀行</span><span class="value">永豐銀行（807）</span></div>
+  <div class="payment-row"><span class="label">戶名</span><span class="value">repurre studio</span></div>
+  <div class="payment-row"><span class="label">帳號</span><span class="value">19901800449897</span></div>
+</div>
+<p style="font-size: 13px; color: #666; text-align: center; margin-top: 16px; letter-spacing: 0.05em;">
+  匯款後請透過 LINE @repurre 傳送帳號後 5 碼對帳，小編會協助確認與排課 🤍
+</p>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="tagline">準備好慢慢把健康<br>練回自己身上了嗎？</div>
+  <a class="cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdtEPcyinNocJmFpAzgzu2WTyd9o-IN71xyKLatlYEPQ5lH1g/viewform">預約體態深度評估</a>
+  <a class="cta-btn secondary" href="/trainer-jamie.html">認識 Jamie 教練</a>
+</div>
+
+<!-- Contact -->
+<div class="contact">
+  <div class="contact-grid">
+    <span class="label">📍 地址</span><span class="value">台北市大安區忠孝東路四段 233 號</span>
+    <span class="label">📱 LINE</span><span class="value">@repurre</span>
+    <span class="label">📸 IG</span><span class="value">@jamie_wu_1012</span>
+  </div>
+</div>
+
+<div class="foot">repurre Studio · 2026</div>
+
+</div>
+</body>
+</html>

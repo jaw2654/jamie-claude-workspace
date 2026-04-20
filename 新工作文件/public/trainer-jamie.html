@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>repurre｜關於 Jamie</title>
+<meta name="description" content="repurre Studio 主教練 Jamie｜12 年私教經驗，陪你把健康練成下半生的日常。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans TC', system-ui, sans-serif;
+  background: #faf7f2;
+  color: #1a1a1a;
+  line-height: 1.85;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+.serif { font-family: 'Noto Serif TC', serif; letter-spacing: 0.02em; }
+.wrap { max-width: 680px; margin: 0 auto; padding: 60px 0 100px; }
+
+/* Photo hero - 圓形 */
+.photo-hero { text-align: center; margin: 0 auto 30px; }
+.photo-hero .circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 1px solid #c4baa6;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.photo-hero img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 70% 65%; }
+
+/* Hero text */
+.hero { text-align: center; padding: 20px 28px 40px; border-bottom: 1px solid #1a1a1a; margin: 0 28px 60px; }
+.hero .small { font-size: 13px; letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 24px; color: #666; }
+.hero h1 { font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 44px; letter-spacing: 0.05em; margin-bottom: 18px; }
+.logo-r { position: relative; display: inline-block; letter-spacing: 0; }
+.logo-r::before {
+  content: '○';
+  position: absolute;
+  top: -0.45em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.35em;
+  font-weight: 500;
+  line-height: 1;
+}
+.hero .subtitle { font-size: 15px; color: #555; letter-spacing: 0.1em; }
+
+/* Quote - 改成米色底黑字可讀 */
+.quote {
+  margin: 60px 28px;
+  padding: 50px 30px;
+  background: #ede7d9;
+  color: #1a1a1a;
+  border-left: 3px solid #1a1a1a;
+  border-radius: 2px;
+  position: relative;
+}
+.quote::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 22px;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 90px;
+  color: #a59774;
+  line-height: 1;
+  font-weight: 900;
+}
+.quote p {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 19px;
+  line-height: 2;
+  padding-left: 30px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+.quote .sig {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: #6a5d3e;
+  font-weight: 500;
+}
+
+/* Section */
+.content { padding: 0 28px; }
+section { margin-bottom: 60px; }
+h2 { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 2px solid #1a1a1a; display: inline-block; }
+h3 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 500; margin: 24px 0 12px; letter-spacing: 0.05em; }
+p { margin-bottom: 18px; font-size: 15.5px; color: #2a2a2a; }
+.lead { font-size: 17px; line-height: 2; }
+strong { font-weight: 700; color: #0a0a0a; }
+em { font-style: normal; background: linear-gradient(transparent 65%, #d4c9b0 65%); padding: 0 2px; font-weight: 500; }
+
+/* List */
+ul { list-style: none; padding: 0; margin-bottom: 24px; }
+ul li { padding: 8px 0 8px 22px; position: relative; font-size: 15px; color: #2a2a2a; }
+ul li::before { content: '—'; position: absolute; left: 0; color: #8a7f68; }
+
+/* Teaching principles */
+.principles { display: grid; gap: 24px; margin-top: 20px; }
+.principle { padding: 26px 24px; background: #fff; border-left: 3px solid #1a1a1a; }
+.principle .num { font-family: 'Noto Serif TC', serif; font-size: 13px; letter-spacing: 0.3em; color: #8a7f68; margin-bottom: 8px; }
+.principle h4 { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.05em; }
+.principle p { font-size: 14.5px; margin-bottom: 0; color: #444; }
+
+/* Positioning */
+.positioning { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+.positioning div { padding: 24px 20px; }
+.not { background: #ede7d9; }
+.yes { background: #1a1a1a; color: #f0ede5; }
+.positioning h4 { font-family: 'Noto Serif TC', serif; font-size: 15px; margin-bottom: 14px; letter-spacing: 0.1em; }
+.positioning ul li { color: inherit; font-size: 13.5px; padding: 5px 0 5px 20px; }
+.positioning ul li::before { color: inherit; opacity: 0.6; }
+
+/* CTA block */
+.cta { text-align: center; padding: 50px 30px; background: #1a1a1a; color: #f0ede5; margin: 60px 28px 0; border-radius: 2px; }
+.cta .tagline { font-family: 'Noto Serif TC', serif; font-size: 22px; line-height: 1.9; letter-spacing: 0.08em; margin-bottom: 30px; }
+.cta-btn { display: inline-block; padding: 14px 36px; background: #f0ede5; color: #1a1a1a; text-decoration: none; font-weight: 500; letter-spacing: 0.15em; font-size: 14px; margin: 8px; transition: all 0.2s; }
+.cta-btn:hover { background: #d4c9b0; transform: translateY(-2px); }
+
+/* Contact */
+.contact { margin: 60px 28px 0; padding: 30px 20px; border-top: 1px solid #c4baa6; }
+.contact-grid { display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; max-width: 360px; margin: 0 auto; font-size: 14.5px; color: #2a2a2a; letter-spacing: 0.03em; }
+.contact-grid .label { font-weight: 600; color: #1a1a1a; white-space: nowrap; }
+.contact-grid .value { color: #3a3a3a; }
+
+/* Footer */
+.foot { text-align: center; margin-top: 50px; font-size: 11px; letter-spacing: 0.3em; color: #8a7f68; text-transform: uppercase; }
+
+@media (max-width: 600px) {
+  .wrap { padding: 0 0 70px; }
+  .hero { padding: 40px 22px 30px; margin: 0 22px 40px; }
+  .hero h1 { font-size: 34px; }
+  .quote { margin: 40px 22px; padding: 40px 24px; }
+  .quote p { font-size: 16px; padding-left: 10px; }
+  .content { padding: 0 22px; }
+  .positioning { grid-template-columns: 1fr; }
+  .cta { margin: 50px 22px 0; }
+  .cta .tagline { font-size: 18px; }
+  .contact { margin: 50px 22px 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 個人照片（圓框） -->
+<div class="photo-hero">
+  <div class="circle">
+    <img src="/jamie-photo.jpg" alt="Jamie · repurre Studio 主教練" loading="eager">
+  </div>
+</div>
+
+<div class="hero">
+  <div class="small">Our Trainer</div>
+  <h1>Jamie</h1>
+  <div class="subtitle">repurre Studio · 創辦人 × 主教練<br>12 年私教 / 12 年跆拳道運動員</div>
+</div>
+
+<div class="quote">
+  <p>健康是以年為單位的事。<br>不追求速成，<br>只追求練對的動作——<br>好好地照顧自己，<br>是我們身為人應該要做的事。</p>
+  <div class="sig">— JAMIE</div>
+</div>
+
+<div class="content">
+
+<section>
+  <h2>關於 Jamie</h2>
+  <p class="lead">6 歲開始練跆拳道，一練 12 年，曾是全國前三選手。</p>
+  <p class="lead">18 歲進入健身產業，一教 12 年，從連鎖健身房走到自己的私人工作室。</p>
+  <p class="lead">中間經歷過<em>甲狀腺亢進</em>、經歷過客群的起伏、經歷過身體給自己上的課——</p>
+  <p class="lead">這些路讓我明白：<br><strong>身體不是拿來逼迫、管理、消耗的，身體是拿來理解、照顧、陪伴的。</strong></p>
+</section>
+
+<section>
+  <h2>Jamie 的教學核心</h2>
+  <div class="principles">
+    <div class="principle">
+      <div class="num">01</div>
+      <h4>情緒 × 心態 × 身體　三位一體</h4>
+      <p>學員最近壓力大？睡不好？月經前？──這週的課表會跟著調整。情緒不穩的週練太兇只會受傷。<strong>這是 80% 教練沒在看的事。</strong></p>
+    </div>
+    <div class="principle">
+      <div class="num">02</div>
+      <h4>動作品質 &gt; 動作數量</h4>
+      <p>不求你今天做幾下，求你每一下都做得<em>對</em>。5 年後你的身體會謝你。</p>
+    </div>
+    <div class="principle">
+      <div class="num">03</div>
+      <h4>長期陪伴 &gt; 快速結果</h4>
+      <p>repurre 最長的學員陪走 9 年，從 113kg → 83kg、體脂 34% → 13%。<br>不是 14 天奇蹟，是 9 年的日常。</p>
+    </div>
+    <div class="principle">
+      <div class="num">04</div>
+      <h4>矯正 × 訓練 × 飲食　整合</h4>
+      <p>擅長：圓肩駝背、骨盆前後傾、腹直肌分離、產後恢復、更年期前後身體變化。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>教學經歷</h2>
+  <ul>
+    <li>repurre 健身工作室 創辦人</li>
+    <li>2014 World Gym 公館店 私人教練</li>
+    <li>2015 健身工廠 信義廠 私人教練</li>
+    <li>2017-2022 私人工作室 自由教練</li>
+    <li>2025 外派紐約 擔任跆拳道教練</li>
+  </ul>
+</section>
+
+<section>
+  <h2>跆拳道經歷</h2>
+  <ul>
+    <li>跆拳道 黑帶三段</li>
+    <li>莊敬跆拳道館 助理教練</li>
+    <li>全國中等學校運動會 跆拳道 第二名</li>
+    <li>全國運動會 第四名</li>
+    <li>世錦賽國手選拔 第四名</li>
+  </ul>
+</section>
+
+<section>
+  <h2>專業證照</h2>
+  <ul>
+    <li>ACE-CPT 美國運動協會 私人教練證照</li>
+    <li>Peak Pilates® Comprehensive Certification Level I</li>
+    <li>全器械國際師資培訓認證課程 Level I</li>
+    <li>懷孕及產後婦女專家證照</li>
+    <li>TRX STC 懸吊訓練師證</li>
+    <li>亞太脊骨健康運動醫學研習證</li>
+    <li>HFPA 國際阻力訓練認證</li>
+    <li>中國紅十字會 CPR + AED 證照</li>
+    <li>C 級體適能 FMS 關節活動度優化</li>
+    <li>運動按摩研習證</li>
+    <li>上下肢整合呼吸應用</li>
+  </ul>
+</section>
+
+<section>
+  <h2>專長</h2>
+  <ul>
+    <li>體型雕塑訓練</li>
+    <li>皮拉提斯全器械訓練</li>
+    <li>矯正型訓練</li>
+    <li>懷孕及產後婦女</li>
+    <li>運動按摩 × 肌痛點放鬆 × 體態矯正運動</li>
+    <li>TRX 訓練</li>
+    <li>體適能訓練</li>
+    <li>跆拳道專項訓練</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Jamie 的定位</h2>
+  <div class="positioning">
+    <div class="not">
+      <h4>不是 ✗</h4>
+      <ul>
+        <li>減脂教練</li>
+        <li>網紅身材教練</li>
+        <li>14 天挑戰教練</li>
+        <li>21 天暴瘦教練</li>
+      </ul>
+    </div>
+    <div class="yes">
+      <h4>而是 ✓</h4>
+      <ul>
+        <li>陪你走 5 年、10 年的健康顧問</li>
+        <li>把「紀律」當禮物送給你的教練</li>
+        <li>看得懂你情緒的夥伴</li>
+        <li>不浮誇、有專業底子的教練</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="cta">
+  <div class="tagline">「健康是以年為單位的事。<br>不是為了瘦，是為了<br>5 年後你還是你想要的樣子。」</div>
+  <a class="cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdtEPcyinNocJmFpAzgzu2WTyd9o-IN71xyKLatlYEPQ5lH1g/viewform">預約 60 分體態深度評估</a>
+  <a class="cta-btn" href="/pricing">查看完整課程價目</a>
+</div>
+
+<div class="contact">
+  <div class="contact-grid">
+    <span class="label">📍 地址</span><span class="value">台北市大安區忠孝東路四段 233 號</span>
+    <span class="label">📱 LINE</span><span class="value">@repurre</span>
+    <span class="label">📸 IG</span><span class="value">@jamie_wu_1012</span>
+    <span class="label">🎬 YT</span><span class="value">巫采縈Jamie 健身教練</span>
+  </div>
+</div>
+
+<div class="foot">repurre Studio · 2026</div>
+
+</div>
+</body>
+</html>

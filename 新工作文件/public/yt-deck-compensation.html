@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>YT · 為什麼 30+ 的妳越練越卡？· 代償歸零 v2</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+TC:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:1920px 1080px;margin:0}
+html,body{
+  font-family:'Pretendard Variable','Noto Sans TC',sans-serif;
+  -webkit-font-smoothing:antialiased;background:#0e0e0e;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+
+.slide{
+  width:1920px;height:1080px;
+  position:relative;
+  color:#f0ebe0;
+  page-break-after:always;
+  overflow:hidden;
+}
+.slide:last-child{page-break-after:auto}
+
+/* 工作室照片 backdrop */
+.bg{
+  position:absolute;inset:0;
+  background-image:url('assessment-imgs/studio-landscape.jpg');
+  background-size:cover;background-position:center;
+  filter:brightness(0.55) saturate(0.9) contrast(1.05);
+  z-index:0;
+}
+/* 暖黑 overlay 保證文字可讀 */
+.overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(42,37,33,0.75) 0%, rgba(42,37,33,0.55) 40%, rgba(42,37,33,0.85) 100%);
+  z-index:1;
+}
+
+.inner{
+  position:relative;z-index:2;
+  width:100%;height:100%;
+  padding:96px 128px;
+  display:flex;flex-direction:column;
+}
+
+/* top bar */
+.top{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'Noto Sans TC',sans-serif;font-weight:500;
+  font-size:16px;letter-spacing:0.26em;
+  color:rgba(240,235,224,0.7);text-transform:uppercase;
+}
+.top .bar{color:rgba(240,235,224,0.35);margin:0 14px;font-weight:300}
+
+/* foot */
+.foot{
+  position:absolute;left:128px;right:128px;bottom:64px;z-index:3;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  font-family:'Noto Sans TC',sans-serif;font-weight:500;
+  font-size:15px;letter-spacing:0.26em;
+  color:rgba(240,235,224,0.72);text-transform:uppercase;
+}
+.foot .slash{color:rgba(240,235,224,0.4);margin:0 6px}
+
+/* eye brow */
+.eye{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  font-size:32px;color:rgba(240,235,224,0.88);
+  letter-spacing:0.02em;margin-bottom:28px;
+  display:flex;align-items:center;gap:14px;
+}
+.eye::before{
+  content:'';width:8px;height:8px;background:#f0ebe0;border-radius:50%;
+}
+
+/* main title — Noto Sans TC 700, 稍輕 */
+.title{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:700;
+  font-size:72px;line-height:1.32;letter-spacing:-0.005em;
+  color:#f0ebe0;max-width:1500px;
+}
+.title em{
+  font-style:normal;font-weight:700;
+  display:inline-block;
+  background:rgba(245,245,245,0.4);color:#141414;
+  padding:1px 8px;margin:0;border-radius:2px;
+  line-height:1.1;
+}
+.title-sm{
+  font-family:'Noto Sans TC',sans-serif;font-weight:400;
+  font-size:32px;line-height:1.6;
+  color:rgba(240,235,224,0.82);
+  margin-top:24px;max-width:1500px;
+  letter-spacing:0.01em;
+}
+
+/* pull number — Fraunces italic */
+.pull{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:360px;line-height:0.9;letter-spacing:-0.04em;
+  color:#f0ebe0;
+}
+.pull .unit{
+  display:block;font-family:'Noto Sans TC',sans-serif;
+  font-style:normal;font-weight:400;font-size:22px;
+  letter-spacing:0.22em;color:rgba(240,235,224,0.68);
+  margin-top:24px;text-transform:uppercase;
+}
+
+/* caption block */
+.cap{
+  background:rgba(20,17,15,0.68);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  color:#f0ebe0;
+  padding:28px 36px;border-left:3px solid #f5f5f5;
+  margin-top:32px;max-width:1280px;
+  font-family:'Noto Sans TC',sans-serif;font-weight:400;
+  font-size:26px;line-height:1.7;letter-spacing:0.02em;
+}
+.cap strong{color:#fff;font-weight:700}
+.cap .lbl{
+  display:inline-block;background:#f5f5f5;color:#2a2521;
+  font-weight:700;font-size:14px;letter-spacing:0.18em;
+  padding:3px 12px;margin-right:14px;vertical-align:middle;
+  text-transform:uppercase;
+}
+.cap p+p{margin-top:16px}
+
+/* list */
+.list{margin-top:28px;max-width:1600px}
+.list li{
+  font-family:'Noto Sans TC',sans-serif;font-weight:400;
+  font-size:30px;line-height:1.65;color:#f0ebe0;
+  list-style:none;padding-left:44px;position:relative;
+  margin-bottom:14px;
+}
+.list li::before{
+  content:'';position:absolute;left:0;top:22px;
+  width:28px;height:1.5px;background:rgba(240,235,224,0.7);
+}
+.list li strong{color:#fff;font-weight:700}
+
+/* cover */
+.cover .inner{justify-content:center;align-items:center;text-align:center}
+.cover .brand{
+  font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:30px;letter-spacing:0.3em;text-transform:uppercase;
+  color:rgba(240,235,224,0.72);margin-bottom:56px;
+}
+.cover .htitle{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:700;font-size:88px;line-height:1.26;
+  letter-spacing:-0.008em;color:#f0ebe0;max-width:1500px;
+}
+.cover .htitle em{
+  font-style:normal;font-weight:700;
+  display:inline-block;background:rgba(245,245,245,0.4);
+  color:#141414;padding:2px 14px;border-radius:2px;line-height:1.1;
+}
+.cover .hsub{
+  font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:38px;line-height:1.55;color:rgba(240,235,224,0.8);
+  margin-top:44px;max-width:1400px;
+}
+.cover .sig{
+  font-family:'Noto Sans TC',sans-serif;font-weight:500;
+  font-size:24px;letter-spacing:0.18em;margin-top:88px;
+  color:rgba(240,235,224,0.72);text-transform:uppercase;
+}
+
+/* agenda */
+.agenda-item{
+  display:flex;gap:52px;align-items:flex-start;
+  padding:40px 0;border-top:1px solid rgba(240,235,224,0.2);
+}
+.agenda-item:last-child{border-bottom:1px solid rgba(240,235,224,0.2)}
+.agenda-item .ch{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:108px;line-height:1;color:#f0ebe0;min-width:160px;
+}
+.agenda-item .ch-body{flex:1}
+.agenda-item h3{
+  font-family:'Noto Sans TC',sans-serif;font-weight:700;
+  font-size:38px;line-height:1.3;color:#f0ebe0;margin-bottom:10px;
+}
+.agenda-item p{
+  font-family:'Noto Sans TC',sans-serif;font-weight:400;
+  font-size:23px;line-height:1.55;color:rgba(240,235,224,0.72);
+}
+
+/* pull layout */
+.pull-row{display:flex;align-items:center;gap:96px;margin-top:40px}
+
+/* CTA slide */
+.cta-layer{
+  display:flex;gap:44px;align-items:flex-start;padding:32px 0;
+  border-top:1px solid rgba(240,235,224,0.2);
+}
+.cta-layer:last-child{border-bottom:1px solid rgba(240,235,224,0.2)}
+.cta-layer .n{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:84px;line-height:1;color:#f0ebe0;min-width:110px;
+}
+.cta-layer .body{flex:1}
+.cta-layer h3{
+  font-family:'Noto Sans TC',sans-serif;font-weight:700;
+  font-size:32px;color:#f0ebe0;margin-bottom:8px;
+}
+.cta-layer p{
+  font-family:'Noto Sans TC',sans-serif;font-weight:400;
+  font-size:21px;line-height:1.6;color:rgba(240,235,224,0.75);
+}
+
+</style>
+</head>
+<body>
+
+<!-- S1 · COVER -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay" style="background:linear-gradient(to bottom, rgba(42,37,33,0.82) 0%, rgba(42,37,33,0.72) 100%)"></div>
+  <div class="inner cover">
+    <div class="brand">Jamie · repurre studio · 私教筆記 vol. 03</div>
+    <p class="htitle">腰痠背痛、肩頸僵硬<br>其實都是<em>身體在代償</em>。</p>
+    <p class="hsub">— 不是坐太久、不是滑手機。<br>是妳的身體在用錯的方式動。</p>
+    <p class="sig">Jamie Wu · 十二年私教 · 台北大安</p>
+  </div>
+</div>
+
+<!-- S2 · AGENDA -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>AGENDA<span class="bar">｜</span>TODAY WE TALK</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>今天這 10 分鐘</em></p>
+    <p class="title" style="font-size:80px;">我們談三件事。</p>
+    <div style="margin-top:60px;">
+      <div class="agenda-item">
+        <div class="ch">01</div>
+        <div class="ch-body">
+          <h3>代償是什麼 · 為什麼妳會這樣</h3>
+          <p>肩頸僵硬、腰痠、肩膀前移、骨盆前傾——妳以為是坐太久，其實是身體在代償</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="ch">02</div>
+        <div class="ch-body">
+          <h3>代償怎麼讓妳越動越痠</h3>
+          <p>逛街提 shopping 袋 · 收行李 · 久坐站起來——每個日常動作都在加深代償</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="ch">03</div>
+        <div class="ch-body">
+          <h3>怎麼讓身體重新啟動</h3>
+          <p>代償歸零的三個步驟 · 妳在家就能開始做的順序</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>repurre</div><div>02<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S3 · Ch1 定義 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>ch. 01<span class="bar">｜</span>what it is</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>「代償」到底是什麼</em></p>
+    <p class="title">該用的肌肉<em>偷懶</em>——<br>旁邊的肌肉就<em>幫忙頂</em>。</p>
+    <p class="title-sm">動作做完了。但妳用錯的肌肉在做事。</p>
+    <div class="cap" style="margin-top:48px;">
+      <span class="lbl">白話</span>舉個例子 —— 妳提 shopping 袋時覺得 <strong>肩膀痠</strong>，但其實該用的是妳的<strong>核心</strong>。核心沒力 → 肩膀幫忙扛 → 整條肩頸慢慢僵硬。這就是代償。
+    </div>
+  </div>
+  <div class="foot"><div>repurre</div><div>03<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S4 · Ch1 日常 4 代償 Pull 8 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>ch. 01<span class="bar">｜</span>the scale</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>妳的日常代償現場</em></p>
+    <div class="pull-row">
+      <div>
+        <div class="pull">8<span class="unit">10 個有 8 個<br>在代償而不自知</span></div>
+      </div>
+      <div style="flex:1">
+        <ul class="list">
+          <li>逛街提 shopping 袋 → <strong>肩頸痠痛</strong>（核心沒力 肩膀扛）</li>
+          <li>彎腰撿小孩 / 東西 → <strong>腰痠背痛</strong>（下背硬撐 核心沒用）</li>
+          <li>滑手機 / 盯電腦 → <strong>肩頸前移</strong>（上背變緊 胸椎不動）</li>
+          <li>久坐站起來腳痠 → <strong>骨盆前傾</strong>（屁股沒力 腿後頂）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>repurre</div><div>04<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S5 · Ch2 當機模式 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>ch. 02<span class="bar">｜</span>the cost</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>為什麼妳會越動越痠</em></p>
+    <p class="title">每天每個動作——<br>妳都在<em>加深代償</em>。</p>
+    <div class="cap" style="margin-top:48px;">
+      <p><span class="lbl">錯 1</span>本來就緊的 <strong>肩頸 / 腰 / 腿後</strong> → 越動越緊</p>
+      <p><span class="lbl">錯 2</span>該用的 <strong>核心 / 屁股 / 肩胛</strong> → 越來越弱</p>
+      <p><span class="lbl">結果</span>肩頸痠、腰痠、骨盆前傾——而且妳越運動越明顯</p>
+    </div>
+  </div>
+  <div class="foot"><div>repurre</div><div>05<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S6 · Ch2 累積後果 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>ch. 02<span class="bar">｜</span>the pattern</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>為什麼 30+ 特別容易中</em></p>
+    <p class="title" style="font-size:76px;">不是練過頭，也不是運氣差——<br>是身體<em>用錯方式</em>在適應妳。</p>
+    <div class="cap" style="margin-top:48px;">
+      <p>妳越練越累、越痠、看不到進步<br>最後放棄：「我不適合運動」</p>
+      <p style="margin-top:24px;"><strong>不是妳不適合。是身體在等妳重新開始。</strong></p>
+    </div>
+  </div>
+  <div class="foot"><div>repurre</div><div>06<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S7 · Ch3 自測 4 代償 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>ch. 03<span class="bar">｜</span>diagnose first</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>代償歸零 · Step 1 · 先做這 4 個自測</em></p>
+    <p class="title" style="font-size:72px;">在家就能測——<br>看妳中<em>幾個</em>。</p>
+    <ul class="list" style="margin-top:40px">
+      <li><strong>彎腰撿東西</strong>起身腰會痠 → 下背在代償核心</li>
+      <li><strong>蹲下穿鞋</strong>膝蓋先往內夾 → 屁股太弱</li>
+      <li><strong>手舉高</strong>收行李肩膀卡住 → 肩頸前移</li>
+      <li><strong>單腳站</strong>著穿襪子會晃 → 骨盆 / 屁股沒力</li>
+    </ul>
+    <div class="cap" style="margin-top:36px;">
+      <span class="lbl">結果</span>4 都中 → 嚴重代償｜中 2-3 → 中度｜中 0-1 → 底子好，可以往進階推
+    </div>
+  </div>
+  <div class="foot"><div>repurre</div><div>07<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S8 · Ch3 三步驟 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>ch. 03<span class="bar">｜</span>the sequence</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>順序顛倒了 · 怎麼練都白費</em></p>
+    <p class="title" style="font-size:76px;"><em>代償歸零</em>的三步驟</p>
+    <div style="margin-top:44px;">
+      <div class="agenda-item">
+        <div class="ch">01</div>
+        <div class="ch-body">
+          <h3>診斷</h3>
+          <p>先知道自己在代償什麼（10 題自測，15 分鐘在家做完）</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="ch">02</div>
+        <div class="ch-body">
+          <h3>先處理緊的</h3>
+          <p>加強弱的肌肉之前——把緊的先放鬆。緊的沒處理，弱的永遠啟動不了</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="ch">03</div>
+        <div class="ch-body">
+          <h3>重練基本動作</h3>
+          <p>輕重量 / 徒手 / 壺鈴 → 練的是身體把動作做對，不是重量不是次數</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>repurre</div><div>08<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S9 · 執行清單 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>take action<span class="bar">｜</span>this week</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>今天開始可以做的 3 件事</em></p>
+    <p class="title" style="font-size:72px;">想擺脫肩頸痠、腰痠<br><em>順序</em>比<em>努力</em>更重要。</p>
+    <ul class="list" style="margin-top:44px">
+      <li>去做 10 題自測 — 先知道妳在代償什麼</li>
+      <li>逛街時換手提 shopping 袋 · 不要總是單邊</li>
+      <li>每天 10 分鐘 — 先放鬆肩頸 / 胸 / 髖，再開始運動</li>
+    </ul>
+  </div>
+  <div class="foot"><div>repurre</div><div>09<span class="slash">/</span>10</div></div>
+</div>
+
+<!-- S10 · CTA 3 層 -->
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay" style="background:linear-gradient(to bottom, rgba(42,37,33,0.88) 0%, rgba(42,37,33,0.92) 100%)"></div>
+  <div class="inner">
+    <div class="top">
+      <div>repurre<span class="bar">｜</span>your turn<span class="bar">｜</span>next step</div>
+      <div>@jamie_wu_1012</div>
+    </div>
+    <p class="eye" style="margin-top:40px"><em>挑一個現在就開始 —</em></p>
+    <p class="title" style="font-size:64px;">代償歸零不是靠一支影片<br><em>是妳願不願意重新開始</em>。</p>
+    <div style="margin-top:44px;">
+      <div class="cta-layer">
+        <div class="n">01</div>
+        <div class="body">
+          <h3>追蹤 @jamie_wu_1012</h3>
+          <p>每週一支深度題 · IG 動作示範 + YT 完整講解</p>
+        </div>
+      </div>
+      <div class="cta-layer">
+        <div class="n">02</div>
+        <div class="body">
+          <h3>留言打「LIFE」→ 我私訊妳自測連結</h3>
+          <p>或直接上 repurre-reports.pages.dev/assessment 做 10 題 15 分鐘自測</p>
+        </div>
+      </div>
+      <div class="cta-layer">
+        <div class="n">03</div>
+        <div class="body">
+          <h3>預約 60 分鐘深度體態評估</h3>
+          <p>想找人陪妳重建順序 · 我親自看動作 · 工作室：台北大安</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div>Jamie Wu · repurre studio · est. 2014</div><div>10<span class="slash">/</span>10</div></div>
+</div>
+
+</body>
+</html>

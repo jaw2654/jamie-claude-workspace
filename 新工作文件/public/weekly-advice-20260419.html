@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>週報建議執行細節 · 2026-04-19</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    background: #1a1613;
+    color: #f0ebe0;
+    line-height: 1.7;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 24mm 22mm;
+    margin: 0 auto;
+    page-break-after: always;
+    position: relative;
+    background: #1a1613;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  .brand-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(240,235,224,0.6);
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(240,235,224,0.15);
+  }
+
+  h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  h1 .hl {
+    background: rgba(245,245,245,0.55);
+    color: #1a1613;
+    padding: 2px 10px;
+    display: inline-block;
+  }
+
+  h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 26px;
+    margin-top: 34px;
+    margin-bottom: 14px;
+    color: #f0ebe0;
+    border-left: 3px solid #f0ebe0;
+    padding-left: 14px;
+  }
+
+  h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: rgba(240,235,224,0.75);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  p { font-size: 14px; margin-bottom: 12px; color: rgba(240,235,224,0.9); }
+
+  ul, ol { margin-left: 22px; margin-bottom: 14px; }
+  li { font-size: 14px; margin-bottom: 6px; color: rgba(240,235,224,0.9); }
+
+  .eye {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: rgba(240,235,224,0.55);
+    margin-bottom: 10px;
+  }
+
+  .box {
+    background: rgba(245,245,245,0.04);
+    border: 1px solid rgba(240,235,224,0.15);
+    padding: 18px 22px;
+    margin: 16px 0;
+    border-radius: 3px;
+  }
+
+  .box .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: rgba(240,235,224,0.85);
+    white-space: pre-wrap;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(240,235,224,0.12);
+  }
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: rgba(240,235,224,0.6);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  td { color: rgba(240,235,224,0.9); }
+
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40mm 30mm;
+  }
+
+  .cover .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: rgba(240,235,224,0.55);
+    margin-bottom: 28px;
+  }
+
+  .cover h1 { font-size: 56px; margin-bottom: 30px; }
+  .cover .sub {
+    font-size: 19px;
+    line-height: 1.7;
+    color: rgba(240,235,224,0.75);
+    max-width: 540px;
+  }
+
+  .cover .tagline {
+    position: absolute;
+    bottom: 40mm;
+    left: 30mm;
+    right: 30mm;
+    padding-top: 20px;
+    border-top: 1px solid rgba(240,235,224,0.2);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    color: rgba(240,235,224,0.65);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .priority-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    background: rgba(245,245,245,0.85);
+    color: #1a1613;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .metric {
+    background: rgba(245,245,245,0.04);
+    padding: 14px 16px;
+    border: 1px solid rgba(240,235,224,0.12);
+  }
+  .metric .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0ebe0;
+  }
+  .metric .lbl {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(240,235,224,0.55);
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="page cover">
+  <div class="meta">2026-04-19 · WEEKLY ADVICE · EXECUTION DETAILS</div>
+  <h1>3 大建議<br>執行細節</h1>
+  <p class="sub">
+    基於本週數據（IG 2.7 萬粉 / 非粉觸及 55.5% / YT 訂閱 57）<br>
+    鎖定下週最大槓桿：funnel 底修 · YT 訂閱突破 · 每週 2 支穩定節奏
+  </p>
+  <div class="tagline">
+    <span>Jamie · repurre studio</span>
+    <span>人生下半場 · 健康過一生</span>
+  </div>
+</div>
+
+<!-- 建議 1 -->
+<div class="page">
+  <div class="brand-top">
+    <span>01 · IG FUNNEL 底修</span>
+    <span>repurre studio · jamie</span>
+  </div>
+
+  <span class="priority-tag">優先序 #1</span>
+  <h1><span class="hl">IG 觸及高但沒轉換</span> · 底堵不是頂堵</h1>
+
+  <div class="metric-row">
+    <div class="metric"><div class="val">2.7 萬</div><div class="lbl">IG 粉絲</div></div>
+    <div class="metric"><div class="val">55.5%</div><div class="lbl">非粉觸及比（算法推你）</div></div>
+    <div class="metric"><div class="val">12.4%</div><div class="lbl">互動率（5,325 / 43,000）</div></div>
+  </div>
+
+  <p>演算法把你推給新客 · 互動率健康 · 但新客沒進漏斗（quiz / 評估 / 體驗課）。funnel 底部斷 · 不是頂部。</p>
+
+  <h2>Fix 1 · GoSky rule 設定</h2>
+  <p>在 comment-auto-reply 建第 3 個 rule（template「自動回覆私訊活動連結」· 觸發 Post/Reels）</p>
+  <div class="box">
+    <div class="mono">關鍵字：level / 測驗 / quiz / 肩頸
+
+私訊內容：
+嗨 🤍
+想知道妳身體 30+ 後在哪個 level 嗎？
+1 分鐘 3 題快測
+→ repurre-reports.pages.dev/quiz
+測完留 email · 我寄完整分析
+
+掛：04/20 Reel · 04/22 輪播 · 04/23 Reel · 04/24 輪播 · 04/25 Reel
+關閉收集手機（privacy friction 高）· 只留 email</div>
+  </div>
+
+  <h2>Fix 2 · Reel caption 5 個 CTA 模板</h2>
+  <p>每篇 Reel / 輪播 · 從下面選 1 條放 caption 最後行（rotate 避重）</p>
+
+  <table>
+    <tr><th>#</th><th>關鍵字</th><th>文案</th></tr>
+    <tr><td>1</td><td>肩頸</td><td>身體在哪 level？留「肩頸」我傳 1 分鐘快測</td></tr>
+    <tr><td>2</td><td>LEVEL</td><td>想知道妳現在的起點？留「LEVEL」我傳分析</td></tr>
+    <tr><td>3</td><td>方向</td><td>不知從哪開始？留「方向」我寫 1 頁建議給妳</td></tr>
+    <tr><td>4</td><td>評估</td><td>想約 15 分鐘 1 對 1 評估？留「評估」我聯繫妳</td></tr>
+    <tr><td>5</td><td>媽媽</td><td>想給媽媽看？留「媽媽」我傳 65+ 版本</td></tr>
+  </table>
+
+  <h2>Fix 3 · quiz 結尾 CTA 上 mini offer</h2>
+  <p>quiz 結果頁底部接「30+ 起步包 $299」Skool link（Jamie 回家 Skool setup classroom 後加）· 把 quiz 完成人 → 付費第一層。</p>
+</div>
+
+<!-- 建議 2 -->
+<div class="page">
+  <div class="brand-top">
+    <span>02 · YT 訂閱突破</span>
+    <span>repurre studio · jamie</span>
+  </div>
+
+  <span class="priority-tag">優先序 #2</span>
+  <h1><span class="hl">訂閱卡 57</span> · 看完不訂閱</h1>
+
+  <div class="metric-row">
+    <div class="metric"><div class="val">57</div><div class="lbl">YT 訂閱</div></div>
+    <div class="metric"><div class="val">14,643</div><div class="lbl">累積觀看</div></div>
+    <div class="metric"><div class="val">259:1</div><div class="lbl">觀看/訂閱比（健康 50-100:1）</div></div>
+  </div>
+
+  <p>259:1 意思每 259 次觀看才得 1 訂閱 · 比健康 benchmark 差 3-5 倍 · 表示：<strong>標題 / 縮圖 / 前 15 秒 hook 沒抓人</strong> · 或 CTA 沒要訂閱。</p>
+
+  <h2>Fix 1 · 標題公式</h2>
+  <p>健康教練類 YT 高 CTR 公式：<strong>「身體訊號」+「反直覺 insight」+「具體數字」</strong></p>
+
+  <table>
+    <tr><th>弱標題</th><th>強標題（重寫）</th></tr>
+    <tr><td>30+ 女生怎麼練</td><td>30+ 練越多越卡 · 真兇是背啟動不到</td></tr>
+    <tr><td>肩頸痠痛解法</td><td>肩頸痠 9 成人找錯原因 · 是脖子撐錯</td></tr>
+    <tr><td>腰痠怎麼辦</td><td>腰痠不是腰的問題 · 是 5% 人才知道的核心關鍵</td></tr>
+  </table>
+
+  <h2>Fix 2 · 縮圖公式</h2>
+  <ul>
+    <li>1:1 safe area 內字+人（Shorts 9:16 & 長片 16:9 共用）</li>
+    <li>大字 hook 3 個字（「不是年紀」/「背不到」/「撐錯了」）</li>
+    <li>Jamie portrait（不抱貓）+ dark overlay 0.4</li>
+    <li>暖米灰字 #f0ebe0 + 高光框 rgba(245,245,245,0.55)</li>
+  </ul>
+
+  <h2>Fix 3 · 前 15 秒 hook 公式</h2>
+  <div class="box">
+    <div class="mono">秒 1-3：問題（你是不是也有 X 症狀）
+秒 4-7：反直覺（你以為是 A · 其實是 B）
+秒 8-12：提示方向（要解決要從 C 開始）
+秒 13-15：CTA（按訂閱 · 這週每週二+五上架完整系列）</div>
+  </div>
+
+  <h2>Fix 4 · IG 爆款 → YT Shorts pipeline</h2>
+  <p>IG 每週 Top 2 貼文（by 互動率）· 重新剪成 60 秒 YT Shorts 版本：</p>
+  <ol>
+    <li>IG caption → YT Shorts 標題（用 Fix 1 公式）</li>
+    <li>IG 影片/輪播 → Shorts 直式</li>
+    <li>結尾加「訂閱拿每週訓練包」CTA + 連長片</li>
+    <li>週二 + 週五 固定上架（algorithm 喜歡規律）</li>
+  </ol>
+</div>
+
+<!-- 建議 3 -->
+<div class="page">
+  <div class="brand-top">
+    <span>03 · 每週 2 支穩定節奏</span>
+    <span>repurre studio · jamie</span>
+  </div>
+
+  <span class="priority-tag">優先序 #3</span>
+  <h1><span class="hl">內容節奏穩定</span> · 不衝高不見低</h1>
+
+  <p>本週 YT 上架 5 支（高峰）· 前 3 週 0-1 支 · sporadic 節奏會讓 algorithm 認為不活躍 · 推送降低。</p>
+
+  <h2>Fix 1 · 每週 2 支 YT 固定 schedule</h2>
+  <table>
+    <tr><th>週二 21:00</th><th>週五 21:00</th></tr>
+    <tr><td>IG 爆款 repurpose Shorts</td><td>原創長片（5-10 分深度）</td></tr>
+    <tr><td>60 秒內 · 標題 Fix 1 公式</td><td>完整教學 · 章節清楚</td></tr>
+    <tr><td>結尾連長片</td><td>結尾連下週預告 + 訂閱 CTA</td></tr>
+  </table>
+
+  <h2>Fix 2 · 04-05 排期（本週啟動）</h2>
+  <table>
+    <tr><th>日期</th><th>YT 長片</th><th>YT Shorts</th><th>IG Reel/輪播</th></tr>
+    <tr><td>04/20 一</td><td>Y9e9bgo3GYQ（Jamie 排）</td><td>MxdWTbE4444</td><td>Reel 怕變壯 21:00</td></tr>
+    <tr><td>04/22 三</td><td>—</td><td>—</td><td>輪播 肌肉資產</td></tr>
+    <tr><td>04/23 四</td><td>—</td><td>v22 肩頸代償 21:00</td><td>Reel v22 21:00</td></tr>
+    <tr><td>04/24 五</td><td>Day 9 韓國 Vlog 待定</td><td>—</td><td>輪播</td></tr>
+    <tr><td>04/25 六</td><td>—</td><td>v23 平衡 21:00</td><td>Reel v23 21:00</td></tr>
+  </table>
+
+  <h2>Fix 3 · 每週固定工作流</h2>
+  <ul>
+    <li><strong>週日 18:00</strong>：週報自動跑 + 檢視（已 launchd）</li>
+    <li><strong>週一</strong>：挑本週 IG 要發的 Reel + 輪播素材</li>
+    <li><strong>週二早上</strong>：剪 YT Shorts（repurpose）+ 寫下週 Threads pool</li>
+    <li><strong>週三早上</strong>：長片錄製（1 小時内）</li>
+    <li><strong>週四早上</strong>：長片剪輯 + 縮圖</li>
+    <li><strong>週五 21:00</strong>：YT 長片上架</li>
+    <li><strong>週日 13:00</strong>：warm list email 自動發（launchd）</li>
+  </ul>
+
+  <h2>下週 KPI 目標</h2>
+  <div class="box">
+    <div class="mono">· 48 小時內 Reel 04/20 → 5-15 人做 quiz（新 private DM 量 ≥ 10）
+· 一週內 YT 訂閱 57 → 80+（Shorts v22 v23 + Vlog Day 9）
+· 一週內 assessment form 提交 ≥ 3（Skool + email + Reel CTA 三位一體）
+· 體驗課新報名 ≥ 1（lagging · 2 週後觀察）</div>
+  </div>
+</div>
+
+<!-- BACK COVER -->
+<div class="page cover">
+  <div class="meta">NEXT ACTIONS · 今天起</div>
+  <h1>立刻做的 5 件</h1>
+  <div class="box" style="margin-top:30px;">
+    <div class="mono" style="font-size:15px;line-height:2;">1. GoSky 第 3 個 rule 設定（level / 肩頸 keyword）
+2. Skool Classroom $299 mini offer 建立
+3. quiz 結果頁加 Skool link
+4. Resend 註冊 + 綁 email domain
+5. 04/23 + 04/25 Shorts 縮圖 YT 上傳（等你 OK v22 v23）</div>
+  </div>
+  <div class="tagline">
+    <span>Jamie · repurre studio</span>
+    <span>人生下半場 · 健康過一生</span>
+  </div>
+</div>
+
+</body>
+</html>

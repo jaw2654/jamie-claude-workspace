@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1920px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    background: #1a1613;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.82) contrast(1.05);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.85) 100%);
+  }
+
+  .brand-top {
+    position: absolute;
+    top: 470px;
+    left: 60px;
+    right: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f0ebe0;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    letter-spacing: 0.15em;
+    opacity: 0.78;
+  }
+
+  .title-wrap {
+    position: absolute;
+    left: 60px;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f0ebe0;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 34px;
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+    opacity: 0.9;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 120px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .title .hl {
+    background: rgba(245, 245, 245, 0.55);
+    color: #1a1613;
+    padding: 2px 14px;
+    margin: 0;
+    display: inline-block;
+  }
+
+  .sub {
+    font-size: 44px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .bottom {
+    position: absolute;
+    bottom: 470px;
+    left: 60px;
+    right: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #f0ebe0;
+  }
+
+  .author {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 30px;
+    letter-spacing: 0.08em;
+  }
+
+  .author .name {
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .arrow {
+    font-size: 44px;
+    font-weight: 900;
+    opacity: 0.85;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg" id="bg"></div>
+<div class="overlay"></div>
+
+<div class="brand-top">
+  <span>repurre studio</span>
+  <span>a note from jamie</span>
+</div>
+
+<div class="title-wrap">
+  <p class="eyebrow" id="eyebrow">30+ 練越多越卡</p>
+  <h1 class="title"><span class="hl" id="title">背啟動不到</span></h1>
+  <p class="sub" id="sub">是代償 · 不是年紀</p>
+</div>
+
+<div class="bottom">
+  <div class="author">
+    <span>by</span>
+    <span class="name">JAMIE WU</span>
+  </div>
+  <div class="arrow">→</div>
+</div>
+
+<script>
+  // Query string controls content + bg
+  const p = new URLSearchParams(location.search);
+  const bg = p.get('bg');
+  const eyebrow = p.get('eyebrow');
+  const title = p.get('title');
+  const sub = p.get('sub');
+  if (bg) document.getElementById('bg').style.backgroundImage = `url('${bg}')`;
+  if (eyebrow) document.getElementById('eyebrow').textContent = eyebrow;
+  if (title) document.getElementById('title').textContent = title;
+  if (sub) document.getElementById('sub').textContent = sub;
+</script>
+
+</body>
+</html>

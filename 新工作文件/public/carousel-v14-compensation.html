@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · v14 · Compensation (1:1) · 為什麼 30+ 的妳已經開始「代償」</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+TC:wght@400;500;700;900&family=Fraunces:ital,opsz,wght@0,9..144,200..400;1,9..144,200..400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'Pretendard Variable',Pretendard,'Noto Sans TC',sans-serif;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+body{background:#0e0e0e;padding:60px 24px;min-height:100vh;color:#fff}
+
+.page-hd{max-width:1500px;margin:0 auto 72px;text-align:center;color:#aaa}
+.page-hd h1{
+  font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;
+  font-size:28px;color:#fff;margin-bottom:12px;letter-spacing:0.01em;
+}
+.page-hd p{font-size:10px;color:#888;letter-spacing:0.42em;text-transform:uppercase;font-weight:400}
+
+.row{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+
+.card{
+  aspect-ratio:1/1;
+  position:relative;
+  overflow:hidden;
+  background:#1a1a1a;
+  border-radius:2px;
+  box-shadow:0 28px 80px -22px rgba(0,0,0,0.6);
+  color:#fff;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+}
+
+.photo{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  z-index:0;
+  filter:brightness(0.9) contrast(1.03) saturate(0.95);
+}
+
+.grad-full{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.28) 38%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.88) 100%);
+  z-index:1;
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:12% 10% 12% 10%;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  text-align:center;
+  z-index:2;
+}
+.inner > *{width:100%}
+.top-bar{justify-content:center}
+.top-bar .r{margin-left:16px}
+.eye{justify-content:center}
+
+.top-bar{
+  display:flex;align-items:center;
+  font-size:10.5px;font-weight:500;
+  letter-spacing:0.22em;color:rgba(255,255,255,0.85);
+  text-transform:uppercase;
+}
+.top-bar .bar{color:rgba(255,255,255,0.4);margin:0 10px;font-weight:300}
+.top-bar .r{margin-left:auto;font-weight:400;color:rgba(255,255,255,0.7)}
+
+.eye{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  font-size:19px;color:#e8e8e8;
+  letter-spacing:0.02em;
+  margin-top:18px;
+  display:flex;align-items:center;gap:12px;
+}
+.eye::before{
+  content:'';width:6px;height:6px;
+  background:#e8e8e8;border-radius:50%;
+  display:inline-block;
+}
+
+.title{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(42px,5.4vw,62px);
+  line-height:1.4;
+  letter-spacing:-0.01em;
+  color:#fff;
+  text-shadow:none;
+  max-width:100%;
+}
+.title em{
+  font-style:normal;
+  font-weight:900;
+  line-height:1.1;
+  display:inline-block;
+  background:rgba(245,245,245,0.55);
+  color:#141414;
+  padding:1px 3px;
+  margin:0;
+  border-radius:2px;
+}
+
+.title-sm{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:500;
+  font-size:clamp(26px,2.9vw,33px);
+  line-height:1.7;
+  letter-spacing:0.005em;
+  color:rgba(255,255,255,0.95);
+  margin-top:20px;
+  text-shadow:none;
+  max-width:100%;
+}
+
+.caption-block{text-align:left;
+  background:rgba(0,0,0,0.42);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:14px 18px;
+  margin-top:16px;
+  border-left:2px solid #f5f5f5;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:400;
+  font-size:clamp(24px,2.7vw,31px);
+  line-height:1.75;
+  color:rgba(224,217,202,0.94);
+  letter-spacing:0.02em;
+}
+.caption-block .lbl{
+  display:inline-block;
+  background:#f5f5f5;
+  color:#0a0a0a;
+  font-weight:700;
+  font-size:10.5px;
+  letter-spacing:0.14em;
+  padding:2px 8px;
+  margin-right:10px;
+  vertical-align:middle;
+  text-transform:uppercase;
+}
+
+.pull-num{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:300;
+  font-variation-settings:"opsz" 144,"SOFT" 30;
+  font-size:clamp(150px,18vw,230px);
+  line-height:0.9;
+  color:#f0ebe0;
+  text-shadow:none;
+  letter-spacing:-0.04em;
+  margin:0 0 16px;
+}
+.pull-num .unit{
+  display:block;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;font-weight:500;
+  font-size:0.08em;color:rgba(210,202,184,0.9);
+  letter-spacing:0.2em;
+  margin-top:14px;
+  text-transform:uppercase;
+}
+
+.foot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:auto;padding-top:18px;
+  font-size:10.5px;font-weight:500;
+  letter-spacing:0.26em;color:rgba(255,255,255,0.78);
+  text-transform:uppercase;
+}
+.foot .l{display:flex;align-items:center;gap:8px}
+.foot .bar{color:rgba(255,255,255,0.35);font-weight:300}
+.foot .r .slash{color:rgba(255,255,255,0.35);margin:0 4px}
+
+.center{justify-content:center;text-align:left}
+
+.cover .inner{justify-content:center;gap:40px}
+.cover .top-bar{position:absolute;top:10%;left:10%;right:10%;width:auto}
+.cover .foot{position:absolute;bottom:10%;left:10%;right:10%;width:auto}
+.cover .htitle{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(44px,5.8vw,66px);
+  line-height:1.35;
+  letter-spacing:-0.015em;
+  color:#fff;
+  text-shadow:none;
+  max-width:100%;
+}
+.cover .htitle em{
+  font-style:normal;font-weight:900;
+  line-height:1.1;
+  display:inline-block;
+  background:rgba(245,245,245,0.55);
+  color:#141414;
+  padding:1px 3px;
+}
+.cover .hsub{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  font-size:clamp(20px,2.3vw,26px);
+  line-height:1.55;
+  color:rgba(218,210,194,0.94);
+  margin-top:22px;
+  text-shadow:none;
+}
+
+.end-title{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:300;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(44px,5.4vw,64px);
+  line-height:1.25;
+  color:#fff;
+  letter-spacing:-0.005em;
+  text-shadow:none;
+  margin-top:auto;
+}
+.end-title .ch{
+  display:block;
+  font-family:'Noto Sans TC',sans-serif;
+  font-style:normal;font-weight:700;
+  font-size:0.68em;
+  letter-spacing:0.02em;
+  margin-top:14px;
+  color:#fff;
+}
+.end-sig{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:400;
+  font-size:13px;
+  line-height:1.9;
+  letter-spacing:0.08em;
+  color:rgba(255,255,255,0.88);
+  margin-top:22px;
+  text-shadow:none;
+}
+.end-sig .brand{
+  font-family:'Fraunces',serif;
+  font-style:italic;font-weight:400;
+  font-size:18px;color:#fff;
+  letter-spacing:0;
+}
+
+.vbar{color:rgba(255,255,255,0.4);margin:0 8px;font-weight:300}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1><em>Jamie · Compensation, v14 · 1:1 Square</em></h1>
+  <p>8 slides · 30+ 女性先練肌力 · 代償診斷 + 代償歸零</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER -->
+<div class="card cover">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_8797.jpg');background-position:center 55%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>vol. 02
+      <span class="r">a note from jamie</span>
+    </div>
+    <div>
+      <p class="htitle">為什麼 30+ 的妳<br>已經開始<em>「代償」</em>了？</p>
+      <p class="hsub"><em>— 不是沒練，<br>是練錯方向。</em></p>
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>repurre studio</div>
+      <div class="r">01<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 / 事實 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_8793.jpg');background-position:center 45%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 01<span class="bar">｜</span>the truth
+    </div>
+    <p class="eye"><em>代償是什麼</em></p>
+    <p class="title">某個肌肉太弱，<br>身體會叫<em>別的肌肉</em>頂上。</p>
+    <p class="title-sm">完成表面動作 — 但妳不知道。</p>
+    <div class="caption-block">
+      <span class="lbl">重點</span>30+ 女性，10 個裡有 8 個在代償，自己完全沒感覺。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">02<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 / Pull number 80% -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_9378.jpg');background-position:center 55%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 02<span class="bar">｜</span>the scale
+    </div>
+    <div class="pull-num">80<span style="font-size:0.5em">%</span><span class="unit">30+ 女性 · 正在代償 · 自己不知道</span></div>
+    <div class="caption-block">
+      妳的身體每天都在偷偷補破洞——蹲不到底→下背幫忙 · 深蹲膝蓋內夾→髖太弱 · 肩膀痠→斜方補胸椎 · 仰臥起坐腰痛→核心沒力、腰椎硬撐。
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">03<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 / 迷思 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_9384.jpg');background-position:center 55%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 03<span class="bar">｜</span>the illusion
+    </div>
+    <p class="eye"><em>3 個以為進步了</em></p>
+    <p class="title">看起來會了，<br>其實<em>沒練到</em>。</p>
+    <div class="caption-block">
+      <span class="lbl">錯覺</span>越練越痠 ≠ 有練到（可能代償肌痠）<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">錯覺</span>重量加了 ≠ 對的肌肉長大<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">錯覺</span>動作會 ≠ 用對方式做
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">04<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 / 原理 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_9385.jpg');background-position:center 45%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 04<span class="bar">｜</span>the cost
+    </div>
+    <p class="eye"><em>代償的代價</em></p>
+    <p class="title">每一次代償，<br>都在讓身體<em>越練越錯</em>。</p>
+    <div class="caption-block">
+      <span class="lbl">錯 1</span>加重本來就緊的肌肉 → 越練越緊<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">錯 2</span>忽略本該啟動的肌肉 → 越練越弱<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">結果</span>動作看起來會，但越來越卡、越痠
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">05<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 / 執行 · 30+ 4 個常見代償自測 -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_9424.jpg');background-position:center 55%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>ch. 05<span class="bar">｜</span>the diagnosis
+    </div>
+    <p class="eye"><em>代償歸零第一步</em></p>
+    <p class="title">先認出自己<br><em>在代償什麼</em>。</p>
+    <div class="caption-block">
+      <span class="lbl">自測</span>下背代償核心（仰臥起坐下背痛）<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">自測</span>膝蓋代償髖（深蹲膝蓋先內夾）<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">自測</span>斜方代償胸椎（手舉高肩卡）<br>
+      <span class="lbl" style="margin-top:8px;display:inline-block">自測</span>腳踝代償髖（單腳站不穩 / 小腿緊）
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012</div>
+      <div class="r">06<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 / END -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_9458.jpg');background-position:center 50%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>end<span class="bar">｜</span>the long view
+    </div>
+    <p class="eye"><em>一句話收尾</em></p>
+    <p class="end-title">
+      <em>compensation isn't a flaw.</em>
+      <span class="ch">代償不是妳的缺陷。<br>是身體在等妳重啟。</span>
+    </p>
+    <p class="end-sig">
+      <span class="brand">Jamie Wu</span>&nbsp;&nbsp;repurre studio<br>
+      十二年私教<span class="vbar">｜</span>台北大安<span class="vbar">｜</span>est. 2014
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>07<span class="slash">/</span>08</div>
+      <div class="r">07<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 / CTA -->
+<div class="card">
+  <div class="photo" style="background-image:url('v14-imgs-compensation-v3/IMG_9424.jpg');background-position:center 50%"></div>
+  <div class="grad-full"></div>
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>take action<span class="bar">｜</span>your turn
+    </div>
+    <p class="eye"><em>想知道妳在代償什麼？</em></p>
+    <p class="title" style="line-height:1.5">
+      <em>10 個動作</em><br>
+      <em>15 分鐘</em>
+    </p>
+    <p class="title-sm" style="margin-top:12px">在家就能測</p>
+    <div class="caption-block">
+      <p class="caption-body">
+        做完妳會看到自己的<br>
+        下背 / 核心 / 髖 / 肩胛 / 腳踝<br>
+        各有沒有代償、該先重練哪一塊。
+      </p>
+      <p class="caption-body" style="margin-top:10px;">
+        <em>留言打「LIFE」</em><br>
+        我把連結傳給妳 🤍
+      </p>
+    </div>
+    <p class="end-sig" style="margin-top:16px;">
+      <span class="brand">repurre-reports.pages.dev/assessment</span>
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>08<span class="slash">/</span>08</div>
+      <div class="r">08<span class="slash">/</span>08</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
