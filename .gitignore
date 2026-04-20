@@ -1,0 +1,53 @@
+# Secrets & credentials (NEVER commit)
+.env
+.env.*
+**/secrets/
+**/*.env
+*.key
+*.pem
+*.p12
+
+# Claude Code secrets
+.claude/secrets/
+
+# Platform API tokens
+**/telegram*.env
+**/line.env
+**/ig-cookies*
+**/cookies.json
+**/token.json
+
+# Personal data
+新工作文件/email/*.csv
+新工作文件/email/425*
+**/whitelist.csv
+**/warm-list*
+
+# Trading (停工 · 不備份)
+新工作文件/交易日誌/
+公開網站 URL encoded/
+
+# Transcripts audio (太大)
+新工作文件/transcripts/*.mp3
+新工作文件/transcripts/*.wav
+新工作文件/素材/*.mp4
+新工作文件/素材/*.mov
+新工作文件/loom-downloads/
+
+# Browser profiles (cookies 含)
+新工作文件/browser-profile/
+新工作文件/browser-profile-clone/
+
+# Logs & cache
+*.log
+**/logs/
+.wrangler/
+__pycache__/
+.DS_Store
+Thumbs.db
+*.bak*
+.write_test
+
+# iPhone / Jamie 個人素材不備份
+素材/iphone-export/
+照片/
