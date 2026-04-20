@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · Leo Style · v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#fafafa;padding:48px 24px;min-height:100vh}
+
+.page-hd{max-width:1400px;margin:0 auto 56px;color:#333;text-align:center}
+.page-hd h1{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;margin-bottom:8px;letter-spacing:8px;text-transform:uppercase;color:#1a1a1a}
+.page-hd p{font-family:'Inter',sans-serif;font-size:10px;color:#666;letter-spacing:5px;font-weight:400;text-transform:uppercase}
+
+.row{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+
+/* ============================================================ */
+/* 4:5 / Leo style: 深底 + 大白字 + 黃色螢光 + 字滿版 */
+/* ============================================================ */
+.card{
+  aspect-ratio: 4 / 5;
+  background:#0e0e0e;
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  display:flex;
+  font-family:'Noto Sans TC',sans-serif;
+  box-shadow:0 12px 48px rgba(0,0,0,0.4);
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:8% 7%;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  z-index:2;
+}
+
+/* 上方品牌 + 編號 */
+.top{
+  position:absolute;
+  top:5%;left:7%;right:7%;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.15em;
+  color:#999;
+}
+.top .acct{color:#fbbf24;font-weight:700;}
+
+/* 簽名底 */
+.sig{
+  position:absolute;
+  bottom:5%;left:7%;right:7%;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.2em;
+  color:#777;
+}
+
+/* 主標 — 大字滿版 */
+.h{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(54px, 6.8vw, 88px);
+  line-height:1.25;
+  letter-spacing:-0.01em;
+  color:#fff;
+}
+
+/* 黃色螢光 highlight */
+.hl{
+  background:#fbbf24;
+  color:#0e0e0e;
+  padding:2px 12px;
+  display:inline-block;
+  font-weight:900;
+  border-radius:4px;
+}
+
+/* 黃色文字 */
+.y{color:#fbbf24;font-weight:900;}
+
+/* 副文 */
+.sub{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:500;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.6;
+  color:#bbb;
+  letter-spacing:0.02em;
+  margin-top:32px;
+}
+
+/* 對比型 */
+.compare{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:700;
+  font-size:clamp(36px,4.4vw,52px);
+  line-height:1.45;
+  letter-spacing:0.01em;
+  color:#fff;
+}
+.compare .lbl{
+  font-size:0.42em;
+  font-weight:500;
+  color:#fbbf24;
+  letter-spacing:0.2em;
+  display:block;
+  margin-bottom:8px;
+}
+.compare .row-c{margin-bottom:48px}
+.compare .row-c:last-child{margin-bottom:0}
+
+/* 巨型字 */
+.giant{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(96px,12vw,168px);
+  line-height:1;
+  letter-spacing:-0.04em;
+  color:#fbbf24;
+}
+.giant .small{
+  display:block;
+  font-size:0.25em;
+  font-weight:500;
+  color:#fff;
+  letter-spacing:0.08em;
+  margin-top:24px;
+  line-height:1.5;
+}
+
+/* CTA 風格 */
+.cta-h{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(40px,5vw,60px);
+  line-height:1.4;
+  color:#fff;
+  letter-spacing:-0.01em;
+}
+.cta-list{
+  margin-top:48px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.cta-list .item{
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:clamp(18px,2vw,24px);
+  font-weight:500;
+  color:#ddd;
+  letter-spacing:0.04em;
+  display:flex;
+  align-items:baseline;
+  gap:18px;
+}
+.cta-list .item .arrow{color:#fbbf24;font-weight:900;flex-shrink:0;}
+
+/* COVER */
+.cover .inner{justify-content:flex-end;padding-bottom:14%}
+.cover-h{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:900;
+  font-size:clamp(48px,6vw,80px);
+  line-height:1.2;
+  letter-spacing:-0.01em;
+  color:#fff;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1>Leo Style · Dark + Yellow Highlight · v5</h1>
+  <p>7 SLIDES · BIG TYPE · 4:5 · NOTO SANS TC HEAVY</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER -->
+<div class="card cover">
+  <div class="top">
+    <span class="acct">@jamie_wu_1012</span>
+    <span>01 / 07</span>
+  </div>
+  <div class="inner">
+    <p class="cover-h">12 年了。<br><span class="hl">練了好幾年</span><br>身體還是<br>沒變？</p>
+    <p class="sub" style="margin-top:24px">真相不是你不夠努力。</p>
+  </div>
+  <div class="sig">
+    <span>repurre studio</span>
+    <span>SYSTEM 01</span>
+  </div>
+</div>
+
+<!-- S2 / 不是沒去 -->
+<div class="card">
+  <div class="top">
+    <span class="acct">@jamie_wu_1012</span>
+    <span>02 / 07</span>
+  </div>
+  <div class="inner">
+    <p class="h">不是你<br><span class="y">沒去</span>。</p>
+  </div>
+  <div class="sig">
+    <span>repurre · system 01</span>
+    <span></span>
+  </div>
+</div>
+
+<!-- S3 / 是去了沒練 -->
+<div class="card">
+  <div class="top">
+    <span class="acct">@jamie_wu_1012</span>
+    <span>03 / 07</span>
+  </div>
+  <div class="inner">
+    <p class="h">是「去了」<br>沒「<span class="hl">練</span>」。</p>
+  </div>
+  <div class="sig">
+    <span>repurre · system 01</span>
+    <span></span>
+  </div>
+</div>
+
+<!-- S4 / 對比 -->
+<div class="card">
+  <div class="top">
+    <span class="acct">@jamie_wu_1012</span>
+    <span>04 / 07</span>
+  </div>
+  <div class="inner">
+    <div class="compare">
+      <div class="row-c">
+        <span class="lbl">12 下還能聊天</span>
+        ＝ <span class="y">沒在練</span>
+      </div>
+      <div class="row-c">
+        <span class="lbl">6 下臉紅脖子粗</span>
+        ＝ <span class="hl">才開始</span>
+      </div>
+    </div>
+  </div>
+  <div class="sig">
+    <span>repurre · system 01</span>
+    <span></span>
+  </div>
+</div>
+
+<!-- S5 / 代謝銀行 巨型 -->
+<div class="card">
+  <div class="top">
+    <span class="acct">@jamie_wu_1012</span>
+    <span>05 / 07</span>
+  </div>
+  <div class="inner">
+    <p class="giant">代謝<br>銀行<span class="small">肌肉是你的存款<br>力竭一組 = 一筆本金</span></p>
+  </div>
+  <div class="sig">
+    <span>repurre · system 01</span>
+    <span></span>
+  </div>
+</div>
+
+<!-- S6 / 系統 -->
+<div class="card">
+  <div class="top">
+    <span class="acct">@jamie_wu_1012</span>
+    <span>06 / 07</span>
+  </div>
+  <div class="inner">
+    <p class="h">你不需要<br><span class="y">意志力</span>。<br><br>你需要<br><span class="hl">系統</span>。</p>
+  </div>
+  <div class="sig">
+    <span>repurre · system 01</span>
+    <span></span>
+  </div>
+</div>
+
+<!-- S7 / CTA -->
+<div class="card">
+  <div class="top">
+    <span class="acct">@jamie_wu_1012</span>
+    <span>07 / 07</span>
+  </div>
+  <div class="inner">
+    <p class="cta-h">下次練之前，<br>幫自己<span class="hl">存一份</span>。</p>
+    <div class="cta-list">
+      <div class="item"><span class="arrow">→</span> 右下角點 儲存</div>
+      <div class="item"><span class="arrow">→</span> 傳給練好幾年沒變的朋友</div>
+      <div class="item"><span class="arrow">→</span> 追蹤 看下一個系統</div>
+    </div>
+  </div>
+  <div class="sig">
+    <span>repurre studio</span>
+    <span>SAVE · SHARE · FOLLOW</span>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

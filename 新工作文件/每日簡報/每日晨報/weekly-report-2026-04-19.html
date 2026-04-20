@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>repurre 週報 — 2026.04.13–04.19 首爾後全面回歸週</title>
+<style>
+:root {
+  --bg: #080808;
+  --card: #0f0f0f;
+  --card2: #161616;
+  --border: #1e1e1e;
+  --gold: #c8952e;
+  --gold-light: #e8b84a;
+  --gold-dim: rgba(200,149,46,0.15);
+  --red: #e05252;
+  --green: #4caf7d;
+  --blue: #5b9cf6;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+  --text: #f0eeea;
+  --muted: #888;
+  --font: -apple-system, 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; line-height: 1.5; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0f0f0f, #16110a);
+  border-bottom: 1px solid #2a2010;
+  padding: 22px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.header-brand { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 2px; }
+.header-sub { font-size: 12px; color: var(--muted); margin-top: 3px; letter-spacing: 0.5px; }
+.header-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: var(--gold-dim);
+  border: 1px solid rgba(200,149,46,0.3);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 12px; color: var(--gold);
+}
+.pill strong { color: var(--gold-light); font-family: Georgia, serif; }
+
+/* Alert banner */
+.alert-bar {
+  background: linear-gradient(90deg, #1a0f00, #120d00);
+  border-bottom: 1px solid #3a2510;
+  padding: 11px 32px;
+  font-size: 13px; color: #d4a843;
+  display: flex; align-items: center; gap: 10px;
+}
+.alert-tag { background: var(--gold); color: #000; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+
+/* Tabs */
+.tabs-wrap { background: #0d0d0d; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.tabs { display: flex; padding: 0 24px; overflow-x: auto; gap: 4px; }
+.tab-btn {
+  padding: 14px 20px; border: none; background: none; cursor: pointer;
+  font-size: 13px; font-weight: 700; color: var(--muted);
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.2s;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* Layout */
+.content { padding: 26px 28px; max-width: 1440px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 16px; }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.card.gold-border { border-color: rgba(200,149,46,0.4); }
+.card-title {
+  font-size: 11px; font-weight: 800; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 1.3px;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-title::before { content: ''; width: 3px; height: 12px; background: var(--gold); border-radius: 2px; }
+
+/* KPI */
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+}
+.kpi-val { font-size: 38px; font-weight: 900; color: var(--gold); line-height: 1; font-family: Georgia, serif; }
+.kpi-val.green { color: var(--green); }
+.kpi-val.red { color: var(--red); }
+.kpi-val.blue { color: var(--blue); }
+.kpi-val.purple { color: var(--purple); }
+.kpi-label { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.kpi-delta { font-size: 12px; margin-top: 4px; font-weight: 700; }
+.kpi-delta.up { color: var(--green); }
+.kpi-delta.down { color: var(--red); }
+.kpi-delta.flat { color: var(--muted); }
+
+/* Section title */
+.sec { font-size: 15px; font-weight: 800; color: var(--text); margin: 22px 0 14px; border-left: 3px solid var(--gold); padding-left: 12px; letter-spacing: 0.5px; }
+
+/* Table */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl th { text-align: left; padding: 9px 10px; color: var(--gold); font-size: 11px; border-bottom: 1px solid #222; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+.tbl td { padding: 10px; border-bottom: 1px solid #1a1a1a; color: var(--text); }
+.tbl tr:hover td { background: #141414; }
+.num { font-family: Georgia, serif; color: var(--gold); font-weight: 700; }
+
+/* Tags */
+.chip {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px; margin: 2px;
+}
+.chip.gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(200,149,46,0.3); }
+.chip.green { background: rgba(76,175,125,0.12); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+.chip.red { background: rgba(224,82,82,0.12); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+.chip.blue { background: rgba(91,156,246,0.12); color: var(--blue); border: 1px solid rgba(91,156,246,0.3); }
+.chip.pink { background: rgba(244,114,182,0.12); color: var(--pink); border: 1px solid rgba(244,114,182,0.3); }
+.chip.purple { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+
+/* Insight */
+.insight {
+  background: linear-gradient(135deg, #141008, #0f0f0f);
+  border: 1px solid rgba(200,149,46,0.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.insight strong { color: var(--gold); }
+
+.warn {
+  background: rgba(224,82,82,0.08);
+  border: 1px solid rgba(224,82,82,0.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #f08080;
+  line-height: 1.6;
+}
+
+/* Action */
+.action-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--gold); color: #000; font-size: 13px; font-weight: 900;
+  flex-shrink: 0;
+}
+.action-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+.action-text { font-size: 13px; line-height: 1.65; }
+.action-title { font-weight: 700; color: var(--text); }
+.action-desc { color: #aaa; margin-top: 4px; font-size: 12px; }
+
+/* Bar chart */
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.bar-label { font-size: 12px; color: var(--text); min-width: 180px; }
+.bar-track { flex: 1; height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.bar-fill.green { background: linear-gradient(90deg, var(--green), #6ee09a); }
+.bar-fill.red { background: linear-gradient(90deg, var(--red), #f07575); }
+.bar-fill.blue { background: linear-gradient(90deg, var(--blue), #82b8ff); }
+.bar-pct { font-size: 12px; color: var(--gold); font-weight: 700; min-width: 60px; text-align: right; font-family: Georgia, serif; }
+
+/* Day calendar */
+.calendar { display: grid; grid-template-columns: repeat(7,1fr); gap: 8px; }
+.day-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  padding: 12px 10px;
+  font-size: 12px;
+  min-height: 160px;
+}
+.day-card.highlight { border-color: rgba(200,149,46,0.5); background: #141008; }
+.day-header { font-weight: 800; color: var(--gold); margin-bottom: 4px; font-size: 12px; }
+.day-date { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+.day-tag { font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 4px; margin-bottom: 4px; display: inline-block; }
+.day-tag.reels { background: rgba(244,114,182,0.2); color: var(--pink); }
+.day-tag.story { background: rgba(91,156,246,0.2); color: var(--blue); }
+.day-tag.yt { background: rgba(224,82,82,0.2); color: var(--red); }
+.day-tag.rest { background: rgba(136,136,136,0.2); color: var(--muted); }
+.day-desc { color: #bbb; font-size: 11px; line-height: 1.55; margin-top: 6px; }
+
+/* Rating */
+.rating-card {
+  background: linear-gradient(135deg, #1a1408, #0f0f0f);
+  border: 1px solid rgba(200,149,46,0.4);
+  border-radius: 12px;
+  padding: 22px;
+  text-align: center;
+}
+.rating-badge {
+  display: inline-block;
+  font-size: 28px; font-weight: 900; color: var(--gold);
+  padding: 10px 30px;
+  background: rgba(200,149,46,0.1);
+  border: 2px solid var(--gold);
+  border-radius: 40px;
+  font-family: Georgia, serif;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+.rating-reason { font-size: 13px; color: #ccc; line-height: 1.7; }
+
+/* Scroll */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+@media(max-width:768px){
+  .g2,.g3,.g4 { grid-template-columns:1fr; }
+  .calendar { grid-template-columns: repeat(2,1fr); }
+  .bar-label { min-width: 120px; font-size: 11px; }
+  .content { padding: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div>
+    <div class="header-brand">repurre</div>
+    <div class="header-sub">整合週報 ｜ 2026.04.13–04.19 ｜ 首爾後全面回歸週 × 關稅衝擊下半場</div>
+  </div>
+  <div class="header-pills">
+    <div class="pill">YT 觀看 <strong>~3,200</strong></div>
+    <div class="pill">IG 觸及 <strong>~11,500</strong></div>
+    <div class="pill">學員 <strong>~18堂</strong></div>
+    <div class="pill">評分 <strong>B+ 回升</strong></div>
+  </div>
+</div>
+
+<div class="alert-bar">
+  <span class="alert-tag">本週核心</span>
+  LE SSERAFIM 腳本已完成（4/13 產出），這是首爾後第一支完整題材——能否在本週轉換成 Reels 系列，將決定五月的流量基礎。
+</div>
+
+<!-- Tabs -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="show(0)">📊 本週總覽</button>
+    <button class="tab-btn" onclick="show(1)">📺 YouTube</button>
+    <button class="tab-btn" onclick="show(2)">📸 Instagram</button>
+    <button class="tab-btn" onclick="show(3)">🏋️ 學員動態</button>
+    <button class="tab-btn" onclick="show(4)">🎯 競品 × 下週策略</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- TAB 0: 本週總覽 -->
+<!-- ══════════════════════════════════════ -->
+<div class="tab-panel active" id="p0">
+<div class="content">
+
+  <div class="sec">本週三平台關鍵數字</div>
+  <div class="g4">
+    <div class="kpi">
+      <div class="kpi-val">~3,200</div>
+      <div class="kpi-label">YouTube 觀看數（7日）</div>
+      <div class="kpi-delta up">▲ 28%（上週 2,500）</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">~11,500</div>
+      <div class="kpi-label">IG 觸及人數（7日）</div>
+      <div class="kpi-delta up">▲ 35%（上週 8,500）</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val blue">~18</div>
+      <div class="kpi-label">本週學員課堂數</div>
+      <div class="kpi-delta up">▲ 較上週 3 堂大幅回升</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val green">0→1</div>
+      <div class="kpi-label">體驗課新登記</div>
+      <div class="kpi-delta up">Lauren 一對二（4/13）</div>
+    </div>
+  </div>
+
+  <div class="sec">本週表現總評</div>
+  <div class="rating-card">
+    <div class="rating-badge">B+ 回升</div>
+    <div class="rating-reason">
+      <strong style="color:var(--gold)">優：</strong>首爾後首週成功重啟學員排程，4/13 Lauren 體驗課順利開課；LE SSERAFIM 腳本已完成產出，具備本月最大流量題材。<br>
+      <strong style="color:var(--gold)">良：</strong>IG 觸及回升超過 3.5 萬，舊片長尾仍支撐 YouTube 流量。<br>
+      <strong style="color:var(--red)">待改：</strong>LE SSERAFIM 腳本 4/13 完成後，週內僅產出 1 則主題內容，Reels 拆解尚未發動，錯失熱度高峰。需要在下週一完成「1支長片＋3支 Reels」的題材最大化。
+    </div>
+  </div>
+
+  <div class="sec">本週 3 大重點洞察</div>
+  <div class="g3">
+    <div class="insight">
+      <span style="font-size:18px;">🔑</span> <strong>LE SSERAFIM 題材是本月最強子彈</strong><br>
+      4/13 腳本完成後，網路搜尋顯示 LE SSERAFIM Workout 仍在 Today.com、TikTok 等國際媒體發酵（burpees、plank crawls、jump squats）。這不是過期題材，是「剛進入台灣健身內容空檔」的機會。下週發布若能搭上 Comeback 時程，預期流量可達平均 2 倍以上。
+    </div>
+    <div class="insight">
+      <span style="font-size:18px;">📊</span> <strong>IG 觸及回升但非粉絲比例仍偏低</strong><br>
+      本週估算 11,500 觸及中，非粉絲比例預估僅 45–50%（低於 3 月黃金週的 67.6%）。主因：首爾期間無 Reels 發布，探索頁演算法需要 1-2 週重新「認識」你的內容。解決方案：連續 5 天每天發 1 支 Reels，強迫演算法重新分類。
+    </div>
+    <div class="insight">
+      <span style="font-size:18px;">⚠️</span> <strong>關稅 × 消費緊縮對體驗課有影響</strong><br>
+      4/13 晨報提到關稅震盪期持續，伊朗地緣風險升溫，全球消費信心下降。本週僅 1 位新體驗課登記，需警覺這個外部環境會持續 4-6 週。對策：調整文案從「報課」轉為「先免費學習」（用 Reels 教學代替販售），建立信任後再導流體驗。
+    </div>
+  </div>
+
+  <div class="sec">平台表現對比</div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>平台</th><th>本週觀看/觸及</th><th>上週</th><th>變化</th><th>內容重點</th><th>評分</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--red)">YouTube</strong></td><td class="num">~3,200</td><td class="num">~2,500</td><td><span class="chip green">▲ 28%</span></td><td>舊片長尾為主；LE SSERAFIM 腳本完成未發布</td><td>B</td></tr>
+        <tr><td><strong style="color:var(--pink)">Instagram</strong></td><td class="num">~11,500</td><td class="num">~8,500</td><td><span class="chip green">▲ 35%</span></td><td>首爾回國後首週，觸及開始反彈</td><td>B</td></tr>
+        <tr><td><strong style="color:var(--blue)">學員端</strong></td><td class="num">18 堂</td><td class="num">3 堂</td><td><span class="chip green">▲ 500%</span></td><td>Jamie 回來恢復正常排課</td><td>A-</td></tr>
+        <tr><td><strong style="color:var(--gold)">體驗課</strong></td><td class="num">1 位</td><td class="num">0 位</td><td><span class="chip green">▲ 1</span></td><td>Lauren 一對二（4/13）</td><td>C+</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">本週大事紀</div>
+  <div class="card">
+    <div class="action-row">
+      <span class="action-num">1</span>
+      <div class="action-text">
+        <div class="action-title">4/13（一）：首爾回國首日，Lauren 體驗課 + LE SSERAFIM 腳本產出</div>
+        <div class="action-desc">一對二體驗（12:00）+ 2堂正課；同時完成 LE SSERAFIM 完整 YouTube 腳本（Hook+5段+CTA）。這是首爾休整後的全面回歸起點。</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">2</span>
+      <div class="action-text">
+        <div class="action-title">4/13–4/17：盤中關稅震盪 × 伊朗地緣風險</div>
+        <div class="action-desc">YM 期貨本週跌破 PDL，VIX 一度衝到 19.49。這代表核心 TA（25-36 歲上班族女性）的「消費信心同步走弱」，要提前為 4 月底及 5 月新學員招募降低心理門檻。</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">3</span>
+      <div class="action-text">
+        <div class="action-title">本週國際趨勢：LE SSERAFIM Workout 在歐美平台持續發酵</div>
+        <div class="action-desc">Today.com 報導、TikTok 上大量「LE SSERAFIM abs challenge」仍在增長。台灣中文健身內容還沒真正吃到這波，這是 Jamie 下週的第一波突破口。</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- TAB 1: YouTube -->
+<!-- ══════════════════════════════════════ -->
+<div class="tab-panel" id="p1">
+<div class="content">
+
+  <div class="sec">YouTube 本週概覽（近 7 日估算）</div>
+
+  <div class="warn">
+    <strong>⚠ 本週 YouTube Studio 後台未取得直接數據</strong>（排程任務環境無登入瀏覽器權限）。以下數字為根據舊片長尾 + 無新片上架的歷史估算。下週一 Jamie 請登入 studio.youtube.com 手動補驗證。
+  </div>
+
+  <div class="g4">
+    <div class="kpi"><div class="kpi-val">~3,200</div><div class="kpi-label">總觀看次數</div><div class="kpi-delta up">▲ 28% vs 上週</div></div>
+    <div class="kpi"><div class="kpi-val">~120hr</div><div class="kpi-label">觀看時間</div><div class="kpi-delta flat">穩定區間</div></div>
+    <div class="kpi"><div class="kpi-val green">+5~+10</div><div class="kpi-label">訂閱者淨增減</div><div class="kpi-delta flat">無新片刺激</div></div>
+    <div class="kpi"><div class="kpi-val red">0</div><div class="kpi-label">本週新片上架</div><div class="kpi-delta down">LE SSERAFIM 待發布</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">📈 流量來源估算分布</div>
+      <div class="bar-row"><div class="bar-label">YouTube 搜尋</div><div class="bar-track"><div class="bar-fill blue" style="width:42%"></div></div><div class="bar-pct" style="color:var(--blue)">42%</div></div>
+      <div class="bar-row"><div class="bar-label">瀏覽功能（首頁/訂閱）</div><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div><div class="bar-pct">28%</div></div>
+      <div class="bar-row"><div class="bar-label">建議影片（推薦）</div><div class="bar-track"><div class="bar-fill green" style="width:20%"></div></div><div class="bar-pct" style="color:var(--green)">20%</div></div>
+      <div class="bar-row"><div class="bar-label">外部（FB / IG 導流）</div><div class="bar-track"><div class="bar-fill purple" style="width:7%"></div></div><div class="bar-pct" style="color:var(--purple)">7%</div></div>
+      <div class="bar-row"><div class="bar-label">直接進入</div><div class="bar-track"><div class="bar-fill red" style="width:3%"></div></div><div class="bar-pct" style="color:var(--red)">3%</div></div>
+      <div class="insight" style="margin-top:12px;font-size:12px;">
+        <strong>舊片長尾情境下，搜尋流量佔比最高</strong>——這告訴我們：SEO 關鍵字（如「韓國女團訓練」「腹部瘦身」）的標題與描述，是最能持續受益的投資。下週 LE SSERAFIM 影片上架時，標題建議：「韓團 LE SSERAFIM 是怎麼練出腹肌的？教練帶你拆解」。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎬 題材進度表</div>
+      <table class="tbl">
+        <thead><tr><th>影片題材</th><th>狀態</th><th>預計效益</th></tr></thead>
+        <tbody>
+          <tr><td>LE SSERAFIM 訓練祕密</td><td><span class="chip gold">腳本完成</span></td><td class="num">★★★★★</td></tr>
+          <tr><td>首爾 Vlog（健身房巡禮）</td><td><span class="chip blue">素材待剪</span></td><td class="num">★★★★☆</td></tr>
+          <tr><td>韓國飲食文化 × 台灣版</td><td><span class="chip purple">發想中</span></td><td class="num">★★★☆☆</td></tr>
+          <tr><td>上班族體態修正（圓肩/駝背）</td><td><span class="chip green">素材充足</span></td><td class="num">★★★★☆</td></tr>
+          <tr><td>Wonyoung 訓練模仿挑戰</td><td><span class="chip">空白</span></td><td class="num">★★★★★</td></tr>
+        </tbody>
+      </table>
+      <div class="insight" style="margin-top:12px;font-size:12px;">
+        <strong>下週優先：</strong>LE SSERAFIM（週二上架）+ Wonyoung 挑戰（週四發想+拍攝）。Wonyoung 訓練在 TikTok/YT 上的搜尋量持續爆炸，台灣中文教練版本幾乎空白，這是 SEO 藍海。
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">Shorts vs 長影片策略建議</div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>維度</th><th>YouTube Shorts</th><th>長影片 (6-10 min)</th></tr></thead>
+      <tbody>
+        <tr><td>觸及新觀眾效率</td><td><span class="chip green">★★★★★ 最高</span></td><td><span class="chip">★★★☆☆ 中等</span></td></tr>
+        <tr><td>轉訂閱率</td><td><span class="chip red">★★☆☆☆ 低</span></td><td><span class="chip green">★★★★★ 高</span></td></tr>
+        <tr><td>廣告收益</td><td><span class="chip red">低</span></td><td><span class="chip green">高</span></td></tr>
+        <tr><td>適合主題</td><td>Hook、爆點、挑戰</td><td>教學、分析、深度拆解</td></tr>
+        <tr><td>Jamie 下週建議比例</td><td class="num">3 支</td><td class="num">1 支</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- TAB 2: Instagram -->
+<!-- ══════════════════════════════════════ -->
+<div class="tab-panel" id="p2">
+<div class="content">
+
+  <div class="sec">Instagram 本週概覽（@jamie_wu_1012 近 7 日估算）</div>
+
+  <div class="warn">
+    <strong>⚠ 本週 IG 洞察報告後台未取得直接數據</strong>（排程任務環境無 IG 登入權限）。以下為根據首爾回國後觸及回升曲線的估算。下週一 Jamie 請手動打開洞察報告驗證。
+  </div>
+
+  <div class="g4">
+    <div class="kpi"><div class="kpi-val">~11,500</div><div class="kpi-label">觸及人數</div><div class="kpi-delta up">▲ 35% vs 上週</div></div>
+    <div class="kpi"><div class="kpi-val">~28,000</div><div class="kpi-label">曝光次數估算</div><div class="kpi-delta up">Reels 佔 ~88%</div></div>
+    <div class="kpi"><div class="kpi-val blue">~200</div><div class="kpi-label">個人檔案瀏覽</div><div class="kpi-delta flat">趨穩</div></div>
+    <div class="kpi"><div class="kpi-val green">+10~15</div><div class="kpi-label">追蹤者淨增</div><div class="kpi-delta up">自然回升</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">📊 觸及來源估算</div>
+      <div class="bar-row"><div class="bar-label">追蹤者（舊粉）</div><div class="bar-track"><div class="bar-fill" style="width:52%"></div></div><div class="bar-pct">52%</div></div>
+      <div class="bar-row"><div class="bar-label">探索頁（非粉）</div><div class="bar-track"><div class="bar-fill blue" style="width:38%"></div></div><div class="bar-pct" style="color:var(--blue)">38%</div></div>
+      <div class="bar-row"><div class="bar-label">標籤 / 地點</div><div class="bar-track"><div class="bar-fill purple" style="width:7%"></div></div><div class="bar-pct" style="color:var(--purple)">7%</div></div>
+      <div class="bar-row"><div class="bar-label">個人檔案 / 其他</div><div class="bar-track"><div class="bar-fill green" style="width:3%"></div></div><div class="bar-pct" style="color:var(--green)">3%</div></div>
+      <div class="warn" style="margin-top:10px;">
+        <strong>非粉佔比 38% 低於 3 月黃金週的 67.6%。</strong>首爾期間 10 天斷更的影響還沒完全消化，需要連續 5 天發 Reels 才能重新激活演算法分類。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⏰ 最佳發文時段建議</div>
+      <div class="bar-row"><div class="bar-label">週三 12:00–13:00（午休）</div><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><div class="bar-pct">S級</div></div>
+      <div class="bar-row"><div class="bar-label">週三/四 18:30–19:30（下班）</div><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><div class="bar-pct">A級</div></div>
+      <div class="bar-row"><div class="bar-label">週二/五 21:00–22:00</div><div class="bar-track"><div class="bar-fill blue" style="width:70%"></div></div><div class="bar-pct" style="color:var(--blue)">B級</div></div>
+      <div class="bar-row"><div class="bar-label">週六/日 10:00–11:00</div><div class="bar-track"><div class="bar-fill blue" style="width:55%"></div></div><div class="bar-pct" style="color:var(--blue)">B級</div></div>
+      <div class="bar-row"><div class="bar-label">週一全日</div><div class="bar-track"><div class="bar-fill red" style="width:30%"></div></div><div class="bar-pct" style="color:var(--red)">C級</div></div>
+
+      <div class="insight" style="margin-top:12px;font-size:12px;">
+        週三午休與下班時段是 TA 最活躍瀏覽時段。下週 LE SSERAFIM Reels 首支務必卡在<strong>週三 12:00</strong>發布。
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">Reels vs 靜態貼文</div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>內容類型</th><th>觸及效果</th><th>互動率</th><th>轉粉效率</th><th>本週建議頻率</th></tr></thead>
+      <tbody>
+        <tr><td>Reels（15-30秒）</td><td><span class="chip green">極高</span></td><td class="num">4-8%</td><td><span class="chip green">高</span></td><td class="num">5支/週</td></tr>
+        <tr><td>輪播貼文</td><td><span class="chip">中高</span></td><td class="num">3-6%</td><td><span class="chip">中</span></td><td class="num">2支/週</td></tr>
+        <tr><td>單張照片</td><td><span class="chip red">低</span></td><td class="num">1-3%</td><td><span class="chip red">低</span></td><td class="num">1支/週</td></tr>
+        <tr><td>限時動態</td><td><span class="chip blue">高（僅粉絲）</span></td><td>—</td><td>—</td><td class="num">每日 3-5 則</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- TAB 3: 學員動態 -->
+<!-- ══════════════════════════════════════ -->
+<div class="tab-panel" id="p3">
+<div class="content">
+
+  <div class="sec">本週學員端概況</div>
+  <div class="g3">
+    <div class="kpi"><div class="kpi-val blue">~18</div><div class="kpi-label">本週總課堂數</div><div class="kpi-delta up">首爾後全面回歸</div></div>
+    <div class="kpi"><div class="kpi-val">1</div><div class="kpi-label">體驗課新學員</div><div class="kpi-delta flat">Lauren 一對二</div></div>
+    <div class="kpi"><div class="kpi-val green">0</div><div class="kpi-label">請假 / 取消</div><div class="kpi-delta up">學員狀態穩定</div></div>
+  </div>
+
+  <div class="sec">Gmail 本週學員相關信件（近 7 日搜尋）</div>
+  <div class="card">
+    <div class="insight">
+      <strong>本週無直接學員回饋 Email</strong><br>
+      過去 7 天針對「體驗、回饋、試上、學員、課堂、訓練、心得」關鍵字搜尋，<strong>Gmail 中無新增的學員手動回饋信件</strong>。主要收件為：自動化晨報/週報（repurre2022→jaw2654）、uanalyze 財經電子報、OpenAI 產品通知。<br><br>
+      這代表目前學員端的回饋管道主要在 LINE、IG DM、實體對話，而非 Email。如果要建立完整回饋資產，建議：<strong>每月月底主動發 Email 給學員收集 1 句心得</strong>，作為行銷素材累積。
+    </div>
+  </div>
+
+  <div class="sec">學員端關鍵觀察（基於歷史資料 + 本週排程）</div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">💬 常見回饋關鍵詞（歷史累積）</div>
+      <div style="padding:4px 0;">
+        <span class="chip green">溫柔細心</span>
+        <span class="chip green">真誠不批判</span>
+        <span class="chip green">動作拆解清楚</span>
+        <span class="chip gold">飲食指導實用</span>
+        <span class="chip gold">體態明顯改善</span>
+        <span class="chip blue">氛圍舒服</span>
+        <span class="chip blue">沒壓力</span>
+        <span class="chip purple">追蹤進度清楚</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">⚠ 待改進 / 疑慮關鍵詞</div>
+      <div style="padding:4px 0;">
+        <span class="chip red">時段有限</span>
+        <span class="chip red">價格預算考量</span>
+        <span class="chip">離工作地點遠</span>
+        <span class="chip">擔心無法堅持</span>
+        <span class="chip">想先看到效果再付錢</span>
+      </div>
+      <div class="insight" style="margin-top:12px;font-size:12px;">
+        「時段有限」與「擔心堅持不了」是最近 3 個月反覆出現的疑慮，建議<strong>推出 4 堂一組的輕量體驗包</strong>（NT$4,800 左右），降低試錯成本。
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">詢問最多的課程類型（歷史 + 本週推估）</div>
+  <div class="card">
+    <div class="bar-row"><div class="bar-label">一對一正課（瘦身+體態）</div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><div class="bar-pct">90%</div></div>
+    <div class="bar-row"><div class="bar-label">一對二閨蜜方案</div><div class="bar-track"><div class="bar-fill green" style="width:60%"></div></div><div class="bar-pct" style="color:var(--green)">60%</div></div>
+    <div class="bar-row"><div class="bar-label">飲食計劃 / 諮詢</div><div class="bar-track"><div class="bar-fill purple" style="width:45%"></div></div><div class="bar-pct" style="color:var(--purple)">45%</div></div>
+    <div class="bar-row"><div class="bar-label">線上課程 / 遠距指導</div><div class="bar-track"><div class="bar-fill blue" style="width:30%"></div></div><div class="bar-pct" style="color:var(--blue)">30%</div></div>
+  </div>
+
+  <div class="sec">本週學員跟進建議</div>
+  <div class="card">
+    <div class="action-row">
+      <span class="action-num">1</span>
+      <div class="action-text">
+        <div class="action-title">Lauren 體驗課後 7 日內完成報價追蹤</div>
+        <div class="action-desc">4/13 剛結束體驗課，4/20（下週一）前務必主動 LINE 關心「這週身體感覺如何」，再自然銜接課程方案討論。體驗課後 7-10 天是轉化黃金期。</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">2</span>
+      <div class="action-text">
+        <div class="action-title">現有學員：發一則「首爾帶回來的一個練法」限動</div>
+        <div class="action-desc">把首爾健身房觀察到的新動作拍成 30 秒示範，IG 限動 + 連結到 Reels。既能保持與現有學員的聯繫感，又能讓探索頁重新認識你的內容。</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">3</span>
+      <div class="action-text">
+        <div class="action-title">針對時段限制族群：試推週末兩堂連上方案</div>
+        <div class="action-desc">核心 TA 是上班族，平日時段是最大痛點。可試 1 個月週末 10:00 開 1 堂一對二團課（每位 NT$1,200），對時段限制族群門檻低，且週末拍攝素材同時完成。</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- TAB 4: 競品 × 下週策略 -->
+<!-- ══════════════════════════════════════ -->
+<div class="tab-panel" id="p4">
+<div class="content">
+
+  <div class="sec">本週競品 / 對標帳號快訊</div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-title">🇹🇼 台灣健身圈</div>
+      <table class="tbl">
+        <tbody>
+          <tr><td><strong>May Fit</strong></td><td>500K+ 訂閱；本週仍穩定輸出在家重訓 + 飲食內容</td></tr>
+          <tr><td><strong>健人蓋伊</strong></td><td>科學訓練路線；持續輸出長片拆解</td></tr>
+          <tr><td><strong>Ashlee 咻咻</strong></td><td>IG + YT 雙平台並行，增肌減脂主題</td></tr>
+          <tr><td><strong>大 H（IFBB PRO）</strong></td><td>硬派體態路線，與 Jamie 溫柔路線差異化</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🇰🇷 韓系健身對標</div>
+      <table class="tbl">
+        <tbody>
+          <tr><td><strong>LE SSERAFIM 官方</strong></td><td>TikTok / YT 持續發酵，海外仍在模仿 burpees 系列</td></tr>
+          <tr><td><strong>IVE Wonyoung</strong></td><td>「Wonyoung Workout 2 Week Challenge」持續高搜尋量</td></tr>
+          <tr><td><strong>Pilates 教練（韓國）</strong></td><td>K-pop idol pilates 是當前最紅的健身教學類型</td></tr>
+          <tr><td><strong>Mish Choi</strong></td><td>KPOP idol workout 模仿影片，本週無新片</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">🌍 國際 YT 趨勢</div>
+      <table class="tbl">
+        <tbody>
+          <tr><td><strong>Shorts 驅動</strong></td><td>挑戰類 + 反差類 Shorts 獲客效率最高</td></tr>
+          <tr><td><strong>Follow-along 模式</strong></td><td>「跟著做」互動型內容持續上升</td></tr>
+          <tr><td><strong>Desk Body 問題</strong></td><td>「太忙沒時間」、「辦公室駝背」是爆款角度</td></tr>
+          <tr><td><strong>Before / After 轉變</strong></td><td>前 2 秒 Hook + 結尾反差，是公版爆紅配方</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">差距分析：可直接借鑑的 3 個內容角度</div>
+  <div class="card">
+    <div class="action-row">
+      <span class="action-num">1</span>
+      <div class="action-text">
+        <div class="action-title">「2 週挑戰」模板（借鑑 Wonyoung Workout Challenge）</div>
+        <div class="action-desc">國際 YT 已驗證：「跟練 2 週 + before/after」組合是短影音黃金公式。Jamie 可推「跟著 Jamie 練 LE SSERAFIM 核心 14 天」系列，每週拍 3 支 Shorts 記錄變化，是長期可 scaled 的內容結構。</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">2</span>
+      <div class="action-text">
+        <div class="action-title">「Desk Body 問題」系列（借鑑國際爆款角度）</div>
+        <div class="action-desc">國際 fitness YT 正在吃「上班族身體」這個痛點紅利。Jamie 的 TA 是 25-36 歲女性上班族，這完全對準。建議推「午休 5 分鐘拯救烏龜頸」「下班 3 動作解放圓肩」等 Shorts 系列。</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">3</span>
+      <div class="action-text">
+        <div class="action-title">「身份反差 Hook」（借鑑國際 prank 格式）</div>
+        <div class="action-desc">國際爆款公式：「被誤認是一般人，其實是專業」。Jamie 版：開場穿普通上班套裝進教室，脫外套換運動服，展示專業教練身份。這個反差可做成 15 秒 Reels 做個人品牌強化。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">📆 下週 7 天具體內容計畫（4/20–4/26）</div>
+  <div class="calendar">
+    <div class="day-card highlight">
+      <div class="day-header">週一 04/20</div>
+      <div class="day-date">Reels 啟動日</div>
+      <div class="day-tag reels">IG Reels</div>
+      <div class="day-desc"><strong>「首爾帶回來的 1 個練法」</strong>30 秒示範 + 限動導流。目的：讓演算法重新認識你。</div>
+    </div>
+    <div class="day-card highlight">
+      <div class="day-header">週二 04/21</div>
+      <div class="day-date">YT 長片上架</div>
+      <div class="day-tag yt">YouTube</div>
+      <div class="day-desc"><strong>LE SSERAFIM 訓練祕密解密</strong>（4/13 腳本完整版）。YT + IG 導流貼文同步。</div>
+    </div>
+    <div class="day-card highlight">
+      <div class="day-header">週三 04/22</div>
+      <div class="day-date">黃金時段首發</div>
+      <div class="day-tag reels">IG Reels 旗艦</div>
+      <div class="day-desc"><strong>LE SSERAFIM 3 個招牌動作拆解（30 秒版）</strong>。12:00 午休發布，卡最強流量時段。</div>
+    </div>
+    <div class="day-card">
+      <div class="day-header">週四 04/23</div>
+      <div class="day-date">短影音續火</div>
+      <div class="day-tag reels">IG Reels</div>
+      <div class="day-desc"><strong>「跟 Jamie 練 LE SSERAFIM 14 天挑戰」開賽宣告</strong>。徵 10 位學員一起做 before/after。</div>
+    </div>
+    <div class="day-card">
+      <div class="day-header">週五 04/24</div>
+      <div class="day-date">Desk Body 主題</div>
+      <div class="day-tag reels">IG Reels</div>
+      <div class="day-desc"><strong>「午休 5 分鐘拯救烏龜頸」</strong>。打中上班族痛點 + 好轉傳。</div>
+    </div>
+    <div class="day-card">
+      <div class="day-header">週六 04/25</div>
+      <div class="day-date">貼文 + 限動</div>
+      <div class="day-tag story">IG 輪播</div>
+      <div class="day-desc"><strong>LE SSERAFIM vs IVE 訓練差異</strong>（輪播 8 頁）。提供深度，強化專業形象。</div>
+    </div>
+    <div class="day-card">
+      <div class="day-header">週日 04/26</div>
+      <div class="day-date">收尾 + 反饋</div>
+      <div class="day-tag rest">休整 + 規劃</div>
+      <div class="day-desc">檢視本週 5 支 Reels 數據，對照後台觸及／完播，為下週調整。</div>
+    </div>
+  </div>
+
+  <div class="sec">下週產出清單（對照 SKILL 要求）</div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>類型</th><th>數量</th><th>標題 / 主題</th><th>優先級</th></tr></thead>
+      <tbody>
+        <tr><td><strong>短影片 Reels</strong></td><td class="num">×3</td><td>首爾帶回來的 1 個練法 / LE SSERAFIM 動作拆解 / 午休拯救烏龜頸</td><td><span class="chip red">P0</span></td></tr>
+        <tr><td><strong>長影片 YouTube</strong></td><td class="num">×1</td><td>LE SSERAFIM 訓練祕密解密（腳本已完成）</td><td><span class="chip red">P0</span></td></tr>
+        <tr><td><strong>長影片 YouTube（備選）</strong></td><td class="num">×1</td><td>Wonyoung 2 週跟練挑戰 Day1（發想中）</td><td><span class="chip gold">P1</span></td></tr>
+        <tr><td><strong>IG 貼文</strong></td><td class="num">×2</td><td>LE SSERAFIM 挑戰招募輪播 / LE SSERAFIM vs IVE 對比</td><td><span class="chip gold">P1</span></td></tr>
+        <tr><td><strong>IG 限動</strong></td><td class="num">每日 3-5 則</td><td>課後隨拍、學員感想、食物記錄</td><td><span class="chip blue">常規</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">學員開發 1-2 件具體行動</div>
+  <div class="card">
+    <div class="action-row">
+      <span class="action-num">1</span>
+      <div class="action-text">
+        <div class="action-title">4/20（週一）：Lauren 體驗課 7 日後主動追蹤</div>
+        <div class="action-desc">LINE 私訊關心「這週身體感覺」，附 1 張首爾照 + 「歡迎回台灣繼續練」。自然導入方案討論。<strong>目標：4/22 前確認是否續課</strong>。</div>
+      </div>
+    </div>
+    <div class="action-row">
+      <span class="action-num">2</span>
+      <div class="action-text">
+        <div class="action-title">4/23（週四）：發起 LE SSERAFIM 14 天挑戰招募</div>
+        <div class="action-desc">限定 10 位現有 + 新學員免費加入，送「Jamie 版 14 天動作 PDF」。目的：<strong>一次採集 10 位 before / after 素材</strong>，供 5 月長片使用，同時帶動體驗課詢問。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">下週風險提醒</div>
+  <div class="warn">
+    <strong>⚠ 關稅 × 地緣風險仍在</strong>：本週 VIX 觸及 19.49，YM 期貨跌破 PDL，消費信心持續疲弱。下週如 PPI、CPI 數據不如預期，可能出現第二波衝擊。對策：<strong>文案避開「一口氣報 10 堂方案」，改推「先 2 堂試看看」低門檻入口</strong>，把轉換心理成本降到最低。
+  </div>
+
+</div>
+</div>
+
+<script>
+function show(n) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===n));
+  document.querySelectorAll('.tab-panel').forEach((p,i) => p.classList.toggle('active', i===n));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · Pure Sans Minimal · v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200;300;400;500;700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#1c1c1c;padding:48px 24px;min-height:100vh}
+
+.page-hd{max-width:1400px;margin:0 auto 56px;color:#aaa;text-align:center}
+.page-hd h1{font-family:'Inter',sans-serif;font-size:13px;font-weight:300;margin-bottom:8px;letter-spacing:8px;text-transform:uppercase;color:#ccc}
+.page-hd p{font-family:'Inter',sans-serif;font-size:10px;color:#666;letter-spacing:5px;font-weight:300;text-transform:uppercase}
+
+.row{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+
+/* ============================================================ */
+/* 4:5 / 1080×1350 */
+/* ============================================================ */
+.card{
+  aspect-ratio: 4 / 5;
+  background:#f4f0e8;
+  position:relative;
+  overflow:hidden;
+  color:#1c1c1c;
+  display:flex;
+  font-family:'Noto Sans TC',sans-serif;
+  box-shadow:0 12px 48px rgba(0,0,0,0.18);
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:14% 11% 11% 11%;
+  display:flex;flex-direction:column;
+  z-index:2;
+}
+
+/* 數字編號 — 右上極小 */
+.num{
+  position:absolute;
+  top:10%;right:11%;
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:300;
+  color:#9c9180;
+  letter-spacing:0.15em;
+}
+
+/* 中文 tag — 上方副標 */
+.tag{
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:0.3em;
+  color:#9c9180;
+  margin-bottom:48px;
+}
+
+/* 主標題 — 大留白、light weight、行高大 */
+.title{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px, 3.4vw, 38px);
+  line-height:1.65;
+  letter-spacing:0.02em;
+  color:#1c1c1c;
+}
+.title strong{font-weight:500;}
+
+/* 內文 — 更細 */
+.body{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:300;
+  font-size:clamp(13px, 1.4vw, 15px);
+  line-height:2.2;
+  letter-spacing:0.06em;
+  color:#5a5147;
+  margin-top:auto;
+}
+
+/* 對比表（取代 glass card） */
+.compare{margin-top:auto;margin-bottom:0}
+.compare .pair{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:24px;
+  padding:14px 0;
+  border-top:0.5px solid rgba(28,28,28,0.08);
+  align-items:baseline;
+}
+.compare .pair:last-child{border-bottom:0.5px solid rgba(28,28,28,0.08);}
+.compare .l{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:400;
+  font-size:13px;
+  color:#9c9180;
+  letter-spacing:0.1em;
+  white-space:nowrap;
+}
+.compare .r{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:400;
+  font-size:clamp(15px,1.6vw,17px);
+  color:#1c1c1c;
+  text-align:right;
+  letter-spacing:0.04em;
+}
+.compare .r em{font-style:normal;font-weight:500;}
+
+/* Footer — 極簡兩行底部 */
+.footer-block{
+  position:absolute;
+  bottom:9%;left:11%;right:11%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  font-family:'Inter',sans-serif;
+  font-size:9.5px;
+  letter-spacing:0.2em;
+  color:#9c9180;
+  font-weight:300;
+}
+.footer-block .l-text{
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:11px;
+  font-weight:300;
+  letter-spacing:0.15em;
+  color:#9c9180;
+}
+
+/* COVER variant */
+.cover .inner{justify-content:flex-end;padding-bottom:18%}
+.cover .htag{
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:0.3em;
+  color:#9c9180;
+  margin-bottom:32px;
+}
+.cover .htitle{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:400;
+  font-size:clamp(34px, 4.2vw, 46px);
+  line-height:1.55;
+  letter-spacing:0.02em;
+  color:#1c1c1c;
+}
+.cover .htitle strong{font-weight:600;}
+.cover .hsub{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:300;
+  font-size:14px;
+  line-height:2;
+  color:#7a6f63;
+  margin-top:24px;
+  letter-spacing:0.06em;
+}
+
+/* hairline */
+.hr{height:0.5px;background:rgba(28,28,28,0.1);width:32px;margin:24px 0;}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1>Pure Sans Minimal · v3</h1>
+  <p>純無襯線 · 米色底 · 大留白 · 零裝飾 · 韓系 ／ Aesop hybrid</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER -->
+<div class="card cover">
+  <span class="num">01 / 06</span>
+  <div class="inner">
+    <p class="htag">系統一　·　訓練品質</p>
+    <p class="htitle">12 年了。<br>為什麼很多人<br><strong>練了好幾年</strong><br>身體還是沒變？</p>
+    <p class="hsub">repurre studio · 台北大安</p>
+  </div>
+</div>
+
+<!-- S2 / LEVERAGE -->
+<div class="card">
+  <span class="num">02 / 06</span>
+  <div class="inner">
+    <p class="tag">原因　·　槓桿</p>
+    <p class="title">不是你<strong>沒去</strong>，<br>是「去了」沒「練」。</p>
+    <p class="body">
+      訓練的回報不是時間的線性函數。<br>
+      它對「強度密度」極度敏感。<br><br>
+      時間花了，槓桿沒用對，<br>
+      身體不會改變。
+    </p>
+  </div>
+  <div class="footer-block">
+    <span class="l-text">repurre　·　系統一</span>
+  </div>
+</div>
+
+<!-- S3 / METABOLIC BANK -->
+<div class="card">
+  <span class="num">03 / 06</span>
+  <div class="inner">
+    <p class="tag">比喻　·　代謝銀行</p>
+    <p class="title">肌肉，<br>是你的<strong>代謝銀行</strong>。</p>
+    <div class="compare">
+      <div class="pair">
+        <span class="l">沒到力竭</span>
+        <span class="r"><em>＝ 不存款</em></span>
+      </div>
+      <div class="pair">
+        <span class="l">力竭一組</span>
+        <span class="r"><em>＝ 一筆本金</em></span>
+      </div>
+      <div class="pair">
+        <span class="l">每週兩堂</span>
+        <span class="r"><em>＝ 複利</em></span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-block">
+    <span class="l-text">repurre　·　系統一</span>
+  </div>
+</div>
+
+<!-- S4 / CALIBRATION -->
+<div class="card">
+  <span class="num">04 / 06</span>
+  <div class="inner">
+    <p class="tag">校準　·　力竭強度</p>
+    <p class="title">12 下還能聊天，<br>系統還沒啟動。<br><br>6 下臉紅脖子粗，<br><strong>訓練才開始</strong>。</p>
+    <p class="body">
+      你的身體不會回應「有去」。<br>
+      它只回應「強度資源」。
+    </p>
+  </div>
+  <div class="footer-block">
+    <span class="l-text">repurre　·　系統一</span>
+  </div>
+</div>
+
+<!-- S5 / NO WILLPOWER -->
+<div class="card">
+  <span class="num">05 / 06</span>
+  <div class="inner">
+    <p class="tag">原則　·　不靠意志力</p>
+    <p class="title">你不需要<strong>意志力</strong>。<br><br>你需要的，<br>是一個能誠實面對自己的<br><strong>系統</strong>。</p>
+    <p class="body">
+      意志力會耗盡，系統不會。<br>
+      把判斷交給結構，<br>
+      把執行留給身體。
+    </p>
+  </div>
+  <div class="footer-block">
+    <span class="l-text">repurre　·　系統一</span>
+  </div>
+</div>
+
+<!-- S6 / SIGN-OFF -->
+<div class="card">
+  <span class="num">06 / 06</span>
+  <div class="inner">
+    <p class="tag">收尾</p>
+    <p class="title"><strong>訓練品質</strong><br>不是強度大小。<br><br>是你<strong>誠實程度</strong><br>的測量。</p>
+    <div class="hr"></div>
+    <p class="body" style="margin-top:0">
+      repurre studio<br>
+      30-40 歲女性體態重塑系統<br>
+      台北大安 · 12 年私教
+    </p>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

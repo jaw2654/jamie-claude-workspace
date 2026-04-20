@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>輪播貼文 01 - 為什麼我 12 年從不給學生 30 天計畫</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#e8e4de;padding:40px 20px;font-family:'Noto Sans TC',sans-serif;min-height:100vh}
+.wrap{max-width:1200px;margin:0 auto}
+h1.page-title{font-family:'Noto Serif TC',serif;text-align:center;font-size:28px;color:#1a1a1a;margin-bottom:8px;font-weight:500;letter-spacing:0.5px}
+.page-sub{text-align:center;color:#555;font-size:13px;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:24px}
+.slide{
+  aspect-ratio:1080/1350;background:#faf7f2;position:relative;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:60px 50px;text-align:center;color:#1a1a1a;
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
+  font-family:'Noto Serif TC',serif;overflow:hidden;
+}
+.slide::before{content:'';position:absolute;top:28px;left:50%;transform:translateX(-50%);width:32px;height:1px;background:#c4b896}
+.slide::after{content:'';position:absolute;bottom:28px;left:50%;transform:translateX(-50%);width:32px;height:1px;background:#c4b896}
+.num{position:absolute;top:32px;right:36px;font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:2px;color:#a8a094;font-weight:300}
+.brand{position:absolute;bottom:32px;left:36px;font-family:'Noto Serif TC',serif;font-size:13px;color:#6b6259;letter-spacing:3px;font-weight:500}
+
+.s-title{font-size:clamp(26px,4.2vw,44px);line-height:1.35;font-weight:500;letter-spacing:-0.5px}
+.s-title strong{background:linear-gradient(transparent 60%,#ede7d9 60%);padding:0 4px}
+.s-body{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(14px,1.8vw,18px);line-height:2;color:#3a3a3a;margin-top:24px;letter-spacing:0.5px}
+.s-tag{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:4px;color:#a8a094;font-weight:400;margin-bottom:24px;text-transform:uppercase}
+.s-quote{font-size:clamp(22px,3.5vw,36px);line-height:1.6;font-weight:400;font-style:normal}
+.s-big-num{font-size:clamp(60px,10vw,120px);font-weight:500;line-height:1;letter-spacing:-4px;color:#1a1a1a}
+.s-case{display:flex;flex-direction:column;gap:24px;align-items:center}
+.case-row{display:flex;justify-content:center;gap:32px;align-items:baseline;font-family:'Noto Sans TC',sans-serif}
+.case-num{font-family:'Noto Serif TC',serif;font-size:clamp(32px,5vw,54px);font-weight:500}
+.case-label{font-size:12px;color:#6b6259;letter-spacing:2px;margin-top:6px}
+.arrow{font-size:24px;color:#c4b896;font-weight:300}
+.cover-tag{font-family:'Noto Sans TC',sans-serif;font-size:12px;letter-spacing:6px;color:#8a7e6e;font-weight:400;margin-bottom:32px;text-transform:uppercase}
+.s-cta-body{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:15px;line-height:1.9;color:#3a3a3a;letter-spacing:0.5px}
+.s-cta-body strong{font-weight:500;color:#1a1a1a}
+.divider-sm{width:20px;height:1px;background:#c4b896;margin:28px auto}
+.label-line{display:flex;align-items:center;gap:16px;margin-bottom:12px;justify-content:center;width:100%}
+.label-line::before,.label-line::after{content:'';flex:1;max-width:40px;height:1px;background:#c4b896}
+.label-inline{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:3px;color:#8a7e6e;text-transform:uppercase}
+
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1 class="page-title">為什麼我 12 年從不給學生 30 天計畫</h1>
+<p class="page-sub">輪播貼文草稿 · 9 張 · 1080×1350 · repurre</p>
+
+<div class="grid">
+
+<!-- Slide 1 Cover -->
+<div class="slide">
+  <div class="num">01 / 09</div>
+  <div class="cover-tag">repurre · 12 年教練手記</div>
+  <div class="s-title">為什麼我 12 年<br>從不給學生<br><strong>「30 天計畫」</strong></div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide">
+  <div class="num">02 / 09</div>
+  <div class="s-tag">妳一定看過</div>
+  <div class="s-title">30 天減脂<br>14 天馬甲線<br>21 天改變體態</div>
+  <div class="s-body">每個月都有新標題<br>每一個都讓妳心動<br>每一個妳都試過</div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide">
+  <div class="num">03 / 09</div>
+  <div class="s-tag">問題在哪</div>
+  <div class="s-title">這些都是<br><strong>「倒數計時」</strong><br>的邏輯</div>
+  <div class="s-body">倒數完了呢？<br>妳又回到起點<br>下次再找下一個 30 天</div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide">
+  <div class="num">04 / 09</div>
+  <div class="s-tag">身體的真相</div>
+  <div class="s-quote">身體不是專案<br>不會因為妳<br>專案結束<br>就停止需要照顧</div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 5 -->
+<div class="slide">
+  <div class="num">05 / 09</div>
+  <div class="s-tag">我的原則</div>
+  <div class="s-title"><strong>健康</strong><br>是以<strong>年</strong>為<br>單位的事</div>
+  <div class="divider-sm"></div>
+  <div class="s-body">不是 30 天<br>不是 90 天<br>是 5 年、10 年</div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 6 -->
+<div class="slide">
+  <div class="num">06 / 09</div>
+  <div class="s-tag">我只做一件事</div>
+  <div class="s-title">不追求速成<br>只<strong>練對的動作</strong></div>
+  <div class="s-body">因為對的動作<br>會跟妳走一輩子<br>錯的動作會讓妳受傷一輩子</div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 7 -->
+<div class="slide">
+  <div class="num">07 / 09</div>
+  <div class="s-tag">9 年的證明</div>
+  <div class="s-case">
+    <div class="case-row">
+      <div><div class="case-num">20</div><div class="case-label">歲</div></div>
+      <div class="arrow">→</div>
+      <div><div class="case-num">29</div><div class="case-label">歲</div></div>
+    </div>
+    <div class="case-row">
+      <div><div class="case-num">113</div><div class="case-label">KG</div></div>
+      <div class="arrow">→</div>
+      <div><div class="case-num">83</div><div class="case-label">KG</div></div>
+    </div>
+    <div class="case-row">
+      <div><div class="case-num">34<span style="font-size:0.5em">%</span></div><div class="case-label">體脂</div></div>
+      <div class="arrow">→</div>
+      <div><div class="case-num">13<span style="font-size:0.5em">%</span></div><div class="case-label">體脂</div></div>
+    </div>
+  </div>
+  <div class="s-body" style="margin-top:32px">而他<br>現在<strong style="color:#1a1a1a;font-weight:500">還在練</strong></div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 8 -->
+<div class="slide">
+  <div class="num">08 / 09</div>
+  <div class="s-tag">如果妳也想這樣</div>
+  <div class="s-title">不速成<br>不 diet<br><strong>陪妳走</strong></div>
+  <div class="divider-sm"></div>
+  <div class="s-body">健康不是目的地<br>是妳選擇<br>如何活的一種方式</div>
+  <div class="brand">REPURRE</div>
+</div>
+
+<!-- Slide 9 CTA -->
+<div class="slide">
+  <div class="num">09 / 09</div>
+  <div class="cover-tag">想深聊</div>
+  <div class="s-title" style="font-size:clamp(22px,3.2vw,32px);font-weight:400;line-height:1.6">60 分鐘<br>repurre<br>體態深度評估</div>
+  <div class="divider-sm"></div>
+  <div class="s-cta-body">
+    15 分 體態評估<br>
+    30 分 客製訓練示範<br>
+    15 分 執行計畫<br>
+    <br>
+    <strong>NT$ 2,200</strong><br>
+    <br>
+    <span style="font-size:12px;color:#8a7e6e;letter-spacing:2px">預約連結在 bio</span>
+  </div>
+  <div class="brand">REPURRE</div>
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:48px;color:#6b6259;font-size:12px;font-family:'Noto Sans TC',sans-serif;line-height:1.8">
+  · 每張可右鍵儲存為圖片後上傳 IG 輪播 ·<br>
+  · 建議用 Safari 開啟、Cmd+Shift+4 截圖每張 ·<br>
+  · 或用 Playwright 自動截圖成 9 張 PNG ·
+</div>
+
+</div>
+</body>
+</html>

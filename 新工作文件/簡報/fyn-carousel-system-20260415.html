@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Fyn 60 秒輪播系統 · repurre 版</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#0a0a0a;color:#f0ebe2;font-family:'Noto Sans TC',system-ui,sans-serif}
+:root{
+  --bg:#0a0a0a;
+  --text:#f0ebe2;
+  --dim:rgba(240,235,226,0.45);
+  --accent:#c4b896;
+  --accent-dim:rgba(196,184,150,0.15);
+  --card:#141414;
+  --line:rgba(196,184,150,0.2);
+}
+
+.slide{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  opacity:0;pointer-events:none;transition:opacity 0.5s ease;
+  padding:72px 96px;text-align:center;
+}
+.slide.on{opacity:1;pointer-events:auto}
+
+h1{font-family:'Noto Serif TC',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:500;line-height:1.15;letter-spacing:-2px}
+h2{font-family:'Noto Serif TC',serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:500;line-height:1.25;letter-spacing:-1px}
+h3{font-family:'Noto Serif TC',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:500;line-height:1.3}
+.sub{font-size:clamp(1.05rem,1.6vw,1.35rem);color:var(--dim);margin-top:24px;font-weight:300;max-width:780px;line-height:1.7;letter-spacing:0.5px}
+
+.hl{background:var(--accent-dim);padding:4px 14px;border-radius:6px;display:inline;box-decoration-break:clone;-webkit-box-decoration-break:clone;white-space:nowrap;color:var(--accent)}
+.dim{color:var(--dim)}
+
+.tag{font-size:11px;letter-spacing:6px;color:var(--accent);margin-bottom:40px;text-transform:uppercase;font-weight:400}
+.divider{width:40px;height:1px;background:var(--accent);margin:32px auto}
+
+.cards{display:flex;gap:24px;margin-top:48px;flex-wrap:wrap;justify-content:center;max-width:1200px}
+.card{flex:1;min-width:260px;max-width:320px;padding:32px 28px;border:1px solid var(--line);border-radius:2px;background:var(--card);text-align:left}
+.card .card-tag{font-size:10px;letter-spacing:4px;color:var(--accent);margin-bottom:16px;text-transform:uppercase}
+.card h3{font-size:1.5rem;margin-bottom:14px}
+.card p{color:var(--dim);font-size:0.95rem;line-height:1.75;font-weight:300}
+
+.list-elegant{list-style:none;margin-top:36px;text-align:left;max-width:760px;width:100%}
+.list-elegant li{font-size:clamp(1rem,1.5vw,1.2rem);padding:18px 0;border-bottom:1px solid var(--line);color:var(--dim);font-weight:300;line-height:1.7;display:flex;gap:20px}
+.list-elegant li::before{content:'—';color:var(--accent);flex-shrink:0}
+.list-elegant li strong{color:var(--text);font-weight:500}
+
+.table-e{width:100%;max-width:900px;margin-top:40px;border-collapse:collapse}
+.table-e th,.table-e td{padding:18px 20px;text-align:left;border-bottom:1px solid var(--line);font-weight:300}
+.table-e th{font-family:'Noto Serif TC',serif;font-weight:500;color:var(--accent);font-size:0.95rem;letter-spacing:1px}
+.table-e td{color:var(--dim);font-size:0.95rem;line-height:1.6}
+.table-e td strong{color:var(--text);font-weight:500}
+
+.codebox{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:36px 40px;margin-top:32px;text-align:left;max-width:860px;width:100%;font-size:0.92rem;line-height:1.9;color:var(--dim);font-weight:300;max-height:60vh;overflow-y:auto}
+.codebox strong{color:var(--accent);font-weight:500;font-family:'Noto Serif TC',serif}
+.codebox .h{color:var(--text);font-family:'Noto Serif TC',serif;font-weight:500;display:block;margin-top:20px;margin-bottom:6px;font-size:1rem}
+.codebox .h:first-child{margin-top:0}
+
+.quote{font-family:'Noto Serif TC',serif;font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:400;line-height:1.6;color:var(--text);max-width:820px;font-style:normal}
+.quote::before{content:'「';color:var(--accent);margin-right:4px}
+.quote::after{content:'」';color:var(--accent);margin-left:4px}
+
+.bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:99;transition:width 0.4s;opacity:0.6}
+.cnt{position:fixed;bottom:20px;right:28px;font-size:10px;color:var(--dim);z-index:99;letter-spacing:3px;font-family:'Noto Sans TC',sans-serif}
+.brand-mark{position:fixed;bottom:20px;left:28px;font-family:'Noto Serif TC',serif;font-size:11px;color:var(--accent);z-index:99;letter-spacing:4px;font-weight:500;opacity:0.6}
+
+@media(max-width:768px){
+  .slide{padding:40px 32px}
+  .cards{flex-direction:column;align-items:center}
+  .codebox{font-size:0.82rem;padding:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar"></div>
+<div class="cnt" id="cnt"></div>
+<div class="brand-mark">REPURRE</div>
+
+<!-- 1 封面 -->
+<div class="slide on">
+  <div class="tag">Internal Briefing · 2026-04-15</div>
+  <h1>Fyn 60 秒<br>輪播系統</h1>
+  <div class="divider"></div>
+  <p class="sub">把 Fyn 的 IG 產文系統 <span class="hl">翻譯成 repurre</span> 的聲音</p>
+</div>
+
+<!-- 2 痛點 -->
+<div class="slide">
+  <div class="tag">Context</div>
+  <h2>你現在<br>每次發文都在<br><span class="hl">重新開始</span></h2>
+  <p class="sub">沒有永久品牌記憶、沒有格式模板、沒有節奏。<br>每一篇都靠靈感，所以產量斷斷續續。</p>
+</div>
+
+<!-- 3 解法 -->
+<div class="slide">
+  <div class="tag">The Method</div>
+  <h2>Claude Project<br>=<br><span class="hl">永久品牌記憶庫</span></h2>
+  <p class="sub">一次把品牌規範、TA、聲音、鐵律寫好<br>之後每次產文 Claude 都記得<br>60 秒產出符合你品牌的輪播</p>
+</div>
+
+<!-- 4 三格式總覽 -->
+<div class="slide">
+  <div class="tag">Three Formats</div>
+  <h2>三種輪播<br>三種目的</h2>
+  <div class="cards">
+    <div class="card"><div class="card-tag">Format 01</div><h3>教學型</h3><p>漲粉、建立權威<br>觸及新受眾<br>被搜尋到的主題</p></div>
+    <div class="card"><div class="card-tag">Format 02</div><h3>共鳴故事型</h3><p>提升互動、情感連結<br>讓既有受眾<br>更深入認識你</p></div>
+    <div class="card"><div class="card-tag">Format 03</div><h3>轉換型</h3><p>直接推動行動<br>限時優惠期間<br>需要既有信任基礎</p></div>
+  </div>
+</div>
+
+<!-- 5 教學型 hook 公式 -->
+<div class="slide">
+  <div class="tag">Format 01 · 教學型</div>
+  <h2>5 種<br><span class="hl">封面鉤子公式</span></h2>
+  <table class="table-e">
+    <tr><th>公式</th><th>repurre 範例</th></tr>
+    <tr><td><strong>數字 + 結果</strong></td><td>32 歲後最該練的 3 塊肌</td></tr>
+    <tr><td><strong>時間對比</strong></td><td>從 30 天倒數 到 5 年陪跑</td></tr>
+    <tr><td><strong>反直覺</strong></td><td>為什麼我 12 年從不給 30 天計畫</td></tr>
+    <tr><td><strong>問句挑戰</strong></td><td>你練這麼久為什麼還是沒有變化</td></tr>
+    <tr><td><strong>資格限定</strong></td><td>只有想把運動當一輩子的妳該看</td></tr>
+  </table>
+</div>
+
+<!-- 6 共鳴故事型 hook -->
+<div class="slide">
+  <div class="tag">Format 02 · 共鳴故事型</div>
+  <h2>5 種<br><span class="hl">封面鉤子公式</span></h2>
+  <table class="table-e">
+    <tr><th>公式</th><th>repurre 範例</th></tr>
+    <tr><td><strong>場景 + 意外</strong></td><td>陪學員走過 9 年 她從 113 kg 到現在還在練</td></tr>
+    <tr><td><strong>我以為 vs 原來</strong></td><td>我以為是減脂 原來是情緒管理</td></tr>
+    <tr><td><strong>時間戳 + 場景</strong></td><td>那天甲亢讓我明白 健康是工作底線</td></tr>
+    <tr><td><strong>身份轉換</strong></td><td>從跆拳道國手 到陪人走一輩子的教練</td></tr>
+    <tr><td><strong>坦白承認</strong></td><td>我不愛健身 但我每天做</td></tr>
+  </table>
+</div>
+
+<!-- 7 轉換型 hook -->
+<div class="slide">
+  <div class="tag">Format 03 · 轉換型</div>
+  <h2>5 種<br><span class="hl">封面鉤子公式</span></h2>
+  <table class="table-e">
+    <tr><th>公式</th><th>repurre 範例</th></tr>
+    <tr><td><strong>成果引誘</strong></td><td>她跟了我 9 年 這是她現在的生活</td></tr>
+    <tr><td><strong>痛點直擊</strong></td><td>妳的身體撐得起精品但撐不起時間</td></tr>
+    <tr><td><strong>對比結果</strong></td><td>之前每天焦慮體重 現在每週只練對的動作</td></tr>
+    <tr><td><strong>稀缺</strong></td><td>4 月只收 3 位新學員</td></tr>
+    <tr><td><strong>社群認同</strong></td><td>已經有 10 位女性跟我走過 5 年以上</td></tr>
+  </table>
+</div>
+
+<!-- 8 一週節奏 -->
+<div class="slide">
+  <div class="tag">Weekly Cadence</div>
+  <h2>一週三篇<br>穩定節奏</h2>
+  <table class="table-e">
+    <tr><th>星期</th><th>格式</th><th>目的</th></tr>
+    <tr><td><strong>週一</strong></td><td>教學型</td><td>觸及新受眾</td></tr>
+    <tr><td><strong>週三</strong></td><td>共鳴故事型</td><td>深化關係</td></tr>
+    <tr><td><strong>週五</strong></td><td>轉換型 or 教學型</td><td>招募期 or 持續建立信任</td></tr>
+  </table>
+  <p class="sub" style="margin-top:32px">不硬排、不斷更<br>8 堂 VIP 課優先 永遠</p>
+</div>
+
+<!-- 9 Claude Project Instructions 封面 -->
+<div class="slide">
+  <div class="tag">The Asset</div>
+  <h2>你的<br><span class="hl">Claude Project<br>Instructions</span></h2>
+  <p class="sub">貼到 claude.ai → New Project → Project Instructions<br>以後每次產文都直接用</p>
+</div>
+
+<!-- 10 CI 內容 - 品牌身份 -->
+<div class="slide">
+  <div class="tag">Project Instructions · 01/04</div>
+  <h3>品牌身份</h3>
+  <div class="codebox">
+    <span class="h">品牌名</span>
+    repurre（re + pure + re = 重複 × 純粹 × 重新出發）
+
+    <span class="h">創辦人</span>
+    Jamie 巫采縈 · 12 年跆拳道黑帶三段 · 12 年健身教練
+    甲亢親身經驗 · 反網紅派 · 美股交易員（不公開）
+
+    <span class="h">Slogan</span>
+    <strong>好好照顧自己，是以年為單位的事</strong>
+    不追求速成 只練對的動作
+
+    <span class="h">護城河</span>
+    其他教練看動作；我看學生的情緒與心態。
+    情緒 + 心態決定訓練課表怎麼調。
+  </div>
+</div>
+
+<!-- 11 CI - TA + 語氣 -->
+<div class="slide">
+  <div class="tag">Project Instructions · 02/04</div>
+  <h3>TA + 語氣</h3>
+  <div class="codebox">
+    <span class="h">理想 TA</span>
+    32-43 歲女性 · 老闆/主管/自由工作者 · 台北
+    買精品、常出國、會打扮、養寵物
+    <strong>篩選器：運動這件事在人生裡是重要的</strong>
+
+    <span class="h">排除</span>
+    被「折扣 / 速成 / 瘦 / 14 天 / 21 天」吸引的人
+    沒急迫性卻喊想改變的人
+
+    <span class="h">語氣規則</span>
+    短句優先（每句 ≤ 20 字）· 用「你」不用「大家」
+    用「陪 / 走 / 長 / 練」不用「瘦 / 快 / 爆 / 速」
+    承認困難 > 激勵口號（「我不愛但做」比「一起加油」更真）
+    講學員故事 > 講數字
+    <strong>禁止攻擊其他教練</strong>
+  </div>
+</div>
+
+<!-- 12 CI - 素材庫 -->
+<div class="slide">
+  <div class="tag">Project Instructions · 03/04</div>
+  <h3>素材庫</h3>
+  <div class="codebox">
+    <span class="h">最強見證</span>
+    9 年學員：20→29 歲 · 113→83 kg · 體脂 34%→13%
+    現在每天跑、健身、出國仍堅持。
+
+    <span class="h">個人故事素材</span>
+    · 12 年跆拳道（全國前三 · 世錦國手選拔）
+    · 18 歲斷生活費 · 3 年吃泡麵 · 每天 50 元
+    · 考警專失敗 被迫當教練
+    · 甲狀腺亢進 · 學會「健康是工作底線」
+
+    <span class="h">教學最常見三問題</span>
+    骨盆前後傾 · 腹直肌分離 · 圓肩 + 頸前移
+
+    <span class="h">工作室感官</span>
+    香香的 · 明亮 · 乾淨 · 溫暖 · 像家
+  </div>
+</div>
+
+<!-- 13 CI - 產品 + 紀律 -->
+<div class="slide">
+  <div class="tag">Project Instructions · 04/04</div>
+  <h3>產品 + 紀律</h3>
+  <div class="codebox">
+    <span class="h">產品</span>
+    · 60 分體態深度評估 $2,200（入口）
+    · 1v1 10 堂 $24,000（$2,400/堂）
+    · 1v1 20 堂 $44,000（$2,200/堂）
+    · 1v2 10 堂 $30,000 / 20 堂 $56,000
+
+    <span class="h">鐵律（不可違反）</span>
+    禁止 折扣活動（留存 0%）
+    禁止 追休眠 VIP
+    禁止 追 0 轉換諮詢名單
+    禁止 攻擊其他教練
+    禁止 對外出現「減脂 / 21 天 / 速成 / 瘦」字眼
+
+    <span class="h">視覺</span>
+    Quiet luxury · 穿搭氣質空間感 不露肉
+    米白 #faf7f2 + 黑 + 米色 #ede7d9 + Noto Serif TC
+    工作室質感 > 教練身材
+  </div>
+</div>
+
+<!-- 14 第一篇題目 -->
+<div class="slide">
+  <div class="tag">First Post</div>
+  <h2>建議第一篇<br>教學型輪播</h2>
+  <p class="quote" style="margin-top:36px">為什麼我 12 年 從不給學生 30 天計畫</p>
+  <p class="sub">反直覺 hook · 直接站出立場 · 自然排除錯的 TA<br>結構：痛點 → 反思 → 我的原則 → 9 年學員證明 → CTA<br>已產出 <span class="hl">carousel-post-01-20260415.html</span></p>
+</div>
+
+<!-- 15 今天行動 -->
+<div class="slide">
+  <div class="tag">Action · Today</div>
+  <h2>今天<br>三件事</h2>
+  <ul class="list-elegant">
+    <li><strong>複製 Project Instructions</strong>（第 10-13 張）貼到 claude.ai 建新 Project「repurre 輪播系統」</li>
+    <li><strong>審稿已產出的第一篇</strong>：carousel-post-01 · 改字或放行</li>
+    <li><strong>截圖 9 張 PNG</strong> 或用 Playwright 自動截圖 · 週一發</li>
+  </ul>
+</div>
+
+<!-- 16 結尾 -->
+<div class="slide">
+  <div class="tag">Closing</div>
+  <h1 style="font-size:clamp(2.4rem,5vw,4.2rem)">健康是以年<br>為單位的</h1>
+  <div class="divider"></div>
+  <p class="sub">這個系統也是。<br>不是一週爆款、是 5 年自動化。</p>
+</div>
+
+<script>
+(function(){
+  var S=document.querySelectorAll('.slide'),bar=document.getElementById('bar'),cnt=document.getElementById('cnt'),c=0;
+  function show(i){if(i<0||i>=S.length)return;S[c].classList.remove('on');c=i;S[c].classList.add('on');bar.style.width=((c+1)/S.length*100)+'%';cnt.textContent=(c+1)+' / '+S.length}
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown',' '].indexOf(e.key)>-1){e.preventDefault();show(c+1)}
+    if(['ArrowLeft','ArrowUp'].indexOf(e.key)>-1){e.preventDefault();show(c-1)}
+    if(e.key==='Escape'){show(0)}
+    if(e.key==='End'){show(S.length-1)}
+    if(e.key==='Home'){show(0)}
+  });
+  document.body.addEventListener('click',function(e){e.clientX>innerWidth/2?show(c+1):show(c-1)});
+  var tx=0;
+  document.body.addEventListener('touchstart',function(e){tx=e.touches[0].clientX});
+  document.body.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){d<0?show(c+1):show(c-1)}});
+  cnt.textContent='1 / '+S.length;
+  bar.style.width=(1/S.length*100)+'%';
+})();
+</script>
+
+</body>
+</html>

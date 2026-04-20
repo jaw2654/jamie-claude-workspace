@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · 波米吃飼料 我吃地瓜 · v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Noto Sans TC',sans-serif}
+body{background:#2a2a2a;padding:48px 24px;min-height:100vh}
+.page-hd{max-width:1200px;margin:0 auto 48px;color:#d0d0d0;text-align:center;font-family:'Noto Serif TC',serif}
+.page-hd h1{font-size:24px;font-weight:500;margin-bottom:6px;letter-spacing:1px}
+.page-hd p{font-size:12px;color:#808080;letter-spacing:3px;font-family:'Noto Sans TC',sans-serif;font-weight:300}
+.grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:32px}
+
+.card{aspect-ratio:1080/1350;background:#faf7f2;position:relative;color:#1a1a1a;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.18);display:flex;font-family:'Noto Serif TC',serif}
+
+.pn{position:absolute;top:48px;left:54px;font-family:'Noto Sans TC',sans-serif;font-size:10.5px;letter-spacing:4px;color:#a49580;font-weight:400}
+.bd{position:absolute;bottom:48px;right:54px;font-family:'Noto Serif TC',serif;font-size:12px;letter-spacing:6px;color:#8a7e6e;font-weight:500}
+.dot{position:absolute;bottom:48px;left:54px;width:6px;height:6px;border-radius:50%;background:#c8a96a}
+
+.inner{position:absolute;inset:0;padding:112px 72px 112px 72px;display:flex;flex-direction:column}
+
+.s1 .inner{justify-content:flex-end}
+.s1 .lead{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:6px;color:#8a7e6e;margin-bottom:28px;font-weight:400;text-transform:uppercase}
+.s1 h1{font-size:clamp(40px,5.2vw,64px);font-weight:600;line-height:1.28;letter-spacing:-1px}
+.s1 h1 em{font-style:normal;font-weight:900;position:relative;display:inline-block;padding:0 2px}
+.s1 h1 em::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:10px;background:#ede7d9;z-index:-1}
+.s1 .sub{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:14px;line-height:2;color:#6b6259;margin-top:36px;letter-spacing:2px}
+
+.body-slide .inner{justify-content:center;align-items:flex-start;text-align:left}
+.body-slide .tag{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:5px;color:#a49580;margin-bottom:28px;font-weight:400;text-transform:uppercase}
+.body-slide .h{font-size:clamp(38px,4.6vw,56px);font-weight:500;line-height:1.34;letter-spacing:-0.5px;color:#1a1a1a}
+.body-slide .h strong{font-weight:900;position:relative;display:inline-block}
+.body-slide .h strong::after{content:'';position:absolute;bottom:2px;left:-2px;right:-2px;height:12px;background:#ede7d9;z-index:-1}
+.body-slide .bbody{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(15px,1.5vw,18px);line-height:2.1;color:#4a4138;margin-top:32px;letter-spacing:1px}
+
+.split .inner{padding:0;flex-direction:column;justify-content:stretch}
+.split .top{flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 72px;border-bottom:1px solid #ede7d9}
+.split .bottom{flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 72px}
+.split .lbl{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:5px;color:#a49580;margin-bottom:12px;font-weight:400;text-transform:uppercase}
+.split .val{font-family:'Noto Serif TC',serif;font-size:clamp(28px,3.4vw,42px);font-weight:600;color:#1a1a1a;line-height:1.4}
+
+.s7 .inner{justify-content:center;align-items:flex-start}
+.s7 .lead{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:6px;color:#8a7e6e;margin-bottom:32px;font-weight:400;text-transform:uppercase}
+.s7 .h{font-size:clamp(32px,4vw,48px);font-weight:500;line-height:1.42;letter-spacing:-0.5px;color:#1a1a1a;margin-bottom:48px}
+.s7 .hline{width:24px;height:1px;background:#c8a96a;margin-bottom:36px}
+.s7 .closing{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(15px,1.5vw,18px);line-height:2;color:#4a4138;letter-spacing:2px}
+
+@media(max-width:768px){.card{padding:0}.inner{padding:80px 44px}.split .top,.split .bottom{padding:60px 44px}}
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1>波米吃飼料 · 我吃地瓜</h1>
+  <p>CAROUSEL · B · 6 SLIDES · 1080 × 1350</p>
+</div>
+
+<div class="grid">
+
+<div class="card s1">
+  <span class="pn">01 / 06</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="lead">A MORNING TOGETHER</p>
+    <h1>波米吃飼料！<br>我吃<em>地瓜</em>！</h1>
+    <p class="sub">早餐這件事 / 我們都認真選</p>
+  </div>
+</div>
+
+<div class="card split s2">
+  <span class="pn">02 / 06</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <div class="top">
+      <p class="lbl">波米的</p>
+      <p class="val">配方研究過 ／<br>配比研究過 ／<br>跟身體狀況合不合 ／ 也研究過。</p>
+    </div>
+    <div class="bottom">
+      <p class="lbl">我的</p>
+      <p class="val">蛋白質、碳水、油脂的<br>比例，<br>也是我研究過的。</p>
+    </div>
+  </div>
+</div>
+
+<div class="card body-slide s3">
+  <span class="pn">03 / 06</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="tag">不是因為</p>
+    <p class="h">不是<br>因為要<strong>瘦</strong>。</p>
+    <p class="bbody">不是要清空、不是要趕進度，<br>不是要在哪天前變成什麼樣子。</p>
+  </div>
+</div>
+
+<div class="card body-slide s4">
+  <span class="pn">04 / 06</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="tag">是因為</p>
+    <p class="h">照顧好身體，<br>真的是<br><strong>身為人</strong><br>應該要做的事。</p>
+  </div>
+</div>
+
+<div class="card body-slide s5">
+  <span class="pn">05 / 06</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="tag">所以</p>
+    <p class="h">每一份吃進去的，<br>每一個動作，<br>都是「對自己<strong>負責</strong>」<br>的延伸。</p>
+    <p class="bbody">不是用力，是日常。</p>
+  </div>
+</div>
+
+<div class="card s7">
+  <span class="pn">06 / 06</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="lead">而已 🤍</p>
+    <p class="h">這件事其實<br>就是<br>這麼簡單。</p>
+    <div class="hline"></div>
+    <p class="closing">repurre studio<br>台北大安 · 把訓練變成日常</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

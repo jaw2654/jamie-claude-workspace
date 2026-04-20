@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · 4 個韓系極簡變體 · 12 年練好幾年沒變</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200;300;400;500&family=Noto+Serif+TC:wght@400;500;600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#1c1c1c;padding:48px 24px;min-height:100vh}
+
+.page-hd{max-width:1400px;margin:0 auto 56px;color:#d0d0d0;text-align:center}
+.page-hd h1{font-size:22px;font-weight:300;margin-bottom:8px;letter-spacing:2px;font-family:'Noto Sans TC',sans-serif}
+.page-hd p{font-size:11px;color:#808080;letter-spacing:4px;font-weight:300}
+
+.variant-block{max-width:1400px;margin:0 auto 80px}
+.variant-label{color:#a8a8a8;font-size:13px;letter-spacing:6px;font-weight:300;text-align:center;margin-bottom:8px;text-transform:uppercase}
+.variant-title{color:#fff;font-size:18px;font-weight:400;text-align:center;margin-bottom:6px;letter-spacing:1px}
+.variant-desc{color:#808080;font-size:12px;text-align:center;margin-bottom:32px;font-weight:300;letter-spacing:1.5px}
+
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+
+.card{
+  aspect-ratio:1080/1350;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,0.25);
+  display:flex;
+}
+
+/* ============================================================ */
+/* V1 — Pure Oat Minimal (純極簡 oat) */
+/* ============================================================ */
+.v1{background:#efeae0;color:#2a2520}
+.v1 .inner{position:absolute;inset:0;padding:96px 64px;display:flex;flex-direction:column;justify-content:center}
+.v1 .num{position:absolute;top:48px;left:64px;font-family:'Inter',sans-serif;font-size:11px;font-weight:300;letter-spacing:3px;color:#9b8c7a}
+.v1 .brand{position:absolute;bottom:48px;left:64px;font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:5px;color:#9b8c7a;text-transform:lowercase}
+.v1 .h{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(34px,4.4vw,52px);line-height:1.5;letter-spacing:-0.5px;color:#2a2520}
+.v1 .sub{font-family:'Noto Sans TC',sans-serif;font-weight:200;font-size:clamp(13px,1.4vw,16px);line-height:2;color:#7a6f63;margin-top:32px;letter-spacing:1.5px}
+
+/* ============================================================ */
+/* V2 — Aesop / Le Labo (細線 + 大寫小字) */
+/* ============================================================ */
+.v2{background:#f5f0e6;color:#1f1a14}
+.v2 .inner{position:absolute;inset:0;padding:88px 60px;display:flex;flex-direction:column;justify-content:center}
+.v2 .meta{position:absolute;top:54px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:4px;color:#8b7e6e;text-transform:uppercase;font-weight:400}
+.v2 .meta::after{content:'';position:absolute;left:0;right:0;bottom:-16px;height:0.5px;background:#bfb09c}
+.v2 .h{font-family:'Noto Sans TC',sans-serif;font-weight:400;font-size:clamp(28px,3.6vw,42px);line-height:1.6;letter-spacing:0;color:#1f1a14}
+.v2 .footer{position:absolute;bottom:54px;left:60px;right:60px;font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:4px;color:#8b7e6e;text-transform:uppercase;font-weight:400}
+.v2 .footer::before{content:'';position:absolute;left:0;right:0;top:-16px;height:0.5px;background:#bfb09c}
+
+/* ============================================================ */
+/* V3 — Korean Wellness (暖灰 + 圓潤 + 大行高) */
+/* ============================================================ */
+.v3{background:#e8e2d6;color:#3a3128}
+.v3 .inner{position:absolute;inset:0;padding:104px 72px;display:flex;flex-direction:column;justify-content:center}
+.v3 .num{position:absolute;top:54px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:6px;color:#8a7d6c}
+.v3 .brand{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:9px;font-weight:300;letter-spacing:8px;color:#8a7d6c;text-transform:lowercase}
+.v3 .h{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(26px,3.2vw,38px);line-height:2.1;letter-spacing:1.5px;text-align:center;color:#3a3128}
+.v3 .small{font-family:'Noto Sans TC',sans-serif;font-weight:200;font-size:11px;line-height:2.2;color:#8a7d6c;margin-top:36px;letter-spacing:3px;text-align:center}
+
+/* ============================================================ */
+/* V4 — Photo Placeholder Hybrid (圖文混搭 留位給工作室照) */
+/* ============================================================ */
+.v4{background:#faf7f2;color:#1f1a14;flex-direction:column}
+.v4 .photo{flex:1.1;background:linear-gradient(135deg,#e8dcc8 0%,#d4c4a8 100%);position:relative;display:flex;align-items:center;justify-content:center}
+.v4 .photo::before{content:'PHOTO';font-family:'Inter',sans-serif;font-size:10px;letter-spacing:6px;color:#a89478;font-weight:300}
+.v4 .text{flex:1;padding:60px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.v4 .num{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:4px;color:#9b8c7a;margin-bottom:24px;font-weight:300}
+.v4 .h{font-family:'Noto Sans TC',sans-serif;font-weight:400;font-size:clamp(24px,3vw,32px);line-height:1.7;color:#1f1a14;letter-spacing:-0.2px}
+.v4 .brand{position:absolute;bottom:32px;right:60px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:5px;color:#9b8c7a;font-weight:300;text-transform:lowercase}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1>4 個韓系極簡變體</h1>
+  <p>同一文案 · 4 種視覺方向 · 每組 3 張示範（封面 / 內頁 / 收尾）</p>
+</div>
+
+<!-- ============================================================== -->
+<!-- V1 — Pure Oat Minimal -->
+<!-- ============================================================== -->
+<div class="variant-block">
+  <p class="variant-label">VARIANT 1</p>
+  <p class="variant-title">Pure Oat Minimal</p>
+  <p class="variant-desc">純極簡 · oat 米色背景 · Sans-serif 細字 · 無線無框 · 留白最大</p>
+  <div class="row">
+
+    <div class="card v1">
+      <span class="num">01</span>
+      <span class="brand">repurre</span>
+      <div class="inner">
+        <p class="h">12 年了。<br>我看過上百個學生<br>練了好幾年，<br>身體還是沒變。</p>
+        <p class="sub">不是他們沒去 / 是「去了」沒「練」</p>
+      </div>
+    </div>
+
+    <div class="card v1">
+      <span class="num">02</span>
+      <span class="brand">repurre</span>
+      <div class="inner">
+        <p class="h">每組做到 12 下<br>還能聊天，<br>就是沒在練。</p>
+        <p class="sub">每組做到 6 下就臉紅脖子粗 / 才開始</p>
+      </div>
+    </div>
+
+    <div class="card v1">
+      <span class="num">03</span>
+      <span class="brand">repurre</span>
+      <div class="inner">
+        <p class="h">這件事其實<br>就是這麼<br>簡單而已。</p>
+        <p class="sub">repurre studio · 台北大安 · 12 年私教</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- V2 — Aesop / Le Labo -->
+<!-- ============================================================== -->
+<div class="variant-block">
+  <p class="variant-label">VARIANT 2</p>
+  <p class="variant-title">Aesop · Le Labo Style</p>
+  <p class="variant-desc">仿精品包裝 · 上下細線 · 全大寫小字 meta · 字置中對齊 · 精緻克制</p>
+  <div class="row">
+
+    <div class="card v2">
+      <div class="meta">
+        <span>repurre / 12 yr</span>
+        <span>no.01</span>
+      </div>
+      <div class="inner">
+        <p class="h">我看過上百個學生<br>練了好幾年，<br>身體還是沒變。<br><br>不是他們沒去。<br>是去了沒練。</p>
+      </div>
+      <div class="footer">
+        <span>training quality</span>
+        <span>est. 2014</span>
+      </div>
+    </div>
+
+    <div class="card v2">
+      <div class="meta">
+        <span>repurre / 12 yr</span>
+        <span>no.02</span>
+      </div>
+      <div class="inner">
+        <p class="h">每組做到 12 下<br>還能聊天 ＝ 沒在練。<br><br>每組做到 6 下<br>就臉紅脖子粗 ＝ 才開始。</p>
+      </div>
+      <div class="footer">
+        <span>two states</span>
+        <span>only one counts</span>
+      </div>
+    </div>
+
+    <div class="card v2">
+      <div class="meta">
+        <span>repurre / 12 yr</span>
+        <span>no.03</span>
+      </div>
+      <div class="inner">
+        <p class="h">訓練品質其實<br>不在你舉了多重。<br><br>是你願不願意誠實面對 ——<br>自己有沒有偷懶。</p>
+      </div>
+      <div class="footer">
+        <span>repurre studio</span>
+        <span>taipei daan</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- V3 — Korean Wellness -->
+<!-- ============================================================== -->
+<div class="variant-block">
+  <p class="variant-label">VARIANT 3</p>
+  <p class="variant-title">Korean Wellness Center</p>
+  <p class="variant-desc">暖灰底 · 字置中 · 大行高（2.1）· letter-spacing 寬鬆 · 克制如韓國 spa 海報</p>
+  <div class="row">
+
+    <div class="card v3">
+      <span class="num">12 YEARS · 01</span>
+      <span class="brand">repurre studio</span>
+      <div class="inner">
+        <p class="h">十二年了。<br><br>我看過上百個學生<br>練了好幾年。<br><br>身體還是沒變。</p>
+      </div>
+    </div>
+
+    <div class="card v3">
+      <span class="num">12 YEARS · 02</span>
+      <span class="brand">repurre studio</span>
+      <div class="inner">
+        <p class="h">每組做到十二下<br>還能聊天。<br><br>就是<br>沒在練。</p>
+        <p class="small">每組做到六下就臉紅脖子粗 / 才開始</p>
+      </div>
+    </div>
+
+    <div class="card v3">
+      <span class="num">12 YEARS · 03</span>
+      <span class="brand">repurre studio</span>
+      <div class="inner">
+        <p class="h">這件事其實<br><br>就是<br>這麼簡單<br><br>而已。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- V4 — Photo Placeholder Hybrid -->
+<!-- ============================================================== -->
+<div class="variant-block">
+  <p class="variant-label">VARIANT 4</p>
+  <p class="variant-title">Photo + Text Hybrid</p>
+  <p class="variant-desc">上半留位給工作室照 / 食物照 / 訓練畫面（你拍）· 下半文字 · 真實感 + 視覺密度</p>
+  <div class="row">
+
+    <div class="card v4">
+      <div class="photo"></div>
+      <div class="text">
+        <span class="num">01 / 03</span>
+        <p class="h">12 年了。<br>我看過上百個學生<br>練了好幾年，<br>身體還是沒變。</p>
+        <span class="brand">repurre</span>
+      </div>
+    </div>
+
+    <div class="card v4">
+      <div class="photo"></div>
+      <div class="text">
+        <span class="num">02 / 03</span>
+        <p class="h">不是沒去。<br>是「去了」沒「練」。</p>
+        <span class="brand">repurre</span>
+      </div>
+    </div>
+
+    <div class="card v4">
+      <div class="photo"></div>
+      <div class="text">
+        <span class="num">03 / 03</span>
+        <p class="h">訓練品質不在<br>你舉了多重。<br>在你願不願意誠實。</p>
+        <span class="brand">repurre</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · MAG_WARM · System 01</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@200;300;400;500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#1c1c1c;padding:48px 24px;min-height:100vh}
+
+.page-hd{max-width:1400px;margin:0 auto 56px;color:#aaa;text-align:center}
+.page-hd h1{font-family:'Inter',sans-serif;font-size:13px;font-weight:300;margin-bottom:8px;letter-spacing:8px;text-transform:uppercase;color:#ccc}
+.page-hd p{font-family:'Inter',sans-serif;font-size:10px;color:#666;letter-spacing:5px;font-weight:300;text-transform:uppercase}
+
+.row{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+
+/* ============================================================ */
+/* IG 4:5 / 1080×1350 */
+/* ============================================================ */
+.card{
+  aspect-ratio: 4 / 5;
+  background:#f2efe9;  /* warm bone bg */
+  position:relative;
+  overflow:hidden;
+  color:#2a2a2a;        /* warm black */
+  display:flex;
+  font-family:'Noto Serif TC',serif;
+  box-shadow:0 12px 48px rgba(0,0,0,0.18);
+}
+
+/* Subtle paper noise (very light, not aggressive like before) */
+.card::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.55 0 0 0 0 0.48 0 0 0 0.25 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity:0.35;
+  pointer-events:none;
+  z-index:1;
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:11% 9% 9% 9%;
+  display:flex;flex-direction:column;
+  z-index:2;
+}
+
+/* TAG (small caps, top) */
+.tag{
+  font-family:'Inter',sans-serif;
+  font-size:10.5px;
+  font-weight:300;
+  letter-spacing:0.5em;
+  text-transform:uppercase;
+  color:#8a7d6c;            /* warm grey-brown accent */
+  margin-bottom:36px;
+}
+
+/* Title — Noto Serif TC light weight (the key brand voice) */
+.title{
+  font-family:'Noto Serif TC',serif;
+  font-weight:400;          /* light, not heavy */
+  font-size:clamp(22px, 2.8vw, 28px);
+  line-height:1.7;
+  letter-spacing:0.04em;
+  color:#2a2a2a;
+  margin-bottom:24px;
+}
+.title strong{font-weight:600;}
+
+/* Body — sans light */
+.body{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:300;
+  font-size:clamp(13px, 1.4vw, 15px);
+  line-height:2.1;
+  letter-spacing:0.06em;
+  color:#5a5147;
+  margin-top:auto;
+  margin-bottom:28px;
+}
+
+/* "Glass" callout card — but on light bg, use cream tint instead */
+.glass{
+  background:rgba(255,255,255,0.55);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:0.5px solid rgba(138,125,108,0.18);
+  padding:32px 28px;
+  margin-top:auto;
+  margin-bottom:28px;
+}
+.glass .row-stat{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;gap:16px}
+.glass .row-stat:last-child{margin-bottom:0}
+.glass .lbl{
+  font-family:'Inter',sans-serif;
+  font-size:9.5px;
+  letter-spacing:0.4em;
+  color:#8a7d6c;
+  text-transform:uppercase;
+  font-weight:400;
+}
+.glass .val{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(13px,1.4vw,15px);
+  color:#2a2a2a;
+  font-weight:400;
+  text-align:right;
+  line-height:1.5;
+  letter-spacing:0.04em;
+}
+.glass .val em{font-style:normal;color:#2a2a2a;font-weight:600;}
+
+/* Footer brand block */
+.footer-block{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  font-family:'Inter',sans-serif;
+  font-size:9.5px;
+  letter-spacing:0.4em;
+  color:#8a7d6c;
+  text-transform:uppercase;
+  font-weight:400;
+}
+.footer-block .l{display:flex;flex-direction:column;gap:6px}
+.footer-block .r{text-align:right}
+
+/* COVER */
+.cover .inner{justify-content:space-between}
+.cover .num{
+  font-family:'Inter',sans-serif;
+  font-size:10.5px;
+  letter-spacing:0.5em;
+  color:#8a7d6c;
+  font-weight:300;
+  text-transform:uppercase;
+}
+.cover .htitle{
+  font-family:'Noto Serif TC',serif;
+  font-weight:500;
+  font-size:clamp(28px, 3.6vw, 40px);
+  line-height:1.6;
+  letter-spacing:0.04em;
+  color:#2a2a2a;
+  margin-top:48px;
+}
+.cover .hsub{
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:300;
+  font-size:clamp(13px,1.4vw,15px);
+  line-height:2;
+  color:#7a6f63;
+  margin-top:32px;
+  letter-spacing:0.08em;
+}
+
+.hr{height:0.5px;background:rgba(138,125,108,0.3);margin:24px 0;width:32px}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1>JAMIE_MAG_WARM / SYSTEM 01</h1>
+  <p>練好幾年沒變 · 6 SLIDES · 1080 × 1350 · 4:5</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER -->
+<div class="card cover">
+  <div class="inner">
+    <div>
+      <p class="num">SYSTEM 01 — TRAINING QUALITY</p>
+      <p class="htitle">12 年了。<br>為什麼很多人<br>訓練好幾年，<br>身體沒有改變？</p>
+    </div>
+    <div class="footer-block">
+      <div class="l">
+        <span>REPURRE STUDIO</span>
+        <span>TAIPEI DAAN · EST 2014</span>
+      </div>
+      <div class="r">01 / 06</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 / LEVERAGE -->
+<div class="card">
+  <div class="inner">
+    <p class="tag">LEVERAGE</p>
+    <p class="title"><strong>不是出席率不夠。</strong></p>
+    <p class="title">是「在場」沒有等於「在練」。</p>
+    <p class="body">
+      訓練的回報不是時間的線性函數。<br>
+      它對「強度密度」極度敏感。<br>
+      時間花了，槓桿沒用對，
+      身體不會改變。
+    </p>
+    <div class="footer-block">
+      <span>REPURRE / SYSTEM 01</span>
+      <span>02 / 06</span>
+    </div>
+  </div>
+</div>
+
+<!-- S3 / METABOLIC BANK -->
+<div class="card">
+  <div class="inner">
+    <p class="tag">METABOLIC BANK</p>
+    <p class="title"><strong>肌肉，<br>是你的代謝銀行。</strong></p>
+    <div class="glass">
+      <div class="row-stat">
+        <span class="lbl">沒到力竭</span>
+        <span class="val">＝ <em>不存款</em></span>
+      </div>
+      <div class="row-stat">
+        <span class="lbl">力竭一組</span>
+        <span class="val">＝ 一筆<em>本金</em></span>
+      </div>
+      <div class="row-stat">
+        <span class="lbl">每週兩堂</span>
+        <span class="val">＝ <em>複利</em></span>
+      </div>
+    </div>
+    <div class="footer-block">
+      <span>REPURRE / SYSTEM 01</span>
+      <span>03 / 06</span>
+    </div>
+  </div>
+</div>
+
+<!-- S4 / CALIBRATION -->
+<div class="card">
+  <div class="inner">
+    <p class="tag">CALIBRATION</p>
+    <p class="title"><strong>校準力竭強度。</strong></p>
+    <p class="body">
+      12 下還能聊天 → 系統還沒啟動。<br>
+      6 下臉紅脖子粗 → 訓練才開始。<br><br>
+      你的身體不會回應「有去」。<br>
+      它只回應「強度資源」。
+    </p>
+    <div class="footer-block">
+      <span>REPURRE / SYSTEM 01</span>
+      <span>04 / 06</span>
+    </div>
+  </div>
+</div>
+
+<!-- S5 / NO WILLPOWER -->
+<div class="card">
+  <div class="inner">
+    <p class="tag">NO WILLPOWER</p>
+    <p class="title"><strong>你不需要意志力。</strong></p>
+    <p class="title">你需要的是<br>一個能誠實面對自己的<br><strong>系統</strong>。</p>
+    <p class="body" style="margin-top:24px">
+      意志力會耗盡，系統不會。<br>
+      把判斷交給結構，
+      把執行留給身體。
+    </p>
+    <div class="footer-block">
+      <span>REPURRE / SYSTEM 01</span>
+      <span>05 / 06</span>
+    </div>
+  </div>
+</div>
+
+<!-- S6 / CLOSING -->
+<div class="card">
+  <div class="inner">
+    <p class="tag">SYSTEM 01 — CLOSING</p>
+    <p class="title"><strong>訓練品質</strong></p>
+    <p class="title">不是強度大小。<br>是你誠實程度<br>的測量。</p>
+    <div class="hr"></div>
+    <p class="body" style="margin-top:0">
+      repurre studio<br>
+      30-40 歲女性體態重塑系統<br>
+      台北大安 · 12 年私教
+    </p>
+    <div class="footer-block">
+      <span>REPURRE</span>
+      <span>06 / 06 · END</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

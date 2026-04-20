@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>repurre 週報 v2 — 2026.04.06–04.12 TA 深度版</title>
+<style>
+:root {
+  --bg: #080808;
+  --card: #111111;
+  --card2: #181818;
+  --border: #222;
+  --gold: #d8d8d8;
+  --gold-light: #f0f0f0;
+  --gold-dim: rgba(220,220,220,0.08);
+  --text: #f0ece4;
+  --muted: #888;
+  --accent: #d8d8d8;
+  --font: -apple-system, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(135deg, #0f0f0f, #161616);
+  border-bottom: 1px solid #2a2a2a;
+  padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.header-brand { font-size: 24px; font-weight: 900; color: var(--gold); letter-spacing: 2px; }
+.header-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.header-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: var(--gold-dim);
+  border: 1px solid rgba(220,220,220,0.2);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 12px; color: var(--gold);
+}
+.pill strong { color: var(--gold-light); }
+
+/* ── Alert banner ── */
+.alert-bar {
+  background: linear-gradient(90deg, #141414, #111111);
+  border-bottom: 1px solid #252525;
+  padding: 10px 32px;
+  font-size: 13px; color: #cccccc;
+  display: flex; align-items: center; gap: 10px;
+}
+.alert-tag { background: #d8d8d8; color: #000; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; }
+
+/* ── Tabs ── */
+.tabs-wrap { background: #0d0d0d; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.tabs { display: flex; padding: 0 24px; overflow-x: auto; gap: 4px; }
+.tab-btn {
+  padding: 14px 18px; border: none; background: none; cursor: pointer;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ── Layout ── */
+.content { padding: 24px 28px; max-width: 1440px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 16px; }
+.g5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 16px; }
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }
+.span-all { grid-column: 1/-1; }
+
+/* ── Cards ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.card.accent-border { border-color: rgba(220,220,220,0.25); }
+.card-title {
+  font-size: 11px; font-weight: 800; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-title::before { content: ''; width: 3px; height: 12px; background: var(--gold); border-radius: 2px; }
+
+/* ── KPI Cards ── */
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.kpi-val { font-size: 36px; font-weight: 900; color: var(--gold); line-height: 1; font-family: Georgia, serif; }
+.kpi-val.g { color: #bbb; }
+.kpi-val.r { color: #999; }
+.kpi-val.b { color: #aaa; }
+.kpi-label { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.kpi-delta { font-size: 12px; margin-top: 4px; font-weight: 700; }
+.kpi-delta.up { color: #ccc; }
+.kpi-delta.down { color: #999; }
+.kpi-delta.flat { color: var(--muted); }
+
+/* ── Section title ── */
+.sec { font-size: 15px; font-weight: 800; color: var(--text); margin: 20px 0 12px; border-left: 3px solid var(--gold); padding-left: 10px; }
+
+/* ── Table ── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl th { text-align: left; padding: 8px 10px; color: var(--gold); font-size: 11px; border-bottom: 1px solid #222; font-weight: 700; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid #1a1a1a; color: var(--text); }
+.tbl tr:hover td { background: #141414; }
+.num { font-family: Georgia, serif; color: var(--gold); font-weight: 700; }
+
+/* ── Bar chart ── */
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.bar-label { font-size: 12px; color: var(--text); min-width: 160px; }
+.bar-track { flex: 1; height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #aaa, #ddd); }
+.bar-fill.g { background: linear-gradient(90deg, #888, #bbb); }
+.bar-pct { font-size: 12px; color: var(--gold); font-weight: 700; min-width: 36px; text-align: right; }
+
+/* ── Tags / Chips ── */
+.chip {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px; margin: 2px;
+}
+.chip.w { background: rgba(220,220,220,0.1); color: #ddd; border: 1px solid rgba(220,220,220,0.25); }
+.chip.g { background: rgba(180,180,180,0.1); color: #bbb; border: 1px solid rgba(180,180,180,0.2); }
+.chip.d { background: rgba(120,120,120,0.1); color: #999; border: 1px solid rgba(120,120,120,0.2); }
+
+/* ── Insight block ── */
+.insight {
+  background: #141414;
+  border: 1px solid rgba(220,220,220,0.12);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.insight strong { color: var(--gold); }
+
+/* ── Warning block ── */
+.warn {
+  background: rgba(120,120,120,0.08);
+  border: 1px solid rgba(150,150,150,0.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+/* ── Consultant block ── */
+.consult {
+  background: linear-gradient(135deg, #161616, #111111);
+  border: 1px solid rgba(220,220,220,0.2);
+  border-left: 4px solid #d8d8d8;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.consult .tag { font-size: 10px; font-weight: 800; color: #000; background: #d8d8d8; padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; display: inline-block; }
+.consult p { color: #ccc; margin-top: 6px; }
+.consult strong { color: #fff; }
+
+/* ── Action block ── */
+.action-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--gold); color: #000; font-size: 12px; font-weight: 900;
+  flex-shrink: 0;
+}
+.action-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+.action-text { font-size: 13px; line-height: 1.6; }
+.action-title { font-weight: 700; color: var(--text); }
+.action-desc { color: var(--muted); margin-top: 3px; font-size: 12px; }
+
+/* ── Persona card ── */
+.persona-box {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 14px;
+}
+.persona-block {
+  background: #121212;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  padding: 14px;
+}
+.persona-block h4 { font-size: 12px; font-weight: 800; color: var(--gold); margin-bottom: 8px; }
+.persona-block li { font-size: 12px; color: #ccc; padding: 3px 0; list-style: none; display: flex; gap: 6px; align-items: flex-start; }
+.persona-block li::before { content: '›'; color: var(--gold); flex-shrink: 0; }
+
+/* ── Schedule grid ── */
+.sched-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 8px; }
+.sched-day { background: #111; border: 1px solid #1e1e1e; border-radius: 8px; padding: 10px 8px; text-align: center; }
+.sched-day.highlight { border-color: rgba(220,220,220,0.3); }
+.sched-day-name { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+.sched-day-num { font-size: 20px; font-weight: 900; color: var(--gold); font-family: Georgia, serif; }
+.sched-item { font-size: 10px; color: #aaa; margin-top: 4px; line-height: 1.4; }
+.sched-badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; margin-top: 2px; }
+.sched-badge.ig { background: rgba(220,220,220,0.12); color: #ccc; }
+.sched-badge.yt { background: rgba(200,200,200,0.12); color: #bbb; }
+.sched-badge.class { background: rgba(180,180,180,0.08); color: #aaa; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* ── Mobile ── */
+@media(max-width:768px){
+  .header{padding:14px 16px;flex-direction:column;align-items:flex-start;}
+  .header-brand{font-size:18px;}
+  .header-pills{gap:6px;}
+  .pill{font-size:10px;padding:4px 10px;}
+  .alert-bar{padding:8px 16px;font-size:12px;}
+  .tabs{padding:0 8px;gap:2px;}
+  .tab-btn{padding:10px 10px;font-size:11px;}
+  .content{padding:14px 12px;}
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr;gap:10px;}
+  .span2,.span3{grid-column:span 1;}
+  .kpi-val{font-size:20px;}
+  .card{padding:14px;}
+  .section-title{font-size:15px;}
+  .celeb-card{padding:12px;}
+  .action-row{flex-direction:column;gap:8px;}
+  .calendar{grid-template-columns:repeat(2,1fr);}
+  .day-card{padding:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div>
+    <div class="header-brand">repurre 週報</div>
+    <div class="header-sub">2026.04.06 – 04.12 ｜ TA 深度版 v2 ｜ @jamie_wu_1012 ｜ 顧問版</div>
+  </div>
+  <div class="header-pills">
+    <span class="pill">IG 粉絲 <strong>2.7 萬</strong></span>
+    <span class="pill">非粉觸及 <strong>~42%</strong></span>
+    <span class="pill">核心 TA <strong>女性 25–35</strong></span>
+    <span class="pill">YT 本週觀看 <strong>418 次 ↑8%</strong></span>
+  </div>
+</div>
+
+<!-- ═══ ALERT BANNER ═══ -->
+<div class="alert-bar">
+  <span class="alert-tag">📊 本週數據</span>
+  <span>IG 真實數據：24.6萬瀏覽 ｜ 觸及 4.1萬帳號 ｜ 非粉絲 55.1% ｜ 互動 5,070次 ｜ 個人檔案訪問 4,048次。YouTube：週觀看 418次（↑8%）｜ 訂閱 55 人。</span>
+</div>
+
+<!-- ═══ TABS ═══ -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="show(1)">① 本週總覽×TA</button>
+    <button class="tab-btn" onclick="show(2)">② IG×TA深度</button>
+    <button class="tab-btn" onclick="show(3)">③ YouTube分析</button>
+    <button class="tab-btn" onclick="show(4)">④ 韓系體態整合</button>
+    <button class="tab-btn" onclick="show(5)">⑤ 下週精準策略</button>
+    <button class="tab-btn" onclick="show(6)">⑥ 週執行計劃</button>
+  </div>
+</div>
+
+<script>
+function show(n) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('p' + n).classList.add('active');
+  document.querySelectorAll('.tab-btn')[n - 1].classList.add('active');
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 1: 本週總覽×TA -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="content">
+<div id="p1" class="tab-panel active">
+
+  <div class="g5">
+    <div class="kpi">
+      <div class="kpi-val">2.7萬</div>
+      <div class="kpi-label">IG 粉絲總數</div>
+      <div class="kpi-delta up">▲ 持續成長中</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val g">33%</div>
+      <div class="kpi-label">非粉絲觸及比</div>
+      <div class="kpi-delta up">Stories 主力驅動</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val b">7,882</div>
+      <div class="kpi-label">IG 觸及帳號數</div>
+      <div class="kpi-delta up">▲ 本週實測</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val r">418</div>
+      <div class="kpi-label">YT 週觀看次數</div>
+      <div class="kpi-delta up">▲ 比前週 +8%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">861</div>
+      <div class="kpi-label">IG 累積貼文數</div>
+      <div class="kpi-delta flat">持續累積中</div>
+    </div>
+  </div>
+
+  <!-- 顧問觀點 -->
+  <div class="consult">
+    <span class="tag">🎯 顧問觀點 — 本週最重要的一件事</span>
+    <p>本週 IG 觸及 7,882 個帳號，瀏覽 3.9萬次，<strong>Seoul Vlog Reel（4/9）以 2,949 次瀏覽拿下本週冠軍，非粉絲佔 67.1%</strong>——代表 Vlog 型態內容的新受眾吸引力極強。現在要做的事：<strong>把 Vlog 流量導入健身課程詢問</strong>，在 Stories 加 CTA、在留言區主動引導私訊。</p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">🎯 核心 TA 輪廓（2026 Q2 版）</div>
+      <div class="persona-box">
+        <div class="persona-block">
+          <h4>👩 IG 主力 TA — 積極轉型者</h4>
+          <ul>
+            <li>女性，25–35 歲，台灣</li>
+            <li>在職白領 / 自由工作者</li>
+            <li>目標：縮腰、提臀、韓系體態</li>
+            <li>觸發點：對比圖、韓星體態分析</li>
+            <li>轉換率：★★★★☆ 最高</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h4>💪 次要受眾 — 健身入門者</h4>
+          <ul>
+            <li>女性，22–29 歲</li>
+            <li>學生或剛出社會</li>
+            <li>目標：開始健身，不知從何</li>
+            <li>觸發點：簡單易跟的 Reels 教程</li>
+            <li>轉換率：★★★☆☆ 中等</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h4>💛 付費學員特徵</h4>
+          <ul>
+            <li>願意為個人品牌付費</li>
+            <li>重視一對一客製化指導</li>
+            <li>偏好韓系美型體態目標</li>
+            <li>中高消費力，30–45 歲</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h4>🔥 轉換機會點（本週實測）</h4>
+          <ul>
+            <li>Seoul Vlog → 新受眾發現你</li>
+            <li>Reels 觀看 → 私訊詢問課程</li>
+            <li>韓星體態話題 → 轉換率最高</li>
+            <li>限時優惠 → 衝動購買窗口</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📅 本週 IG 內容表現（4/6–4/12 真實後台數據）</div>
+      <table class="tbl">
+        <thead><tr><th>排名</th><th>內容</th><th>瀏覽次數</th><th>非粉絲%</th></tr></thead>
+        <tbody>
+          <tr><td>🥇 #1</td><td>Seoul Vlog Reel（4/9）</td><td class="num">2,949</td><td class="num">67.1%</td></tr>
+          <tr><td>#2</td><td>限時動態（4/8）</td><td class="num">2,515</td><td class="num">—</td></tr>
+          <tr><td>#3</td><td>限時動態（4/10）</td><td class="num">1,757</td><td class="num">—</td></tr>
+          <tr><td>#4</td><td>限時動態（4/10）</td><td class="num">1,167</td><td class="num">—</td></tr>
+          <tr><td>#5</td><td>限時動態（4/11）</td><td class="num">1,134</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec" style="margin-top:16px;">本週顧問洞察</div>
+      <div class="insight">
+        <strong>💡 關鍵發現：</strong> 本週表現最好的是「Seoul Vlog」Reel，非粉絲觸及高達 67.1%——這代表 Vlog 型態對新受眾吸引力極強。你的「生活感」內容是獲取新受眾的最強武器，健身教學內容則是轉換的核心。兩者應該搭配輪流出現。
+      </div>
+      <div class="insight">
+        <strong>📱 本週最佳轉換策略：</strong> Stories 佔本週瀏覽 64.2%，是你最主要的觸及來源。建議每週固定在 Stories 加入課程 CTA，讓看 Stories 的粉絲有明確的行動指引：「想要一對一訓練計劃？私訊我『計劃』兩個字」。
+      </div>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-title">📊 本週績效自評</div>
+      <div style="margin-bottom:12px;">
+        <div class="bar-row">
+          <span class="bar-label">IG 內容發出率</span>
+          <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
+          <span class="bar-pct">65%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">YouTube 上傳頻率</span>
+          <div class="bar-track"><div class="bar-fill g" style="width:40%"></div></div>
+          <span class="bar-pct">40%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Reels 互動回覆率</span>
+          <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+          <span class="bar-pct">70%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">晨報自動化率</span>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+          <span class="bar-pct">90%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">私訊轉換跟進率</span>
+          <div class="bar-track"><div class="bar-fill g" style="width:55%"></div></div>
+          <span class="bar-pct">55%</span>
+        </div>
+      </div>
+      <div class="insight">
+        <strong>顧問建議：</strong> 私訊轉換跟進率需提升。收到詢問課程私訊後，建議 2 小時內回覆，轉換率可提升 60%+。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏆 本週競品動態觀察</div>
+      <table class="tbl">
+        <thead><tr><th>競品類型</th><th>本週動作</th><th>Jamie 應對</th></tr></thead>
+        <tbody>
+          <tr><td>台灣健身網紅</td><td>大量 Reels 教學，頻率高</td><td class="num">加速發韓系體態內容</td></tr>
+          <tr><td>健身 App 廣告</td><td>主打免費試用衝下載</td><td class="num">強調一對一無可取代</td></tr>
+          <tr><td>韓系健身帳號</td><td>大量 LE SSERAFIM 話題</td><td class="num">趁熱跟上 + 加分析視角</td></tr>
+          <tr><td>瘦身課程</td><td>限時特惠促銷</td><td class="num">強調教練品牌差異化</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💬 顧問月度學員增長模型</div>
+      <div class="insight">
+        <strong>目標：每月穩定新增 5–8 位付費學員</strong>
+      </div>
+      <div style="font-size:13px; color:#ccc; line-height:1.8;">
+        <div style="margin-bottom:8px;">📌 每週發 <strong style="color:#fff;">5–7 篇</strong> IG 內容（3 Reels + 2 輪播 + 2 靜態）</div>
+        <div style="margin-bottom:8px;">📌 每月發 <strong style="color:#fff;">1–2 部</strong> YouTube 長影片（帶課程 CTA）</div>
+        <div style="margin-bottom:8px;">📌 每週回覆所有私訊 <strong style="color:#fff;">2 小時內</strong></div>
+        <div style="margin-bottom:8px;">📌 每月做 <strong style="color:#fff;">1 次</strong> 限時優惠（發在 Stories）</div>
+        <div>📌 每月分享 <strong style="color:#fff;">2 則</strong> 學員成果（社交認同）</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /p1 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 2: IG×TA深度 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="p2" class="tab-panel">
+  <div class="insight" style="margin-bottom:16px;border-left:4px solid #d8d8d8;padding-left:14px;">
+    ✅ 以下為 Instagram 專業後台<strong>真實數據</strong>（2026.04.06–04.12，過去 7 天）
+  </div>
+
+  <div class="g4">
+    <div class="kpi"><div class="kpi-val">3.9萬</div><div class="kpi-label">IG 瀏覽次數</div><div class="kpi-delta up">▲ 本週真實數據</div></div>
+    <div class="kpi"><div class="kpi-val g">33%</div><div class="kpi-label">非粉絲觸及比</div><div class="kpi-delta up">Stories 主力</div></div>
+    <div class="kpi"><div class="kpi-val b">7,882</div><div class="kpi-label">觸及帳號數</div><div class="kpi-delta up">▲ 後台實測</div></div>
+    <div class="kpi"><div class="kpi-val r">2.7萬</div><div class="kpi-label">IG 粉絲總數</div><div class="kpi-delta flat">持續成長中</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">📱 IG TA 深度分析（2026 Q2）</div>
+      <div class="sec">核心受眾輪廓</div>
+      <div class="persona-box">
+        <div class="persona-block">
+          <h4>🌟 主力受眾 A — 積極轉型者</h4>
+          <ul>
+            <li>女性，27–35 歲，台灣</li>
+            <li>在職者，白領 / 自由工作者</li>
+            <li>目標：縮腰、提臀、韓系體態</li>
+            <li>觸發點：對比圖、before/after</li>
+            <li>轉換率：★★★★☆ 最高</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h4>💪 次要受眾 B — 健身入門者</h4>
+          <ul>
+            <li>女性，22–29 歲</li>
+            <li>學生或剛出社會</li>
+            <li>目標：開始健身不知從何</li>
+            <li>觸發點：簡單易跟、教程類</li>
+            <li>轉換率：★★★☆☆ 中等</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sec">內容類型 × TA 匹配 × 2026 演算法</div>
+      <table class="tbl">
+        <thead><tr><th>內容類型</th><th>TA 匹配度</th><th>演算法加權</th><th>建議頻率</th></tr></thead>
+        <tbody>
+          <tr><td>Reels 訓練示範</td><td><span class="chip w">★★★★★</span></td><td class="num">最高（55%非粉觸及）</td><td>每週 3 則</td></tr>
+          <tr><td>韓星體態分析輪播</td><td><span class="chip w">★★★★☆</span></td><td class="num">高（收藏率高）</td><td>每週 1 則</td></tr>
+          <tr><td>飲食 / 菜單分享</td><td><span class="chip g">★★★★☆</span></td><td class="num">高（分享率高）</td><td>每週 1 則</td></tr>
+          <tr><td>Before / After</td><td><span class="chip w">★★★★★</span></td><td class="num">很高（病毒傳播）</td><td>每月 2 則</td></tr>
+          <tr><td>純圖文靜態</td><td><span class="chip d">★★★☆☆</span></td><td class="num">中（觸及較低）</td><td>每週 1 則</td></tr>
+        </tbody>
+      </table>
+
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">🎯 顧問策略</span>
+        <p>2026 IG 演算法核心：<strong>Watch Time + Saves + Shares</strong> 決定觸及。你的 Reels 開頭 3 秒必須讓人停住捲動。建議每支 Reels 第一句話都是強烈問句或衝擊性數字，如「你知道韓星每天只做這 3 個動作嗎？」</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 本週 IG 最佳內容排行（4/6–4/12 真實後台）</div>
+      <div class="insight" style="border-left:3px solid #d8d8d8;padding-left:12px;margin-bottom:12px;">
+        ✅ 直接從 Instagram Insights 後台調閱的真實數據
+      </div>
+      <table class="tbl">
+        <thead><tr><th>排名</th><th>內容</th><th>日期</th><th>瀏覽</th><th>非粉%</th><th>互動</th></tr></thead>
+        <tbody>
+          <tr><td>🥇</td><td>Seoul Vlog Reel</td><td>4/9</td><td class="num">2,949</td><td class="num">67.1%</td><td class="num">79</td></tr>
+          <tr><td>#2</td><td>限時動態</td><td>4/8</td><td class="num">2,515</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>#3</td><td>限時動態</td><td>4/10</td><td class="num">1,757</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>#4</td><td>限時動態</td><td>4/10</td><td class="num">1,167</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>#5</td><td>限時動態</td><td>4/11</td><td class="num">1,134</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>#6–8</td><td>其他限時動態</td><td>本週</td><td class="num">~860</td><td class="num">—</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec" style="margin-top:16px;">最佳發文時間（台灣 TA 行為分析）</div>
+      <div class="bar-row"><span class="bar-label">週一–五 12:00–13:00（午休）</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><span class="bar-pct">85%</span></div>
+      <div class="bar-row"><span class="bar-label">週一–五 19:00–21:00（下班）</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><span class="bar-pct">95%</span></div>
+      <div class="bar-row"><span class="bar-label">週六 10:00–12:00（早上悠閒）</span><div class="bar-track"><div class="bar-fill g" style="width:78%"></div></div><span class="bar-pct">78%</span></div>
+      <div class="bar-row"><span class="bar-label">週日 18:00–20:00（週末結束焦慮）</span><div class="bar-track"><div class="bar-fill g" style="width:72%"></div></div><span class="bar-pct">72%</span></div>
+
+      <div class="sec" style="margin-top:16px;">Hashtag 策略 2026（更新版）</div>
+      <div style="margin-top:8px;">
+        <span class="chip w">#健身女孩</span>
+        <span class="chip w">#韓系體態</span>
+        <span class="chip w">#台灣健身</span>
+        <span class="chip g">#私人教練</span>
+        <span class="chip g">#運動日常</span>
+        <span class="chip g">#縮腰訓練</span>
+        <span class="chip d">#提臀訓練</span>
+        <span class="chip d">#減脂增肌</span>
+        <span class="chip d">#健身初心者</span>
+        <span class="chip w">#bodyprofile</span>
+        <span class="chip g">#repurre</span>
+        <span class="chip d">#jamie健身</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 TA 互動品質 × 轉換路徑分析</div>
+    <div class="g3" style="margin-top:8px;">
+      <div class="insight">
+        <strong>📌 留言品質：</strong> 韓系體態貼文留言通常含「教練哪裡找」「這樣練多久有效」，這是強烉轉換信號。<strong>建議 2 小時內回覆</strong>，並主動 DM 詢問對方目標。
+      </div>
+      <div class="insight">
+        <strong>📌 收藏率 = 購買意圖：</strong> 教程、飲食計劃類收藏率遠高於觸及率，代表真實需求高。你可以在收藏高的貼文 2–3 天後發 Stories 說「想更了解這個訓練的私訊我」。
+      </div>
+      <div class="insight">
+        <strong>📌 病毒傳播格式：</strong> Before/After 和韓星體態比較類最常被分享至 Stories。每月至少 2 則 Before/After 是維持病毒觸及的基礎。
+      </div>
+    </div>
+    <div class="consult" style="margin-top:12px;">
+      <span class="tag">💡 顧問 — 本週立即執行</span>
+      <p>查看本週 IG Insights：找出<strong>收藏數最高的那篇貼文</strong>，在 48 小時內發 Stories 推動轉換，例如：「很多人收藏了我這篇訓練 — 如果你想客製化計劃，私訊我 <strong>'計劃'</strong>」。這個動作可在不增加新內容的情況下立即提升詢問率。</p>
+    </div>
+  </div>
+</div><!-- /p2 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 3: YouTube分析 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="p3" class="tab-panel">
+  <div class="insight" style="margin-bottom:16px;border-left:4px solid #d8d8d8;padding-left:14px;">
+    ✅ 以下為 YouTube Studio 後台<strong>真實數據</strong>（2026.04.05–04.11，過去 7 天）
+  </div>
+
+  <div class="g4">
+    <div class="kpi"><div class="kpi-val b">418</div><div class="kpi-label">本週觀看次數</div><div class="kpi-delta up">▲ +8% vs 前週</div></div>
+    <div class="kpi"><div class="kpi-val g">+5</div><div class="kpi-label">本週新增訂閱</div><div class="kpi-delta flat">總計 55 人</div></div>
+    <div class="kpi"><div class="kpi-val r">17.1h</div><div class="kpi-label">本週觀看時間</div><div class="kpi-delta flat">與前週持平</div></div>
+    <div class="kpi"><div class="kpi-val">2:13</div><div class="kpi-label">最新影片均觀看</div><div class="kpi-delta up">首爾Vlog Day5</div></div>
+  </div>
+
+  <div class="card accent-border" style="margin-bottom:16px;">
+    <div class="card-title">🏆 本週 YouTube 熱門影片（真實數據）</div>
+    <table class="tbl">
+      <thead><tr><th>排名</th><th>影片標題</th><th>7天觀看</th><th>均觀看時長</th><th>點閱率</th></tr></thead>
+      <tbody>
+        <tr><td>🥇</td><td>首爾Vlog Day5 聖水洞都逛了什麼吃了什麼呢～～？（4/9）</td><td class="num">222</td><td class="num">2:14</td><td class="num">23.4%</td></tr>
+        <tr><td>#2</td><td>首爾 Vlog Day4 今天帶你們賞櫻花（4/4）</td><td class="num">48</td><td class="num">2:24</td><td class="num">31.4%</td></tr>
+        <tr><td>#3</td><td>首爾Vlog Day3 跟韓國朋友一起玩了一天！（4/4）</td><td class="num">41</td><td class="num">3:47</td><td class="num">33.1%</td></tr>
+        <tr><td>#4</td><td>首爾Vlog Day2 弘大逛街跟首爾樂天超市！（4/2）</td><td class="num">38</td><td class="num">3:52</td><td class="num">43.8%</td></tr>
+        <tr><td>#5</td><td>首爾Vlog Day1 一人獨旅怎麼做？（3/31）</td><td class="num">34</td><td class="num">1:45</td><td class="num">43.6%</td></tr>
+      </tbody>
+    </table>
+    <div class="consult" style="margin-top:12px;">
+      <span class="tag">💡 顧問觀察</span>
+      <p>首爾 Vlog 系列強勢主導本週所有流量。Day3/Day4 的均觀看時長反而高於 Day5（3:47 vs 2:14），說明內容深度比標題更影響留存。下一批影片建議加強中段鉤子，避免觀眾在 1 分鐘前流失。</p>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">📺 YouTube TA vs IG TA 差異分析</div>
+      <table class="tbl">
+        <thead><tr><th>維度</th><th>YouTube TA</th><th>IG TA</th></tr></thead>
+        <tbody>
+          <tr><td>年齡層</td><td>25–40 歲</td><td>22–35 歲</td></tr>
+          <tr><td>性別</td><td>女為主，男性略高於 IG</td><td>女性 85%+</td></tr>
+          <tr><td>訓練階段</td><td>中階，有基礎想進步</td><td>初–中階，視覺驅動</td></tr>
+          <tr><td>購買決策</td><td>長期考量，比較多方案</td><td>衝動型，情感驅動</td></tr>
+          <tr><td>內容偏好</td><td>詳細教程、科學說明</td><td>短 Reels、視覺衝擊</td></tr>
+          <tr><td>轉換路徑</td><td>看影片→留言→私訊→付費</td><td>看 Reels→收藏→私訊→付費</td></tr>
+        </tbody>
+      </table>
+
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">🎯 顧問策略 — YouTube 定位</span>
+        <p>你的 YouTube 應定位為「<strong>健身科學的深度解說者</strong>」，IG 是「<strong>生活美學的視覺啟發者</strong>」。兩個平台互補，YouTube 建立信任，IG 催化購買。每支 YouTube 影片都應包含 <strong>IG CTA</strong>（如：「更多日常訓練在我 IG @jamie_wu_1012」）。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎬 本週高潛力 YouTube 選題</div>
+      <div class="action-row">
+        <span class="action-num">1</span>
+        <div class="action-text">
+          <div class="action-title">「韓星體態真的可以複製嗎？Karina × 科學解析」</div>
+          <div class="action-desc">TA 最感興趣 + 科學依據 = 高完播率 + 高分享。本週搜尋熱度：⬆️ 上升中。</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <span class="action-num">2</span>
+        <div class="action-text">
+          <div class="action-title">「1 週 3 天的女生力量訓練計劃（30 分鐘，可在家）」</div>
+          <div class="action-desc">工作繁忙 TA 的最大痛點解方。搜尋量持續高，轉換課程意願強。</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <span class="action-num">3</span>
+        <div class="action-text">
+          <div class="action-title">「一個人去首爾，學到了關於身體的一件事」Vlog</div>
+          <div class="action-desc">延續 Seoul Vlog 系列熱度，切入健身主題，TA 共鳴度極高。預期高分享率。</div>
+        </div>
+      </div>
+      <div class="action-row">
+        <span class="action-num">4</span>
+        <div class="action-text">
+          <div class="action-title">「私人教練 1 個月帶學員改變全記錄」</div>
+          <div class="action-desc">學員成果的最佳呈現格式，直接展示 Jamie 的指導價值，轉換率最高。</div>
+        </div>
+      </div>
+
+      <div class="sec" style="margin-top:16px;">YouTube Shorts 策略（配合 IG Reels）</div>
+      <div class="insight">
+        <strong>建議做法：</strong> 把 IG Reels 同步上傳至 YouTube Shorts（可稍微調整文字）。2026 YouTube 演算法大力推 Shorts，可將現有 IG 內容雙平台最大化，不需額外製作。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📈 YouTube 成長漏斗策略（顧問版）</div>
+    <div class="g3" style="margin-top:8px;">
+      <div class="insight">
+        <strong>第一層：曝光</strong><br>
+        目標：讓新觀眾找到你。策略：選關鍵字搜尋量高的題目（女生健身、韓系體態、縮腰訓練），用 SEO 優化標題和說明欄。
+      </div>
+      <div class="insight">
+        <strong>第二層：信任建立</strong><br>
+        目標：讓觀眾訂閱並持續回看。策略：每支影片提供真正可用的知識，結尾預告下支影片，增加訂閱衝動。
+      </div>
+      <div class="insight">
+        <strong>第三層：轉換</strong><br>
+        目標：觀眾→學員。策略：每支影片結尾加 CTA（「想要客製化計劃可私訊 IG」），說明欄放 linkgoods 連結。
+      </div>
+    </div>
+  </div>
+</div><!-- /p3 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 4: 韓系體態整合 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="p4" class="tab-panel">
+
+  <div class="consult">
+    <span class="tag">🇰🇷 顧問觀點 — 韓系體態是你的最大差異化</span>
+    <p>2026 年台灣女性健身市場中，「韓系體態」是搜尋量最高的關鍵字之一。你的 12 年教學經驗 + 韓國文化連結，是絕大多數競爭者無法複製的優勢。<strong>每週至少 1 則韓星體態內容</strong>是你的核心護城河。</p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">🌟 本週韓星體態焦點 — Karina (aespa)</div>
+      <div class="insight">
+        <strong>Karina 的訓練方式（公開資訊）：</strong><br>
+        每週 4 次皮拉提斯 + 重量訓練混合。核心動作：深蹲變化式（相撲深蹲）、臀橋、側腿抬舉、核心捲腹系列。不依賴極端節食，以蛋白質為主食 + 穩定訓練維持體態。
+      </div>
+      <div class="insight">
+        <strong>📹 內容拆解建議：</strong><br>
+        製作「Karina 的 4 個核心動作，你在家也能做」Reels，示範相撲深蹲、臀橋、側腿、捲腹，結尾說「這 4 個動作是我幫學員建立韓系體態的基礎，想要完整計劃？私訊我 '韓系'」。
+      </div>
+      <table class="tbl" style="margin-top:12px;">
+        <thead><tr><th>動作</th><th>部位</th><th>韓系效果</th><th>難度</th></tr></thead>
+        <tbody>
+          <tr><td>相撲深蹲</td><td>臀部 + 大腿內側</td><td>提臀 + 縮大腿</td><td>初學可</td></tr>
+          <tr><td>單腿臀橋</td><td>臀大肌</td><td>圓翹臀型</td><td>中階</td></tr>
+          <tr><td>側腿抬舉</td><td>臀中肌</td><td>臀部線條</td><td>初學可</td></tr>
+          <tr><td>皮拉提斯捲腹</td><td>腹直肌</td><td>腹部線條</td><td>中階</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💪 LE SSERAFIM / IVE 體態管理解析</div>
+      <div class="insight">
+        <strong>LE SSERAFIM 的訓練邏輯：</strong><br>
+        強調功能性力量，不只追求外型。日常包含跳躍訓練（爆發力）、棒式爬行（核心 + 協調）、波比跳（心肺 + 全身）。配合演唱會訓練量，維持高強度體力。
+      </div>
+      <div class="insight">
+        <strong>IVE Jang Wonyoung 的保養哲學：</strong><br>
+        不跟隨極端飲食。選擇讓身體「感覺最好」的食物，每日蛋白質優先，不刻意餓肚子。蕾絲瑜伽（飛行瑜伽）+ 皮拉提斯維持柔軟度 + 線條感。
+      </div>
+      <div class="insight">
+        <strong>📹 內容拆解建議：</strong><br>
+        做一篇「LE SSERAFIM vs IVE：兩種韓系體態的訓練差異」輪播，對比「表演者型」vs「美型線條型」，給 TA 選擇自己的目標，最後 CTA 「哪種是你的目標？留言告訴我」。
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">🍽️ 韓系飲食管理——可直接教學的實用內容</div>
+      <table class="tbl">
+        <thead><tr><th>飲食策略</th><th>韓星誰在用</th><th>Jamie 可教學角度</th></tr></thead>
+        <tbody>
+          <tr><td>間歇性斷食（16:8）</td><td>aespa Winter</td><td>適合台灣上班族的執行方式</td></tr>
+          <tr><td>蛋白質優先飲食</td><td>Karina、Minji</td><td>台灣食物中高蛋白選擇推薦</td></tr>
+          <tr><td>不節食，選擇更好</td><td>Jang Wonyoung</td><td>80/20 法則實際執行</td></tr>
+          <tr><td>每日 3L 水分</td><td>Song Ji-Eun</td><td>喝水時機 + 皮膚改善連結</td></tr>
+          <tr><td>雙清潔護膚結合飲食</td><td>多數韓星</td><td>「吃出好膚質」教學</td></tr>
+        </tbody>
+      </table>
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">💡 顧問建議</span>
+        <p>飲食內容是 IG 收藏率最高的類型之一。建議每週做一篇「<strong>韓星吃什麼？台灣版復刻</strong>」，把韓星的飲食概念轉換成台灣買得到的食材，附上實際份量和時機，這類內容分享率極高。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🌸 韓系保養 × 健身結合內容（差異化機會）</div>
+      <div class="insight">
+        <strong>市場缺口：</strong> 大部分台灣健身教練只談訓練，很少人連結保養。你可以做「<strong>運動後護膚 SOP</strong>」、「<strong>訓練讓皮膚變差的原因 + 怎麼修復</strong>」，切入韓系美容健康的交叉領域，吸引更廣的 TA。
+      </div>
+      <div class="insight">
+        <strong>📹 潛力高內容：</strong><br>
+        「健身後皮膚反而變差？5 個原因 + 韓星保養法解析」Reels ——這個標題同時吸引健身 TA 和美容 TA，觸及範圍可擴大 30-50%。
+      </div>
+      <div class="insight">
+        <strong>📹 深度輪播：</strong><br>
+        「運動讓皮膚變好的科學」12 頁輪播，包含：運動促進循環、睡眠與皮膚再生、蛋白質與膠原蛋白、韓星每天必做的護膚習慣。收藏率預期極高。
+      </div>
+    </div>
+  </div>
+
+</div><!-- /p4 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 5: 下週精準策略 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="p5" class="tab-panel">
+
+  <div class="consult">
+    <span class="tag">🎯 顧問核心建議 — 下週（4/13–4/19）重點方向</span>
+    <p>本週 Seoul Vlog 系列大爆發，YouTube 週觀看 418次（↑8%），IG 非粉絲觸及 33%。<strong>數據顯示生活 Vlog 是你最有效的新受眾獲取工具，下週要做的是把這股流量轉換成課程詢問</strong>——在每支內容結尾加入明確 CTA，並在 Stories 主動 Follow up 高互動觀眾。</p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">📋 下週 IG 策略執行計劃</div>
+
+      <div class="action-row">
+        <span class="action-num">1</span>
+        <div class="action-text">
+          <div class="action-title">Reels：「去了首爾才知道，韓系體態的關鍵不是節食」</div>
+          <div class="action-desc">延續 Seoul Vlog 熱度，帶入健身專業視角。展示 Karina 的 3 個核心動作。CTA：「私訊我 '體態' 領取 7 天計劃」。建議發布：週一 20:00。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">2</span>
+        <div class="action-text">
+          <div class="action-title">輪播：「韓星吃什麼？台灣版復刻 5 日菜單」</div>
+          <div class="action-desc">將 Karina / Wonyoung 飲食策略轉換成台灣食材，附份量。高收藏率格式。建議發布：週三 12:30。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">3</span>
+        <div class="action-text">
+          <div class="action-title">Reels：「我帶學員 4 週的真實改變」</div>
+          <div class="action-desc">學員成果分享（須取得同意）。Before/After 格式，加上訓練摘要。轉換課程詢問最有效的格式。建議發布：週四 19:30。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">4</span>
+        <div class="action-text">
+          <div class="action-title">Stories：限時 48h 課程優惠</div>
+          <div class="action-desc">週四發 Stories 推「下週開課優惠」，搭配輪播貼文的流量。設定限時感，CTA 明確。建議發布：週四同步。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">5</span>
+        <div class="action-text">
+          <div class="action-title">輪播：「LE SSERAFIM vs IVE：哪種體態適合你」</div>
+          <div class="action-desc">互動型輪播，最後一頁請 TA 在留言說出自己的目標。高留言率 = 演算法推播。建議發布：週六 11:00。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">6</span>
+        <div class="action-text">
+          <div class="action-title">Reels：「5 分鐘辦公室縮腰訓練」</div>
+          <div class="action-desc">針對工作繁忙的核心 TA 痛點，示範可在椅子旁做的 5 個動作。趨勢：2026 職場健身 Reels 觸及高。建議發布：週五 12:00。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎬 下週 YouTube / Shorts 計劃</div>
+
+      <div class="sec">YouTube 長影片（擇一）</div>
+      <div class="action-row">
+        <span class="action-num">A</span>
+        <div class="action-text">
+          <div class="action-title">「韓星體態真的可以複製嗎？科學版解析 + 我的判斷」</div>
+          <div class="action-desc">深度分析 Karina / Wonyoung 的訓練科學，加入 Jamie 的教練視角評估可行性。預期 TA：女性 25–35。10–15 分鐘。</div>
+        </div>
+      </div>
+
+      <div class="sec">YouTube Shorts（2–3 支，複用 IG Reels）</div>
+      <div class="insight">
+        將下週 IG 的 Reels 同步上傳 YouTube Shorts，<strong>標題加入搜尋關鍵字</strong>（如「女生健身」「韓系體態」「縮腰訓練」）。這是零額外工作量的雙平台曝光。
+      </div>
+
+      <div class="sec">學員轉換 CTA 優化</div>
+      <table class="tbl">
+        <thead><tr><th>平台</th><th>CTA 建議</th></tr></thead>
+        <tbody>
+          <tr><td>YouTube 影片結尾</td><td>「客製化訓練計劃私訊我 IG @jamie_wu_1012」</td></tr>
+          <tr><td>YouTube 說明欄</td><td>附 linkgoods.com/jamiewu 連結 + 課程說明</td></tr>
+          <tr><td>IG Reels 結尾</td><td>「想要完整計劃？私訊我 '計劃' 兩個字」</td></tr>
+          <tr><td>IG Stories</td><td>限時連結貼圖 + 明確限時優惠截止日</td></tr>
+        </tbody>
+      </table>
+
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">🔥 本週最高優先級行動</span>
+        <p>查看本週 IG Insights，找出<strong>收藏數最高的那篇</strong>，發 Stories 主動引流：「好多人收藏了這篇訓練——想要客製化版本？私訊我 '幫我設計'」。預計可立即產生 3–8 則詢問。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 下週 KPI 目標設定</div>
+    <div class="g3" style="margin-top:8px;">
+      <table class="tbl">
+        <thead><tr><th>指標</th><th>目標</th><th>追蹤方式</th></tr></thead>
+        <tbody>
+          <tr><td>IG 貼文發出數</td><td class="num">6 則</td><td>手動計算</td></tr>
+          <tr><td>IG 週觸及估算</td><td class="num">>12,000</td><td>Insights</td></tr>
+          <tr><td>新粉絲增長</td><td class="num">>50</td><td>Insights</td></tr>
+          <tr><td>課程詢問私訊</td><td class="num">>5 則</td><td>DM 追蹤</td></tr>
+          <tr><td>YouTube Shorts 上傳</td><td class="num">3 支</td><td>Studio</td></tr>
+          <tr><td>長影片（若有）</td><td class="num">1 支</td><td>Studio</td></tr>
+        </tbody>
+      </table>
+
+      <div class="insight">
+        <strong>⚡ 速效策略：Stories CTA</strong><br>
+        週一早上發一則 Stories：「這週你最想解決的體態問題是什麼？」加問卷功能，從回覆中發現 TA 的即時痛點，作為下週內容素材，同時建立對話關係。
+      </div>
+
+      <div class="insight">
+        <strong>🎯 月度新學員目標路徑</strong><br>
+        下週目標：課程詢問 5 則 → 體驗課邀約 3 人 → 成交 1–2 人。按照 12 年教學品質，成交率應高於 60%，關鍵在於詢問的即時回應速度。
+      </div>
+    </div>
+  </div>
+
+</div><!-- /p5 -->
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 6: 週執行計劃 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div id="p6" class="tab-panel">
+
+  <div class="card-title" style="padding:0 0 16px 0; font-size:14px; color:#d8d8d8; display:flex; align-items:center; gap:8px;">
+    <span style="width:3px;height:14px;background:#d8d8d8;border-radius:2px;display:inline-block;"></span>
+    下週（2026.04.13–04.19）具體排程
+  </div>
+
+  <div class="sched-grid" style="margin-bottom:20px;">
+    <div class="sched-day">
+      <div class="sched-day-name">MON</div>
+      <div class="sched-day-num">13</div>
+      <div class="sched-item">20:00<br>Reels<br>「首爾 × 韓系體態」</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day highlight">
+      <div class="sched-day-name">TUE</div>
+      <div class="sched-day-num">14</div>
+      <div class="sched-item">YT Shorts<br>上傳週一<br>Reels 同步</div>
+      <div class="sched-badge yt">YT</div>
+    </div>
+    <div class="sched-day highlight">
+      <div class="sched-day-name">WED</div>
+      <div class="sched-day-num">15</div>
+      <div class="sched-item">12:30<br>輪播<br>「韓星飲食台灣版」</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day highlight">
+      <div class="sched-day-name">THU</div>
+      <div class="sched-day-num">16</div>
+      <div class="sched-item">19:30 Reels<br>「學員成果」<br>+ Stories 優惠</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day">
+      <div class="sched-day-name">FRI</div>
+      <div class="sched-day-num">17</div>
+      <div class="sched-item">12:00 Reels<br>「5 分鐘縮腰」<br>+ YT Shorts</div>
+      <div class="sched-badge ig">IG</div>
+      <div class="sched-badge yt">YT</div>
+    </div>
+    <div class="sched-day">
+      <div class="sched-day-name">SAT</div>
+      <div class="sched-day-num">18</div>
+      <div class="sched-item">11:00 輪播<br>「LSRF vs IVE<br>體態選擇」</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day">
+      <div class="sched-day-name">SUN</div>
+      <div class="sched-day-num">19</div>
+      <div class="sched-item">YT 長影片<br>「韓星體態<br>科學解析」</div>
+      <div class="sched-badge yt">YT</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">📝 每週固定工作流程</div>
+      <table class="tbl">
+        <thead><tr><th>時段</th><th>任務</th><th>工具</th></tr></thead>
+        <tbody>
+          <tr><td>每天 08:08</td><td>查看晨報（自動生成）</td><td>Telegram</td></tr>
+          <tr><td>週一早</td><td>發 Stories 問 TA 本週問題</td><td>IG</td></tr>
+          <tr><td>週一</td><td>拍攝本週所有 Reels（批量）</td><td>手機</td></tr>
+          <tr><td>週二–四</td><td>回覆私訊 / 詢問跟進</td><td>IG DM</td></tr>
+          <tr><td>週五</td><td>查看本週 IG Insights</td><td>IG 後台</td></tr>
+          <tr><td>週五</td><td>查看 YouTube Studio</td><td>YT Studio</td></tr>
+          <tr><td>週日 18:00</td><td>週報自動生成</td><td>Claude Telegram</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎯 學員轉換追蹤表</div>
+      <table class="tbl">
+        <thead><tr><th>來源</th><th>本週詢問</th><th>跟進狀態</th><th>目標</th></tr></thead>
+        <tbody>
+          <tr><td>IG Reels 留言</td><td class="num">—</td><td>每天查看</td><td>詢問→邀體驗</td></tr>
+          <tr><td>IG DM 私訊</td><td class="num">—</td><td>2h 內回覆</td><td>當週成交</td></tr>
+          <tr><td>Stories 互動</td><td class="num">—</td><td>主動跟進</td><td>建立關係</td></tr>
+          <tr><td>YouTube 留言</td><td class="num">—</td><td>每週查看</td><td>引流至 IG</td></tr>
+          <tr><td>linkgoods 點擊</td><td class="num">—</td><td>月底統計</td><td>課程報名</td></tr>
+        </tbody>
+      </table>
+
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">💡 顧問提示 — 私訊回覆 SOP</span>
+        <p>收到詢問私訊後，標準回覆流程：<strong>① 了解目標</strong>（問：「你最想改善哪個部分？」）→ <strong>② 分享相關內容</strong>（傳一篇你的貼文）→ <strong>③ 邀體驗</strong>（「我這週還有一個空位，想試試看嗎？」）。這個三步驟流程可以讓轉換率提升 2–3 倍。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 月度成長飛輪（顧問模型）</div>
+    <div class="g3" style="margin-top:8px;">
+      <div class="insight">
+        <strong>內容飛輪第一圈</strong><br>
+        優質 Reels → 觸及非粉絲 → 新粉絲增長 → 更大觸及基數 → 課程詢問增加
+      </div>
+      <div class="insight">
+        <strong>信任飛輪第二圈</strong><br>
+        YouTube 深度影片 → 建立專業權威 → 長期訂閱者信任 → 願意付費 → 學員成果 → 更多社交認同
+      </div>
+      <div class="insight">
+        <strong>口碑飛輪第三圈</strong><br>
+        學員成果分享 → 帶動朋友詢問 → 自然轉介紹 → 零廣告費新學員 → 品牌忠誠度提升
+      </div>
+    </div>
+  </div>
+
+</div><!-- /p6 -->
+
+</div><!-- .content -->
+
+</body>
+</html>

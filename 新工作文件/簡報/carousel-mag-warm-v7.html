@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · MAG_WARM · v7 · Premium Korean Editorial</title>
+
+<!-- Pretendard (韓系頂規 sans，WO5/設計雜誌標準) -->
+<link rel="stylesheet" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+
+<!-- Google Fonts: Fraunces(編輯 serif), Instrument Serif Italic(display), Noto Serif TC -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..500;1,9..144,200..500&family=Instrument+Serif:ital@0;1&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #fdfaf3;
+  --bg-page: #e8e1d1;
+  --ink: #2a2118;
+  --ink-soft: #5c4f3f;
+  --ink-mute: #8a7b67;
+  --line: #c9b89a;
+  --line-soft: rgba(201,184,154,0.55);
+  --accent: #7a5436;        /* caramel */
+  --accent-soft: #a87d5a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'Pretendard Variable', Pretendard, 'Noto Sans TC', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1, "liga" 1, "calt" 1;
+}
+body{background:var(--bg-page);padding:60px 28px;min-height:100vh}
+
+/* ==== 頁首 ==== */
+.page-hd{max-width:1480px;margin:0 auto 72px;color:var(--ink-soft);text-align:center}
+.page-hd h1{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:28px;
+  margin-bottom:12px;
+  letter-spacing:0.01em;
+  color:var(--ink);
+}
+.page-hd p{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-size:10px;
+  color:var(--ink-mute);
+  letter-spacing:0.46em;
+  font-weight:300;
+  text-transform:uppercase;
+}
+
+.row{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+
+/* ============================================================
+   IG 4:5 · Premium Korean Editorial · v7
+   ============================================================ */
+.card{
+  aspect-ratio: 4 / 5;
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+  color:var(--ink);
+  display:flex;
+  box-shadow:
+    0 1px 0 rgba(231,218,193,0.9) inset,
+    0 24px 80px -20px rgba(58,42,22,0.22),
+    0 6px 20px -6px rgba(58,42,22,0.08);
+  border-radius:3px;
+  font-feature-settings:"kern" 1, "liga" 1, "calt" 1, "onum" 1;
+}
+
+/* 紙質雜訊（更細膩） */
+.card::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.71 0 0 0 0 0.57 0 0 0 0.1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity:0.65;
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:multiply;
+}
+
+/* 內嵌框線 */
+.card::after{
+  content:'';
+  position:absolute;
+  inset:5.2%;
+  border:0.5px solid var(--line-soft);
+  pointer-events:none;
+  z-index:1;
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:13% 10.5% 11.5% 10.5%;
+  display:flex;flex-direction:column;
+  z-index:2;
+}
+
+/* ==== Eyebrow（頂端小標，Instrument Serif Italic） ==== */
+.eye{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:16px;
+  letter-spacing:0.03em;
+  color:var(--accent);
+  margin-bottom:40px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.eye::before{
+  content:'';
+  width:32px;height:0.5px;
+  background:var(--line);
+  display:inline-block;
+}
+.eye .num{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;
+  font-weight:400;
+  font-size:10.5px;
+  letter-spacing:0.4em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  margin-left:auto;
+}
+
+/* ==== 主標：Noto Serif TC weight 400，緊排 ==== */
+.title{
+  font-family:'Noto Serif TC',serif;
+  font-weight:400;
+  font-size:clamp(26px, 3.1vw, 34px);
+  line-height:1.85;
+  letter-spacing:0.04em;
+  color:var(--ink);
+}
+.title em{
+  font-style:normal;
+  font-weight:500;
+  color:var(--accent);
+  position:relative;
+  white-space:nowrap;
+}
+/* 底線改成細緻金線 */
+.title em::after{
+  content:'';
+  position:absolute;
+  left:2%;right:2%;
+  bottom:-2px;
+  height:0.5px;
+  background:var(--accent);
+  opacity:0.45;
+}
+
+/* 副標 */
+.title-sm{
+  font-family:'Noto Serif TC',serif;
+  font-weight:300;
+  font-size:clamp(18px, 2vw, 22px);
+  line-height:2;
+  letter-spacing:0.06em;
+  color:var(--ink-soft);
+  margin-top:22px;
+}
+
+/* Body — Pretendard 韓系 sans */
+.body{
+  font-family:'Pretendard Variable',Pretendard,'Noto Sans TC',sans-serif;
+  font-weight:300;
+  font-size:clamp(13px, 1.4vw, 15px);
+  line-height:2.1;
+  letter-spacing:0.04em;
+  color:var(--ink-soft);
+  margin-top:auto;
+  font-feature-settings:"kern" 1, "liga" 1, "calt" 1, "pnum" 1;
+}
+.body strong{
+  font-weight:500;
+  color:var(--ink);
+}
+
+/* ==== Pull Number：Fraunces italic，高級編輯感 ==== */
+.num-pull{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 144, "SOFT" 30;
+  font-size:clamp(140px, 17vw, 220px);
+  line-height:0.88;
+  color:var(--accent);
+  letter-spacing:-0.025em;
+  margin:auto 0;
+  font-feature-settings:"lnum" 1, "ss01" 1;
+}
+.num-pull .lbl{
+  display:block;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;
+  font-weight:400;
+  font-size:0.08em;
+  color:var(--ink-mute);
+  letter-spacing:0.32em;
+  margin-top:32px;
+  line-height:1.7;
+  text-transform:uppercase;
+}
+
+/* 對比行 */
+.compare-row{
+  display:flex;
+  align-items:baseline;
+  gap:20px;
+  padding:22px 0;
+  border-bottom:0.5px solid var(--line-soft);
+}
+.compare-row:last-child{border-bottom:none}
+.compare-row .q{
+  font-family:'Noto Serif TC',serif;
+  font-weight:400;
+  font-size:clamp(16px,1.75vw,19px);
+  line-height:1.6;
+  color:var(--ink);
+  letter-spacing:0.04em;
+  flex:1;
+}
+.compare-row .a{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(16px,1.75vw,19px);
+  color:var(--ink-mute);
+  letter-spacing:0.02em;
+  text-align:right;
+  white-space:nowrap;
+}
+.compare-row .a strong{
+  font-weight:500;
+  color:var(--accent);
+  font-style:normal;
+  font-family:'Noto Serif TC',serif;
+}
+
+/* hairline */
+.rule{
+  width:28px;
+  height:0.5px;
+  background:var(--line);
+  margin:26px 0;
+}
+
+/* 底部 footer — 雙行排版 */
+.foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-top:28px;
+  gap:12px;
+}
+.foot .l{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:13.5px;
+  letter-spacing:0.02em;
+  color:var(--ink-mute);
+  line-height:1.5;
+}
+.foot .l .sub{
+  display:block;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;
+  font-weight:400;
+  font-size:8.5px;
+  letter-spacing:0.42em;
+  color:var(--line);
+  text-transform:uppercase;
+  margin-top:3px;
+}
+.foot .r{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:15px;
+  letter-spacing:0.02em;
+  color:var(--ink-mute);
+  font-feature-settings:"lnum" 1;
+}
+.foot .r .slash{color:var(--line);margin:0 3px;font-weight:200}
+
+/* ==== COVER 專用 ==== */
+.cover .inner{justify-content:space-between}
+.cover .issue{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:17px;
+  letter-spacing:0.02em;
+  color:var(--accent);
+}
+.cover .issue-sub{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;
+  font-weight:400;
+  font-size:10px;
+  letter-spacing:0.44em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-top:8px;
+  display:block;
+}
+.cover .htitle{
+  font-family:'Noto Serif TC',serif;
+  font-weight:400;
+  font-size:clamp(30px, 3.8vw, 40px);
+  line-height:1.72;
+  letter-spacing:0.04em;
+  color:var(--ink);
+  margin-top:auto;
+}
+.cover .htitle em{
+  font-style:normal;
+  font-weight:500;
+  color:var(--accent);
+}
+.cover .htitle em::after{display:none}  /* cover 不畫底線 */
+.cover .hsub{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(17px,1.8vw,21px);
+  line-height:1.65;
+  color:var(--ink-soft);
+  margin-top:26px;
+  letter-spacing:0.01em;
+}
+
+/* 結尾專用 */
+.end-title{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 144, "SOFT" 50;
+  font-size:clamp(40px,4.8vw,56px);
+  line-height:1.35;
+  color:var(--ink);
+  letter-spacing:-0.005em;
+}
+.end-title .ch{
+  font-family:'Noto Serif TC',serif;
+  font-style:normal;
+  font-weight:400;
+  font-size:0.82em;
+  letter-spacing:0.04em;
+  display:block;
+  color:var(--ink);
+  margin-top:8px;
+}
+.end-sig{
+  font-family:'Noto Serif TC',serif;
+  font-weight:300;
+  font-size:14px;
+  line-height:2.1;
+  letter-spacing:0.08em;
+  color:var(--ink-soft);
+  margin-top:28px;
+}
+.end-sig .brand{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:400;
+  font-variation-settings:"opsz" 144;
+  font-size:22px;
+  color:var(--accent);
+  letter-spacing:0em;
+  font-feature-settings:"lnum" 1;
+}
+
+/* dot separator */
+.dot{
+  display:inline-block;
+  width:3px;height:3px;
+  background:var(--accent);
+  border-radius:50%;
+  vertical-align:middle;
+  margin:0 10px 3px;
+}
+
+/* ==== 小圖章（章節型，增加雜誌感） ==== */
+.stamp{
+  position:absolute;
+  top:9.5%; right:9.5%;
+  z-index:3;
+  width:56px; height:56px;
+  border:0.5px solid var(--line);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  color:var(--accent);
+  font-size:11px;
+  letter-spacing:0.04em;
+  line-height:1.1;
+  text-align:center;
+}
+.stamp .s-n{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-size:16px;
+  font-weight:400;
+}
+.stamp .s-sub{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;
+  font-size:6.5px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  margin-top:2px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1><em>Jamie · Mag Warm &nbsp;— &nbsp;Korean Editorial, v7</em></h1>
+  <p>7 slides &nbsp;·&nbsp; 1080 × 1350 &nbsp;·&nbsp; pretendard + fraunces + instrument serif + noto serif tc</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER -->
+<div class="card cover">
+  <div class="stamp">
+    <span class="s-n">01</span>
+    <span class="s-sub">no.</span>
+  </div>
+  <div class="inner">
+    <div>
+      <p class="issue"><em>a note from jamie</em></p>
+      <span class="issue-sub">training quality · vol. 01</span>
+    </div>
+    <div>
+      <p class="htitle">練好幾年，<br>身體<em>還是沒變</em>。<br>不是你不夠努力。</p>
+      <p class="hsub"><em>— 我帶了十二年，<br>大家誤會了「努力」這兩個字。</em></p>
+    </div>
+    <div class="foot">
+      <span class="l"><em>repurre studio</em><span class="sub">taipei · daan</span></span>
+      <span class="r">01<span class="slash">/</span>07</span>
+    </div>
+  </div>
+</div>
+
+<!-- S2 / 9 年學生 -->
+<div class="card">
+  <div class="stamp">
+    <span class="s-n">02</span>
+    <span class="s-sub">chapter</span>
+  </div>
+  <div class="inner">
+    <p class="eye"><em>chapter one</em><span class="num">the story</span></p>
+    <p class="title">我帶過<em>最久的學生</em>，<br>到今年，九年了。</p>
+    <p class="title-sm">但前兩年，<br>他的身體⋯⋯<br>其實沒什麼變。</p>
+    <p class="body">
+      他每堂都有到。<br>
+      卡的不是出席，也不是年紀。<br>
+      是那兩年——他「去了」，<strong>但沒真的在練</strong>。
+    </p>
+    <div class="foot">
+      <span class="l"><em>repurre</em><span class="sub">no. 01</span></span>
+      <span class="r">02<span class="slash">/</span>07</span>
+    </div>
+  </div>
+</div>
+
+<!-- S3 / Pull Number -->
+<div class="card">
+  <div class="stamp">
+    <span class="s-n">03</span>
+    <span class="s-sub">scene</span>
+  </div>
+  <div class="inner">
+    <p class="eye"><em>what i see</em><span class="num">12 years in</span></p>
+    <div class="num-pull">
+      <em>9</em>
+      <span class="lbl">years · 一個學生 &nbsp;<span class="dot"></span>&nbsp; 前兩年 沒變</span>
+    </div>
+    <p class="body">
+      這十二年我看下來，<br>
+      身體不回應時間，<strong>只回應品質</strong>。<br>
+      每一下你誠實做，它都記得。
+    </p>
+    <div class="foot">
+      <span class="l"><em>repurre</em><span class="sub">no. 01</span></span>
+      <span class="r">03<span class="slash">/</span>07</span>
+    </div>
+  </div>
+</div>
+
+<!-- S4 / 校準 -->
+<div class="card">
+  <div class="stamp">
+    <span class="s-n">04</span>
+    <span class="s-sub">calibrate</span>
+  </div>
+  <div class="inner">
+    <p class="eye"><em>calibration</em><span class="num">your signal</span></p>
+    <p class="title"><em>身體的訊號</em>，<br>其實一直在告訴你。</p>
+    <div style="margin-top:38px">
+      <div class="compare-row">
+        <span class="q">十二下還能聊天</span>
+        <span class="a">身體 <strong>還沒接到訊號</strong></span>
+      </div>
+      <div class="compare-row">
+        <span class="q">六下就臉紅脖子粗</span>
+        <span class="a">才是 <strong>開始</strong></span>
+      </div>
+    </div>
+    <p class="body" style="margin-top:auto">
+      這不是嚴格，也不是逼。<br>
+      是學著聽懂——<br>
+      你身體今天真正的那一條線在哪。
+    </p>
+    <div class="foot">
+      <span class="l"><em>repurre</em><span class="sub">no. 01</span></span>
+      <span class="r">04<span class="slash">/</span>07</span>
+    </div>
+  </div>
+</div>
+
+<!-- S5 / 誠實 -->
+<div class="card">
+  <div class="stamp">
+    <span class="s-n">05</span>
+    <span class="s-sub">the one</span>
+  </div>
+  <div class="inner">
+    <p class="eye"><em>the thing</em><span class="num">my only rule</span></p>
+    <p class="title">訓練的品質，<br>其實不是你<em>舉多重</em>。</p>
+    <div class="rule"></div>
+    <p class="title-sm">是你願不願意，<br>誠實面對<br>自己有沒有偷懶。</p>
+    <p class="body">
+      我覺得就這麼簡單。<br>
+      這件事沒有技巧、沒有 app、也沒有捷徑。<br>
+      它只是你跟自己<strong>一個約定</strong>而已。
+    </p>
+    <div class="foot">
+      <span class="l"><em>repurre</em><span class="sub">no. 01</span></span>
+      <span class="r">05<span class="slash">/</span>07</span>
+    </div>
+  </div>
+</div>
+
+<!-- S6 / 複利 -->
+<div class="card">
+  <div class="stamp">
+    <span class="s-n">06</span>
+    <span class="s-sub">compound</span>
+  </div>
+  <div class="inner">
+    <p class="eye"><em>compound</em><span class="num">after year 3</span></p>
+    <p class="title">時間<em>真的會複利</em>。</p>
+    <p class="title-sm">但前提是——<br>你把每一下，<br>都真的放進去了。</p>
+    <p class="body">
+      我那位九年的學生，<br>
+      第三年後身體一年比一年好。<br>
+      不是因為練更久，<br>
+      是他那一年終於<strong>不再陪自己聊天</strong>。
+    </p>
+    <div class="foot">
+      <span class="l"><em>repurre</em><span class="sub">no. 01</span></span>
+      <span class="r">06<span class="slash">/</span>07</span>
+    </div>
+  </div>
+</div>
+
+<!-- S7 / END -->
+<div class="card">
+  <div class="stamp">
+    <span class="s-n">07</span>
+    <span class="s-sub">end note</span>
+  </div>
+  <div class="inner">
+    <p class="eye"><em>a note, closing</em></p>
+    <p class="end-title">
+      <em>every rep, a choice.</em>
+      <span class="ch">每一下，都是一次選擇。</span>
+    </p>
+    <div class="rule"></div>
+    <p class="end-sig">
+      <span class="brand">Jamie Wu</span><br>
+      repurre studio &nbsp;·&nbsp; 十二年私教<br>
+      台北大安 &nbsp;·&nbsp; est. 2014
+    </p>
+    <p class="body" style="margin-top:auto">
+      如果這篇有陪到你，<br>
+      儲存一下，下次練之前再看一眼。<br>
+      我們下一篇見 &nbsp;🤍
+    </p>
+    <div class="foot">
+      <span class="l"><em>repurre</em><span class="sub">end of no. 01</span></span>
+      <span class="r">07<span class="slash">/</span>07</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

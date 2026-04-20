@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>repurre 週報 v2 — 2026.04.13–04.19 TA 深度版</title>
+<style>
+:root {
+  --bg: #080808;
+  --card: #111111;
+  --card2: #181818;
+  --border: #222;
+  --gold: #d8d8d8;
+  --gold-light: #f0f0f0;
+  --gold-dim: rgba(220,220,220,0.08);
+  --text: #f0ece4;
+  --muted: #888;
+  --accent: #d8d8d8;
+  --font: -apple-system, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+
+.header {
+  background: linear-gradient(135deg, #0f0f0f, #161616);
+  border-bottom: 1px solid #2a2a2a;
+  padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.header-brand { font-size: 24px; font-weight: 900; color: var(--gold); letter-spacing: 2px; }
+.header-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.header-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: var(--gold-dim);
+  border: 1px solid rgba(220,220,220,0.2);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 12px; color: var(--gold);
+}
+.pill strong { color: var(--gold-light); }
+
+.alert-bar {
+  background: linear-gradient(90deg, #141414, #111111);
+  border-bottom: 1px solid #252525;
+  padding: 10px 32px;
+  font-size: 13px; color: #cccccc;
+  display: flex; align-items: center; gap: 10px;
+}
+.alert-tag { background: #d8d8d8; color: #000; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; }
+
+.tabs-wrap { background: #0d0d0d; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.tabs { display: flex; padding: 0 24px; overflow-x: auto; gap: 4px; }
+.tab-btn {
+  padding: 14px 18px; border: none; background: none; cursor: pointer;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.content { padding: 24px 28px; max-width: 1440px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 16px; }
+.g5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 16px; }
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }
+.span-all { grid-column: 1/-1; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.card.accent-border { border-color: rgba(220,220,220,0.25); }
+.card-title {
+  font-size: 11px; font-weight: 800; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-title::before { content: ''; width: 3px; height: 12px; background: var(--gold); border-radius: 2px; }
+
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.kpi-val { font-size: 36px; font-weight: 900; color: var(--gold); line-height: 1; font-family: Georgia, serif; }
+.kpi-val.g { color: #bbb; }
+.kpi-val.r { color: #999; }
+.kpi-val.b { color: #aaa; }
+.kpi-label { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.kpi-delta { font-size: 12px; margin-top: 4px; font-weight: 700; }
+.kpi-delta.up { color: #ccc; }
+.kpi-delta.down { color: #999; }
+.kpi-delta.flat { color: var(--muted); }
+
+.sec { font-size: 15px; font-weight: 800; color: var(--text); margin: 20px 0 12px; border-left: 3px solid var(--gold); padding-left: 10px; }
+
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl th { text-align: left; padding: 8px 10px; color: var(--gold); font-size: 11px; border-bottom: 1px solid #222; font-weight: 700; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid #1a1a1a; color: var(--text); }
+.tbl tr:hover td { background: #141414; }
+.num { font-family: Georgia, serif; color: var(--gold); font-weight: 700; }
+
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.bar-label { font-size: 12px; color: var(--text); min-width: 170px; }
+.bar-track { flex: 1; height: 8px; background: #1a1a1a; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #aaa, #ddd); }
+.bar-fill.g { background: linear-gradient(90deg, #888, #bbb); }
+.bar-pct { font-size: 12px; color: var(--gold); font-weight: 700; min-width: 48px; text-align: right; }
+
+.chip {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px; margin: 2px;
+}
+.chip.w { background: rgba(220,220,220,0.1); color: #ddd; border: 1px solid rgba(220,220,220,0.25); }
+.chip.g { background: rgba(180,180,180,0.1); color: #bbb; border: 1px solid rgba(180,180,180,0.2); }
+.chip.d { background: rgba(120,120,120,0.1); color: #999; border: 1px solid rgba(120,120,120,0.2); }
+
+.insight {
+  background: #141414;
+  border: 1px solid rgba(220,220,220,0.12);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.insight strong { color: var(--gold); }
+
+.warn {
+  background: rgba(120,120,120,0.08);
+  border: 1px solid rgba(150,150,150,0.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.consult {
+  background: linear-gradient(135deg, #161616, #111111);
+  border: 1px solid rgba(220,220,220,0.2);
+  border-left: 4px solid #d8d8d8;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.consult .tag { font-size: 10px; font-weight: 800; color: #000; background: #d8d8d8; padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; display: inline-block; }
+.consult p { color: #ccc; margin-top: 6px; }
+.consult strong { color: #fff; }
+
+.action-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--gold); color: #000; font-size: 12px; font-weight: 900;
+  flex-shrink: 0;
+}
+.action-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+.action-text { font-size: 13px; line-height: 1.6; }
+.action-title { font-weight: 700; color: var(--text); }
+.action-desc { color: var(--muted); margin-top: 3px; font-size: 12px; }
+
+.persona-box {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 14px;
+}
+.persona-block {
+  background: #121212;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  padding: 14px;
+}
+.persona-block h4 { font-size: 12px; font-weight: 800; color: var(--gold); margin-bottom: 8px; }
+.persona-block li { font-size: 12px; color: #ccc; padding: 3px 0; list-style: none; display: flex; gap: 6px; align-items: flex-start; }
+.persona-block li::before { content: '>'; color: var(--gold); flex-shrink: 0; }
+
+.sched-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 8px; }
+.sched-day { background: #111; border: 1px solid #1e1e1e; border-radius: 8px; padding: 10px 8px; text-align: center; }
+.sched-day.highlight { border-color: rgba(220,220,220,0.3); }
+.sched-day-name { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+.sched-day-num { font-size: 20px; font-weight: 900; color: var(--gold); font-family: Georgia, serif; }
+.sched-item { font-size: 10px; color: #aaa; margin-top: 4px; line-height: 1.4; }
+.sched-badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; margin-top: 2px; }
+.sched-badge.ig { background: rgba(220,220,220,0.12); color: #ccc; }
+.sched-badge.yt { background: rgba(200,200,200,0.12); color: #bbb; }
+.sched-badge.class { background: rgba(180,180,180,0.08); color: #aaa; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+@media(max-width:768px){
+  .header{padding:14px 16px;flex-direction:column;align-items:flex-start;}
+  .header-brand{font-size:18px;}
+  .header-pills{gap:6px;}
+  .pill{font-size:10px;padding:4px 10px;}
+  .alert-bar{padding:8px 16px;font-size:12px;}
+  .tabs{padding:0 8px;gap:2px;}
+  .tab-btn{padding:10px 10px;font-size:11px;}
+  .content{padding:14px 12px;}
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr;gap:10px;}
+  .span2,.span3{grid-column:span 1;}
+  .kpi-val{font-size:22px;}
+  .card{padding:14px;}
+  .persona-box{grid-template-columns:1fr;}
+  .action-row{flex-direction:column;gap:8px;}
+  .sched-grid{grid-template-columns:repeat(2,1fr);}
+  .sched-day{padding:10px;}
+  .bar-label{min-width:130px;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-brand">repurre 週報</div>
+    <div class="header-sub">2026.04.13 – 04.19 ｜ TA 深度版 v2 ｜ @jamie_wu_1012 ｜ 顧問版</div>
+  </div>
+  <div class="header-pills">
+    <span class="pill">IG 粉絲 <strong>2.7 萬</strong></span>
+    <span class="pill">IG 瀏覽 <strong>26.1 萬</strong> ▲ +6%</span>
+    <span class="pill">非粉觸及 <strong>55.5%</strong></span>
+    <span class="pill">YT 訂閱 <strong>57</strong> ▲ +2</span>
+    <span class="pill">54 則內容/週</span>
+  </div>
+</div>
+
+<div class="alert-bar">
+  <span class="alert-tag">本週數據</span>
+  <span>IG 30 天：瀏覽 26.1 萬 ｜ 觸及 4.3 萬 ｜ 互動 5,325 ｜ 外部連結 148 ｜ 粉絲 2.7 萬。YT 頻道：訂閱 57（+2）｜ 上架 5 支（Day 6-9 首爾 Vlog + 腰痠影片）。上週發佈 54 則內容（IG 貼文 6 + 限動 22 + FB 4 + FB 限動 22）。</span>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="show(1)">① 本週總覽×TA</button>
+    <button class="tab-btn" onclick="show(2)">② IG×TA深度</button>
+    <button class="tab-btn" onclick="show(3)">③ YouTube分析</button>
+    <button class="tab-btn" onclick="show(4)">④ 韓系體態整合</button>
+    <button class="tab-btn" onclick="show(5)">⑤ 學員動態</button>
+    <button class="tab-btn" onclick="show(6)">⑥ 下週精準策略</button>
+    <button class="tab-btn" onclick="show(7)">⑦ 週執行計劃</button>
+    <button class="tab-btn" onclick="show(8)">⑧ 首爾 Vlog 特輯</button>
+  </div>
+</div>
+
+<script>
+function show(n) {
+  var panels = document.querySelectorAll('.tab-panel');
+  var btns = document.querySelectorAll('.tab-btn');
+  for (var i = 0; i < panels.length; i++) { panels[i].className = 'tab-panel'; }
+  for (var i = 0; i < btns.length; i++) { btns[i].className = 'tab-btn'; }
+  document.getElementById('p' + n).className = 'tab-panel active';
+  btns[n - 1].className = 'tab-btn active';
+  return false;
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var btns = document.querySelectorAll('.tab-btn');
+  for (var i = 0; i < btns.length; i++) {
+    (function(idx) {
+      btns[idx].addEventListener('click', function(e) { e.preventDefault(); show(idx + 1); });
+      btns[idx].addEventListener('touchend', function(e) { e.preventDefault(); show(idx + 1); });
+    })(i);
+  }
+});
+</script>
+
+<div class="content">
+
+<!-- ════════════════ TAB 1 ════════════════ -->
+<div id="p1" class="tab-panel active">
+
+  <div class="g5">
+    <div class="kpi">
+      <div class="kpi-val">2.7萬</div>
+      <div class="kpi-label">IG 粉絲總數</div>
+      <div class="kpi-delta flat">持平 ｜ 自然流動</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val g">55.5%</div>
+      <div class="kpi-label">非粉絲觸及比</div>
+      <div class="kpi-delta up">▲ 演算法仍在推</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val b">4.3萬</div>
+      <div class="kpi-label">IG 觸及帳號數</div>
+      <div class="kpi-delta up">▲ +4.9% vs 上週</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val r">5,325</div>
+      <div class="kpi-label">IG 互動次數</div>
+      <div class="kpi-delta up">▲ +5% vs 上週</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">57</div>
+      <div class="kpi-label">YT 訂閱數</div>
+      <div class="kpi-delta flat">▲ +2 ｜ 成長放緩</div>
+    </div>
+  </div>
+
+  <div class="consult">
+    <span class="tag">顧問觀點 — 本週最重要的一件事</span>
+    <p>這週是 <strong>「基礎設施與產能爆發週」</strong>，不是 breakthrough 週。數據上 IG 瀏覽 +6%、觸及 +4.9%、互動 +5%，都是小幅成長；但 YT 訂閱只 +2（上週 +46）代表 Shorts 爆量期已過高峰。真正發生的是幕後：<strong>CC 4.7 升級、12 個 skills 上線、assessment email 系統 go-live、首爾 Vlog 4 支上架 + 2 支排程、04/20 起的「代償歸零」主軸內容包已完成（13 則）</strong>。下週才是真正的驗證週——新招牌詞「代償歸零」上場、YT 長片回歸、3 Reels + 2 輪播打系列。<strong>本週沉住氣做基礎，下週全力衝轉換。</strong></p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">核心 TA 輪廓（2026 Q2 · 32-43 新版）</div>
+      <div class="persona-box">
+        <div class="persona-block">
+          <h4>主力 TA — 成熟紀律女</h4>
+          <ul>
+            <li>女性，32-43 歲，台灣</li>
+            <li>有餘裕 × 有品味 × 尊重專業</li>
+            <li>痛點：肩頸痠、腰痠、代償不自知</li>
+            <li>觸發點：矯正性、長肌紀律、長期陪伴</li>
+            <li>轉換率：最高（高單價體驗課）</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h4>次要 TA — 職場媽媽</h4>
+          <ul>
+            <li>女性，35-45 歲，有小孩</li>
+            <li>時間零碎 / 身體已經在警告</li>
+            <li>目標：骨盆底、核心、穩定</li>
+            <li>觸發點：跨代敘事、媽媽級共鳴</li>
+            <li>轉換率：中等偏高</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h4>付費學員特徵</h4>
+          <ul>
+            <li>願意為「真正的專業」付費</li>
+            <li>看過其他教練但覺得沒被看懂</li>
+            <li>喜歡長期陪伴 >> 短期速成</li>
+            <li>中高消費力，30-45 歲</li>
+          </ul>
+        </div>
+        <div class="persona-block">
+          <h4>轉換機會點（本週）</h4>
+          <ul>
+            <li>IG Reel 觸及 53.7% + 貼文 46.3% 雙軌</li>
+            <li>互動 Reel 70.0% / 貼文 25.2%</li>
+            <li>外部連結 148 次點按（+8.8%）</li>
+            <li>個人檔案瀏覽 4,141 次（+2.3%）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">本週關鍵指標 vs 上週</div>
+      <table class="tbl">
+        <thead><tr><th>指標</th><th>本週</th><th>上週</th><th>變化</th></tr></thead>
+        <tbody>
+          <tr><td>IG 瀏覽次數（30d）</td><td class="num">261,000</td><td>246,000</td><td class="num">+6.1%</td></tr>
+          <tr><td>IG 觸及帳號（30d）</td><td class="num">43,000</td><td>41,000</td><td class="num">+4.9%</td></tr>
+          <tr><td>IG 互動次數</td><td class="num">5,325</td><td>5,070</td><td class="num">+5.0%</td></tr>
+          <tr><td>IG 互動帳號</td><td class="num">3,090</td><td>2,959</td><td class="num">+4.4%</td></tr>
+          <tr><td>IG 個人檔案瀏覽</td><td class="num">4,141</td><td>4,048</td><td class="num">+2.3%</td></tr>
+          <tr><td>IG 外部連結點按</td><td class="num">148</td><td>136</td><td class="num">+8.8%</td></tr>
+          <tr><td>IG 非粉絲比</td><td class="num">55.5%</td><td>55.1%</td><td class="num">+0.4pp</td></tr>
+          <tr><td>IG 粉絲總數</td><td class="num">27,000</td><td>27,200</td><td>－200</td></tr>
+          <tr><td>YT 訂閱數（累計）</td><td class="num">57</td><td>55</td><td class="num">+2</td></tr>
+          <tr><td>YT 本週上架</td><td class="num">5 支</td><td>2 支</td><td class="num">+3 支</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec" style="margin-top:14px;">本週顧問洞察</div>
+      <div class="insight">
+        <strong>量成長 vs 質停滯：</strong> 瀏覽、觸及、互動都在漲（+5-9%），但粉絲數 -200、YT 訂閱只 +2。這說明<strong>新觀眾看完內容沒被「勾住成為長期追蹤者」</strong>——內容吸引力在，但「追蹤動機」不夠強。下週「代償歸零」系列要補一層：每支 Reels 結尾加「追蹤我 → 每週一題深度」。
+      </div>
+      <div class="insight">
+        <strong>互動格式轉移：</strong> Reel 互動佔比從上週 88.6% → 本週 70.0%，貼文（輪播）互動從 7% 爬到 25.2%。<strong>v14 輪播的收藏/分享開始起作用</strong>——代償歸零 + 肌肉資產 + 肌少症 50 歲 三組專業深度輪播預計會再放大這個趨勢。
+      </div>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-title">本週績效自評</div>
+      <div style="margin-bottom:12px;">
+        <div class="bar-row">
+          <span class="bar-label">IG Reel 互動佔比</span>
+          <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+          <span class="bar-pct">70.0%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">IG 貼文互動佔比</span>
+          <div class="bar-track"><div class="bar-fill" style="width:25.2%"></div></div>
+          <span class="bar-pct">25.2%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">非粉絲觸及比</span>
+          <div class="bar-track"><div class="bar-fill" style="width:55.5%"></div></div>
+          <span class="bar-pct">55.5%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Reel 觸及佔比</span>
+          <div class="bar-track"><div class="bar-fill" style="width:53.7%"></div></div>
+          <span class="bar-pct">53.7%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">貼文觸及佔比</span>
+          <div class="bar-track"><div class="bar-fill" style="width:46.3%"></div></div>
+          <span class="bar-pct">46.3%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">外部連結成長率</span>
+          <div class="bar-track"><div class="bar-fill g" style="width:40%"></div></div>
+          <span class="bar-pct">+8.8%</span>
+        </div>
+      </div>
+      <div class="insight">
+        <strong>顧問診斷：</strong> Reel 和貼文互動接近 7:2.5，代表你的帳號已經從「單 Reel 引擎」轉為「Reel + 輪播雙引擎」。v14 輪播開始站穩 → 專業深度類內容有地方可以放。這是健康的演算法信號。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">本週雙平台動態</div>
+      <table class="tbl">
+        <thead><tr><th>項目</th><th>狀態</th><th>備註</th></tr></thead>
+        <tbody>
+          <tr><td>IG 貼文發佈</td><td class="num">6 篇</td><td>含代償補充 + 首爾精選</td></tr>
+          <tr><td>IG 限動</td><td class="num">22 則</td><td>穩定日更</td></tr>
+          <tr><td>FB 貼文</td><td class="num">4 篇</td><td>同步鏡像</td></tr>
+          <tr><td>FB 限動</td><td class="num">22 則</td><td>同步鏡像</td></tr>
+          <tr><td>YT 上架</td><td class="num">5 支</td><td>Vlog Day6/7/8/9 + 1 腰痠</td></tr>
+          <tr><td>Threads</td><td class="num">7 篇</td><td>launchd 每日 12:00</td></tr>
+          <tr><td><strong>總產出</strong></td><td class="num"><strong>66 則</strong></td><td>含 FB 鏡像</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">月度 5 體驗課路徑</div>
+      <div class="insight">
+        <strong>目標：每月穩定新增 5 位體驗課學員</strong>
+      </div>
+      <div style="font-size:13px; color:#ccc; line-height:1.8;">
+        <div style="margin-bottom:8px;">每週發 <strong style="color:#fff;">6+ 篇</strong> IG 主軸內容（Reels + 輪播 + 限動）</div>
+        <div style="margin-bottom:8px;">每月發 <strong style="color:#fff;">1-2 支</strong> YT 長片（搭配 Shorts 切片）</div>
+        <div style="margin-bottom:8px;">所有 CTA 一律導向 <strong style="color:#fff;">assessment 網站</strong></div>
+        <div style="margin-bottom:8px;">GoSky 自動回覆 <strong style="color:#fff;">LIFE 關鍵字</strong>（已上線）</div>
+        <div>體驗課成交率目標 <strong style="color:#fff;">>30%</strong>（60 分鐘深度評估）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">本週幕後大事（非發佈類但影響未來 4 週）</div>
+    <div class="g3">
+      <div class="insight">
+        <strong>CC 4.7 (1M context) 升級</strong><br>
+        12 項 UI/hook/skill/launchd 修復完成，threads-gate 搬到 ~/.claude 解決 TCC 權限。watchdog v2 上線，9 check audit 自動補跑漏發任務。
+      </div>
+      <div class="insight">
+        <strong>Assessment Email 系統 go-live</strong><br>
+        GAS Web App + Telegram 通知架構部署完成。從此所有 CTA（IG/YT/Threads）都導向 repurre-reports.pages.dev/assessment，結果頁直連預約表單。
+      </div>
+      <div class="insight">
+        <strong>YT Data API 永久解</strong><br>
+        OAuth 上傳 + playlist pipeline 建立。yt-vlog-pipeline skill 一條龍：轉錄 → 切章節 → 上傳 → 加入 playlist。首爾 Vlog Day 8 成功排程 04/19 21:00 上架。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════ TAB 2: IG ════════════════ -->
+<div id="p2" class="tab-panel">
+  <div class="insight" style="margin-bottom:16px;border-left:4px solid #d8d8d8;padding-left:14px;">
+    以下為 Instagram 專業後台<strong>真實數據</strong>（過去 30 天，截至 2026.04.19）
+  </div>
+
+  <div class="g4">
+    <div class="kpi"><div class="kpi-val">26.1萬</div><div class="kpi-label">IG 瀏覽次數</div><div class="kpi-delta up">粉 44.5% / 非粉 55.5%</div></div>
+    <div class="kpi"><div class="kpi-val g">4.3萬</div><div class="kpi-label">觸及帳號數</div><div class="kpi-delta up">Reel 53.7% / 貼文 46.3%</div></div>
+    <div class="kpi"><div class="kpi-val b">5,325</div><div class="kpi-label">互動次數</div><div class="kpi-delta up">Reel 70.0% / 貼文 25.2%</div></div>
+    <div class="kpi"><div class="kpi-val r">3,090</div><div class="kpi-label">互動帳號數</div><div class="kpi-delta flat">獨立互動用戶</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">IG TA 深度分析（2026 Q2 · 32-43 版）</div>
+      <div class="sec">內容類型 × TA 匹配 × 本週實測</div>
+      <table class="tbl">
+        <thead><tr><th>內容類型</th><th>TA 匹配</th><th>觸及佔比</th><th>互動佔比</th></tr></thead>
+        <tbody>
+          <tr><td>Reels 教學／Vlog 切片</td><td><span class="chip w">最高</span></td><td class="num">53.7%</td><td class="num">70.0%</td></tr>
+          <tr><td>v14 輪播（科學深度）</td><td><span class="chip w">很高</span></td><td class="num">46.3%</td><td class="num">25.2%</td></tr>
+          <tr><td>限動（日常 × 韓國）</td><td><span class="chip g">高</span></td><td class="num">低</td><td class="num">~2%</td></tr>
+          <tr><td>Before / After（學員）</td><td><span class="chip w">最高</span></td><td colspan="2">未發（下週 Reels 排程中）</td></tr>
+          <tr><td>純圖文靜態</td><td><span class="chip d">中</span></td><td colspan="2">佔比極低</td></tr>
+        </tbody>
+      </table>
+
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">顧問策略 · 轉換信號</span>
+        <p>Reel:輪播互動比 70:25 是<strong>最健康的雙引擎結構</strong>——Reel 負責拉新非粉絲（53.7%），輪播負責深化專業信任（25.2% 互動）。下週「代償歸零」系列打的就是這個：Reels #1-3 負責曝光、2 篇 v14 輪播負責轉收藏。如果輪播互動比持續爬升到 30%+，代表你正式從「網紅帳號」升級為「專家帳號」。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">30 天 IG 關鍵指標（真實後台）</div>
+      <div class="insight" style="border-left:3px solid #d8d8d8;padding-left:12px;margin-bottom:12px;">
+        直接從 Instagram 專業後台 / Meta Business Suite 調閱
+      </div>
+      <table class="tbl">
+        <thead><tr><th>指標</th><th>數值</th><th>備註</th></tr></thead>
+        <tbody>
+          <tr><td>瀏覽次數</td><td class="num">261,000</td><td>粉絲 44.5% / 非粉 55.5%</td></tr>
+          <tr><td>觸及帳號</td><td class="num">43,000</td><td>Reel 53.7% / 貼文 46.3%</td></tr>
+          <tr><td>互動次數</td><td class="num">5,325</td><td>Reel 70.0% / 貼文 25.2% / 限動 2%</td></tr>
+          <tr><td>互動帳號</td><td class="num">3,090</td><td>獨立互動用戶</td></tr>
+          <tr><td>個人檔案瀏覽</td><td class="num">4,141</td><td>潛在轉換入口</td></tr>
+          <tr><td>外部連結點按</td><td class="num">148</td><td>assessment 網址 + YT 連結</td></tr>
+          <tr><td>粉絲總數</td><td class="num">27,000</td><td>上週 27,200（自然流動）</td></tr>
+          <tr><td>本週發文</td><td class="num">6 篇 + 22 限動</td><td>Meta 後台確認</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sec" style="margin-top:16px;">本週最活躍時段（IG 後台真實）</div>
+      <div class="bar-row"><span class="bar-label">晚上 9:00（8,716）</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-pct">100%</span></div>
+      <div class="bar-row"><span class="bar-label">凌晨 1:00（7,742）</span><div class="bar-track"><div class="bar-fill" style="width:89%"></div></div><span class="bar-pct">89%</span></div>
+      <div class="bar-row"><span class="bar-label">晚上 11:00（7,626）</span><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div><span class="bar-pct">87%</span></div>
+      <div class="bar-row"><span class="bar-label">晚上 10:00（6,718）</span><div class="bar-track"><div class="bar-fill" style="width:77%"></div></div><span class="bar-pct">77%</span></div>
+      <div class="bar-row"><span class="bar-label">晚上 8:00（5,762）</span><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div><span class="bar-pct">66%</span></div>
+      <div class="bar-row"><span class="bar-label">下午 5:00（4,027）</span><div class="bar-track"><div class="bar-fill" style="width:46%"></div></div><span class="bar-pct">46%</span></div>
+
+      <div class="warn" style="margin-top:10px;">
+        <strong>發文時段建議：</strong> 最強時段是<strong>晚上 9:00-11:00</strong>（三個時段都在 70%+），而不是傳統的午休。下週「代償歸零」系列的 Reels 可以試著押在 20:00-21:00，配合 YT 長片 04/20 20:00 上架，雙平台同時推。
+      </div>
+
+      <div class="sec" style="margin-top:16px;">新招牌詞 Hashtag 候選</div>
+      <div style="margin-top:8px;">
+        <span class="chip w">#代償歸零</span>
+        <span class="chip w">#重建式訓練</span>
+        <span class="chip w">#長肌紀律</span>
+        <span class="chip g">#30歲重訓</span>
+        <span class="chip g">#矯正訓練</span>
+        <span class="chip g">#45歲健身</span>
+        <span class="chip d">#女性力量</span>
+        <span class="chip d">#台北健身</span>
+        <span class="chip w">#repurre</span>
+        <span class="chip g">#repurrestudio</span>
+        <span class="chip d">#35歲重訓</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">TA 互動品質 × 轉換路徑</div>
+    <div class="g3" style="margin-top:8px;">
+      <div class="insight">
+        <strong>外部連結 148 次（+8.8%）：</strong> 這些是「已準備行動」的用戶。上週 136 次 → 本週 148 次，持續爬升。assessment 網站 go-live 後，這 148 次流量應已部分進入深度評估表單。<strong>下週要追一下 Google Form 後台數據</strong>，看 148 次點按轉多少位填完表單。
+      </div>
+      <div class="insight">
+        <strong>粉絲 -200 警訊：</strong> 瀏覽、觸及、互動都漲，但粉絲淨減 200——代表<strong>看完內容的人沒變成追蹤者</strong>。可能原因：Reel 結尾缺「為什麼該追蹤」的 CTA，或「代償歸零」主題還沒釘死，觀眾沒看到長期陪伴的承諾。下週系列內容要補這層。
+      </div>
+      <div class="insight">
+        <strong>個人檔案 4,141 次：</strong> 每月仍有 4,000+ 人看你 bio。確保 bio 重新釘了 <strong>「矯正性訓練 × 32-43 女性 × 代償歸零」</strong>三件事 + assessment 連結。上次更新可能已經 2 週，可以趁這週 refresh。
+      </div>
+    </div>
+    <div class="consult" style="margin-top:12px;">
+      <span class="tag">本週立即執行 · 48 小時內</span>
+      <p><strong>① 更新 IG Bio</strong>：把招牌詞（代償歸零 / 重建式訓練 / 長肌紀律 其中 1 個）釘上去；<strong>② 查 Google Form 後台</strong>（過去 7 天 assessment 表單填寫數）；<strong>③ 對過去 30 天曾點外部連結的 148 人發 follow-up Stories</strong>（「這週一 YT 會完整拆解代償，先加入等待名單 → 留言 LIFE」）。這三件事加起來 1 小時內，直接影響下週體驗課轉換。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TAB 3: YT ════════════════ -->
+<div id="p3" class="tab-panel">
+  <div class="insight" style="margin-bottom:16px;border-left:4px solid #d8d8d8;padding-left:14px;">
+    以下為 YouTube Data API<strong>真實數據</strong>（頻道累計 + 近 7 日上架，截至 2026.04.19 18:00）
+  </div>
+
+  <div class="g4">
+    <div class="kpi"><div class="kpi-val b">57</div><div class="kpi-label">訂閱人數（累計）</div><div class="kpi-delta up">▲ +2 vs 上週 55</div></div>
+    <div class="kpi"><div class="kpi-val g">14,643</div><div class="kpi-label">頻道累積觀看</div><div class="kpi-delta up">▲ 30 天持續漲</div></div>
+    <div class="kpi"><div class="kpi-val r">26</div><div class="kpi-label">公開影片總數</div><div class="kpi-delta up">▲ 本週 +5 支</div></div>
+    <div class="kpi"><div class="kpi-val">5</div><div class="kpi-label">本週上架支數</div><div class="kpi-delta up">▲ 含 Day 8 排程 21:00</div></div>
+  </div>
+
+  <div class="card accent-border" style="margin-bottom:16px;">
+    <div class="card-title">本週 YouTube 上架清單</div>
+    <table class="tbl">
+      <thead><tr><th>日期</th><th>標題</th><th>長度</th><th>觀看數</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td>04/13</td><td>首爾 Vlog Day 6 蠶室石村湖散步賞櫻花</td><td>7:08</td><td class="num">188</td><td>長 Vlog · 持續累積</td></tr>
+        <tr><td>04/17</td><td>為什麼 30 歲以上的你老是腰痠背痛?</td><td>—</td><td class="num">0</td><td>代償主題前奏（未公開或剛上）</td></tr>
+        <tr><td>04/17</td><td>首爾 Vlog Day 8 解放村咖啡一日</td><td>—</td><td class="num">0</td><td><strong>今晚 21:00 排程公開</strong></td></tr>
+        <tr><td>04/18</td><td>首爾 Vlog Day 7 漢南洞咖啡、梨泰院美術館</td><td>5:42</td><td class="num">37</td><td>剛公開 · 流量爬升中</td></tr>
+        <tr><td>04/18</td><td>首爾 Vlog Day 9 雨天聖水洞</td><td>—</td><td class="num">0</td><td>排程中 · 待 Day 8 後發</td></tr>
+      </tbody>
+    </table>
+    <div class="consult" style="margin-top:12px;">
+      <span class="tag">顧問觀察</span>
+      <p>這週的 YT 策略從 <strong>「Shorts 爆量拉流量」</strong>（上週主旋律）切換成 <strong>「長 Vlog 密集上架建信任」</strong>。5 支全是 Vlog / 教學長片，無一支 Shorts——這是策略性的轉向：<strong>首爾 Vlog 系列攻訂閱質量，不搶觀看量</strong>。Day 6 7 天 188 觀看是典型的「小流量、高留存」——這類觀眾一旦訂閱黏性最高。別被「訂閱只 +2」嚇到，下週「為什麼 30+ 越練越卡？代償歸零」YT 長片上架後，搭配 IG Reels 導流，才是這波的爆發點。</p>
+    </div>
+  </div>
+
+  <div class="card accent-border" style="margin-bottom:16px;">
+    <div class="card-title">頻道累積 Top 10 影片（全時段）</div>
+    <table class="tbl">
+      <thead><tr><th>排名</th><th>影片標題</th><th>累積觀看</th><th>上架日</th></tr></thead>
+      <tbody>
+        <tr><td>#1</td><td>8/2 法則做好你才能減脂！</td><td class="num">2,011</td><td>3/14</td></tr>
+        <tr><td>#2</td><td>多花一點時間照顧自己 身體體態就會好！</td><td class="num">1,492</td><td>3/26</td></tr>
+        <tr><td>#3</td><td>三件可以讓你更有線條的 Tips</td><td class="num">1,289</td><td>3/17</td></tr>
+        <tr><td>#4</td><td>用五天重訓換體脂降 2%</td><td class="num">1,207</td><td>3/09</td></tr>
+        <tr><td>#5</td><td>運動、飲食控制了？體態不是你想要的？</td><td class="num">1,167</td><td>3/01</td></tr>
+        <tr><td>#6</td><td>吃對營養素才是減脂重要的關鍵！</td><td class="num">1,164</td><td>3/18</td></tr>
+        <tr><td>#7</td><td>留言「skool」我把更多減脂小知識傳給你！</td><td class="num">1,160</td><td>3/04</td></tr>
+        <tr><td>#8</td><td>紐約跟陌生人一起玩四天</td><td class="num">1,042</td><td>3/15</td></tr>
+        <tr><td>#9</td><td>健康 = 減脂？</td><td class="num">986</td><td>3/20</td></tr>
+        <tr><td>#10</td><td>原本是跆拳道選手 被迫放棄⋯</td><td class="num">949</td><td>3/12</td></tr>
+      </tbody>
+    </table>
+    <div class="warn" style="margin-top:10px;">
+      <strong>警訊：</strong> Top 10 全是 3 月 Shorts，<strong>4 月（包含本週新上架的 Vlog 長片）沒有一支進榜</strong>。代表：<strong>Shorts 爆量能力在，長 Vlog 的分發量遠低於 Shorts</strong>。短期內別期待 Vlog 帶來大量新觀眾；它是為了<strong>深化既有訂閱者信任</strong>的工具。
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">YouTube 成長結構解讀</div>
+      <div class="insight">
+        <strong>訂閱 +2 的意義：</strong> 表面看是減速，實際是進入「長內容階段」自然的慢速期。YT 長 Vlog 對「演算法分發」不友善，但對「長期觀眾留存」極高。下週「代償歸零」10-12 分鐘 YT 長片才是真正的轉換嘗試——<strong>目標不是拉觀看，是讓想付費的人看完後知道你是誰</strong>。
+      </div>
+      <div class="insight">
+        <strong>本週關鍵動作：</strong> YT Data API + OAuth + yt-vlog-pipeline 一條龍 skill 上線，以後 Jamie 給我 MP4 + 縮圖 + 標題，一行指令自動：轉錄 → 切章節 → 上傳 → 加 playlist。Day 8 已用這套排程 04/19 21:00 成功。
+      </div>
+      <div class="insight">
+        <strong>結構性觀察：</strong> 上週 28 天觀看 8,423（+41%）是 Shorts 風暴的尾聲；<strong>本週起觀看成長會自然回落，但訂閱質量會提升</strong>。這是短影音平台慣有的節奏——上週是熱度週，本週起是深化週。
+      </div>
+
+      <div class="sec" style="margin-top:16px;">YT 戰略調整（下月起）</div>
+      <div class="insight">
+        <strong>Shorts 回歸：</strong> 下週起每週至少 1 支 Shorts 切片（從 YT 長片 + IG Reels 切），保留拉新流量的引擎。Shorts 負責拉新，Vlog / 長片負責深化。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">YT TA vs IG TA 差異（32-43 新版）</div>
+      <table class="tbl">
+        <thead><tr><th>維度</th><th>YT TA</th><th>IG TA</th></tr></thead>
+        <tbody>
+          <tr><td>主要年齡</td><td>28-45 歲</td><td>25-43 歲</td></tr>
+          <tr><td>性別</td><td>女為主，男佔 15-20%</td><td>女性 85%+</td></tr>
+          <tr><td>訓練階段</td><td>有基礎想深化的中階</td><td>視覺驅動、各階段都有</td></tr>
+          <tr><td>進場方式</td><td>主動搜尋「減脂 / 肌肉」</td><td>被 Reel 演算法推播</td></tr>
+          <tr><td>決策速度</td><td>長期考量、比較深入</td><td>情感驅動、衝動型</td></tr>
+          <tr><td>內容偏好</td><td>3 分鐘+ 科學講解、Vlog</td><td>30-45 秒精華、對比圖</td></tr>
+          <tr><td>轉換路徑</td><td>看長片 → 訂閱 → 留言 LIFE → DM</td><td>看 Reel → 收藏 → 留言 LIFE → DM</td></tr>
+          <tr><td>預期客單價</td><td>較高（願意付體驗課）</td><td>中等（需多次接觸）</td></tr>
+        </tbody>
+      </table>
+
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">顧問策略 — YT 定位鎖死</span>
+        <p>YT 本月起定位改為 <strong>「代償歸零學院」</strong>——所有長片聚焦在「為什麼 30+ 越練越卡」的不同面向：代償是什麼（04/20）、肌肉是資產（後續）、肌少症急迫性（後續）。<strong>每支影片都是 30 分鐘體驗課的 10 分鐘預告</strong>。說明欄固定 assessment 連結 + IG 連結。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TAB 4: 韓系 ════════════════ -->
+<div id="p4" class="tab-panel">
+
+  <div class="consult">
+    <span class="tag">顧問觀點 — 本週女性媒體「矯正派」熱度爆發</span>
+    <p>Marie Claire / Women's Health / Harper's Bazaar / ELLE / Vogue 五家這週同步打<strong>「姿勢 × 矯正 × 抗老」</strong>軸——跟你的「代償歸零 / 重建式訓練」招牌詞完全同頻。這是<strong>千載難逢的借勢機會</strong>——媒體在鋪市場教育，你負責「給具體方法」。下週 04/20 起的「代償歸零」系列剛好踏進這波浪頭。</p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">本週 Top 5 借勢主題（含 URL 真實來源）</div>
+
+      <div class="insight">
+        <strong>① 「駝背矯正 3 動作」× 代償歸零</strong><br>
+        來源：<a href="https://www.womenshealthmag.com/tw/fitness/work-outs/g65956208/3-exercises-improve-hyperkyphosis/" style="color:#d8d8d8;">Women's Health TW</a><br>
+        切點：姿勢議題視覺衝擊強、45+ 對自己駝背有感又難啟齒。Jamie 矯正性訓練最硬的差異點。<br>
+        做法：Reels 30-45 秒（hook「妳不是老，是肌肉停擺了」→ 3 動作 full-bleed → assessment CTA）+ v14 輪播 8 頁同主題補充。
+      </div>
+
+      <div class="insight">
+        <strong>② 跨代敘事：媽媽 54→63 / 女兒 31→40 一起重訓</strong><br>
+        來源：IG 對標觀察<br>
+        切點：Jamie 最深的「職場媽媽 × 紀律 × 陪伴」TA 切點，競品沒有。<br>
+        做法：Threads 長文 + 輪播，「給媽媽的禮物不是保健品」。體驗課 hook「帶媽媽一起來，兩人價」。
+      </div>
+
+      <div class="insight">
+        <strong>③ 更年期 × 肌力 × 骨質三合一深度</strong><br>
+        來源：<a href="https://www.elle.com/tw/beauty/health/a65674681/best-exercise-for-women-over-50/" style="color:#d8d8d8;">ELLE 50+</a> + <a href="https://www.womenshealthmag.com/tw/healthhealth/womenhealth/a69983141/perimenopause-diet/" style="color:#d8d8d8;">WH 更年期飲食</a> + <a href="https://www.harpersbazaar.com/tw/beauty/bodyandhealth/a70459930/strength-training/" style="color:#d8d8d8;">Bazaar 肌力</a><br>
+        切點：三家媒體同時打這條題 = 市場熱度高峰。TA 45+ 焦慮但找不到答案。<br>
+        做法：v14 輪播 8 頁「更年期前要知道的 5 件事」，slide 5-6 學員案例，slide 8 assessment CTA。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">本週 Top 5 借勢主題（續）</div>
+
+      <div class="insight">
+        <strong>④ 「Wellness Week 很美，但身體要的是 Wellness Year」</strong><br>
+        來源：<a href="https://www.vogue.com.tw/article/2026-vogue-wellness-week" style="color:#d8d8d8;">Vogue Wellness Week</a><br>
+        切點：精品事件話題性高，Jamie 可優雅反駁「短期 wellness 體驗」把品牌差異化釘死。<br>
+        做法：Threads 單篇 150-200 字，直接講「一週給身體的是感覺，一年給身體的是能力」。性價比最高，1 小時內可完成。
+      </div>
+
+      <div class="insight">
+        <strong>⑤ 分腿蹲揭露身體左右代償</strong><br>
+        來源：<a href="https://www.womenshealthmag.com/tw/fitness/work-outs/a71012509/longevity-split-squat-workout-1776162680/" style="color:#d8d8d8;">Women's Health TW 抗老神動作</a><br>
+        切點：Jamie PRI 路線最能展現專業的單一動作，借勢講「為什麼我不先讓妳深蹲」。<br>
+        做法：Reels 45 秒（Jamie 親自 demo + voiceover）+ v14 輪播 8 頁。吸「練一陣子卡關」的中階 TA，轉換率高。
+      </div>
+
+      <div class="insight" style="border-left:3px solid #d8d8d8;padding-left:12px;">
+        <strong>共通觀察：</strong> 五家媒體都在把 35-45 女性從「追求變瘦」推向「追求能動、能久、能穩」。這正是 Jamie 品牌 DNA 的核心位置。<strong>下週「代償歸零」系列不是原創新題，是把這波媒體浪潮變成自己的影響力</strong>——借勢、不抄襲。
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">韓系體態 × 生活元素（首爾 Vlog 材料庫）</div>
+      <table class="tbl">
+        <thead><tr><th>Vlog 日</th><th>主題</th><th>可切 Reels 素材</th><th>狀態</th></tr></thead>
+        <tbody>
+          <tr><td>Day 5 聖水洞</td><td>風格化質感</td><td>咖啡、服飾、街拍</td><td>已發 253v</td></tr>
+          <tr><td>Day 6 石村湖</td><td>生活紀律</td><td>散步賞櫻、韓國吃豬腳</td><td>已發 188v</td></tr>
+          <tr><td>Day 7 漢南洞</td><td>文化深度</td><td>咖啡廳、美術館</td><td>剛發 37v</td></tr>
+          <tr><td>Day 8 解放村</td><td>美食 × 朋友</td><td>咖啡一日、Olive Young、馬鈴薯湯</td><td>今晚 21:00 排程</td></tr>
+          <tr><td>Day 9 聖水洞雨</td><td>隨遇而安</td><td>雨天必逛、必吃</td><td>待 Day 8 後發</td></tr>
+        </tbody>
+      </table>
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">顧問策略 · Vlog 價值解鎖</span>
+        <p>首爾 Vlog 目前 YT 流量不大（Day 5 253v / Day 6 188v），但<strong>真正價值在 IG 切片 Reels</strong>——把 Day 6-9 每支切 30-45 秒 Reels，用「韓國 × 紀律派」的質感拉 IG 觸及。5 月起每週二發一支 Vlog 切片 Reels，現有素材撐 10+ 週沒問題。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">35-45 女性媒體本週關鍵 Hook 庫</div>
+      <div class="insight">
+        <strong>切進 TA 痛點的原文標題（已過禁用詞篩）：</strong><br>
+        · 「妳不是心情不好，只是坐太久」→ 上班族情緒 × 久坐<br>
+        · 「57 歲蕭薔自創健康監測法」→ 不追年輕，追身體能力<br>
+        · 「抗老必做長壽神動作」→ PRI 分腿蹲借勢<br>
+        · 「駝背加速老化」→ 矯正性最硬切點<br>
+        · 「盆底肌不是產後才要練」→ 職場媽媽 45+
+      </div>
+      <div class="insight">
+        <strong>品牌語氣校準：</strong> 女性媒體原文常用「瘦 / 燃脂 / 假胯寬」等禁用詞——Jamie 改寫時一律替換為「線條 / 能力 / 髖軸對齊」。這是品牌差異化的重要線。
+      </div>
+      <div class="insight">
+        <strong>本週借勢操作順序：</strong> ① Wellness Year Threads（1 小時完成）→ ② 跨代媽媽敘事 Threads+輪播 → ③ 駝背矯正 Reels+輪播 v14（下下週 content pack v3 排程）。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════ TAB 5: 學員動態 ════════════════ -->
+<div id="p5" class="tab-panel">
+
+  <div class="consult">
+    <span class="tag">顧問觀點 — 學員端的 6 週急衝期已啟動</span>
+    <p>2026-04-16 戰略重調確立：<strong>6 週急衝期（04/16 - 05/28）目標 5 位體驗課學員成交 / 2 位付費轉長期</strong>。本週是急衝期第 1 週，重心在「建立轉換基礎設施」不在「即時成交」。Assessment Email 系統 go-live、GoSky LIFE 自動回覆、content pack 代償歸零主軸 13 則內容定稿——這些都是為了讓接下來 5 週的每一個 CTA 都能 100% 落地。</p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">體驗課漏斗現況（6 週急衝期 Week 1）</div>
+      <table class="tbl">
+        <thead><tr><th>漏斗階段</th><th>數值</th><th>狀態</th><th>下週動作</th></tr></thead>
+        <tbody>
+          <tr><td>① IG/YT 曝光（觸及）</td><td class="num">43,000 / 14,643</td><td>穩</td><td>代償歸零系列接棒</td></tr>
+          <tr><td>② 點 assessment 連結</td><td class="num">148 次</td><td>+8.8%</td><td>查表單實際填寫率</td></tr>
+          <tr><td>③ 完成評估表單</td><td class="num">待 Jamie 查 GAS 後台</td><td>資料待補</td><td>這週查 GAS log</td></tr>
+          <tr><td>④ DM / 私訊詢問</td><td class="num">資料待補</td><td>—</td><td>回顧 DM 逐一 follow-up</td></tr>
+          <tr><td>⑤ 體驗課預約</td><td class="num">？ 位</td><td>—</td><td>目標：本月 +2 位</td></tr>
+          <tr><td>⑥ 成交付費</td><td class="num">？ 位</td><td>—</td><td>6 週目標累計 +2 位</td></tr>
+        </tbody>
+      </table>
+      <div class="warn" style="margin-top:10px;">
+        <strong>缺口：</strong> 目前漏斗 ③-⑥ 沒有自動化追蹤，全靠 Jamie 個人體感。下週最重要的 1 件事——<strong>登入 GAS Web App 後台看 assessment 表單這週收到幾份</strong>——沒有這個數字，無法判斷 148 次連結點按的真實轉換效率。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">長期學員狀態快照</div>
+      <div class="insight">
+        <strong>本週授課：</strong> 實際課堂數資料由 Jamie 持有（行事曆 + 收款紀錄），週報系統暫未整合。建議下週一早 Jamie 手動在 Telegram 回「本週上了幾堂 / 哪幾位」，我補進這個段落。
+      </div>
+      <div class="insight">
+        <strong>VIP 續約雷達：</strong> 本週無掉課 / 休眠警訊（依 CLAUDE.md 規則：不追休眠 VIP、不追 0 轉換、不攻擊其他教練）。
+      </div>
+      <div class="insight">
+        <strong>新客詢問池：</strong> IG DM 148 次外部連結點按 = 148 位「有意願進入深度評估」的人。下週重點不是「再多生一次流量」，是<strong>把這 148 人導進 assessment 表單 → 導進體驗課</strong>。
+      </div>
+
+      <div class="sec" style="margin-top:16px;">5 體驗課路徑（6 週急衝期回推）</div>
+      <div style="font-size:13px; color:#ccc; line-height:1.8;">
+        <div>Week 1（本週）：基礎設施完成 ✓ · 代償歸零內容包完成 ✓</div>
+        <div>Week 2（04/20-26）：代償歸零系列 13 則發布</div>
+        <div>Week 3（04/27-05/03）：觀察 CTA 實際轉化 + 追蹤 assessment 表單</div>
+        <div>Week 4（05/04-10）：第 2 波 content pack v3（駝背矯正 + 更年期三合一）</div>
+        <div>Week 5（05/11-17）：跨代媽媽敘事 + Wellness Year 逆勢</div>
+        <div>Week 6（05/18-28）：5 位體驗課成交 deadline</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">assessment 表單 → 體驗課轉換 SOP（顧問版）</div>
+    <div class="g3" style="margin-top:8px;">
+      <div class="insight">
+        <strong>Step 1 · 填表後 24 小時內</strong><br>
+        GAS 自動 Email 回結果頁 + 預約連結。Telegram 自動通知 Jamie「有新填表」。Jamie 收到通知後<strong>當天內 DM 私訊</strong>：「剛看到妳的評估結果，有一個問題想問妳⋯」
+      </div>
+      <div class="insight">
+        <strong>Step 2 · 建立連結 48 小時內</strong><br>
+        不要直接推體驗課。先問一個具體問題（「妳平常深蹲到底部會膝蓋往內嗎？」），回答才提「我建議我們先做 60 分鐘評估看一下」。成交率可以從 10% 提升到 30%+。
+      </div>
+      <div class="insight">
+        <strong>Step 3 · 體驗課後當天</strong><br>
+        當天晚上發一則訊息「今天很謝謝你讓我看到妳的身體，這 3 個發現我想你知道⋯」——這是<strong>把「一次體驗」變成「長期信任」</strong>的黃金 24 小時。
+      </div>
+    </div>
+    <div class="consult" style="margin-top:12px;">
+      <span class="tag">本週必做</span>
+      <p>① 查 <strong>GAS Web App 後台</strong>（過去 7 天 assessment 填寫筆數）；② 在 <strong>Telegram bot</strong> 測一次「有新填表」通知流程是否真的通；③ 準備 3 套 DM 回覆模板（初次連結 / 體驗課邀請 / 體驗課後跟進）放進 <strong>course-kb</strong> 讓我以後可以幫你自動草稿。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════ TAB 6: 下週精準策略 ════════════════ -->
+<div id="p6" class="tab-panel">
+
+  <div class="consult">
+    <span class="tag">顧問核心建議 — 下週（4/20-4/26）= 6 週急衝期 Week 2</span>
+    <p>下週是「代償歸零」主題首次上場的<strong>關鍵驗證週</strong>。04/20 YT 長片 + Reels#1 雙開、04/22 輪播肌肉資產、04/23 Reels#2、04/24 輪播肌少症、04/25 Reels#3 + Threads 7 篇——<strong>13 則內容打同一個軸</strong>。成敗關鍵不是量，而是：① 新招牌詞釘不釘得住（代償歸零／重建式訓練／長肌紀律 三選一 Jamie 鎖 pending）；② assessment 表單實際填寫率會不會從個位數跳到雙位數。</p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">下週 IG 執行計劃（13 則中 IG 6 則）</div>
+
+      <div class="action-row">
+        <span class="action-num">1</span>
+        <div class="action-text">
+          <div class="action-title">04/20 一 20:00｜Reels #1「代償是什麼 · 4 個日常代償」</div>
+          <div class="action-desc">從 YT 長片 0:45-3:30 cut 40-45 秒。Hook: 「妳肩頸越動越痠嗎？不是姿勢——是代償。」CTA: 留言 LIFE / 完整版 YT。與 YT 長片同時上架。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">2</span>
+        <div class="action-text">
+          <div class="action-title">04/22 三｜v14 輪播「肌肉是 30+ 最該存的資產」</div>
+          <div class="action-desc">8 slides，S1 Cover → S2「10 萬人研究 肌肉量差 10% 全因死亡率差 40%」→ S8 assessment CTA。自動發 + 協作 @repurre_life。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">3</span>
+        <div class="action-text">
+          <div class="action-title">04/23 四｜Reels #2「代償怎麼加深 · 學員 case」</div>
+          <div class="action-desc">從 YT 3:30-6:30 cut 40-45 秒。Hook: 「妳練重訓 1 年沒變？可能不是妳的問題——是代償。」</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">4</span>
+        <div class="action-text">
+          <div class="action-title">04/24 五｜v14 輪播「肌少症診斷年齡下修 50 歲」</div>
+          <div class="action-desc">AWGS 2025 真實數據。S3 Pull「12 年 · 38 歲到 50 歲的黃金準備期」。緊迫感敘事 + assessment CTA。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">5</span>
+        <div class="action-text">
+          <div class="action-title">04/25 六｜Reels #3「代償歸零三步驟 · 最強 CTA」</div>
+          <div class="action-desc">從 YT 6:30-10:00 cut 45 秒。Hook: 「代償歸零只需三步驟。」最強轉換 CTA: 留言 LIFE / assessment 網址 / 60 分鐘體驗課。</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <span class="action-num">6</span>
+        <div class="action-text">
+          <div class="action-title">04/21 二 / 04/26 日｜Story 輕量日</div>
+          <div class="action-desc">限動隨意發（韓國 Vlog 切片 / 訓練日常）維持帳號活躍。不排 Reels 不排輪播。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">下週 YouTube 計劃</div>
+
+      <div class="sec">04/20 一 20:00 · 長片上架</div>
+      <div class="action-row">
+        <span class="action-num">Y</span>
+        <div class="action-text">
+          <div class="action-title">「為什麼 30+ 的妳越練越卡？代償歸零 × 身體重啟」10-12 分鐘</div>
+          <div class="action-desc">下午 14:30-16:00 Loom 錄製、16:30-17:30 Reels#1 切片、20:00 同步 YT 上架 + IG Reels#1 發。說明欄固定 assessment 網址 + IG 連結。Chapter: 0:00 Hook / 0:45 代償是什麼 / 3:30 怎麼加深 / 6:30 三步驟 / 10:00 CTA。</div>
+        </div>
+      </div>
+
+      <div class="sec">04/19 日 今晚 21:00 · Day 8 Vlog 排程</div>
+      <div class="action-row">
+        <span class="action-num">V</span>
+        <div class="action-text">
+          <div class="action-title">首爾 Vlog Day 8 解放村咖啡、Olive Young、馬鈴薯湯</div>
+          <div class="action-desc">yt-vlog-pipeline skill 已排程。今晚自動公開，不需人工介入。Day 9 待 Day 8 發完隔天再手動 unpriv。</div>
+        </div>
+      </div>
+
+      <div class="sec">下週建議：補 1 支 Shorts 切片</div>
+      <div class="insight">
+        從 04/20 YT 長片切 60 秒 Shorts 版（Hook + 3 代償 + CTA），週五前上架 YT Shorts + IG Reels 同步。零額外製作成本，補回上週缺席的 Shorts 拉新流量。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">下週 KPI 目標</div>
+    <div class="g3" style="margin-top:8px;">
+      <table class="tbl">
+        <thead><tr><th>指標</th><th>目標</th><th>基準</th></tr></thead>
+        <tbody>
+          <tr><td>IG 貼文數</td><td class="num">6 則</td><td>穩定輸出</td></tr>
+          <tr><td>YT 長片</td><td class="num">1 支</td><td>代償歸零</td></tr>
+          <tr><td>YT Shorts</td><td class="num">1 支</td><td>從長片 cut</td></tr>
+          <tr><td>assessment 表單填寫</td><td class="num">10 份+</td><td>本週基準待查</td></tr>
+          <tr><td>留言 LIFE 次數</td><td class="num">15 次+</td><td>GoSky 後台看</td></tr>
+          <tr><td>體驗課新預約</td><td class="num">1-2 位</td><td>6 週急衝期推進</td></tr>
+          <tr><td>粉絲淨成長</td><td class="num">+50</td><td>本週 -200 需回正</td></tr>
+        </tbody>
+      </table>
+
+      <div class="insight">
+        <strong>招牌詞鎖定（PENDING）</strong><br>
+        Jamie 需在 04/19 睡前鎖定招牌詞：<strong>代償歸零（默認）/ 長肌紀律 / 重建式訓練</strong>。Jamie 決定後我會全 content pack global replace，04/20 發文前完成。
+      </div>
+
+      <div class="insight">
+        <strong>雙平台同步策略</strong><br>
+        YT 20:00 上架 → IG Reels#1 同步 20:00 發 → Threads 12:00 前導 → 隔天 FB 鏡像。一次內容三次曝光。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════ TAB 7: 週執行計劃 ════════════════ -->
+<div id="p7" class="tab-panel">
+
+  <div class="card-title" style="padding:0 0 16px 0; font-size:14px; color:#d8d8d8; display:flex; align-items:center; gap:8px;">
+    <span style="width:3px;height:14px;background:#d8d8d8;border-radius:2px;display:inline-block;"></span>
+    下週（2026.04.20-04.26）具體排程
+  </div>
+
+  <div class="sched-grid" style="margin-bottom:20px;">
+    <div class="sched-day highlight">
+      <div class="sched-day-name">MON</div>
+      <div class="sched-day-num">20</div>
+      <div class="sched-item">14:30 錄 YT<br>20:00 YT 長片<br>20:00 Reels #1</div>
+      <div class="sched-badge yt">YT</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day">
+      <div class="sched-day-name">TUE</div>
+      <div class="sched-day-num">21</div>
+      <div class="sched-item">Story 輕量<br>12:00 Threads<br>追 assessment 表單</div>
+      <div class="sched-badge class">DM</div>
+    </div>
+    <div class="sched-day highlight">
+      <div class="sched-day-name">WED</div>
+      <div class="sched-day-num">22</div>
+      <div class="sched-item">v14 輪播<br>肌肉資產<br>auto 發</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day highlight">
+      <div class="sched-day-name">THU</div>
+      <div class="sched-day-num">23</div>
+      <div class="sched-item">Reels #2<br>代償加深<br>CapCut 5-10min</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day highlight">
+      <div class="sched-day-name">FRI</div>
+      <div class="sched-day-num">24</div>
+      <div class="sched-item">v14 輪播<br>肌少症 50<br>auto 發</div>
+      <div class="sched-badge ig">IG</div>
+    </div>
+    <div class="sched-day highlight">
+      <div class="sched-day-name">SAT</div>
+      <div class="sched-day-num">25</div>
+      <div class="sched-item">Reels #3<br>三步驟 CTA<br>最強轉換</div>
+      <div class="sched-badge ig">IG</div>
+      <div class="sched-badge yt">YT</div>
+    </div>
+    <div class="sched-day">
+      <div class="sched-day-name">SUN</div>
+      <div class="sched-day-num">26</div>
+      <div class="sched-item">Story 沉澱<br>下週 0427-0503<br>主題規劃</div>
+      <div class="sched-badge class">休</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">每週固定工作流程（04/20 起）</div>
+      <table class="tbl">
+        <thead><tr><th>時段</th><th>任務</th><th>工具</th></tr></thead>
+        <tbody>
+          <tr><td>每天 08:00</td><td>晨報（行事曆 + Gmail + Top 3）</td><td>Telegram launchd</td></tr>
+          <tr><td>每天 12:00</td><td>Threads 自動日更</td><td>launchd threads-daily-post</td></tr>
+          <tr><td>每天 20:00-22:00</td><td>回覆 DM（目標 30 分鐘內）</td><td>IG DM + GoSky 後台</td></tr>
+          <tr><td>週一下午</td><td>YT 長片 Loom 錄製</td><td>Loom + deck</td></tr>
+          <tr><td>週一晚 20:00</td><td>YT + IG Reels 同步發</td><td>yt-api-upload.py</td></tr>
+          <tr><td>週四早</td><td>Reels #2 剪輯 + 發</td><td>CapCut</td></tr>
+          <tr><td>週六早</td><td>Reels #3 剪輯 + 發（含 Shorts）</td><td>CapCut</td></tr>
+          <tr><td>週日 17:00</td><td>媒體 inspiration 自動掃</td><td>launchd inspiration-refresh</td></tr>
+          <tr><td>週日 18:00</td><td>週報自動生成</td><td>launchd weekly-report</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">6 週急衝期追蹤表（Week 2 起）</div>
+      <table class="tbl">
+        <thead><tr><th>項目</th><th>Week 1</th><th>Week 2 目標</th><th>6 週最終</th></tr></thead>
+        <tbody>
+          <tr><td>IG 貼文數</td><td class="num">6</td><td class="num">6</td><td>累計 36</td></tr>
+          <tr><td>YT 長片</td><td class="num">0</td><td class="num">1</td><td>累計 3-4</td></tr>
+          <tr><td>Reels 發佈</td><td class="num">1</td><td class="num">3</td><td>累計 12+</td></tr>
+          <tr><td>v14 輪播</td><td class="num">0</td><td class="num">2</td><td>累計 8+</td></tr>
+          <tr><td>assessment 表單</td><td>待查</td><td class="num">10+</td><td class="num">60+</td></tr>
+          <tr><td>體驗課預約</td><td>待查</td><td class="num">1-2</td><td class="num">5 位</td></tr>
+          <tr><td>成交付費</td><td>待查</td><td class="num">0-1</td><td class="num">2 位</td></tr>
+        </tbody>
+      </table>
+
+      <div class="consult" style="margin-top:12px;">
+        <span class="tag">顧問提示 — 招牌詞一定要在 04/19 前鎖定</span>
+        <p>04/20 一早 YT 錄製前必須完成招牌詞決定：<strong>代償歸零（我推 · 預設）/ 長肌紀律 / 重建式訓練</strong>——三選一。Jamie 決定後我會全 content pack global replace。招牌詞一旦鎖定，接下來 6 週的 IG bio、YT channel、所有 caption 都會統一釘，這是品牌差異化最重要的一步。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">月度成長飛輪（更新版 · 含 assessment 系統）</div>
+    <div class="g3" style="margin-top:8px;">
+      <div class="insight">
+        <strong>內容飛輪（穩定）</strong><br>
+        IG Reels + YT Shorts 雙發 → 非粉絲 55.5% 觸及 → 輪播深化信任 → assessment 表單入口 → 60 分鐘體驗課 → 學員成果回饋
+      </div>
+      <div class="insight">
+        <strong>信任飛輪（代償歸零系列啟動）</strong><br>
+        YT 長片深度拆解 → IG Reels 切片拉新 → v14 輪播科學背書 → Threads 每日 echo → 4 點觸達同一個主題 = 品牌記憶點釘死
+      </div>
+      <div class="insight">
+        <strong>轉換飛輪（assessment go-live 啟動）</strong><br>
+        留言 LIFE → GoSky 自動 DM → assessment 網站 → 結果頁 → GAS Email + Telegram 通知 → Jamie 當天 DM → 體驗課預約 → 付費
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════ TAB 8: 首爾 Vlog 特輯 ════════════════ -->
+<div id="p8" class="tab-panel">
+
+  <div class="consult">
+    <span class="tag">顧問觀點 — 首爾 Vlog 系列是品牌「精品紀律派」的視覺底</span>
+    <p>你的首爾 Vlog 不是流量工具（目前每支觀看在 200-300 之間），而是<strong>建立「Jamie = 韓系精品 × 紀律派」視覺標記</strong>的長期投資。Day 5-9 共 5 支已完成上架 / 排程，YT Data API 已整合成 yt-vlog-pipeline skill，之後上傳流程自動化。真正的變現價值在：① Reels 切片池用到 5 月底（每週二一支）；② IG 輪播「韓國反思」素材（3 組已規劃）；③ 品牌視覺識別建立——未來談合作、學員決策時都加分。</p>
+  </div>
+
+  <div class="g2">
+    <div class="card accent-border">
+      <div class="card-title">首爾 Vlog 系列上架狀態（全景）</div>
+      <table class="tbl">
+        <thead><tr><th>Day</th><th>主題</th><th>長度</th><th>觀看</th><th>狀態</th></tr></thead>
+        <tbody>
+          <tr><td>Day 1</td><td>抵達首爾</td><td>—</td><td>—</td><td>未上架（可補）</td></tr>
+          <tr><td>Day 2</td><td>弘大</td><td>—</td><td class="num">209</td><td>已發</td></tr>
+          <tr><td>Day 3</td><td>—</td><td>—</td><td>—</td><td>待補</td></tr>
+          <tr><td>Day 4</td><td>—</td><td>—</td><td>—</td><td>待補</td></tr>
+          <tr><td>Day 5</td><td>聖水洞</td><td>—</td><td class="num">253</td><td>已發（04/09）</td></tr>
+          <tr><td>Day 6</td><td>石村湖、London Bagle、豬腳</td><td>7:08</td><td class="num">188</td><td>已發（04/13）</td></tr>
+          <tr><td>Day 7</td><td>漢南洞、梨泰院美術館、辣炒年糕</td><td>5:42</td><td class="num">37</td><td>剛發（04/18）</td></tr>
+          <tr><td>Day 8</td><td>解放村、Olive Young、馬鈴薯湯</td><td>—</td><td class="num">0</td><td><strong>今晚 21:00 排程</strong></td></tr>
+          <tr><td>Day 9</td><td>聖水洞雨天必逛必吃</td><td>—</td><td class="num">0</td><td>Day 8 後手動發</td></tr>
+        </tbody>
+      </table>
+      <div class="warn" style="margin-top:10px;">
+        <strong>注意：</strong> Day 1 / 3 / 4 尚未上架。這三支是否要補發需 Jamie 判斷——如果素材不強（弱光、重複場景），寧可跳過只留精華，維持 Vlog 系列整體質感。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">首爾 Vlog 二次利用路線圖</div>
+
+      <div class="sec">路線 A · IG Reels 切片（5 月每週二）</div>
+      <div class="insight">
+        <strong>5 月二日節奏：</strong> 每週二發 1 支韓國 Vlog 切片 Reels（30-45 秒）。Day 5-9 可各切 1-2 段 → 共 8-10 支 Reels 素材，撐到 6 月底沒問題。主題可以是「韓國店家推薦」「紀律派 TA 看韓國」「韓國日常中的運動元素」。
+      </div>
+
+      <div class="sec">路線 B · v14 輪播「韓國反思」3 組</div>
+      <div class="insight">
+        <strong>3 組輪播規劃：</strong><br>
+        ① 「我在首爾看到的 3 件 30+ 女性紀律樣子」<br>
+        ② 「韓國飲食 × 台灣版復刻：5 日菜單對照」<br>
+        ③ 「韓國咖啡文化給我的訓練啟發（慢就是快）」<br>
+        每組 8 slides，用首爾照片做視覺 full-bleed。
+      </div>
+
+      <div class="sec">路線 C · 品牌識別（被動效益）</div>
+      <div class="insight">
+        <strong>長期價值：</strong> 未來談合作、學員決策時，YT 頻道打開就能看到「首爾 Vlog × 韓國 × 精品 lifestyle」的完整敘事。這比任何宣傳詞都有說服力。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">yt-vlog-pipeline skill（04/17 上線 · 一條龍自動）</div>
+    <div class="g3" style="margin-top:8px;">
+      <div class="insight">
+        <strong>Step 1 · transcribe</strong><br>
+        mlx-whisper（Apple Silicon）自動轉錄 MP4 音軌。多語識別（中文+韓文+英文），不強制 --language zh。
+      </div>
+      <div class="insight">
+        <strong>Step 2 · chapter + upload</strong><br>
+        自動切 5-7 章節時間軸，yt-api-upload.py 上傳到 YT（OAuth 永久授權），加入指定 playlist。支援 --publish-at 排程公開。
+      </div>
+      <div class="insight">
+        <strong>Step 3 · SRT 字幕</strong><br>
+        subtitle-ai skill 產韓系 Vlog 雙語字幕（中韓對照），過禁用詞 + 招牌詞過濾。Jamie 只剪片，字幕自動出。
+      </div>
+    </div>
+
+    <div class="consult" style="margin-top:12px;">
+      <span class="tag">首爾 Vlog · 下一步</span>
+      <p><strong>即時動作（今晚）：</strong> 21:00 Day 8 自動公開（已排程，無需人工介入）。<strong>明天動作：</strong> 04/20 YT 長片「代償歸零」發完後，Day 9 可趁熱手動 unprivat。<strong>下週動作：</strong> 從 Day 5-9 中挑 1 支切 30 秒 Reels，週二 04/21 發 IG，維持韓系軸線。</p>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- .content -->
+
+</body>
+</html>

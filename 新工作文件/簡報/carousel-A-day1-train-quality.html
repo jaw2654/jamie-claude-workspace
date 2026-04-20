@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · 練好幾年身體沒變 · v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Noto Sans TC',sans-serif}
+body{background:#2a2a2a;padding:48px 24px;min-height:100vh}
+.page-hd{max-width:1200px;margin:0 auto 48px;color:#d0d0d0;text-align:center;font-family:'Noto Serif TC',serif}
+.page-hd h1{font-size:24px;font-weight:500;margin-bottom:6px;letter-spacing:1px}
+.page-hd p{font-size:12px;color:#808080;letter-spacing:3px;font-family:'Noto Sans TC',sans-serif;font-weight:300}
+.grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:32px}
+
+.card{aspect-ratio:1080/1350;background:#faf7f2;position:relative;color:#1a1a1a;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.18);display:flex;font-family:'Noto Serif TC',serif}
+
+.pn{position:absolute;top:48px;left:54px;font-family:'Noto Sans TC',sans-serif;font-size:10.5px;letter-spacing:4px;color:#a49580;font-weight:400}
+.bd{position:absolute;bottom:48px;right:54px;font-family:'Noto Serif TC',serif;font-size:12px;letter-spacing:6px;color:#8a7e6e;font-weight:500}
+.dot{position:absolute;bottom:48px;left:54px;width:6px;height:6px;border-radius:50%;background:#c8a96a}
+
+.inner{position:absolute;inset:0;padding:112px 72px 112px 72px;display:flex;flex-direction:column}
+
+.s1 .inner{justify-content:flex-end}
+.s1 .lead{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:6px;color:#8a7e6e;margin-bottom:28px;font-weight:400;text-transform:uppercase}
+.s1 h1{font-size:clamp(40px,5.2vw,64px);font-weight:600;line-height:1.28;letter-spacing:-1px}
+.s1 h1 em{font-style:normal;font-weight:900;position:relative;display:inline-block;padding:0 2px}
+.s1 h1 em::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:10px;background:#ede7d9;z-index:-1}
+.s1 .sub{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:14px;line-height:2;color:#6b6259;margin-top:36px;letter-spacing:2px}
+
+.body-slide .inner{justify-content:center;align-items:flex-start;text-align:left}
+.body-slide .tag{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:5px;color:#a49580;margin-bottom:28px;font-weight:400;text-transform:uppercase}
+.body-slide .h{font-size:clamp(40px,5vw,60px);font-weight:500;line-height:1.32;letter-spacing:-0.5px;color:#1a1a1a}
+.body-slide .h strong{font-weight:900;position:relative;display:inline-block}
+.body-slide .h strong::after{content:'';position:absolute;bottom:2px;left:-2px;right:-2px;height:12px;background:#ede7d9;z-index:-1}
+.body-slide .bbody{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(15px,1.5vw,18px);line-height:2.1;color:#4a4138;margin-top:32px;letter-spacing:1px}
+
+.compare .inner{justify-content:center;align-items:flex-start}
+.compare .h{font-size:clamp(28px,3.2vw,40px);font-weight:500;line-height:1.4;color:#1a1a1a;margin-bottom:48px}
+.compare .row{display:flex;flex-direction:column;gap:8px;margin-bottom:32px}
+.compare .lbl{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:4px;color:#a49580;font-weight:400;text-transform:uppercase}
+.compare .val{font-family:'Noto Serif TC',serif;font-size:clamp(20px,2.4vw,28px);font-weight:500;color:#1a1a1a;line-height:1.5}
+.compare .val em{font-style:normal;font-weight:900}
+
+.s7 .inner{justify-content:center;align-items:flex-start}
+.s7 .lead{font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:6px;color:#8a7e6e;margin-bottom:32px;font-weight:400;text-transform:uppercase}
+.s7 .h{font-size:clamp(34px,4.2vw,50px);font-weight:500;line-height:1.4;letter-spacing:-0.5px;color:#1a1a1a;margin-bottom:48px}
+.s7 .hline{width:24px;height:1px;background:#c8a96a;margin-bottom:36px}
+.s7 .closing{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(15px,1.5vw,18px);line-height:2;color:#4a4138;letter-spacing:2px}
+
+@media(max-width:768px){.card{padding:0}.inner{padding:80px 44px}}
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1>練了好幾年身體還是沒變？</h1>
+  <p>CAROUSEL · A · 7 SLIDES · 1080 × 1350</p>
+</div>
+
+<div class="grid">
+
+<div class="card s1">
+  <span class="pn">01 / 07</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="lead">12 YEARS OF TRAINING</p>
+    <h1>練了 2 年，<br>身體還是<em>沒變</em>？</h1>
+    <p class="sub">不是你沒去 / 是「去了」沒「練」</p>
+  </div>
+</div>
+
+<div class="card body-slide s2">
+  <span class="pn">02 / 07</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="tag">12 年觀察</p>
+    <p class="h">我看過上百個學生<br>練了好幾年，<br>身體還是<strong>沒變</strong>。</p>
+    <p class="bbody">不是他們不夠認真。<br>是他們把「有去」當成「有練」。</p>
+  </div>
+</div>
+
+<div class="card compare s3">
+  <span class="pn">03 / 07</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="h">兩種訓練、<br>兩種結果。</p>
+    <div class="row">
+      <span class="lbl">沒在練</span>
+      <span class="val">每組做到 12 下，<br>還能跟旁邊聊天。</span>
+    </div>
+    <div class="row">
+      <span class="lbl">才開始練</span>
+      <span class="val">每組做到 6 下，<br>就<em>臉紅脖子粗</em>。</span>
+    </div>
+  </div>
+</div>
+
+<div class="card body-slide s4">
+  <span class="pn">04 / 07</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="tag">真相</p>
+    <p class="h">訓練品質，<br>其實不在<br>你舉了<strong>多重</strong>。</p>
+    <p class="bbody">是你願不願意誠實面對 ——<br>自己有沒有偷懶。</p>
+  </div>
+</div>
+
+<div class="card body-slide s5">
+  <span class="pn">05 / 07</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="tag">關鍵</p>
+    <p class="h">每一組都該問<br>自己一句話 ——</p>
+    <p class="bbody" style="font-family:'Noto Serif TC',serif;font-size:clamp(20px,2.4vw,28px);font-weight:500;color:#1a1a1a;line-height:1.6;margin-top:36px;">「我這組，<br>真的力竭了嗎？」</p>
+  </div>
+</div>
+
+<div class="card body-slide s6">
+  <span class="pn">06 / 07</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="tag">轉念</p>
+    <p class="h">身體不會被你<br>「<strong>有去就好</strong>」騙過去。</p>
+    <p class="bbody">它只回應你真的給了什麼。<br>力竭幾組，它就還你幾組的進步。</p>
+  </div>
+</div>
+
+<div class="card s7">
+  <span class="pn">07 / 07</span>
+  <span class="dot"></span>
+  <span class="bd">REPURRE</span>
+  <div class="inner">
+    <p class="lead">我覺得這件事</p>
+    <p class="h">就是這麼<br>簡單而已 🤍</p>
+    <div class="hline"></div>
+    <p class="closing">repurre studio<br>台北大安 · 12 年私教</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

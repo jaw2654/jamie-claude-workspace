@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · v8 · Korean Clean (jin.class-inspired)</title>
+
+<!-- Pretendard (韓系黑體王) -->
+<link rel="stylesheet" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+
+<!-- Editorial accent only -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,200..400;1,9..144,200..400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #ffffff;
+  --bg-soft: #fafaf8;
+  --bg-page: #ececea;
+  --ink: #111111;
+  --ink-2: #2a2a2a;
+  --ink-soft: #5a5a5a;
+  --ink-mute: #8a8a8a;
+  --line: #dcdcd8;
+  --line-soft: #ebebe7;
+  --accent: #1a1a1a;            /* black accent - not brown */
+  --accent-warm: #7a5436;       /* caramel used sparingly */
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1, "liga" 1, "calt" 1;
+}
+body{background:var(--bg-page);padding:60px 28px;min-height:100vh}
+
+.page-hd{max-width:1500px;margin:0 auto 72px;color:var(--ink-soft);text-align:center}
+.page-hd h1{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:28px;
+  margin-bottom:12px;
+  letter-spacing:0.01em;
+  color:var(--ink);
+}
+.page-hd p{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-size:10px;
+  color:var(--ink-mute);
+  letter-spacing:0.42em;
+  font-weight:400;
+  text-transform:uppercase;
+}
+
+.row{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+
+/* ============================================================
+   IG 4:5 · Korean Clean · v8
+   jin.class 啟發：純白 + Pretendard 黑體 + ｜分隔 + 極簡
+   ============================================================ */
+.card{
+  aspect-ratio: 4 / 5;
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+  color:var(--ink);
+  display:flex;
+  box-shadow:
+    0 28px 80px -22px rgba(20,20,20,0.18),
+    0 6px 18px -8px rgba(20,20,20,0.06);
+  border-radius:2px;
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:12% 10% 11% 10%;
+  display:flex;flex-direction:column;
+  z-index:2;
+}
+
+/* ==== 頂端 header：帳號｜主題｜期號 ==== */
+.top-bar{
+  display:flex;
+  align-items:center;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:0.22em;
+  color:var(--ink);
+  text-transform:uppercase;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:44px;
+}
+.top-bar .bar{color:var(--ink-mute);margin:0 10px;font-weight:300}
+.top-bar .r{margin-left:auto;font-weight:400;color:var(--ink-soft);letter-spacing:0.22em}
+
+/* ==== 主標 — Pretendard 大字 ==== */
+.title{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:700;
+  font-size:clamp(30px, 3.7vw, 42px);
+  line-height:1.55;
+  letter-spacing:-0.012em;
+  color:var(--ink);
+}
+.title em{
+  font-style:normal;
+  font-weight:700;
+  background:linear-gradient(to top, rgba(255,220,80,0.45) 42%, transparent 42%);
+  padding:0 2px;
+}
+
+/* 副標 */
+.title-sm{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:500;
+  font-size:clamp(18px, 2.1vw, 23px);
+  line-height:1.75;
+  letter-spacing:-0.005em;
+  color:var(--ink-2);
+  margin-top:22px;
+}
+
+/* Body */
+.body{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:400;
+  font-size:clamp(14px, 1.5vw, 16.5px);
+  line-height:1.95;
+  letter-spacing:0.008em;
+  color:var(--ink-soft);
+  margin-top:auto;
+}
+.body strong{
+  font-weight:600;
+  color:var(--ink);
+}
+
+/* ==== Eyebrow（小標，英文斜體 + 點） ==== */
+.eye{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:17px;
+  letter-spacing:0.01em;
+  color:var(--accent-warm);
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.eye::before{
+  content:'';
+  width:6px;height:6px;
+  background:var(--accent-warm);
+  border-radius:50%;
+  display:inline-block;
+}
+
+/* ==== Pull Number（Fraunces 大斜體，保留） ==== */
+.num-pull{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 144, "SOFT" 30;
+  font-size:clamp(160px, 20vw, 260px);
+  line-height:0.85;
+  color:var(--ink);
+  letter-spacing:-0.04em;
+  margin:auto 0 18px;
+}
+.num-pull .lbl{
+  display:block;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-style:normal;
+  font-weight:500;
+  font-size:0.075em;
+  color:var(--ink-soft);
+  letter-spacing:0.18em;
+  margin-top:20px;
+  line-height:1.6;
+  text-transform:uppercase;
+}
+
+/* ==== 對比行 ==== */
+.compare-row{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:0;
+  padding:20px 0;
+  border-bottom:1px solid var(--line-soft);
+  align-items:baseline;
+}
+.compare-row:last-child{border-bottom:none}
+.compare-row .q{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:500;
+  font-size:clamp(16px,1.8vw,20px);
+  line-height:1.5;
+  color:var(--ink);
+  letter-spacing:-0.005em;
+  padding-right:18px;
+}
+.compare-row .arrow{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:300;
+  color:var(--ink-mute);
+  margin:0 8px;
+}
+.compare-row .a{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:400;
+  font-size:clamp(15px,1.7vw,18px);
+  color:var(--ink-soft);
+  letter-spacing:0.01em;
+  text-align:right;
+}
+.compare-row .a strong{
+  font-weight:700;
+  color:var(--ink);
+}
+
+.rule{
+  width:32px;
+  height:2px;
+  background:var(--ink);
+  margin:26px 0;
+}
+
+/* ==== 底部 footer ==== */
+.foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-top:28px;
+  padding-top:18px;
+  border-top:1px solid var(--line-soft);
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:0.26em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+}
+.foot .l{display:flex;align-items:center;gap:10px}
+.foot .bar{color:var(--line);font-weight:300}
+.foot .r{letter-spacing:0.3em}
+.foot .r .slash{color:var(--line);margin:0 4px}
+
+/* ==== COVER ==== */
+.cover .inner{justify-content:space-between}
+.cover .htitle{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:700;
+  font-size:clamp(34px, 4.3vw, 50px);
+  line-height:1.35;
+  letter-spacing:-0.022em;
+  color:var(--ink);
+  margin-top:auto;
+}
+.cover .htitle em{
+  font-style:normal;
+  font-weight:700;
+  background:linear-gradient(to top, rgba(255,220,80,0.45) 42%, transparent 42%);
+  padding:0 2px;
+}
+.cover .hsub{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(17px,1.9vw,21px);
+  line-height:1.55;
+  color:var(--ink-soft);
+  margin-top:24px;
+  letter-spacing:0.005em;
+}
+.cover .issue-block{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.cover .issue{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:0.08em;
+  color:var(--ink);
+  text-transform:none;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.cover .issue .dot{
+  width:6px;height:6px;background:var(--accent-warm);border-radius:50%;display:inline-block;
+}
+.cover .issue-tag{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:400;
+  font-size:10px;
+  letter-spacing:0.36em;
+  color:var(--ink-soft);
+  text-transform:uppercase;
+}
+
+/* ==== END slide ==== */
+.end-title{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:700;
+  font-size:clamp(36px,4.6vw,52px);
+  line-height:1.4;
+  letter-spacing:-0.022em;
+  color:var(--ink);
+}
+.end-title .en{
+  display:block;
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 144;
+  font-size:0.7em;
+  color:var(--ink-soft);
+  letter-spacing:-0.005em;
+  margin-top:8px;
+}
+.end-sig{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:400;
+  font-size:13.5px;
+  line-height:1.9;
+  letter-spacing:0.04em;
+  color:var(--ink-soft);
+  margin-top:28px;
+}
+.end-sig .brand{
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  font-weight:700;
+  font-size:17px;
+  color:var(--ink);
+  letter-spacing:-0.005em;
+  display:inline-block;
+  margin-bottom:2px;
+}
+
+.vbar{color:var(--ink-mute);margin:0 10px;font-weight:300}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1><em>Jamie &nbsp;—&nbsp; Korean Clean Edition, v8</em></h1>
+  <p>7 slides &nbsp;·&nbsp; 1080 × 1350 &nbsp;·&nbsp; pretendard + instrument serif + fraunces</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER -->
+<div class="card cover">
+  <div class="inner">
+    <div class="issue-block">
+      <div class="issue"><span class="dot"></span>repurre<span class="vbar">｜</span>私教筆記<span class="vbar">｜</span>Vol. 01</div>
+      <div class="issue-tag">training quality · a note from jamie</div>
+    </div>
+    <div>
+      <p class="htitle">練好幾年，<br>身體<em>還是沒變</em>。<br>不是你不夠努力。</p>
+      <p class="hsub"><em>— 我帶了十二年，<br>大家誤會了「努力」這兩個字。</em></p>
+    </div>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>repurre studio<span class="bar">｜</span>taipei daan</div>
+      <div class="r">01<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 / 9 年學生 -->
+<div class="card">
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>ch. 01
+      <span class="r">the story</span>
+    </div>
+    <p class="eye"><em>chapter one</em></p>
+    <p class="title">我帶過<em>最久的學生</em>，<br>到今年，九年了。</p>
+    <p class="title-sm">但前兩年，<br>他的身體⋯⋯<br>其實沒什麼變。</p>
+    <p class="body">
+      他每堂都有到。<br>
+      卡的不是出席，也不是年紀。<br>
+      是那兩年——他「去了」，<strong>但沒真的在練</strong>。
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>no. 01</div>
+      <div class="r">02<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 / Pull Number -->
+<div class="card">
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>ch. 02
+      <span class="r">12 years in</span>
+    </div>
+    <p class="eye"><em>what i see</em></p>
+    <div class="num-pull">
+      <em>9</em>
+      <span class="lbl">years · 一個學生 &nbsp;｜&nbsp; 前兩年 沒變</span>
+    </div>
+    <p class="body">
+      這十二年我看下來——<br>
+      身體不回應時間，<strong>只回應品質</strong>。<br>
+      每一下你誠實做，它都記得。
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>no. 01</div>
+      <div class="r">03<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 / 校準 -->
+<div class="card">
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>ch. 03
+      <span class="r">your signal</span>
+    </div>
+    <p class="eye"><em>calibration</em></p>
+    <p class="title"><em>身體的訊號</em>，<br>其實一直在告訴你。</p>
+    <div style="margin-top:30px">
+      <div class="compare-row">
+        <span class="q">十二下<br>還能聊天</span>
+        <span class="a">身體 <strong>還沒接到訊號</strong></span>
+      </div>
+      <div class="compare-row">
+        <span class="q">六下就<br>臉紅脖子粗</span>
+        <span class="a">才是 <strong>開始</strong></span>
+      </div>
+    </div>
+    <p class="body" style="margin-top:auto">
+      這不是嚴格、也不是逼。<br>
+      是學著聽懂——<br>
+      你身體今天真正的那一條線在哪。
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>no. 01</div>
+      <div class="r">04<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 / 誠實 -->
+<div class="card">
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>ch. 04
+      <span class="r">my only rule</span>
+    </div>
+    <p class="eye"><em>the thing</em></p>
+    <p class="title">訓練的品質，<br>其實不是你<em>舉多重</em>。</p>
+    <div class="rule"></div>
+    <p class="title-sm">是你願不願意，<br>誠實面對<br>自己有沒有偷懶。</p>
+    <p class="body">
+      我覺得就這麼簡單。<br>
+      沒有技巧、沒有 app、也沒有捷徑。<br>
+      它只是你跟自己<strong>一個約定</strong>而已。
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>no. 01</div>
+      <div class="r">05<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 / 複利 -->
+<div class="card">
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>ch. 05
+      <span class="r">after year 3</span>
+    </div>
+    <p class="eye"><em>compound</em></p>
+    <p class="title">時間<em>真的會複利</em>。</p>
+    <p class="title-sm">但前提是——<br>你把每一下，<br>都真的放進去了。</p>
+    <p class="body">
+      我那位九年的學生，<br>
+      第三年後身體一年比一年好。<br>
+      不是因為練更久，<br>
+      是他那一年終於<strong>不再陪自己聊天</strong>。
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>no. 01</div>
+      <div class="r">06<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+<!-- S7 / END -->
+<div class="card">
+  <div class="inner">
+    <div class="top-bar">
+      repurre<span class="bar">｜</span>私教筆記<span class="bar">｜</span>end
+      <span class="r">closing</span>
+    </div>
+    <p class="eye"><em>a note, closing</em></p>
+    <p class="end-title">
+      每一下，<br>都是一次選擇。
+      <span class="en"><em>— every rep, a choice.</em></span>
+    </p>
+    <div class="rule"></div>
+    <p class="end-sig">
+      <span class="brand">Jamie Wu</span><br>
+      repurre studio<span class="vbar">｜</span>十二年私教<span class="vbar">｜</span>台北大安<br>
+      est. 2014
+    </p>
+    <p class="body" style="margin-top:auto">
+      如果這篇有陪到你，<br>
+      儲存一下，下次練之前再看一眼。<br>
+      我們下一篇見 &nbsp;🤍
+    </p>
+    <div class="foot">
+      <div class="l">@jamie_wu_1012<span class="bar">｜</span>end of no. 01</div>
+      <div class="r">07<span class="slash">/</span>07</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

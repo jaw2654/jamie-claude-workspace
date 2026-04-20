@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>repurre · Leo Structure × Jamie Aesthetic · v4</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@200;300;400;500;700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#1c1c1c;padding:48px 24px;min-height:100vh}
+
+.page-hd{max-width:1400px;margin:0 auto 56px;color:#aaa;text-align:center}
+.page-hd h1{font-family:'Inter',sans-serif;font-size:13px;font-weight:300;margin-bottom:8px;letter-spacing:8px;text-transform:uppercase;color:#ccc}
+.page-hd p{font-family:'Inter',sans-serif;font-size:10px;color:#666;letter-spacing:5px;font-weight:300;text-transform:uppercase}
+
+.row{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+
+/* ============================================================ */
+/* 4:5 / 1080×1350 — 每張字數壓到 30 字內，文字大到填滿 */
+/* ============================================================ */
+.card{
+  aspect-ratio: 4 / 5;
+  background:#f4f0e8;
+  position:relative;
+  overflow:hidden;
+  color:#1c1c1c;
+  display:flex;
+  font-family:'Noto Serif TC',serif;
+  box-shadow:0 12px 48px rgba(0,0,0,0.18);
+}
+
+.inner{
+  position:absolute;inset:0;
+  padding:9% 8%;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  z-index:2;
+}
+
+/* 數字 — 右上微小 */
+.num{
+  position:absolute;
+  top:7%;right:8%;
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:300;
+  letter-spacing:0.2em;
+  color:#9c9180;
+}
+
+/* 帳號簽名 — 右下 */
+.sig{
+  position:absolute;
+  bottom:7%;right:8%;
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:300;
+  letter-spacing:0.2em;
+  color:#9c9180;
+}
+
+/* 主標 — 大到填滿 (Leo 原則) */
+.headline{
+  font-family:'Noto Serif TC',serif;
+  font-weight:600;
+  font-size:clamp(48px, 6vw, 76px);
+  line-height:1.32;
+  letter-spacing:0.01em;
+  color:#1c1c1c;
+}
+
+.headline strong{
+  font-weight:900;
+  position:relative;
+  display:inline-block;
+}
+.headline strong::after{
+  content:'';
+  position:absolute;
+  bottom:4px;left:-2px;right:-2px;
+  height:14px;
+  background:rgba(156,145,128,0.18);
+  z-index:-1;
+}
+
+/* 比較式：兩個對比短句 */
+.compare{
+  font-family:'Noto Serif TC',serif;
+  font-weight:500;
+  font-size:clamp(32px,4vw,48px);
+  line-height:1.5;
+  letter-spacing:0.01em;
+  color:#1c1c1c;
+}
+.compare em{font-style:normal;color:#9c9180;font-weight:400;font-size:0.7em;display:block;margin-top:8px;letter-spacing:0.1em}
+
+/* 關鍵字超大型 */
+.giant{
+  font-family:'Noto Serif TC',serif;
+  font-weight:900;
+  font-size:clamp(72px, 9vw, 120px);
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:#1c1c1c;
+}
+.giant em{
+  font-style:normal;
+  font-weight:400;
+  font-size:0.5em;
+  color:#9c9180;
+  display:block;
+  margin-top:18px;
+  letter-spacing:0.1em;
+  line-height:1.4;
+}
+
+/* CTA 風格 */
+.cta-title{
+  font-family:'Noto Serif TC',serif;
+  font-weight:600;
+  font-size:clamp(36px,4.5vw,52px);
+  line-height:1.4;
+  letter-spacing:0.01em;
+  color:#1c1c1c;
+}
+.cta-actions{
+  margin-top:48px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.cta-actions .item{
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:clamp(15px,1.6vw,18px);
+  font-weight:300;
+  color:#5a5147;
+  letter-spacing:0.08em;
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+}
+.cta-actions .item::before{
+  content:'';
+  display:inline-block;
+  width:14px;height:0.5px;
+  background:#9c9180;
+  flex-shrink:0;
+}
+
+/* COVER */
+.cover .inner{justify-content:flex-end;padding-bottom:14%}
+.cover .small-tag{
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:0.3em;
+  color:#9c9180;
+  margin-bottom:32px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page-hd">
+  <h1>Leo Structure × Jamie Aesthetic · v4</h1>
+  <p>7 SLIDES · ≤30 字/張 · 大字填滿 · 米白底 · 4:5 · soft CTA</p>
+</div>
+
+<div class="row">
+
+<!-- S1 / COVER hook -->
+<div class="card cover">
+  <span class="num">01 / 07</span>
+  <div class="inner">
+    <p class="small-tag">系統一　·　訓練品質</p>
+    <p class="headline">12 年了。<br>為什麼很多人<br><strong>練了好幾年</strong><br>身體沒變？</p>
+  </div>
+  <span class="sig">@jamie_wu_1012</span>
+</div>
+
+<!-- S2 / 一件事：不是沒去 -->
+<div class="card">
+  <span class="num">02 / 07</span>
+  <div class="inner">
+    <p class="headline">不是你<br><strong>沒去</strong>。</p>
+  </div>
+  <span class="sig">@jamie_wu_1012</span>
+</div>
+
+<!-- S3 / 一件事：是「去了」沒「練」 -->
+<div class="card">
+  <span class="num">03 / 07</span>
+  <div class="inner">
+    <p class="headline">是「去了」<br>沒「<strong>練</strong>」。</p>
+  </div>
+  <span class="sig">@jamie_wu_1012</span>
+</div>
+
+<!-- S4 / 對比：12 vs 6 下 -->
+<div class="card">
+  <span class="num">04 / 07</span>
+  <div class="inner">
+    <p class="compare">12 下能聊天<em>＝ 沒在練</em></p>
+    <p class="compare" style="margin-top:48px">6 下臉紅脖子粗<em>＝ 才開始</em></p>
+  </div>
+  <span class="sig">@jamie_wu_1012</span>
+</div>
+
+<!-- S5 / 比喻：代謝銀行 -->
+<div class="card">
+  <span class="num">05 / 07</span>
+  <div class="inner">
+    <p class="giant">代謝<br>銀行<em>肌肉是你的存款<br>力竭一組是本金</em></p>
+  </div>
+  <span class="sig">@jamie_wu_1012</span>
+</div>
+
+<!-- S6 / 主張：不靠意志力 -->
+<div class="card">
+  <span class="num">06 / 07</span>
+  <div class="inner">
+    <p class="headline">你不需要<br><strong>意志力</strong>。<br><br>你需要的是<br>一個<strong>系統</strong>。</p>
+  </div>
+  <span class="sig">@jamie_wu_1012</span>
+</div>
+
+<!-- S7 / Soft CTA（不招募不價格 改 save / share / follow） -->
+<div class="card">
+  <span class="num">07 / 07</span>
+  <div class="inner">
+    <p class="cta-title">下次練之前，<br>幫自己存一份。</p>
+    <div class="cta-actions">
+      <div class="item">右下角點 「儲存」　下次練的時候用</div>
+      <div class="item">傳給那個 練好幾年沒變的朋友</div>
+      <div class="item">追蹤 @jamie_wu_1012　看下一個系統</div>
+    </div>
+  </div>
+  <span class="sig">@jamie_wu_1012</span>
+</div>
+
+</div>
+
+</body>
+</html>
