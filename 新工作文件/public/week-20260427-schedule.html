@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>repurre · Week 2026-04-27 內容排程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f0ebe0;
+    --ink: #141414;
+    --ink-mid: rgba(20, 20, 20, 0.68);
+    --ink-soft: rgba(20, 20, 20, 0.48);
+    --hair: rgba(20, 20, 20, 0.14);
+    --card: rgba(255, 255, 255, 0.58);
+    --card-strong: rgba(255, 255, 255, 0.82);
+    --card-dark: rgba(20, 20, 20, 0.06);
+    --highlight: rgba(245, 245, 245, 0.82);
+    --accent-warn: rgba(180, 60, 20, 0.88);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', 'PingFang TC', serif;
+    font-weight: 400;
+    line-height: 1.7;
+    padding: 48px 24px 80px;
+    min-height: 100vh;
+  }
+  .mono { font-family: 'JetBrains Mono', 'Menlo', monospace; }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* Masthead */
+  header.mast {
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(1.8em, 4vw, 2.6em);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 1.02em;
+    color: var(--ink-mid);
+    max-width: 640px;
+  }
+
+  /* Narrative arc */
+  .arc {
+    background: var(--card);
+    padding: 28px 32px;
+    border-radius: 10px;
+    border: 1px solid var(--hair);
+    margin-bottom: 48px;
+  }
+  .arc h2 {
+    font-size: 0.78em;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 16px;
+  }
+  .arc-chain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.95em;
+    margin-bottom: 14px;
+  }
+  .arc-node {
+    background: var(--card-dark);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+  }
+  .arc-arrow {
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .arc-core {
+    font-size: 1.1em;
+    font-weight: 500;
+    padding-top: 14px;
+    border-top: 1px dashed var(--hair);
+  }
+  .arc-core em {
+    background: var(--highlight);
+    padding: 2px 8px;
+    font-style: normal;
+  }
+
+  /* Day cards */
+  section.day {
+    background: var(--card-strong);
+    border: 1px solid var(--hair);
+    padding: 28px 32px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+  }
+  section.day.rest {
+    background: var(--card-dark);
+  }
+  .day-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .day-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  .day-weekday {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76em;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+  .day-channel {
+    font-size: 0.88em;
+    color: var(--ink-mid);
+  }
+  .day-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    font-weight: 500;
+    margin-left: auto;
+  }
+  .day-arc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.2em;
+    padding: 3px 10px;
+    background: var(--card-dark);
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .day-title {
+    font-size: 1.4em;
+    font-weight: 500;
+    margin: 6px 0 14px;
+    line-height: 1.4;
+  }
+  .day-theme {
+    color: var(--ink-mid);
+    font-size: 0.98em;
+    margin-bottom: 16px;
+  }
+  .field {
+    margin-bottom: 14px;
+  }
+  .field-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 4px;
+  }
+  .field-body {
+    font-size: 0.98em;
+  }
+  .field-body ul {
+    margin: 4px 0 0 18px;
+  }
+  .field-body li {
+    margin-bottom: 3px;
+  }
+  .hook-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .hook-list li {
+    padding: 6px 12px;
+    background: var(--card-dark);
+    border-left: 2px solid var(--ink-soft);
+    margin-bottom: 6px;
+    font-size: 0.95em;
+  }
+  .hook-list li::before {
+    content: counter(hookcounter) '. ';
+    counter-increment: hookcounter;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84em;
+    color: var(--ink-mid);
+  }
+  .hooks { counter-reset: hookcounter; }
+  .warn-chip {
+    display: inline-block;
+    background: var(--accent-warn);
+    color: var(--cream);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.12em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-right: 6px;
+  }
+  .warn-box {
+    background: rgba(180, 60, 20, 0.08);
+    border-left: 3px solid var(--accent-warn);
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.92em;
+  }
+
+  /* Table (slide structure etc) */
+  .slides-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 18px;
+    font-size: 0.93em;
+    margin-top: 6px;
+  }
+  .slides-grid .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82em;
+    color: var(--ink-mid);
+    padding-top: 3px;
+  }
+
+  /* Stories seed */
+  .stories {
+    background: var(--card);
+    border: 1px solid var(--hair);
+    padding: 28px 32px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+  }
+  .stories h2 {
+    font-size: 1.15em;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .stories-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92em;
+  }
+  .stories-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--hair);
+    vertical-align: top;
+  }
+  .stories-table tr:last-child td { border-bottom: none; }
+  .stories-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84em;
+    color: var(--ink-mid);
+    white-space: nowrap;
+    width: 80px;
+  }
+
+  /* Checklist */
+  .checklist {
+    background: var(--card-dark);
+    border: 1px solid var(--hair);
+    padding: 24px 32px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+  }
+  .checklist h2 {
+    font-size: 1.05em;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .checklist ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: ck;
+  }
+  .checklist ol li {
+    counter-increment: ck;
+    padding: 8px 0 8px 34px;
+    position: relative;
+    border-bottom: 1px dashed var(--hair);
+  }
+  .checklist ol li:last-child { border-bottom: none; }
+  .checklist ol li::before {
+    content: counter(ck);
+    position: absolute;
+    left: 0; top: 9px;
+    width: 22px; height: 22px;
+    border: 1px solid var(--ink-mid);
+    border-radius: 50%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74em;
+    text-align: center;
+    line-height: 22px;
+  }
+
+  /* CTA footer */
+  footer.colophon {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hair);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76em;
+    letter-spacing: 0.12em;
+    color: var(--ink-mid);
+    text-align: center;
+    line-height: 1.9;
+  }
+  footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hair); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    body { padding: 28px 16px 60px; }
+    section.day, .arc, .stories, .checklist { padding: 22px 20px; }
+    .day-head { gap: 8px; }
+    .day-time { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="mast">
+  <div class="label">repurre · content calendar · week 20260427</div>
+  <h1>下週內容排程｜04-27 → 05-03</h1>
+  <p class="subtitle">基於 2026-04-22 Q1-Q4 TA 定版 · 漏斗：YT/IG 頂 → Threads/Stories 中 → Skool 社群 → LINE OA → 1v1 實體課 · TA 鎖定「願意練習的人」</p>
+</header>
+
+<div class="arc">
+  <h2>本週主敘事弧</h2>
+  <div class="arc-chain">
+    <span class="arc-node">E · 開局</span>
+    <span class="arc-arrow">→</span>
+    <span class="arc-node">A · 30 歲肌力</span>
+    <span class="arc-arrow">→</span>
+    <span class="arc-node">B · 不變壯</span>
+    <span class="arc-arrow">→</span>
+    <span class="arc-node">C · 肩頸</span>
+    <span class="arc-arrow">→</span>
+    <span class="arc-node">D · 2000 按摩</span>
+    <span class="arc-arrow">→</span>
+    <span class="arc-node">E · 收尾</span>
+  </div>
+  <p class="arc-core">7 天收束成一件事 — <em>身體是我們唯一的家 · 照顧是基本責任</em></p>
+</div>
+
+<!-- 04-27 YT 長片 -->
+<section class="day">
+  <div class="day-head">
+    <span class="day-date">04 / 27</span>
+    <span class="day-weekday">Mon</span>
+    <span class="day-channel">YT 長片</span>
+    <span class="day-arc">E · 開局</span>
+    <span class="day-time">21:00</span>
+  </div>
+  <div class="day-title">為什麼運動不是選項 · 是基本責任｜Jamie × 12 年訓練人生</div>
+  <div class="day-theme">20-25 min · repurre 核心系列 2026 · Thumbnail「運動 · 是我們身為人該做的事」</div>
+
+  <div class="field">
+    <div class="field-label">敘事骨架</div>
+    <div class="field-body">
+      <div class="slides-grid">
+        <span class="num">0:00</span><span><strong>Hook</strong>｜大家願意花 2000 按摩 · 卻不願意花 2000 運動（直接引用學員對話）</span>
+        <span class="num">1:00</span><span><strong>跆拳道 12 年</strong>｜6 歲開始 · 18 歲斷生活費炸醬麵 3 年 · 25 歲身體反撲甲亢</span>
+        <span class="num">5:00</span><span><strong>紐約三個月</strong>｜2025/08/29 出發 · 朋友帶便當 · 看清「運動是讓我有能力選擇想要的生活」</span>
+        <span class="num">9:00</span><span><strong>核心論點</strong>｜運動是身為人基本責任 · 30+ 每年 1% 肌肉流失 · 沒練 vs 練 10 年</span>
+        <span class="num">14:00</span><span><strong>3 學員故事</strong>｜52 歲爬山 · 今年最好決定 · Jamie 體感 vs 體態</span>
+        <span class="num">19:00</span><span><strong>收束</strong>｜願意練習的人 · 不是求速成的人</span>
+        <span class="num">22:00</span><span><strong>CTA 雙軌</strong>｜assessment 自測 / Skool MOVE ON CREW 週信</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <span class="warn-chip">PENDING</span>Deck v10 HTML 要重寫 · Gamma 10 頁已有但底色/字級/照片要換 · 目標檔 <span class="mono">新工作文件/簡報/week-20260427-yt-long.html</span>
+  </div>
+</section>
+
+<!-- 04-28 Shorts/Reels -->
+<section class="day">
+  <div class="day-head">
+    <span class="day-date">04 / 28</span>
+    <span class="day-weekday">Tue</span>
+    <span class="day-channel">YT Shorts + IG Reels</span>
+    <span class="day-arc">A · 操作 1</span>
+    <span class="day-time">21:00</span>
+  </div>
+  <div class="day-title">30 歲先練肌力 · 不是先減脂</div>
+  <div class="day-theme">45-60 sec · hook 觸及率驗證過的方向繼續深耕</div>
+
+  <div class="field">
+    <div class="field-label">Hook 3 版（挑 1）</div>
+    <ol class="hook-list hooks">
+      <li>30 歲以後 · 你該先做的不是減脂 · 是練肌力。</li>
+      <li>為什麼 30 歲以後越來越難瘦？是肌肉走了 · 不是代謝變慢。</li>
+      <li>30 歲先練肌力這件事 · 一定要比減脂優先。</li>
+    </ol>
+  </div>
+
+  <div class="field">
+    <div class="field-label">Threads 12:00 echo</div>
+    <div class="field-body">大部分 30+ 的女生以為代謝變慢 · 不是 · 是肌肉每年流失 1% · 38 歲現在你已經少了 8%</div>
+  </div>
+
+  <div class="warn-box">
+    <span class="warn-chip">VERIFY</span>發排程前必掃 caption 沒有「瘦」字殘留（違禁用詞鐵律）
+  </div>
+</section>
+
+<!-- 04-29 IG 輪播 -->
+<section class="day">
+  <div class="day-head">
+    <span class="day-date">04 / 29</span>
+    <span class="day-weekday">Wed</span>
+    <span class="day-channel">IG 輪播 v14 · 8 張</span>
+    <span class="day-arc">B · 操作 2</span>
+    <span class="day-time">21:00</span>
+  </div>
+  <div class="day-title">我不想變壯 · 其實就是你要的線條</div>
+  <div class="day-theme">12 年學員找我說的第一句話 · 重新定義「變壯」vs「線條」</div>
+
+  <div class="field">
+    <div class="field-label">輪播結構</div>
+    <div class="field-body">
+      <div class="slides-grid">
+        <span class="num">S1</span><span>Hook｜我不想變壯 · 12 年學員第一句話</span>
+        <span class="num">S2</span><span>但其實 · 你害怕的變壯 · 跟你要的線條 · 是同一件事</span>
+        <span class="num">S3</span><span>真的能練到變壯的訓練量 · 99% 女生沒在做</span>
+        <span class="num">S4</span><span>線條 = 肌肉 + 低體脂｜變壯 = 再加超越承受範圍的訓練量</span>
+        <span class="num">S5</span><span>學員故事｜38 歲練 1 年 · 「肩膀變寬」其實是斜方圓肩鬆了</span>
+        <span class="num">S6</span><span>行動｜練「身體正確出力」· 6-12 週線條浮出</span>
+        <span class="num">S7</span><span>心態｜女生想要的 · 從來就在「變壯的前 30%」</span>
+        <span class="num">S8</span><span>CTA 雙軌 + 留言「練」→ 傳 30 秒自測</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04-30 Shorts/Reels 肩頸 -->
+<section class="day">
+  <div class="day-head">
+    <span class="day-date">04 / 30</span>
+    <span class="day-weekday">Thu</span>
+    <span class="day-channel">YT Shorts + IG Reels</span>
+    <span class="day-arc">C · 操作 3 · 新</span>
+    <span class="day-time">21:00</span>
+  </div>
+  <div class="day-title">肩頸痠痛 3 個在家動作</div>
+  <div class="day-theme">60-75 sec · 辦公桌坐 8 小時痛點 framing · 代償角度切入</div>
+
+  <div class="field">
+    <div class="field-label">核心論述</div>
+    <div class="field-body">不是姿勢不對 · 是身體代償 —— 核心沒力肩膀扛 · 胸椎不動脖子撐。</div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">3 個動作</div>
+    <div class="field-body">
+      <ul>
+        <li><strong>胸椎轉體</strong>｜四足跪姿 · 一手放後腦 · 向上轉體（每邊 10 下 × 早中晚）</li>
+        <li><strong>髖屈肌拉筋</strong>｜弓箭步 · 後腳同邊手高舉伸展（左右各 60 秒）</li>
+        <li><strong>下巴收</strong>｜靠牆站 · 把頭放回身體正上方（20 下 × 3 組）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="field-label">留言鉤</div>
+    <div class="field-body">留言「肩頸」→ 傳完整 8 分鐘 routine</div>
+  </div>
+</section>
+
+<!-- 05-01 休 -->
+<section class="day rest">
+  <div class="day-head">
+    <span class="day-date">05 / 01</span>
+    <span class="day-weekday">Fri</span>
+    <span class="day-channel">休 · Stories only</span>
+    <span class="day-arc">週節奏 v3 · 五休</span>
+    <span class="day-time">—</span>
+  </div>
+  <div class="day-title">五休 · Stories 不休</div>
+
+  <div class="field">
+    <div class="field-label">Stories 排程</div>
+    <div class="field-body">
+      <ul>
+        <li><span class="mono">09:00</span> — Quote Story（擷取 YT 長片一句話）</li>
+        <li><span class="mono">15:00</span> — BTS Studio 日常</li>
+        <li><span class="mono">20:00</span> — Poll：這週你最有感的是 A / B / C？</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05-02 IG 輪播 2000 按摩 -->
+<section class="day">
+  <div class="day-head">
+    <span class="day-date">05 / 02</span>
+    <span class="day-weekday">Sat</span>
+    <span class="day-channel">IG 輪播 v14 · 8 張</span>
+    <span class="day-arc">D · 社會對比</span>
+    <span class="day-time">21:00</span>
+  </div>
+  <div class="day-title">2000 按摩 vs 2000 運動</div>
+  <div class="day-theme">跟 04-27 YT 長片 Hook 同根 · 但輪播重排預算重分配的 framing</div>
+
+  <div class="field">
+    <div class="field-label">輪播結構</div>
+    <div class="field-body">
+      <div class="slides-grid">
+        <span class="num">S1</span><span>Hook｜你願意花 2000 按摩 · 卻不願意花 2000 運動 · 這句話把我自己也問到了</span>
+        <span class="num">S2</span><span>按摩當下爽但身體繼續痠｜運動當下累但身體每天更有力</span>
+        <span class="num">S3</span><span>問題不是「花不花 2000」· 是你花在「當下舒服」vs「長期能用」的比例</span>
+        <span class="num">S4</span><span>brand 核心｜身體照顧不是特殊需求 · 是基本責任</span>
+        <span class="num">S5</span><span>學員故事｜38 歲月花 6000 按摩 · 改練肌力 · 降到 2 月 1 次</span>
+        <span class="num">S6</span><span>不是要你放棄按摩 · 是重新分配預算</span>
+        <span class="num">S7</span><span>運動不是花錢買辛苦 · 是花錢買「50 歲還能做自己的事」</span>
+        <span class="num">S8</span><span>CTA + 留言「重分配」→ 傳月預算建議</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05-03 收束 -->
+<section class="day">
+  <div class="day-head">
+    <span class="day-date">05 / 03</span>
+    <span class="day-weekday">Sun</span>
+    <span class="day-channel">YT Shorts + IG Reels</span>
+    <span class="day-arc">回扣 E · 收束</span>
+    <span class="day-time">21:00</span>
+  </div>
+  <div class="day-title">這週 5 件事其實都是 1 件事</div>
+  <div class="day-theme">60 sec · 收束「身體是我們自己唯一的家」</div>
+
+  <div class="field">
+    <div class="field-label">收束 framing</div>
+    <div class="field-body">
+      列完本週 5 件事 → 核心「身體是我們自己唯一的家」→ 照顧不是特殊需求 · 是基本責任 → 願意練習的人從小事慢慢做 → 下週我繼續
+    </div>
+  </div>
+</section>
+
+<!-- Stories seed -->
+<div class="stories">
+  <h2>本週 Stories topic seed（1-2 / 天 · Jamie 自己編排拍）</h2>
+  <table class="stories-table">
+    <tr><td>Mon 04-27</td><td>21:00 YT 上架導流「今晚 21:00 · repurre 2026 核心系列開場」＋ Quote 擷取</td></tr>
+    <tr><td>Tue 04-28</td><td>21:00 Reel 導流「30 歲先練肌力」＋ 擇一 Studio BTS or Poll「你 30 後最有感的身體變化」</td></tr>
+    <tr><td>Wed 04-29</td><td>21:00 輪播導流＋ 擷取學員 38 歲 Slide 5 一句話</td></tr>
+    <tr><td>Thu 04-30</td><td>21:00 Reel 導流「肩頸 3 動作」＋ 當日示範 BTS</td></tr>
+    <tr><td>Fri 05-01</td><td>09:00 Quote · 15:00 BTS · 20:00 Poll「本週哪篇最有感」</td></tr>
+    <tr><td>Sat 05-02</td><td>21:00 輪播導流「2000 按摩 vs 2000 運動」</td></tr>
+    <tr><td>Sun 05-03</td><td>21:00 Reel 導流 · 收束 · 預告下週</td></tr>
+  </table>
+</div>
+
+<!-- Checklist -->
+<div class="checklist">
+  <h2>給 Jamie 的明天 checklist（依優先序）</h2>
+  <ol>
+    <li><strong>04-27 YT Deck v10 HTML</strong>｜MBP 晚 session 沒做完 · 要重寫 · 底色暖米 · JetBrains Mono · 16:9 · 照片換真照（至少 5 張 AI 生成要換）</li>
+    <li><strong>04-28 caption verify</strong>｜再掃一次沒有「瘦」字殘留（違禁用詞鐵律）</li>
+    <li><strong>04-27 YT 長片 Jamie 錄影</strong>｜依骨架 · 引用 Skool 週末信 #1 原話不重寫</li>
+    <li><strong>04-28 / 04-30 Shorts 拍攝</strong>｜Jamie 錄影 · 短片 45-75 sec</li>
+    <li><strong>launchd 健康檢查</strong>｜Threads v2 flow 明天 12:00 第一跑 · 確認新 wrapper 掛好</li>
+  </ol>
+</div>
+
+<footer class="colophon">
+  REPURRE · 2026 · WEEK 20260427<br>
+  JAMIE 巫采縈 · 人生下半場 · 健康過一生
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>repurre · 2026 健身產業趨勢報告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f0ebe0;
+    --ink: #141414;
+    --ink-mid: rgba(20, 20, 20, 0.68);
+    --ink-soft: rgba(20, 20, 20, 0.48);
+    --hair: rgba(20, 20, 20, 0.14);
+    --card: rgba(255, 255, 255, 0.58);
+    --card-strong: rgba(255, 255, 255, 0.82);
+    --card-dark: rgba(20, 20, 20, 0.06);
+    --highlight: rgba(245, 245, 245, 0.82);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', 'PingFang TC', serif;
+    font-weight: 400;
+    line-height: 1.75;
+    padding: 48px 24px 80px;
+  }
+  .mono { font-family: 'JetBrains Mono', 'Menlo', monospace; }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* Masthead */
+  header.mast {
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(1.9em, 4.5vw, 2.8em);
+    font-weight: 500;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 1.02em;
+    color: var(--ink-mid);
+    max-width: 640px;
+    margin-bottom: 14px;
+  }
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78em;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+
+  /* TL;DR */
+  .tldr {
+    background: var(--card-strong);
+    padding: 28px 32px;
+    border-radius: 10px;
+    border: 1px solid var(--hair);
+    margin-bottom: 48px;
+  }
+  .tldr h2 {
+    font-size: 0.78em;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 14px;
+  }
+  .tldr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .tldr-item {
+    padding: 14px 16px;
+    background: var(--card-dark);
+    border-radius: 6px;
+  }
+  .tldr-item strong {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--ink-mid);
+    font-weight: 500;
+  }
+  .tldr-item .big {
+    font-size: 1.4em;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .tldr-item .note {
+    font-size: 0.88em;
+    color: var(--ink-mid);
+  }
+
+  /* Section */
+  section.section {
+    margin-bottom: 56px;
+  }
+  h2.section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 10px;
+  }
+  h3.section-hero {
+    font-size: 1.7em;
+    font-weight: 500;
+    margin-bottom: 28px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+
+  /* Trend cards */
+  .trend-card {
+    background: var(--card);
+    border: 1px solid var(--hair);
+    padding: 24px 28px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .trend-card .trend-index {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.2em;
+    padding: 3px 10px;
+    background: var(--card-dark);
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .trend-card h4 {
+    font-size: 1.25em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .trend-card p {
+    margin-bottom: 8px;
+    color: var(--ink-mid);
+  }
+  .trend-card ul {
+    margin: 6px 0 8px 20px;
+    color: var(--ink-mid);
+    font-size: 0.96em;
+  }
+  .trend-card li { margin-bottom: 3px; }
+  .stat-inline {
+    background: var(--highlight);
+    padding: 1px 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.92em;
+  }
+
+  /* Table */
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.94em;
+    margin: 10px 0 18px;
+    background: var(--card);
+    border: 1px solid var(--hair);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  table.data th {
+    padding: 10px 14px;
+    background: var(--card-dark);
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-mid);
+    border-bottom: 1px solid var(--hair);
+  }
+  table.data td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--hair);
+  }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data td.num {
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+  }
+
+  /* Action cards (implications) */
+  .action-grid {
+    display: grid;
+    gap: 18px;
+  }
+  .action {
+    background: var(--card-strong);
+    border: 1px solid var(--hair);
+    padding: 24px 28px;
+    border-radius: 10px;
+  }
+  .action-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.2em;
+    color: var(--ink-mid);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .action h4 {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .action p { color: var(--ink-mid); margin-bottom: 8px; }
+  .action ul { margin: 6px 0 0 20px; color: var(--ink-mid); font-size: 0.96em; }
+  .action li { margin-bottom: 4px; }
+
+  /* Sources */
+  .sources {
+    background: var(--card-dark);
+    border: 1px solid var(--hair);
+    padding: 24px 28px;
+    border-radius: 10px;
+  }
+  .sources h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    color: var(--ink-mid);
+  }
+  .sources ol {
+    padding-left: 22px;
+    font-size: 0.9em;
+  }
+  .sources li {
+    margin-bottom: 6px;
+    color: var(--ink-mid);
+  }
+  .sources li a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hair);
+    word-break: break-all;
+  }
+  .sources li a:hover { border-bottom-color: var(--ink); }
+  .sources li strong { color: var(--ink); font-weight: 500; }
+
+  /* Footer */
+  footer.colophon {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hair);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76em;
+    letter-spacing: 0.12em;
+    color: var(--ink-mid);
+    text-align: center;
+    line-height: 1.9;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 28px 16px 60px; }
+    .tldr, .trend-card, .action, .sources { padding: 22px 20px; }
+    h3.section-hero { font-size: 1.4em; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="mast">
+  <div class="label">repurre · industry research · 2026</div>
+  <h1>2026 健身產業趨勢報告</h1>
+  <p class="subtitle">對 repurre 策略意涵 · 內容方向 · 商業模型設計 · 差異化定位</p>
+  <p class="meta">彙整 ACSM · NASM · ACE · BizInsider TW · CommuniPass · Wakefield Research · 2025-2026</p>
+</header>
+
+<!-- TL;DR -->
+<div class="tldr">
+  <h2>TL;DR · 3 個數字看 2026</h2>
+  <div class="tldr-grid">
+    <div class="tldr-item">
+      <strong>Perimenopause 訊號</strong>
+      <div class="big">55.4%</div>
+      <div class="note">30-35 歲女性已有中至重度 perimenopause 症狀（Univ. of Virginia · 2025）</div>
+    </div>
+    <div class="tldr-item">
+      <strong>Longevity 主動機</strong>
+      <div class="big">60%</div>
+      <div class="note">以 longevity / healthy aging 為運動首要動機（Wakefield Research · 2025）</div>
+    </div>
+    <div class="tldr-item">
+      <strong>Skool 留存率</strong>
+      <div class="big">62%</div>
+      <div class="note">有每週 live 的付費社群 · 4 個月留存（無 live 僅 47%）</div>
+    </div>
+  </div>
+</div>
+
+<!-- 7 主軸 -->
+<section class="section">
+  <h2 class="section-title">Part 01 · Global trends</h2>
+  <h3 class="section-hero">七個主軸趨勢 · 全球 2026</h3>
+
+  <div class="trend-card">
+    <span class="trend-index">Trend 01</span>
+    <h4>Longevity 取代 physique 成為首要動機</h4>
+    <p>2025 Wakefield Research：<span class="stat-inline">60%</span> 美國人以 longevity / healthy aging 為運動首要動機 · 超過身材外觀。文化從 physique-driven 轉向 healthspan、mobility、每天感覺更好。</p>
+    <p>程式設計重點：骨密度 · 平衡 · VO₂ max · grip strength（女性 40+ 特別強）。</p>
+  </div>
+
+  <div class="trend-card">
+    <span class="trend-index">Trend 02</span>
+    <h4>Perimenopause 警覺年齡前移到 30-35</h4>
+    <p>Univ. of Virginia 研究：<span class="stat-inline">55.4%</span> 的 30-35 歲女性報告中至重度 perimenopause 症狀 · 全球每年 4700 萬女性進入更年期。</p>
+    <p>"Musculoskeletal syndrome of menopause" 已被正式認可為臨床分類。這是過去十年最大的新市場區隔。</p>
+  </div>
+
+  <div class="trend-card">
+    <span class="trend-index">Trend 03</span>
+    <h4>Functional / Active aging &gt; Senior fitness</h4>
+    <p>標 "low intensity"、"functional"、"active aging" 的程式 <span class="stat-inline">觸及率穩定高於</span> 同等 "senior fitness" 程式。</p>
+    <p>Functional strength training 的核心：教身體當一個系統動 · 而非肌肉分離。這跟代償角度切入的訓練理念正好對齊。</p>
+  </div>
+
+  <div class="trend-card">
+    <span class="trend-index">Trend 04</span>
+    <h4>AI 進入 fitness 程式化 / 客製化 / 恢復</h4>
+    <p>2026 AI 是業界頭號趨勢（NASM / ACE / 行業報告同聲）。影響四個層面：</p>
+    <ul>
+      <li>Programming — AI 根據個人資料產客製課表</li>
+      <li>Personalization — 每週動態調整</li>
+      <li>Communication — chatbot 即時回答學員</li>
+      <li>Recovery — HRV / 睡眠 / 應變訓練</li>
+    </ul>
+  </div>
+
+  <div class="trend-card">
+    <span class="trend-index">Trend 05</span>
+    <h4>Recovery 被重新重視</h4>
+    <p>從「越練越多」→「恢復是進步路徑」。睡眠 · Zone 2 · 心肺變異性（HRV）進入主流程式。週計畫開始強制排休日而非選項。</p>
+  </div>
+
+  <div class="trend-card">
+    <span class="trend-index">Trend 06</span>
+    <h4>心理健康運動排名上升</h4>
+    <p>ACSM 2026：心理健康運動從 2024/2025 第 8 升到 <span class="stat-inline">2026 第 6 名</span>。Mental health × strength 是可扣的雙敘事。</p>
+  </div>
+
+  <div class="trend-card">
+    <span class="trend-index">Trend 07</span>
+    <h4>混合模式（線上月費 + 實體定期）= mainstream</h4>
+    <p>便利性 + 問責感。價格分布：</p>
+    <ul>
+      <li>DIY app：$30-100 / 月</li>
+      <li>Premium 1:1：$600-800 / 月</li>
+      <li>Hybrid subscription + quarterly in-person：中位區間</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Skool 商模 -->
+<section class="section">
+  <h2 class="section-title">Part 02 · Community business model</h2>
+  <h3 class="section-hero">Skool / 付費社群數據</h3>
+
+  <p style="color:var(--ink-mid); margin-bottom:16px;">Fitness creator 25K-150K 粉絲區間的基準數據 · 2026 Q1。</p>
+
+  <table class="data">
+    <tr><th>模式</th><th>每人每月</th><th>月總營收範圍</th></tr>
+    <tr><td>純會員（只收會費）</td><td class="num">$30-50</td><td class="num">—</td></tr>
+    <tr><td>多元變現（多收入流）</td><td class="num">$50-150</td><td class="num">$900-6500</td></tr>
+    <tr><td>Coaching-inclusive 社群</td><td class="num">$79-199</td><td class="num">—</td></tr>
+    <tr><td>低觸點付費社群</td><td class="num">$19-49</td><td class="num">—</td></tr>
+  </table>
+
+  <div class="trend-card">
+    <h4>4 層 revenue stack（最有效的商業設計）</h4>
+    <ul>
+      <li><strong>Layer 1 · 月費會員</strong>｜recurring community subscription（base）</li>
+      <li><strong>Layer 2 · 季度挑戰</strong>｜quarterly paid challenges（帶新人進社群 · 完成率 70-80%）</li>
+      <li><strong>Layer 3 · 客製 AI agent 訂閱</strong>｜把過去內容打包成 AI 顧問賣</li>
+      <li><strong>Layer 4 · 數位產品</strong>｜0% transaction fee 的高毛利流</li>
+    </ul>
+  </div>
+
+  <div class="trend-card">
+    <h4>留存率與完成率指標</h4>
+    <table class="data">
+      <tr><th>情境</th><th>數值</th></tr>
+      <tr><td>4 個月留存 · 一般付費社群</td><td class="num">47%</td></tr>
+      <tr><td>4 個月留存 · 有每週 live</td><td class="num">62%</td></tr>
+      <tr><td>挑戰完成率</td><td class="num">70-80%</td></tr>
+      <tr><td>一般課程完成率</td><td class="num">3-5%</td></tr>
+      <tr><td>首次 meaningful 收入 timing</td><td class="num">30-60 天</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 台灣市場 -->
+<section class="section">
+  <h2 class="section-title">Part 03 · Taiwan context</h2>
+  <h3 class="section-hero">台灣市場觀察</h3>
+
+  <div class="trend-card">
+    <ul>
+      <li><strong>女性專屬健身空間</strong> 興起 — Her Fitness / Nuli App / 女力健身等</li>
+      <li>「<strong>強壯就是新的纖瘦</strong>」已進主流媒體論述（Business Insider Taiwan 專文）</li>
+      <li>混合模式進入台灣 — 線上月費訂閱 + 每月實體 1:1</li>
+      <li>ACSM 2026 台灣版：<strong>傳統肌力訓練</strong>在資深教練（21 年+）的 top 3</li>
+      <li>「心理健康運動」2026 排名第 6 · 對應台灣 30+ 女性壓力焦慮主訴</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 對 repurre 5 點可行動 -->
+<section class="section">
+  <h2 class="section-title">Part 04 · Strategic implications</h2>
+  <h3 class="section-hero">對 repurre 的 5 點可行動</h3>
+
+  <div class="action-grid">
+    <div class="action">
+      <div class="action-tag">A · Content · 內容主線新增</div>
+      <h4>Perimenopause 的內容空窗 · Jamie 可搶</h4>
+      <p>全球 55% 的 30-35 歲女性已有症狀但多數沒意識到 · Jamie TA 正好 30-45 歲。</p>
+      <p>建議加一條主線：「30+ 女生的身體反應不是你變懶 · 是 perimenopause 前期訊號 + 代償 + 肌肉流失三重合流」</p>
+      <p>這個 framing 同時解鎖：肩頸痠痛（04-30 主題）+ 30 歲先練肌力（04-28 主題）+ 不想變壯（04-29 主題）的共同底。</p>
+    </div>
+
+    <div class="action">
+      <div class="action-tag">B · Hook · 強化既有敘事</div>
+      <h4>Longevity 60% 數據加進 04-27 YT 長片</h4>
+      <p>「我不是練身材 · 我是練到 60 歲還能自由選」是全球首要動機。</p>
+      <p>04-27 YT 長片 Hook「運動是基本責任」已對齊趨勢 · 可加數據 framing：「這不是我的特殊觀點 · 是 60% 醒來的人的共識」強化權威。</p>
+    </div>
+
+    <div class="action">
+      <div class="action-tag">C · Skool · 留存路徑升級</div>
+      <h4>Q3 加「12 週代償歸零挑戰」</h4>
+      <p>Jamie Skool MOVE ON CREW 現在是「零觸點免費」= 趨勢報告中的「低觸點社群」層。</p>
+      <p>建議：2026 Q3（7-9 月）加 12 週代償歸零挑戰 · 完成率 70-80% · 作為收費轉換路徑。</p>
+      <p>不急著漲會費 · 先用挑戰篩出高意願的人 → 轉 LINE OA 1v1。</p>
+    </div>
+
+    <div class="action">
+      <div class="action-tag">D · Positioning · 品牌定位微調</div>
+      <h4>從「30+ 女性運動」→「30+ 女性 functional mobility for longevity」</h4>
+      <p>台灣 fitness 多數主打「變瘦 / 增肌 / 塑形」。Jamie 的「代償歸零」+「肩頸 3 動作」完美卡進 functional + active aging 的全球成長帶。</p>
+      <p>一個字的位置調整 · 產業定位從 me-too 變 category leader。</p>
+    </div>
+
+    <div class="action">
+      <div class="action-tag">E · Roadmap · 2026 必做的 3 條新內容線</div>
+      <h4>AI-assisted / Recovery / Mental health × strength</h4>
+      <ul>
+        <li><strong>AI-assisted 個人化</strong>｜把 repurre-reports.pages.dev/assessment 接 AI agent · 回答後自動產客製訓練建議</li>
+        <li><strong>Recovery 內容線</strong>｜HRV / 睡眠 / Zone 2 / soft 訓練 · Jamie 還沒碰但 2026 主流</li>
+        <li><strong>Mental health × strength</strong>｜運動治焦慮 / 壓力 · 台灣女性觀眾這塊關切度高 · 可做 IG Reels 系列</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Sources -->
+<div class="sources">
+  <h3>引用來源</h3>
+  <ol>
+    <li><strong>ACSM 2026 Global Fitness Trends</strong> · <a href="https://acsm.org/top-fitness-trends-2026/">acsm.org/top-fitness-trends-2026</a></li>
+    <li><strong>NASM Top Fitness Trends 2026</strong> · <a href="https://www.nasm.org/resource-center/blog/top-fitness-trends">nasm.org/resource-center/blog/top-fitness-trends</a></li>
+    <li><strong>ACE 10 Fitness Trends in 2026 and Beyond</strong> · <a href="https://www.acefitness.org/resources/pros/expert-articles/9043/10-fitness-trends-in-2026-and-beyond/">acefitness.org/resources/pros/expert-articles/9043</a></li>
+    <li><strong>ACSM 2026 台灣版</strong> · <a href="https://cta-taiwan.com/about/運動時事/406-2026-acsm-worldwide-fitness-trends">cta-taiwan.com · 運動時事</a></li>
+    <li><strong>Business Insider Taiwan — 強壯就是新的纖瘦</strong> · <a href="https://www.businessinsider.tw/article/2740">businessinsider.tw/article/2740</a></li>
+    <li><strong>Fitness Influencer Monetization Benchmarks 2026</strong> · <a href="https://communipass.com/blog/fitness-influencer-monetization-benchmarks-2026/">communipass.com · monetization-benchmarks</a></li>
+    <li><strong>Skool Community Monetization 2026</strong> · <a href="https://communipass.com/blog/how-to-monetize-a-community-on-skool/">communipass.com · monetize-a-community</a></li>
+    <li><strong>Best Subscription Community Platform for Coaches 2026</strong> · <a href="https://communipass.com/blog/best-subscription-community-platform-coaches-2026/">communipass.com · platform-coaches</a></li>
+    <li><strong>WarriorBabe 2026 Online Strength Training Rankings</strong> · <a href="https://www.warriorbabe.com/read/best-online-strength-training-programs-for-women">warriorbabe.com · best-strength-programs-women</a></li>
+    <li><strong>PureWow 6 Fitness Trends 2026</strong> · <a href="https://www.purewow.com/wellness/fitness-trends-2026">purewow.com/wellness/fitness-trends-2026</a></li>
+  </ol>
+</div>
+
+<footer class="colophon">
+  REPURRE · INDUSTRY RESEARCH · 2026 Q2<br>
+  COMPILED BY JAMIE × 小波 · 人生下半場 · 健康過一生
+</footer>
+
+</div>
+</body>
+</html>
